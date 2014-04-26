@@ -65,5 +65,3 @@ been adapted to generate javascript instead. It is using GPL license.
 
 The jsl libraries all can be used in your games, so they all use the more flexible 
 MIT license.
-
-
