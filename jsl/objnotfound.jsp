@@ -2,5 +2,9 @@
 
 function CNDobjnotfound(attrno, locno)
 {
-   return !CNDobjfound(attrno, locno);
+	for (i=0;i<num_objects;i++) 
+		if ((getObjectLocation(i) == locno) && (CNDonotzero(i,attrno))) {setFlag(FLAG_ESCAPE, i); return false; }
+
+	setFlag(FLAG_ESCAPE, EMPTY_OBJECT);
+	return true;
 }

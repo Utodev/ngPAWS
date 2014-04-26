@@ -42,6 +42,22 @@ If everything went fine you will have now a code.js file in your working folder,
 you can start index.html file with your  favorite browser.
 
 
+Documentation
+-------------
+
+For detailed documentation please check github wiki:
+
+https://github.com/Utodev/ngPAWS/wik
+
+
+Reporting bugs
+--------------
+
+If you found any bugs please report it using Github issue manager:
+
+https://github.com/Utodev/ngPAWS/issues
+
+
 License
 -------
 The compiler was developed first by Yokiyoki for its PAW clone "Paguaglús", and have

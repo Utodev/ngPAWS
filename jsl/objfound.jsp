@@ -4,6 +4,7 @@ function CNDobjfound(attrno, locno)
 {
 
 	for (i=0;i<num_objects;i++) 
-		if ((getObjectLocation(i) == locno) && (CNDonotzero(i,attrno))) return true;
+		if ((getObjectLocation(i) == locno) && (CNDonotzero(i,attrno))) {setFlag(FLAG_ESCAPE, i); return true; }
+	setFlag(FLAG_ESCAPE, EMPTY_OBJECT);
 	return false;
 }
