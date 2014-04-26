@@ -47,7 +47,7 @@ Documentation
 
 For detailed documentation please check github wiki:
 
-https://github.com/Utodev/ngPAWS/wik
+https://github.com/Utodev/ngPAWS/wiki
 
 
 Reporting bugs
