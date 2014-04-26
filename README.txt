@@ -20,26 +20,10 @@ locally.
 txtpaws
 -------
 txtpaws is a preprocessor able to convert identifiers into the numbers used by PAWS or 
-ngPAWS, so you can make orders like "GO lForest" instead of "GOTO 12". It is very
+ngPAWS, so you can make orders like "GOTO lForest" instead of "GOTO 12". It is very
 helpful and though you can work with ngPAWS without it is not recommended.
 
 
-How to create your first game?
-------------------------------
-
-1) Get ngpc (ngPAWS compiler) and txtpaws (https://github.com/Baltasarq/txtMap) 
-   binaries and put them in some folder.
-2) Get the jsl folder and put it in the same folder (or set the enviroment variable
-   NGPAWS_LIBPATH to the folder where the jsl folder contents are)
-3) Copy the new_game_pack folder contents to some other folder (it will be the game 
-    working folder)
-4) From the game working folder, run the following commands:
-
-<path to binaries>/txtpaws -I"dat/" code.txp
-<path to binaries>/ngpc code.sce
-
-If everything went fine you will have now a code.js file in your working folder, and 
-you can start index.html file with your  favorite browser.
 
 
 Documentation
@@ -58,10 +42,41 @@ If you found any bugs please report it using Github issue manager:
 https://github.com/Utodev/ngPAWS/issues
 
 
+Quick start: how to compile my first game?
+------------------------------------------
+
+1) Get ngpc (ngPAWS compiler) and txtpaws (https://github.com/Baltasarq/txtMap) 
+   binaries and put them in some folder.
+2) Get the jsl folder and put it in the same folder (or set the enviroment variable
+   NGPAWS_LIBPATH to the folder where the jsl folder contents are)
+3) Copy the new_game_pack folder contents to some other folder (it will be the game 
+    working folder)
+4) From the game working folder, run the following commands:
+
+<path to binaries>/txtpaws -I"dat/" code.txp
+<path to binaries>/ngpc code.sce
+
+For instance:
+
+~/bin/txtpaws -I"dat/" code.txp
+~/bin/ngpc code.sce
+
+or
+
+C:\UTILS\txtpaws -I"dat/" code.txp
+C:\UTILS\bin\ngpc code.sce
+
+
+If everything went fine you will have now a code.js file in your working folder, and 
+you can start index.html file with your  favorite browser.
+
+
 License
 -------
-The compiler was developed first by Yokiyoki for its PAW clone "Paguaglús", and have
-been adapted to generate javascript instead. It is using GPL license.
+The compiler was developed first by Yokiyoki for his PAW clone "Paguaglús", it has been 
+modified during the years by me (Carlos Sanchez) for the Superglus project and now
+I have adapted it to generate javascript instead. It's (C) Yokiyoki and Carlos Sanchez and
+it's released under the GPL license.
 
 The jsl libraries all can be used in your games, so they all use the more flexible 
-MIT license.
+MIT license. All of them are (C) Carlos Sánchez.
