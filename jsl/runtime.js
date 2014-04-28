@@ -1,88 +1,5 @@
 	// This file is (C) Carlos Sanchez 2014, released under the MIT license
 
-////////// NOTAS IMPORTANTES
-
-/// ****************** FALTA Y SE VA A HACER **************
-
-// Output: more... en salida de texto
-// Condactos de gr?icos:  	STRETCH 
-// Detectar si falla el "restore" y poner sysmes correspondiente
-// Hacer que al pintar la imagen de localidad se ajuste a with o height dependiendo del formato de la pantalla (para que ajuste mejor en moviles)
-
-
-
-
-/// ***************** FALTABA Y YA ESTA HECHO ****************
-// Soporte de ordenes compuestas y condacto NEWTEXT
-// Parser: terminaciones pronominales y soporte de pronombres en ingles "IT"
-// Parser: que el parser use el verbo de la frase anterior si no hay verbo (COGER ESPADA Y ESCUDO)
-// DOALL
-// Mensaje de Superglus que devuelve cuando el parser no reconoce ni una sola palabra de lo escrito
-// Filtro de acentos en entrada del jugador (que SUBIR CAMION Y SUBIR CAMI? sean la misma orden)
-// Efectos de sonido
-// Musica ligada a localidad
-// Que el flag 12 Bit 4 --> Se pone a 1 si hay un evento ?arrange? ("resize" en un navegador)
-// Proceso interrupci?
-// ACCGRAPHIC
-// Funcionalidad de Cargar/salvar:  condactos RAMLOAD, RAMSAVE, SAVE y LOAD.
-// Condacto PAUSE   --> Bloquea todo, sonido incluido
-// Timeout
-// Transcript
-
-
-/// ************ NUEVO **********************
-// CONDACTO TITLE, que pone el t?ulo de la p?ina que sale en el navegador : TITLE "Esto es una demo"
-// CONDACTO COMMAND, que deshabilita o habilita el input
-// CONDACTO LOG, que hace log en la consola del navegador
-// El condacto EXTERN, ahora puede recibir javascript como par?etro:  EXTERN "alert('Hellow World!!')"
-// Condacto FADEIN (reproduce un efecto o música, haciendo un fadein de 2 segundos)
-// Se puede cambiar el peso de los objetos en tiempo de ejecucion (condacto plugin SETWEIGHT)
-// Condacto YOUTUBE: muestra un video de Youtube en la zona de graicos
-// Condacto BLOCK
-// Las secuencias de escape se ponen con {ORDEN|parametros}
-//
-// {URL|http://www.google.es|google}  --> Link a Google con target _blank
-// {CLASS|prueba|texto} --> <span class="prueba">texto</span>
-// {STYLE|display:block;margin:3px|tetxo} <span style="display:block;margin:3px">texto</span>
-// {INK|red|texto} --> <span style="color:red">texto</span>
-// {INK|#FF00AA|texto} --> <span style="color:#FF00AA">texto</span>
-// {PAPER|blue|texto} --> <span style="background-color:blue">texto</span>
-// {OBJECT|flagno} --> El objeto cuyo numero est?en flagno
-// {WEIGHT|flagno} --> El peso del objeto cuyo numero est?en flagno
-// {OLOCATION|flagno} --> La localidad actual del objeto cuyo numero est?en flagno
-// {LOCATION|flagno} --> El texto de la localidad cuyo numero est?en flagno
-// {PROCESS|value} --> Ejecuta el proceso value
-// {OREF} --> El objeto referenciado por la frase actual (equivale al tradicional _ de PAWS)
-// {ACTION|ex llave|llave} --> Crea un link sobre la palabra llave que al hacer click lanza la orden "ex llave"
-// {EXTERN|ACCsave()|llave} --> Crea un link sobre la palabra llave que al hacer click lanza el JS: ACCsave()
-// {RESTART|reiniciar} --> Crea un link sobre la palabra "reiniciar" que reinicia el juego
-// {TEXTPIC|ppe.jpg} --> Incluye la imagen ppe.jpg--  > ojo, la imagen llegar?tal cual (txtpaws no la convierte) por lo que no es ni siquiera necesario hacer el #define
-// {HTML|<table border=0></table>} --> Mete el HTML tal cual  *** NO DOCUMENTAR **
-// {FLAG|38} --> Mete el valor del flag. Ojo, hay que poner el flag en numero, no vale con txtpaws
-// Son recursivas, esto funciona: {PAPER|blue|{INK|#FF00AA|texto}} {INK|#FF00AA|{OREF}}
-
-
-
-
-/// ************ DESAPARECE ****************
-// Condacto DEBUG: el debugger de los navegadores lo suple y lo amplia enormemente
-
-// Condacto PAPER   --> Se mantendr?pero no har?nada, se hace todo por CSS
-// Condacto BORDER --> Se mantendr?pero no har?nada, se hace todo por CSS
-// Condacto INK --> Se mantendr?pero no har?nada, se hace todo por CSS
-// Condacto CHARSET --> Se mantendr?pero no har?nada, se hace todo por CSS
-// Condacto PROMPT --> Se mantendr?y asignar?el valor dado al flag 42, pero el parser nunca mostrar?el mensaje de "?Que quieres hacer ahora?". Los mensajes del sistema 2, 3,4 y 5 dejan de tener utilidad. Aunque no se borrar?por permitir compatibilidad con Superglus, PAW, etc.
-
-// Condacto ANYKEY  --> Dificl de implementar en single thread, valorar opciones
-// Condacto GETKEY  --> Dificl de implementar en single thread, valorar opciones
-
-// Las secuencias de escape de Superglus, sustituidas por el nuevo sistema de secuencias de escape
-
-
-/// **************** POSIBILIDADES QUE SEGURO QUE SE HACEN ******************
-/// 
-/// Habra que dar soporte de fade out y fade in al sonido, con opciones de fadeout&stop o fadeout simplemente (el fadein siempre es simple).
-///  Un condacto FADEOUT y otro SILENCEFADEOUT (para el canal de sonido pero haciendo un fadeout)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -436,8 +353,13 @@ function writeText(text)
 	text = filterText(text)
 	$('.text').append(text);
 	$(".text").scrollTop($(".text")[0].scrollHeight);
-	transcript = transcript + text;
+	addToTranscript(text);
 	focusInput();
+}
+
+function addToTranscript(text)
+{
+	transcript = transcript + text;		
 }
 
 function writelnText(text)
@@ -1429,6 +1351,12 @@ function start()
     	if (e.which == 13) 
     	{ 
     		player_order = $('.prompt').val();
+    		if (player_order.charAt(0) == '#')
+    		{
+    			addToTranscript(player_order + STR_NEWLINE);
+    			clearInputWindow();
+    		} 
+    		else
     		if (player_order!='') 
     				orderEnteredLoop(player_order);
     	}
