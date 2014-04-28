@@ -7,6 +7,7 @@
 function ACCdesc()
 {
 	describe_location_flag = true;
+	ACCbreak(); // Cancel doall loop
 }
 
 
@@ -683,6 +684,7 @@ function ACCcopyof(objno,flagno)
 function ACCcopyoo(objno1, objno2)
 {
 	setObjectLocation(objno2,getObjectLocation(objno1));
+	setReferredObject(objno2);
 }
 
 function ACCcopyfo(flagno,objno)

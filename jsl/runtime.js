@@ -700,7 +700,7 @@ function setReferredObject(objno)
 function getObjectWeight(objno) 
 {
 	var weight = objectsWeight[objno];
-	if (objectIsContainer(objno))
+	if ((objectIsContainer(objno)) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
 	{
   		weight = weight + getLocationObjectsWeight(objno);
 	}
