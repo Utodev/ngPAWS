@@ -12,7 +12,7 @@
 
 // actions should be named acc_XXXX, condiction cnd_XXX, where xxx is the name in lowercase.
 
-function acc_samplecondact()
+function ACCsamplecondact()
 {
    // Do something here
 }

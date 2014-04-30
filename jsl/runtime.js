@@ -400,7 +400,7 @@ function clearInputWindow()
 }
 
 
-function describeLocation(locno)
+function writeLocation(locno)
 {
 	if (locations[locno]!=null) writeText(locations[locno] + STR_NEWLINE); else writeText(STR_NEWLINE + STR_WRONG_LOCATION + ' [' + locno + ']');
 }
@@ -1242,7 +1242,7 @@ function descriptionLoop()
 {
 	describe_location_flag = false;
 	clearTextWindow();
-	describeLocation(loc_here());
+	writeLocation(loc_here());
 	h_description_init();
 	playLocationMusic(loc_here());
 	drawPicture(loc_here())
