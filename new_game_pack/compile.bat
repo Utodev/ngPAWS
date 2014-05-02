@@ -8,3 +8,4 @@ del code.txt
 del code.xml
 del code.txp.log
 del code.blc
+pause

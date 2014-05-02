@@ -1,38 +1,39 @@
 ;#############################################################
-;############   ngPAWS - START DATABASE 4.0      #############
+;############   ngPAWS - LIBRERIA DE INICIO 4.0  #############
 ;############              18/04/2014            #############      
 ;#############################################################
 ;#                                                           #
-;#         THIS START DATABASE IS PUBLIC DOMAIN              # 
-;#         Built by Uto and Radin and free for you to        # 
-;#     use it the way you prefer for your own games/stories  #
+;#         ESTA LIBRERIA BASE ES DE DOMINIO PUBLICO          # 
+;#          Ha sido creada por Uto y Radin y, cedida         # 
+;#     de manera que podáis decidir que licencia aplicáis a  #
+;#             vuestra aventura sin restricciones            #
 ;#############################################################
 
-; Sample for location graphic
+; Ejemplo grafico de localidad
 ;##define pic loc1.jpg 1
 
-; Sample for standalone graphic
-;##define grf escena.gif 1
+; Ejemplo grafico suelto
+;##define grf escena.jpg 1
 
-; Sample for location music
+; Ejemplo musica de localidad
 ;##define msc loc1.ogg 1
 
-; Sample for standalone music/sfx
-;##define snd sfx.mp3 2
+; Ejemplo sonido o musica suelto
+;##define snd sfx.aiff 2
 
-; Sample flag identifier
-;##define flg fDragonIsDead 100
+; Ejemplo flag
+;##define flg fDragonMuerto 100
 
-; Sample constant
+; Ejemplo constante
 ;##define const ORO_INICIAL 50
 
-; Sample object 
-;##define obj oKeyring 3
+; Ejemplo objeto
+;##define obj oLlave 3
 
-; Sample Location
-;##define loc lBridge 12
+; Ejemplo localidad
+;##define loc lPuente 12
 
-; Definitions for standard object attributes
+; Definiciones por defecto para atributos de objeto
 #define const aLight = 0
 #define const aWear = 1
 #define const aContainer = 2
@@ -42,356 +43,781 @@
 
 /VOC
 
-;--Movements, verbs and nouns < 14--
+;--Movimientos, verbos y nombres < 14--
 
 N             2        noun
-NORTH         2        noun
+NORTE         2        noun
 S             3        noun
-SOUTH         3        noun
+SUR           3        noun
 E             4        noun
-EAST          4        noun
-W             5        noun
-WEST          5        noun
+ESTE          4        noun
+O             5        noun
+OESTE         5        noun
+W             5        noun 
 NE            6        noun
-NORTHEAST     6        noun
+NORESTE       6        noun
+NORDESTE      6        noun
 NW            7        noun
-NORTHWEST     7        noun
+NOROESTE      7        noun
+NO            7        noun
 SE            8        noun
-SOUTHEAST     8        noun
-SOUTHWEST     9        noun
+SURESTE       8        noun
+SUDESTE       8        noun
+SUROESTE      9        noun
 SW            9        noun
+SO            9        noun
+ARRIBA        10       noun
 U             10       noun
 UP            10       noun  
+ABAJO         11       noun
 D             11       noun
 DOWN          11       noun
+SUBIR         10       verb
+ASCENDER      10       verb  
+ASCIENDE      10       verb
+SUBETE        10       verb
+SUBE          10       verb
+SUBIRSE       10       verb
+SUBIRTE       10       verb
+BAJAR         11       verb
+BAJA          11       verb
+DESCENDER     11       verb  
+DESCIENDE     11       verb
+BAJATE        11       verb
+BAJARSE       11       verb
+BAJARTE       11       verb
+ENTRAR        12       verb
+SALIR         13       verb
+ENTRA         12       verb
 ENTER         12       verb
-OUT           13       verb
+INTRODUCET    12       verb  
+INTERNATE     12       verb
+INTERNARTE    12       verb  
+SAL           13       verb
+EXIT          13       verb
 
-;--Nouns --     <20 can be converted to verbs
-;               <50 proper nouns, not considered for pronouns
-
+;--Nombres--    <20 indica que pueden ser usados como verbos
+;               <50 indica que son nombres propios, no seran
+;                   tenidos en cuenta por los pronombres.
 I             14       noun
 INVEN         14       noun
-INVENTORY     14       noun
-ALL           20       noun
-YOURSELF      49       noun
-MYSELF        49       noun
-TORCH         50       noun
+INVENTARIO    14       noun
+TODO          20       noun
+ANTORCHA      50       noun
 
-;--Verbs--
+;--Verbos--
+COGER         20       verb
+COGE          20       verb
+TOMAR         20       verb
+TOMA          20       verb
 TAKE          20       verb
-GET           20       verb
-DROP         21       verb
-REMOVE        22       verb
-SIT           23       verb
+DEJAR         21       verb
+DEJA          21       verb
+SOLTAR        21       verb
+SUELTA        21       verb
+DROP          21       verb
+QUITAR        22       verb
+QUITA         22       verb
+QUITATE       22       verb
+QUITARTE      22       verb
+QUITARSE      22       verb
+QUITASE       22       verb
+SACATE        22       verb
+SACARTE       22       verb
+SACARSE       22       verb
+SACASE       22       verb
+DESVISTE      22       verb
+DESVESTIR     22       verb
+DESVESTIRSE   22       verb
+DESVESTIRTE   22       verb
+SENTAR        23       verb
+SENTARSE      23       verb
+SENTARTE      23       verb
+SIENTATE      23       verb
 L             24       verb
 LOOK          24       verb
+M             24       verb   
+MIRAR         24       verb   
+MIRA          24       verb
 QUIT          25       verb
+FIN           25       verb
 SAVE          26       verb
+GRABAR        26       verb
+GRABA         26       verb
+SALVAR        26       verb
+SALVA         26       verb
+GUARDAR       26       verb
+GUARDA       26       verb
 LOAD          27       verb
+CARGAR        27       verb
+CARGA         27       verb
 RAMSAVE       28       verb
+GRABARAM      28       verb
 RAMLOAD       29       verb
-EXAMINE       30       verb
+CARGARAM      29       verb
+EXAMINAR      30       verb
+EXAMINA       30       verb
 EX            30       verb
-SAY           31       verb
-THROW         32       verb
-PUSH          33       verb
+INSPECCIONA   30       verb
+OBSERVAR      30       verb
+OBSERVA       30       verb
+DECIR         31       verb
+DI            31       verb
+HABLAR        31       verb
+HABLA         31       verb
+RESPONDER     31       verb
+RESPONDE      31       verb
+LANZAR        32       verb
+LANZA         32       verb
+LANZARSE      32       verb
+LANZASE       32       verb
+TIRAR         32       verb
+TIRA          32       verb
+TIRARSE       32       verb
+TIRASE        32       verb
+ARROJA        32       verb
+ARROJAR       32       verb
+ARROJARSE     32       verb
+ARROJASE      32       verb
+EMPUJAR       33       verb
+EMPUJA        33       verb
+AYUDA         34       verb
 HELP          34       verb
-TURN          35       verb
-ROTATE        35       verb
-SHOW          36       verb
-LISTEN        37       verb
-EAT           38       verb
-SWALLOW       38       verb
-BITE          38       verb
-DRINK         39       verb
-TOUCH         40       verb
+GIRAR         35       verb
+GIRA          35       verb
+ROTA          35       verb
+ROTAR         35       verb
+VOLTEAR       35       verb
+VOLTEA        35       verb
+MOSTRAR       36       verb
+MOSTRARSE     36       verb
+MUESTRA       36       verb
+MUESTRASE     36       verb
+ENSEÑAR       36       verb
+ENSEÑA        36       verb
+ENSEÑARSE     36       verb
+ENSEÑASE      36       verb
+ESCUCHAR      37       verb
+ESCUCHA       37       verb
+OIR           37       verb
+OYE           37       verb
+COMER         38       verb
+COME          38       verb
+COMETE        38       verb
+COMERTE       38       verb
+COMERSE       38       verb
+TRAGA         38       verb
+TRAGAR        38       verb
+TRAGARTE      38       verb
+TRAGARSE      38       verb
+TRAGATE       38       verb
+INGIERE       38       verb
+INGERIR       38       verb
+MASTICA       38       verb
+MASTICAR      38       verb
+BEBER         39       verb
+BEBE          39       verb
+BEBETE        39       verb
+BEBERSE       39       verb
+BEBERTE       39       verb
+TOCAR         40       verb
+TOCA          40       verb
+ACARICIAR     40       verb
+ACARICIA      40       verb
+PALPA         40       verb
+PALPAR        40       verb
+SALIDAS       41       verb
 EXITS         41       verb
 X             41       verb
-SMELL         42       verb
-WAIT          43       verb
+OLER          42       verb
+HUELE         42       verb
+OLFATEAR      42       verb
+OLFATEA       42       verb
+HUSMEA        42       verb
+HUSMEAR       42       verb
+ESPERAR       43       verb
+ESPERA        43       verb
 Z             43       verb
-SING          44       verb
-JUMP          45       verb
-ATTACK        46       verb
-KILL          46       verb
-TORTURE       46       VERB
-FIGHT         46       verb
-PEE           47       verb
-PISS          47       verb
-URINATE       47       verb
-SHIT          47       verb
-BURP          47       verb
-VOMITE        47       verb
-SPIT          48       verb
-SHAKE         49       verb
-DIG           51       verb
-CUT           52       verb
-RAISE         53       verb
-TIE           54       verb
-FILL          55       verb
-SWIM          56       verb
-CLIMB         57       verb
-BEND          58       verb
-PRAY          59       verb
-THINK         60       verb
-SLEEP         61       verb
-KISS          62       verb
-SUCK          63       verb
-LICK          63       verb
-TASTE         63       verb
+CANTAR        44       verb
+CANTA         44       verb
+SALTAR        45       verb
+SALTA         45       verb
+SALTATE       45       verb
+SALTARSE      45       verb
+SALTARTE      45       verb
+BRINCAR       45       verb
+BRINCA        45       verb
+BRINCATE      45       verb
+BRINCARTE     45       verb
+BRINCARSE     45       verb
+ATACA         46       verb
+ATACAR        46       verb
+AGREDIR       46       verb
+AGREDE        46       verb
+MATAR         46       verb
+MATA          46       verb
+ASESINAR      46       verb
+ASESINA       46       verb
+ESTRANGULA    46       verb
+PATEA         46       verb
+PATEAR        46       verb
+PISOTEA       46       verb
+PISOTEAR      46       verb
+TORTURA       46       verb
+TORTURAR      46       verb
+NOQUEA        46       verb
+NOQUEAR       46       verb
+LUCHAR        46       verb
+ORINAR        47       verb
+ORINA         47       verb
+ORINATE       47       verb
+ORINARSE      47       verb
+ORINARTE      47       verb
+MEAR          47       verb
+MEA           47       verb
+MEATE         47       verb
+MEARSE        47       verb
+MEARTE        47       verb
+DEFECAR       47       verb
+DEFECA        47       verb
+DEFECATE      47       verb
+DEFECARSE     47       verb
+DEFECARTE     47       verb
+CAGAR         47       verb
+CAGA          47       verb
+CAGATE        47       verb
+CAGARTE       47       verb
+CAGARSE       47       verb
+ERUCTAR       47       verb
+ERUCTA        47       verb
+ERUCTATE      47       verb
+ERUCTARTE     47       verb
+ERUCTARSE     47       verb
+VOMITAR       47       verb
+VOMITA        47       verb
+VOMITATE      47       verb
+VOMITARTE     47       verb
+VOMITARSE     47       verb
+ESCUPIR       48       verb
+ESCUPE        48       verb
+AGITAR        49       verb
+AGITA         49       verb
+MENEAR        49       verb
+MENEA         49       verb
+SACUDIR       49       verb
+SACUDE        49       verb
+REMOVER       49       verb
+REMUEVE       49       verb
+BALANCEA      49       verb
+BALANCEAR     49       verb
+BALANCEARTE   50       verb
+BALANCEARSE   50       verb
+BALANCEATE    50       verb
+COLUMPIARTE   50       verb
+COLUMPIARSE   50       verb
+COLUMPIATE    50       verb
+EXCAVAR       51       verb
+EXCAVA        51       verb
+CAVAR         51       verb
+CAVA          51       verb
+DESENTERRAR   51       verb
+DESENTIERRA   51       verb
+ENTERRAR      51       verb
+ENTIERRA      51       verb
+CORTAR        52       verb
+CORTA         52       verb
+RASGAR        52       verb
+RASGA         52       verb
+LEVANTATE     53       verb
+LEVANTARSE    53       verb
+LEVANTARTE    53       verb
+ATAR          54       verb
+ATA           54       verb
+ENLAZAR       54       verb
+ENLAZA        54       verb
+ANUDA         54       verb
+ANUDAR        54       verb
+LLENAR        55       verb
+LLENA         55       verb
+RELLENAR      55       verb
+RELLENA       55       verb
+NADAR         56       verb
+NADA          56       verb
+TREPAR        57       verb
+TREPA         57       verb
+ESCALAR       57       verb
+ESCALA        57       verb
+RETORCER      58       verb
+RETUERCE      58       verb
+TORCER        58       verb
+TUERCE        58       verb
+REZAR         59       verb
+REZA          59       verb
+ORAR          59       verb
+ORA           59       verb
+PENSAR        60       verb
+PIENSA        60       verb
+DORMIR        61       verb
+DUERME        61       verb
+DORMIRSE      61       verb
+DORMIRTE      61       verb
+DESCANSA      61       verb
+DESCANSAR     61       verb
+RONCAR        61       verb
+RONCA         61       verb
+ECHATE        61       verb
+ECHARSE       61       verb
+ECHARTE       61       verb
+BESAR         62       verb
+BESA          62       verb
+CHUPAR        63       verb
+CHUPA         63       verb
+LAMER         63       verb
+LAME          63       verb
+PROBAR        63       verb
+PRUEBA        63       verb
+PALADEAR      63       verb
+PALADEA       63       verb
+SABOREAR      63       verb
+SABOREA       63       verb
+ABRIR         64       verb
+ABRE          64       verb
 OPEN          64       verb
+CERRAR        65       verb
+CIERRA        65       verb
 CLOSE         65       verb
-BURN          66       verb
-
-EXTINGUISH    67       verb
+QUEMAR        66       verb
+QUEMA         66       verb
+ENCENDER      66       verb
+ENCIENDE      66       verb
+INCENDIAR     66       verb
+INCENDIA      66       verb
+PRENDE        66       verb
+PRENDER       66       verb
+APAGAR        67       verb
+APAGA         67       verb
+EXTINGUIR     67       verb
+EXTINGUE      67       verb
+SOFOCAR       67       verb
+SOFOCA        67       verb
 TRANSCRIP     68       verb
 TRANSCRIPC    68       verb
 TRANSCRIPT    68       verb
-BREAK         69       verb
-DESTROY       69       verb
+ROMPER        69       verb
+ROMPE         69       verb
+PARTIR        69       verb
+PARTE         69       verb
+QUEBRAR       69       verb
+QUIEBRA       69       verb
+DESTRUYE      69       verb
+DESTRUIR      69       verb
 VERSION       70       verb        
-PUT           71       verb
-WEAR          71       verb
-HIT           72       verb
-GIVE          73       verb
-OFFER         73       verb
-GIFT          73       verb
-INTRODUCE     74       verb
+PONER         71       verb
+PON           71       verb
+PONTE         71       verb
+PONSE         71       verb
+PONERSE       71       verb
+PONERTE       71       verb
+VISTE         71       verb
+VISTESE       71       verb
+VESTIRSE      71       verb
+VESTIRTE      71       verb 
+VESTIR        71       verb
+GOLPEAR       72       verb
+GOLPEA        72       verb
+DAR           73       verb
+DA            73       verb
+DASE          73       verb
+DARSE         73       verb
+DARTE         73       verb
+DALE          73       verb
+DARLE         73       verb
+OFRECE        73       verb
+OFRECESE      73       verb
+OFRECER       73       verb
+OFRECERSE     73       verb
+REGALA        73       verb
+REGALAR       73       verb
+REGALARSE     73       verb
+REGALASE      73       verb
+METER         74       verb
+METE          74       verb
 INTRODUCE     74       verb
 INTRODUCIR    74       verb
-INSERT        74       verb
-EXTRACT       75       verb
-CALL          76       verb
-SHOUT         77       verb
-YELL          77       verb
-REGUSTER      78       verb
-TEAR         79       verb
-STRETCH       79       verb
-USE           80       verb
-SUICIDE       81       verb
+INSERTAR      74       verb
+INSERTA       74       verb
+ECHA          74       verb
+ECHAR         74       verb
+SACAR         75       verb
+SACA          75       verb
+EXTRAE        75       verb
+EXTRAER       75       verb
+LLAMA         76       verb
+LLAMAR        76       verb
+GRITA         77       verb
+GRITAR        77       verb
+CHILLA        77       verb
+CHILLAR       77       verb
+REGISTRA      78       verb
+REGISTRAR     78       verb
+REBUSCA       78       verb
+REBUSCAR      78       verb
+ARRANCAR      79       verb
+ARRANCA       79       verb
+ESTIRAR       79       verb
+ESTIRA        79       verb
+USAR          80       verb
+USA           80       verb
+UTILIZAR      80       verb
+UTILIZA       80       verb
+MATATE        81       verb
+MATARTE       81       verb
+MATARSE       81       verb
+SUICIDATE     81       verb
+SUICIDARTE    81       verb
+SUICIDARSE    81       verb
 XYZZY         82       verb
-DRAG          83       verb
+ARRASTRAR     83       verb
+ARRASTRA      83       verb
+REGISTRATE    84       verb
+REGISTRARSE   84       verb
+REGISTRARTE   84       verb
+MIRATE        85       verb
+MIRARSE       85       verb
+MIRARTE       85       verb
+EXAMINATE     85       verb
+EXAMINARSE    85       verb
+EXAMINARTE    85       verb    
+VACIAR        86       verb
+VACIA         86       verb
+VERTER        86       verb
+VERTIR        86       verb  ; Término erróneo, pero ampliamente extendido
+VIERTE        86       verb
+DESPIERTA     87       verb
+DESPERTAR     87       verb
+DESPIERTATE   87       verb
+DESPERTARSE   87       verb
+DESPERTARTE   87       verb
+ESPABILAR     87       verb
+ESPABILATE    87       verb
+ESPABILARTE   87       verb
+ESPABILARSE   87       verb
+LAVATE        88       verb
+LAVARTE       88       verb
+LAVARSE       88       verb
+LIMPIATE      88       verb
+LIMPIARTE     88       verb
+LIMPIARSE     88       verb
+INSULTAR      89       verb
+INSULTA       89       verb
+INCREPAR      89       verb
+INCREPA       89       verb
+IR            90       verb
+VE            90       verb
+VETE          90       verb
+IRTE          90       verb
+IRSE          90       verb
+CAMINA        90       verb
+CAMINAR       90       verb
+ANDA          90       verb
+ANDAR         90       verb
+CORRE         90       verb
+CORRER        90       verb
+HUIR          90       verb
+HUYE          90       verb
+DIRIGETE      90       verb
+DIRIGIRSE     90       verb
+DIRIGIRTE     90       verb
+ESCONDER      91       verb
+OCULTAR       91       verb
+ESCONDE       91       verb
+OCULTA        91       verb
+ESCONDERSE    92       verb
+ESCONDERTE    92       verb
+OCULTARSE     92       verb
+OCULTARTE     92       verb
+ESCONDETE     92       verb
+OCULTATE      92       verb
+LLORAR        93       verb
+LLORA         93       verb
+LLORIQUEAR    93       verb
+LLORIQUEA     93       verb
+SOLLOZAR      93       verb
+SOLLOZA       93       verb
+RECORDAR      94       verb
+RECUERDA      94       verb
+ACORDARSE     94       verb
+ACORDARTE     94       verb
+ACUERDATE     94       verb
+SOPLA         95       verb
+SOPLAR        95       verb
+DOBLA         96       verb
+DOBLAR        96       verb
+DESDOBLAR     97       verb
+DESDOBLA      97       verb
+DESATAR       98       verb
+DESATA        98       verb
+UNIR          99       verb 
+UNE           99       verb
+JUNTAR        99       verb 
+JUNTA         99       verb
+ACERCAR       99       verb
+ACERCA        99       verb
+ARRIMAR       99       verb
+ARRIMA        99       verb
+APROXIMAR     99       verb
+APROXIMA      99       verb
+REUNE         99       verb
+REUNIR        99       verb
+SEPARA        100      verb
+SEPARAR       100      verb
+LIMPIAR       101      verb
+LIMPIA        101      verb
+FROTAR        101      verb
+FROTA         101      verb
+LAVAR         101      verb
+LAVA          101      verb
+PULE          101      verb
+PULIR         101      verb
+FREGAR        101      verb
+FRIEGA        101      verb
+RASCAR        102      verb
+RASCA         102      verb
+RASPAR        102      verb
+RASPA         102      verb
+CONECTA       103      verb
+CONECTAR      103      verb
+ACTIVA        103      verb
+ACTIVAR       103      verb
+DESCONECTA    104      verb
+DESACTIVA     104      verb
+DESACTIVAR    104      verb
+ABRAZA        105      verb
+ABRAZAR       105      verb
+COMPRAR       106      verb
+COMPRA        106      verb
+COMPRARTE     106      verb
+COMPRARSE     106      verb
+COMPRASE      106      verb
+COMPRATE      106      verb
+ADQUIRIR      106      verb
+ADQUIERE      106      verb
+ADQUIERESE    106      verb
+CONSULTAR     107      verb
+CONSULTA      107      verb
+PREGUNTAR     108      verb
+PREGUNTA      108      verb
+LEE           109      verb
+LEER          109      verb
+LEERSE        109      verb
+LEERTE        109      verb
+LEETE         109      verb
+MOVER         110      verb
+MUEVE         110      verb
+DESPLAZAR     110      verb
+DESPLAZA      110      verb
+APRETAR       111      verb
+APRIETA       111      verb
+ESTRUJAR      111      verb
+ESTRUJA       111      verb
+BAILAR        112      verb
+BAILA         112      verb
+DANZAR        112      verb
+DANZA         112      verb
+SALUDAR       113      verb
+SALUDA        113      verb
+LEVANTAR      114      verb
+LEVANTA       114      verb
 
-EMPTY         86       verb
-WAKE          87       verb
-WASH          88       verb
 
-INSULT        89       verb
-GO            90       verb
-HIDE          91       verb
-CRY           93       verb
-WHINE         93       verb
+;--Adjetivos--
+PEQUEÑO       2        adjective
+PEQUEÑA       2        adjective
+GRANDE        3        adjective
+VIEJO         4        adjective
+VIEJA         4        adjective
+NUEVO         5        adjective
+NUEVA         5        adjective
+DURO          6        adjective
+DURA          6        adjective
+SUAVE         7        adjective
+LARGO         9        adjective
+LARGA         9        adjective
 
-REMIND        94       verb
-REMEMBER      94       verb
-BLOW          95       verb
-FOLD          96       verb
-UNFOLD        97       verb
-UNTIE         98       verb
-JOIN          99       verb 
-
-ACERCAR       99       verb   ; falta bring closer
-
-SEPARATE      100      verb
-
-CLEAN         101      verb
-
-SCRATCH       102      verb
-
-CONNECT       103      verb
-
-ACTIVATE      103      verb
-DEACTIVATE    104      verb
-
-
-HUG           105      verb
-
-BUY           106      verb
-
-CHECK         107      verb
-ASK           108      verb
-READ          109      verb
-
-MOVE          110      verb
-MOVE          110      verb
-TIGHTEN       111      verb
-
-DANCE         112      verb
-
-GREET         113      verb
-
-
-;--Adjectives--
-SMALL         2        adjective
-BIG           3        adjective
-OLD           4        adjective
-NEW           5        adjective
-HARD          6        adjective
-SOFT          7        adjective
-LONG          9        adjective
-
-;--Adverbs--
-FAST          2        adverb
-SLOWLY        3        adverb
-QUITELY       4        adverb
-LOUD          5        adverb
-CAREFULLY     6        adverb
-
+;--Adverbios--
+RAPIDAMENT    2        adverb
+LENTAMENTE    3        adverb
+SILENCIOSA    4        adverb
+RUIDOSAMEN    5        adverb
+CUIDADOSAM    6        adverb
+TRANQUILAM    6        adverb
 
 
 
 ;--Preposiciones--
-ON            2        preposition
-IN            3        preposition
-INTO          3        preposition
-AT            4        preposition
-SINCE         5        preposition
-FOR           6        preposition
-BEFORE        7        preposition
-TO            8        preposition
-UNTIL         9        preposition
-TILL          9        preposition
-BY            10       preposition
-UNDER         11       preposition
-BELOW         11       preposition
-OVER          12       preposition
-ABOVE         12       preposition
+A             2        preposition
+AL            2        preposition
+DE            3        preposition
+DEL           3        preposition
+EN            4        preposition
+DENTRO        4        preposition
+DESDE         5        preposition
+HACIA         6        preposition
+TRAS          7        preposition
+DETRAS        7        preposition
+BAJO          8        preposition
+DEBAJO        8        preposition
+CON           9        preposition
+PARA          10       preposition
+POR           11       preposition
+EXCEPTO       12       preposition
 FUERA         13       preposition
 AFUERA        13       preposition
 DELANTE       14       preposition
-BETWEEN       15       preposition
-AMONG         15       preposition
-THROUGH       16       preposition
+ENTRE         15       preposition
+ENCIMA        16       preposition
 
 
-;--Pronouns--
-IT            2        pronoun
-THEM          2        pronoun
+;--Pronombres--
+LO            2        pronoun
+LOS           2        pronoun
+SELO          2        pronoun
+SELOS         2        pronoun
+LA            2        pronoun
+LAS           2        pronoun
+SELA          2        pronoun
+SELAS         2        pronoun
+LE            2        pronoun
+LES           2        pronoun
 
-;--Conjunctions--
-AND           2        conjunction
-THEN          2        conjunction
+;--Conjunciones--
+Y             2        conjunction
+ENTONCES      2        conjunction
           
 
 /STX
 /0
-It's too dark to see anything.
+No puedes ver nada, está muy oscuro.
+
 /1
-I can also see: 
+Puedes ver: 
 /2
+¿Qué haces?      
 
 /3
+¿Y bien?
 
 /4
+¿Qué más?       
 
 /5
+Tus órdenes:
 
 /6
-I was not able to understand any of that.  Please try again using other words.
+¿Cómo? Por favor prueba con otras palabras.
 
 /7
-I can't go in that direction.
+No puedes ir en esa dirección.
 
 /8
-I can't do that.
+¿Perdón?
 
 /9
-I have with me:
+Llevas:     
 /10
- (worn)
+ (puesto/a)
 /11
-nothing at all.
+ningún objeto.
 
 /12
-Are you sure? 
+¿Seguro? 
 
 /13
-Would you like another go? 
+¿Juegas de nuevo? 
 
 /14
-Goodbye...
+Adiós...
 /15
 OK.
 
 /16
-Press any key to continue.
+Pulsa una tecla para continuar.
 
 /17
-You have taken 
+Has realizado 
 /18
- turn
+ turno
 /19
 s
 /20
 .
 
 /21
-You have scored 
+Tu puntuación es del 
 /22
 %.
 
 /23
-I'm not wearing one of those.
+No llevas puesto eso.
 
 /24
-I can't.  I'm wearing the {OREF}.
+No puedes, ya llevas eso puesto.
 
 /25
-I already have the {OREF}.
+Ya tienes {OREF}.
 
 /26
-There isn't one of those here.
+No ves eso por aquí.
 
 /27
-I can't carry any more things.
+No puedes llevar más cosas.
 
 /28
-I don't have one of those.
+No tienes eso.
 
 /29
-I'm already wearing the {OREF}.
+Pero si ya llevas puesto {OREF}.
 
 /30        
-Y
+S
 /31        
 N
 /32
-More...
+Más...
 /33
 > 
 /34        ;Vacío, no usado
 /35
-Time passes...
+El tiempo pasa...
 
 /36
-I now have the {OREF}.
+Coges {OREF}.
 
 /37
-I'm now wearing the {OREF}.
+Te pones {OREF}.
 
 /38
-I've removed the {OREF}.
+Te quitas {OREF}.
 
 /39
-I've dropped the {OREF}.
+Dejas {OREF}.
 
 /40
-I can't wear the {OREF}.
+No puedes ponerte {OREF}.
 
 /41
-I can't remove the {OREF}.
+No puedes quitarte {OREF}.
 
 /42
-I can't remove the {OREF}.  My hands are full.
+No puedes quitarte {OREF}.  ¡Tienes demasiadas cosas en las manos!
 
 /43
-The {OREF} weighs too much for me.
+Desgraciadamente {OREF} pesa demasiado.
 
 /44
-The {OREF} is in the 
+Metes {OREF} en 
 /45
-The {OREF} isn't in the 
+Ahora {OREF} no está en 
 /46
 , 
 /47
@@ -400,97 +826,97 @@ The {OREF} isn't in the
 .
 
 /49
-I don't have the {OREF}.
+No tienes {OREF}.
 
 /50
-I'm not wearing the {OREF}.
+No llevas puesto {OREF}.
 
 /51
 .
 
 /52
-There isn't one of those in the 
+Eso no está en 
 /53
-nothing.
+ningún objeto
 
 /54
-File not found.
+Fichero no encontrado.
 
 /55
-File corrupt.
+Fichero corrupto.
 
 /56
-I/O Error!  File not Saved!
+Error de E/S. Fichero no grabado.
 
 /57
-Directory full.
+Directorio lleno.
 
 /58
-Disk full.
+Disco lleno.
 
 /59
-File name error.
+Nombre de fichero no válido.
 
 /60
-Type in name of file. 
+Nombre del fichero: 
 /61
 
 
 /62
-Sorry? Please try other words.
+¿Perdón? Por favor prueba con otras palabras.
 
 /63 
-Here, also  
+Aquí 
 /64
-is 
+está 
 /65
-are 
+están 
 /MTX
 /0
-The raft is bare!
+La balsa está desierta!
 
 
 /1000
-Visible exits:  
+Salidas visibles: 
 /1001
-There are no visible exits.
+No hay salidas visibles.
 /1002
 /1003
 /1004
- {ACTION|north|north}
+al {ACTION|norte|norte}
 /1005
-{ACTION|south|south}
+al {ACTION|sur|sur}
 /1006
-{ACTION|east|east}
+al {ACTION|este|este}
 /1007
-{ACTION|west|west}
+al {ACTION|oeste|oeste}
 /1008
-{ACTION|northeast|northeast}
+al {ACTION|noreste|noreste}
 /1009
-{ACTION|northwest|northwest}
+al {ACTION|noroeste|noroeste}
 /1010
-{ACTION|southwest|southwest}
+al {ACTION|sureste|sureste}
 /1011
-{ACTION|suroeste|suroeste}
+al {ACTION|suroeste|suroeste}
 /1012
-{ACTION|up|up}
+{ACTION|subir|subir}
 /1013
-{ACTION|down|down}
+{ACTION|bajar|bajar}
 /1014
-{ACTION|enter|enter}
+{ACTION|entrar|entrar}
 /1015
-{ACTION|out|out}
+{ACTION|salir|salir}
 /OTX
 /0
-a torch
+una antorcha
 /LTX
 /0
-I am on a small raft floating in open sea.  The bright {INK|yellow|yellow} sun is starting to burn my skin and ominous dark fins circle slowly in the clear {PAPER|blue|{INK|white|blue}} water.
+Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yellow|amarillo} comienza a 
+quemar tu piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
 
 
 /CON
-/0
-; Sample
+; Ejemplo
 ; N        4
 ; E        2
 
@@ -500,233 +926,340 @@ I am on a small raft floating in open sea.  The bright {INK|yellow|yellow} sun i
 ;obj  loc          peso       nombre        adjetivo    atributo
 ;num  ini              
 
-/0    CARRIED        1        TORCH      _           ATTR aLight
+/0    CARRIED        1        ANTORCHA      _           ATTR aLight
 
   
-; Important: remember that if you create an object that is a container, you should not use the location that has the same number than that object
+; Importante: Recuerda que si creas un objeto contenedor debes dejar sin usar la localidad de igual número
 
 /PRO 0
 
-; ##################################  MULTIPLE ACTIONS ####################################
+; ################################## ACCIONES MÚLTIPLES ###################################
 ; #                                                                                       #
-; #  These entries use a DOAL loop and work on all the objects found. They have to be     #
-; #  here cause otherwise wouldn't be taken into account (before the author's custom      #
-; #  responses.                                                                           #
+; #  Estas entradas usan un bucle DOALL y actúan sobre todos los objetos que encuentran,  #
+; #  por tanto deben estar aquí delante (antes de las respuestas del programador) ya que  #
+; #  en caso contrario no las tendría en cuenta.                                          #
 ; #                                                                                       #
 ; #########################################################################################
 
-TAKE ALL  
+COGER TODO
  OBJAT @38 15
- ZERO 15  
- WRITELN "There is nothing to take here.""
+ ZERO 15  ; no hay ningún objeto en la localidad
+ WRITELN "No hay nada por aquí."
  DONE
 
-TAKE ALL          
+COGER TODO        
  DOALL        HERE
 
-DROP ALL  
- OBJAT 254 11
- ZERO 11  
- WRITELN "You are not carrying anything."
+DEJAR TODO
+ OBJAT 254 15
+ ZERO 15  ; no llevas nada en el inventario
+ WRITELN "No llevas nada."
  DONE
 
-DROP ALL
+DEJAR        TODO
  DOALL        CARRIED
 
-; ** Convert EMPTY xxxx, en TAKE ALL FROM
-EMPTY _                                
+; ** Convertir VACIAR xxxx, en SACAR TODO DE xxxx 
+VACIAR _                                
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
  COPYFF 34 44 
  COPYFF 35 45
- LET 33 &&_voc_TAKE
- LET 34 &&_voc_ALL
- LET 43 &&_voc_FROM
+ LET 33 &&_voc_SACAR
+ LET 34 &&_voc_TODO
+ LET 43 &&_voc_DE
 
-EMPTY _    ; We put in flag 15 the number of the object referenced by second noun in sentence
+SACAR _    ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
-TAKE ALL
- PREP FROM
- NOTEQ 15 255  
- ONOTZERO @15 aContainer 
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  OBJAT @15 14
  NOTCARR @15
- WRITELN "You are not carrying that."
+ WRITELN "No llevas eso."
  DONE
 
-TAKE ALL
- PREP FROM
- NOTEQ 15 255  
- ONOTZERO @15 aContainer 
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  OBJAT @15 14
  ZERO 14
- WRITELN "There is nothing here."
+ WRITELN "No hay nada ahí."
  DONE
  
-TAKE ALL  
- PREP FROM
- NOTEQ 15 255   
- ONOTZERO @15 aContainer
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  DOALL @15
 
-; ** Convert "HIDE SOMETHING INTO SOMETHING" en "PUT SOMETHING INTO ALGO" 
-HIDE _
+; ** Convertir "ESCONDER ALGO EN ALGO" en "METER ALGO EN ALGO" 
+ESCONDER _
  NOTEQ 51 255
  PRESENT @51
  PREP EN
  WHATOX2 15
  NOTEQ 15 255   ; Es un objeto
  PRESENT @15
- LET 33 &&_voc_PUT
- LET 43 &&_voc_INTO
+ LET 33 &&_voc_METER
+ LET 43 &&_voc_DENTRO
+
+; ** Convertir "PONER ALGO EN..." en "METER ALGO EN..."
+PONER _
+ NOTEQ 51 255
+ PRESENT @51
+ PREP EN
+ LET 33 &&_voc_METER
 
 
-PUT _     
- PREP INTO
+METER _                        ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
-PUT ALL
- PREP INTO
- NOTEQ 15 255   
- ONOTZERO @15 aContainer 
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  NOTCARR @15
- WRITELN "You are not carrying that."
+ WRITELN "No llevas eso."
  DONE
 
-PUT ALL
- PREP INTO
- NOTEQ 15 255 
- ONOTZERO @15 aContainer 
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  OBJAT 254 14  
- EQ @14 1; only carrying the container
- WRITELN "You have nothing to put in."
+ EQ @14 1; no llevas nada en el inventario (sólo llevas el container)
+ WRITELN "No llevas nada."
  DONE
 
-PUT ALL 
- PREP INTO
- NOTEQ 15 255   
- ONOTZERO @15 aContainer 
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  DOALL CARRIED
 
-REMOVE ALL
+QUITAR TODO
  OBJAT 253 15
- ZERO 15  
- WRITELN "You are not wearing anything."
+ ZERO 15  ; no llevas ningún objeto "puesto"
+ WRITELN "No llevas nada puesto."
  DONE
 
-REMOVE ALL
+QUITAR        TODO        
  DOALL        WORN
 
-WEAR ALL
+PONER TODO
  OBJAT 254 15
- ZERO 15  
- WRITELN "You are carrying nothing wearable."
+ ZERO 15  ; no llevas nada en el inventario
+ WRITELN "No llevas nada para ponerte."
  DONE
 
-WEAR ALL
+PONER        TODO        
  DOALL        CARRIED
 
-THROW ALL
+TIRAR TODO
  OBJAT 254 15
- ZERO 15 
- WRITELN "You are carrying nothing."
+ ZERO 15    ; no llevas nada en el inventario
+ WRITELN "No llevas nada."
  DONE
  
-THROW ALL
- EQ 1 1    ; if only one item carried, throw it!
+TIRAR TODO
+ EQ 1 1    ; si sólo llevas una cosa la lanza
  DOALL        CARRIED
  
 TIRAR TODO
- GT 1 1 ; to many objects carried to throw them all
- WRITELN "I have many objects, can't throw them all!"
+ GT 1 1 ; llevas más de un objeto  y no puedes lanzarlos a la vez
+ WRITELN "¡No puedes tirarlo todo a la vez!"
  DONE
 
-_    ALL
- WRITELN "Please be more specific."
+_    TODO
+ WRITELN "Por favor intenta especificar un poco más."
  DONE
 
 
 
-; ################################### SYNONIM SENTENCES ###################################
+; ################################### FRASES SINONIMAS ####################################
 ; #                                                                                       #
-; #   These entries convert some order into others, cause they mean the same, avoiding    #
-; #   the need of having to repeat two similar entries.                                   #
+; #   Estas entradas convierten unas entradas en otras distintas porque a veces segun     #
+; #   escribimos algo queremos realizar una acción u otra para el mismo verbo.            #
+; #   Deben ir aquí al principio, antes de las acciones modificadas por el programador.   #
+; #                                                                                       #
+; #   Ejemplos comunes de frases sinónimas son:                                           #
+; #                                                                                       #
+; #   - NADAR como sinónimo de CAMINAR/IR en localidades "acuáticas"                      #
+; #   - ENCENDER TELEVISOR usado en el sentido de CONECTAR TELEVISOR                      #
+; #   - APAGAR LUZ usado en el sentido de DESCONECTAR                                     #
+; #                                                                                       #
+; #   Por defecto, en la librería base ENCENDER se usa en sentido de INCENDIAR,           #
+; #   y APAGAR como SOFOCAR/EXTINGUIR                                                     #
 ; #                                                                                       #
 ; #########################################################################################
 
-; ** Convertir GO IN into ENTER
-GO   _
- PREP IN
+; ** Convertir IR FUERA e IR DENTRO en SALIR/ENTRAR, e IR N/S/E/O en N/S/E/O etc.
+IR   _
+ PREP FUERA
  EQ 34 255
- LET 33 &&_voc_ENTER
+ LET 33 &&_voc_SALIR
 
+IR   _
+ PREP DENTRO
+ EQ 34 255
+ LET 33 &&_voc_ENTRAR
+
+IR   _
+ LT 34 14
+ COPYFF 34 33
+ 
 _    _
- PREP IN
- EQ 33 255  ; No verb
- EQ 34 255  ; No noun
- LET 33 &&_voc_ENTER
+ PREP DENTRO
+ EQ 33 255
+ EQ 34 255
+ LET 33 &&_voc_ENTRAR
  LET 46 255
 
-; ** Convert LOOK INTO into EXAMINE
+_    _
+ PREP FUERA
+ EQ 33 255
+ EQ 34 255
+ LET 33 &&_voc_SALIR
+ LET 46 255
 
-LOOK _
+; ** Convertir MIRAR DENTRO en EXAMINAR DENTRO
+
+MIRAR _
  NOTEQ 34 255          
- PREP INTO
- LET 33 &&_voc_EX
+ PREP DENTRO
+ LET 33 &&_voc_EXAMINAR
 
-; ** Convert LOOK "SOMEHTING" en EX "SOMETHING"
+; ** Convertir MIRAR "ALGO" en EXAMINAR "ALGO"
 
-LOOK _
+MIRAR _
  NOTEQ 34 255
- LET 33 &&_voc_EX
+ LET 33 &&_voc_EXAMINAR
  
-LOOK _
+MIRAR _
  BNOTZERO 12 1 
- LET 33 &&_voc_EX
+ LET 33 &&_voc_EXAMINAR
   
  
-; ** Convert REGISTER in EX INTO
+; ** Convertir REGISTRAR en EXAMINAR DENTRO 
 
-REGISTER _
- LET 33 &&_voc_EX
- LET 43 &&_voc_INTO
+REGISTRAR _
+ LET 33 &&_voc_EXAMINAR
+ LET 43 &&_voc_DENTRO
 
-;//FALTA
 ; ** Convertir ARRANCAR en TIRAR DE
-;ARRANCAR _
-; LET 33 &&_voc_TIRAR
-; LET 43 &&_voc_DE
+ARRANCAR _
+ LET 33 &&_voc_TIRAR
+ LET 43 &&_voc_DE
 
-; **  Convert X "somthing" en EX "something"
+; **  Convertir X "ALGO" en EXAMINAR "ALGO"
 X _
  EQ 34 255
  BNOTZERO 12 1
- LET 33 &&_voc_EX
+ LET 33 &&_voc_EXAMINAR
 
 X _
  NOTEQ 34 255
- LET 33 &&_voc_EX
-
-;//FALTA 
+ LET 33 &&_voc_EXAMINAR
+ 
 ; ** Convertir CONSULTAR "A ALGUIEN" en PREGUNTAR "A ALGUIEN"
-;CONSULTAR _
-; NOTEQ 34 255
-; NOTEQ 51 255
-; ONOTZERO @51 aNPC ; Es un NPC
-; LET 33 &&_voc_PREGUNTAR  
+
+CONSULTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC ; Es un NPC
+ LET 33 &&_voc_PREGUNTAR  
 
  
+ ; ** Convertir "HACER ALGO CON OBJETO2 A OBJETO1" en "HACER ALGO A OBJETO1 CON OBJETO2"
+_  _
+ PREP CON 
+ BZERO 12 2 ; la prep estaba antes del primer nombre
+ NOTEQ 34 255
+ WHATOX 16
+ NOTEQ 16 255; el primer nombre de la SL es un objeto
+ NOTEQ 44 255; hay segundo nombre
+ WHATOX2 15
+ NOTEQ 15 255; el segundo nombre es de un objeto
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 ; Les doy la vuelta a los adjetivos
+ WHATO ; fuerzo actualización de flags 54-58
 
 
-; #################################### AUTHOR'S RESPONSES #################################
+; ** Convertir "HACER ALGO A OBJETO2 CON OBJETO1" en "HACER ALGO CON OBJETO1 A OBJETO2"
+_  _
+ PREP A 
+ BZERO 12 2 ; la prep estaba antes del primer nombre
+ NOTEQ 34 255
+ WHATOX 16
+ NOTEQ 16 255 ; el primer nombre de la SL es un objeto
+ NOTEQ 44 255 ; hay segundo nombre
+ WHATOX2 15
+ NOTEQ 15 255 ; el segundo nombre es de un objeto
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 ; Les doy la vuelta a los adjetivos
+ WHATO ; fuerzo actualización de flags 54-58
+
+
+; ** Convertir "HACER ALGO EN OBJETO2(CONTENEDOR) OBJETO1" en "HACER ALGO OBJETO1 EN OBJETO2(CONTENEDOR)"
+_  _   
+ PREP EN 
+ BZERO 12 2 ; la prep estaba antes del primer nombre
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer ; El primer objeto es un contenedor presente
+ NOTEQ 44 255 ; hay segundo nombre
+ WHATOX2 15
+ NOTEQ 15 255 ; el segundo nombre es de un objeto
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44  ; Les doy la vuelta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 ; Les doy la vuelta a los adjetivos
+ WHATO ; fuerzo actualización de flags 54-58
+
+
+; ** Convertir "HACER ALGO DE OBJETO2(CONTENEDOR) OBJETO1" en "HACER ALGO OBJETO1 DE OBJETO2(CONTENEDOR)" 
+_  _
+ PREP DE 
+ BZERO 12 2 ; la prep estaba antes del primer nombre
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer ; El primer objeto es un contenedor presente
+ NOTEQ 44 255; hay segundo nombre
+ WHATOX2 15
+ NOTEQ 15 255; el segundo nombre es de un objeto
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 ; Les doy la vuelta a los adjetivos
+ WHATO ; fuerzo actualización de flags 54-58
+
+
+
+; ####################### RESPUESTAS MODIFICADAS POR EL PROGRAMADOR #######################
 ; #                                                                                       #
-; #   Add here your own responses.  Before default responses, after sinonym sentences.    #
+; #   Aquí puedes añadir tus propias respuestas. Se colocan en este punto porque así      #
+; #   están por detras de las frases sinónimas y antes de las respuestas por defecto.     #
 ; #                                                                                       #
 ; #########################################################################################
 
@@ -735,19 +1268,17 @@ X _
 
 
 
-;  ********************* [[[  Yes, place your custom responses here  ]]] *********************
+;  ********************* [[[  Coloca aqui tus propias respuestas  ]]] *********************
 
 
 
 
 
 
-; ################################### DEFAULT REPONSES ####################################
+; ############################### RESPUESTAS POR DEFECTO ##################################
 ; #                                                                                       #
-; #   The following entries are the default responses ngPAWS provides for many many       #
-; #   actions. If you want to change the default response just go down and change texts,  #
-; #   if you want to change the response just under some conditions then add your own     #
-; #   responses here.                                                                     #
+; #   Estas entradas devuelven las respuestas por defecto. Si no ponemos antes ninguna    #
+; #   entrada que lo evite, se llegará hasta aquí y se dará la respeusta por defecto.     #
 ; #                                                                                       #
 ; #########################################################################################
 
@@ -756,57 +1287,57 @@ I        _
 
 ;-----------------------------------------------
 
-SIT _
- WRITELN "I don't need to sit right now."
+SENTAR _
+ WRITELN "Ahora mismo no te apetece."
  DONE
  
 ;-----------------------------------------------
 
-RAISE _
- WRITELN "I'm ok."
+LEVANTARTE _
+ WRITELN "Estás bien así."
  DONE
  
 ;-----------------------------------------------
 
-LOOK YOURSELF
- WRITELN "I see nothing especial. I'm quite normal."
+MIRATE _
+ WRITELN "Te miras de arriba a abajo pero no ves nada especial."
  DONE
 
 ;-----------------------------------------------
 
-REGISTER YOURSELF
- WRITELN "Nothing to declare!"
+REGISTRATE _
+ WRITELN "No encuentras nada destacable."
  DONE
 
 ;-----------------------------------------------
 
-SUICIDE _
- WRITELN "That won't help..."
+SUICIDATE _
+ WRITELN "Esa no es la solución..."
  DONE
 
 ;-----------------------------------------------
 
-WASH YOURSELF
- WRITELN "I don't need to wash myself now..."
+LAVATE _
+ WRITELN "Ahora mismo no te apetece..."
  DONE
 
 ;-----------------------------------------------
 
 XYZZY _
- WRITELN "You've played too many adventures..."
+ WRITELN "Has jugado a demasiadas aventuras conversacionales..."
  DONE
 
 ;-----------------------------------------------
 
-END        _        
+FIN        _        
  QUIT
  TURNS
  END
 
-SAVE          _        
+GRABAR        _        
  SAVE
 
-LOAD          _        
+CARGAR        _        
  LOAD
 
 RAMSAVE        _        
@@ -815,251 +1346,245 @@ RAMSAVE        _
 
 RAMLOAD        _        
  RAMLOAD       255
+ ANYKEY
  DESC
                 
-TRANSCRIPT  _
- TRANSCRIPT
+TRANSCRIPCION _
+ TRANSCRIPT 1
  DONE
  
 ;-----------------------------------------------
 
 
-TAKE _                        
+COGER _    ; coger un objeto que está dentro de un contenedor
+ PREP DE
+ WHATOX2 14
+ NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
+ ONOTZERO @14 aContainer ; Es un contenedor
+ LET 33 _voc_SACAR ; convertimos "coger objeto de un contenedor" en "sacar objeto de un contenedor"
+
+COGER _                        ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "I can't take that."
+ WRITELN "No puedes coger eso que dices."
  DONE
  
-TAKE _                    
+COGER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Please specify what you want to take."
+ WRITELN "Por favor especifica qué quieres coger."
  DONE 
 
-TAKE        _        
+COGER        _        
  AUTOG
  DONE
 
 ;-----------------------------------------------
 
-DROP _    ; Drop into container
- PREP IN
+DEJAR _    ; DEJAR un objeto dentro de un contenedor     #############
+ PREP EN
  WHATOX2 14
- NOTEQ 14 255   
+ NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
  ONOTZERO @14 aContainer ; Es un contenedor
- LET 33 _voc_PUT
+ LET 33 _voc_METER ; convertimos "dejar objeto en un contenedor" en "meter objeto en un contenedor"
 
-DROP _                        
+DEJAR _                        ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "I can't drop that."
+ WRITELN "No puedes dejar eso que dices."
  DONE
  
-DROP _                        
+DEJAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Please specify what you want to drop."
+ WRITELN "Por favor especifica qué quieres dejar."
  DONE 
 
-DROP        _        
+DEJAR        _        
  AUTOD
  DONE
 
-;//FALTA: Todo el sacar debe ser TAKE OUT y por tanto debe ir por delante de TAKE _
 ;-----------------------------------------------
-;SACAR _                ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
-; WHATOX2 15
-;
-;SACAR _                ; No hay nombre en la frase
-; EQ 34 255
-; BZERO 12 1
-; WRITELN "Por favor especifica qué quieres sacar."
-; DONE
- 
-;SACAR _                ; Hay nombre desconocido en la frase
-; EQ 34 255
-; BNOTZERO 12 1
-; WRITELN "No puedes sacar eso que dices."
-; DONE
-
-;SACAR _                ; Hay nombre pero no es un objeto
-; NOTEQ 34 255
-; EQ 51 255
-; WRITELN "No puedes sacar eso."
-; DONE
-
-;SACAR _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
-; BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
-;; EQ 44 255
-; BNOTZERO 12 1
-; WRITELN "No puedes sacar eso."
-; DONE
-
-;SACAR _                ; Intentas sacar un objeto que llevamos puesto  
-; NOTEQ 51 255             
-; WORN @51  
-; ONOTZERO @51 aWear
-; WRITELN "No puedes sacar {OREF} de ningún sitio, en todo caso puedes quitártelo porque lo llevas puesto..."
-; DONE
-;
-;SACAR _                ; SACAR un objeto pero no especificar de dónde
-; NOTEQ 51 255             
-; EQ 44 255
-; BZERO 12 1
-; WRITELN "¿De dónde quieres sacar eso?"
-; DONE
-
-;SACAR _                ; SACAR un objeto pero no especificar de dónde (encuentra una palabra que no está en el vocabulario)
-; NOTEQ 51 255             
-; CARRIED @51 
-; EQ 44 255
-; BNOTZERO 12 1
-; WRITELN "No puedes sacar {OREF} de eso."
-; DONE
-
-;SACAR _                ; SACAR un objeto de un noun2 que no es un objeto.
-; EQ 15 255             ; El segundo nombre no es un objeto
-; WRITELN "¿De dónde dices que quieres sacar {OREF}?"                         
-; DONE 
-
-;SACAR _                ;
-; NOTEQ 15 255          ; Es un objeto
-; ONOTZERO @15 aContainer ; Es un contenedor
-; SAME 51 15            ; No puede sacarse de si mismo
-; DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el sacar algo de si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra ;respuesta                                    
-
-;SACAR _
-;; NOTEQ 15 255   ; Es un objeto
-; OZERO @15 aContainer    ; No es un contenedor
-; WRITELN "No puedes sacar cosas de ahí."
-; DONE
-
-;SACAR _
-; NOTEQ 15 255   ; Es un objeto
-; ONOTZERO @15 aContainer ; Es un contenedor
-; NOTCARR @15
-; WRITELN "No puedes sacar nada de ahí porque no lo llevas."
-; DONE
-
-;SACAR _                ; SACAR un objeto de un Container que está presente
-; NOTEQ 15 255          ; El noun2 es un objeto
-; ONOTZERO @15 aContainer  ; Es un contenedor
-; CARRIED @15
-; AUTOT @15
-; DONE
-
-;-----------------------------------------------
-
-PUT _                ; We copy OBJREF2 into flag 15
+SACAR _                ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
-PUT _                ; Noun in sentence
- PREP IN
+SACAR _                ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Please specify what you want to put in."
+ WRITELN "Por favor especifica qué quieres sacar."
  DONE
  
-PUT _                ; Unknown noun
- PREP IN
+SACAR _                ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "I can't put that in."
+ WRITELN "No puedes sacar eso que dices."
  DONE
 
-PUT _                 ; noun but no object
- PREP IN
+SACAR _                ; Hay nombre pero no es un objeto
  NOTEQ 34 255
  EQ 51 255
- WRITELN "I can't put that in."
+ WRITELN "No puedes sacar eso."
  DONE
 
-PUT _                         ; No noun1, so noun2 becomes noun 1
- PREP IN
- BZERO 12 2                    
+SACAR _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
+ BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
  EQ 44 255
  BNOTZERO 12 1
- WRITELN "I can't put that in."
+ WRITELN "No puedes sacar eso."
  DONE
 
-PUT _                 ; oject worn
- PREP IN
+SACAR _                ; Intentas sacar un objeto que llevamos puesto  
  NOTEQ 51 255             
  WORN @51  
  ONOTZERO @51 aWear
- WRITELN "First I'd have to remove {OREF}..."
+ WRITELN "No puedes sacar {OREF} de ningún sitio, en todo caso puedes quitártelo porque lo llevas puesto..."
  DONE
 
-PUT _                 ; We are not carryng that object
- PREP IN
- NOTEQ 51 255
- NOTCARR @51
- WRITELN "I'm not carrying {OREF}."
- DONE
-
-PUT _                 ; PUT OBJECT INTO ... nothing!
- PREP IN
+SACAR _                ; SACAR un objeto pero no especificar de dónde
  NOTEQ 51 255             
- CARRIED @51 
  EQ 44 255
  BZERO 12 1
- WRITELN "Put it into what?"
+ WRITELN "¿De dónde quieres sacar eso?"
  DONE
 
-PUT _                 ; PUT OBJECT INTO .. something not recongnized
- PREP IN
+SACAR _                ; SACAR un objeto pero no especificar de dónde (encuentra una palabra que no está en el vocabulario)
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
  BNOTZERO 12 1
- WRITELN "I can't put {OREF} into that."
+ WRITELN "No puedes sacar {OREF} de eso."
  DONE
 
-PUT _                ; Put OBJECT INTO.. not an object
- PREP IN
+SACAR _                ; SACAR un objeto de un noun2 que no es un objeto.
+ EQ 15 255             ; El segundo nombre no es un objeto
+ WRITELN "¿De dónde dices que quieres sacar {OREF}?"                         
+ DONE 
+
+SACAR _                ;
+ NOTEQ 15 255          ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
+ SAME 51 15            ; No puede sacarse de si mismo
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el sacar algo de si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta                                    
+
+SACAR _
+ NOTEQ 15 255   ; Es un objeto
+ OZERO @15 aContainer    ; No es un contenedor
+ WRITELN "No puedes sacar cosas de ahí."
+ DONE
+
+SACAR _
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
+ NOTCARR @15
+ WRITELN "No puedes sacar nada de ahí porque no lo llevas."
+ DONE
+
+SACAR _                ; SACAR un objeto de un Container que está presente
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
+ CARRIED @15
+ AUTOT @15
+ DONE
+
+;-----------------------------------------------
+
+METER _                ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+ WHATOX2 15
+
+METER _                ; No hay nombre en la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Por favor especifica qué quieres meter."
+ DONE
+ 
+METER _                ; Hay nombre desconocido en la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No puedes meter eso que dices."
+ DONE
+
+METER _                ; Hay nombre pero no es un objeto
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No puedes meter eso."
+ DONE
+
+METER _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
+ BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No puedes meter eso."
+ DONE
+
+METER _                ; Intentar meter un objeto que llevamos puesto
+ NOTEQ 51 255             
+ WORN @51  
+ ONOTZERO @51 aWear
+ WRITELN "Primero deberías quitarte {OREF} para poder hacer eso..."
+ DONE
+
+METER _                ; METER un objeto pero que no lo llevamos
+ NOTEQ 51 255
+ NOTCARR @51
+ WRITELN "No llevas {OREF}."
+ DONE
+
+METER _                ; METER un objeto del inventario y no especificar dónde
+ NOTEQ 51 255             
+ CARRIED @51 
+ EQ 44 255
+ BZERO 12 1
+ WRITELN "¿Dónde quieres meter eso?"
+ DONE
+
+METER _                ; METER un objeto del inventario y no especificar dónde (encuentra una palabra que no está en el vocabulario)
+ NOTEQ 51 255             
+ CARRIED @51 
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No puedes meter {OREF} a eso."
+ DONE
+
+METER _                ; METER un objeto del inventario a un noun2 que no es un objeto.
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
- EQ 15 255             ; second noun is no object
- WRITELN "Where do you want me to put {OREF}?"                         
+ EQ 15 255             ; El segundo nombre no es un objeto
+ WRITELN "¿Dónde dices que quieres meter {OREF}?"                         
  DONE 
 
-PUT _ 
- PREP IN
+METER _
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  SAME 51 15            ; No puede meterse en si mismo
- DONE                  ; assuming this can only happen in doall loop, no response
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el meter algo en si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta
 
-PUT _                 ; PUT OBJECT INTO ... no container
- PREP IN
+METER _                ; METER un objeto del inventario a un objeto presente pero que no es un Container
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
- NOTEQ 15 255          
- OZERO @15 aContainer  
+ NOTEQ 15 255          ; El noun2 es un objeto
+ OZERO @15 aContainer  ; pero no es un Container
  CARRIED @15
- WRITELN "You can't put anything into that..."                         
+ WRITELN "No puedes meter cosas dentro de eso..."                         
  DONE                                           
 
-PUT _                 ; PUT OBJECT IN ... absent container
- PREP IN
+METER _                ; METER un objeto del inventario a un Container pero que no está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer     ; y es un Container
  NOTCARR @15            ; pero no lo llevas
- WRITELN "You can't put {OREF} there cause you are not carrying that."
+ WRITELN "No puedes meter {OREF} ahí porque no llevas eso."
  DONE
 
-PUT _                 ; Finally, success!
- PREP IN
+METER _                ; METER un objeto presente a un Container que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
- NOTEQ 15 255          
- ONOTZERO @15 aContainer 
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
  CARRIED @15
  AUTOP @15
  DONE
