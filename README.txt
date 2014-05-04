@@ -45,7 +45,7 @@ https://github.com/Utodev/ngPAWS/issues
 Quick start: how to compile my first game?
 ------------------------------------------
 
-1) Get ngpc (ngPAWS compiler) and txtpaws (https://github.com/Baltasarq/txtMap) 
+1) Get ngpc (ngPAWS compiler) and txtpaws (https://github.com/Baltasarq/txtpaws) 
    binaries and put them in some folder.
 2) Get the jsl folder and put it in the same folder (or set the enviroment variable
    NGPAWS_LIBPATH to the folder where the jsl folder contents are)
