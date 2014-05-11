@@ -177,6 +177,19 @@ var Base64 = {
 
 }
 
+// Gender functions
+
+function getGender(objno)
+{
+ 	isPlural = getObjectLowAttributes(objno, ATTR_PLURAL);
+ 	if (isPlural) return "P";
+ 	isFemale = getObjectLowAttributes(objno, ATTR_FEMALE);
+ 	if (isFemale) return "F";
+ 	isMale = getObjectLowAttributes(objno, ATTR_MALE);
+ 	if (isMale) return "M";
+    return "N"; // Neuter
+}
+
 
 // JS level log functions
 function console_log(string)
@@ -290,6 +303,15 @@ function implementTag(tag)
 					    break;
 		case 'OREF': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
    			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return objects[getFlag(FLAG_REFERRED_OBJECT)]; else return '';
+					break;
+		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+					 switch (getGender(getFlag(FLAG_REFERRED_OBJECT)))
+					 {
+					 	case 'M' : return "him";
+					 	case "F" : return "her";
+					 	case "N" : return "it";
+					 	case "P" : return "them";  // plural returns them
+					 }
 					break;
 			default : {writeText(STR_INVALID_TAG_SEQUENCE_BADTAG + ': ' + tagparams[0]); return ''};
 
@@ -1318,6 +1340,7 @@ function orderEnteredLoop(player_order)
 
 function restart()
 {
+	h_restart();
 	initialize();
 	descriptionLoop();
 	focusInput();

@@ -37,6 +37,28 @@
 #define const aWear = 1
 #define const aContainer = 2
 #define const aNPC  =3
+#define const aConcealed = 4
+#define const aEdible = 5
+#define const aDoor = 6
+#define const aEnterable = 7
+#define const aFemale = 8
+#define const aLockable = 9
+#define const aLocked = 10
+#define const aMale = 11
+#define const aNeuter = 12
+#define const aOpenable = 13
+#define const aOpen = 14
+#define const aPluralName = 15
+#define const aTransparent = 16
+#define const aScenery = 17
+#define const aSupporter = 18
+#define const aSwitchable = 19
+#define const aOn = 20
+#define const aTalkable = 21
+
+
+
+
 
 /CTL
 
@@ -360,7 +382,7 @@ N
 More...
 /33
 > 
-/34        ;Vacío, no usado
+/34        ;VacÃ­o, no usado
 /35
 Time passes...
 
@@ -793,7 +815,7 @@ WASH YOURSELF
 ;-----------------------------------------------
 
 XYZZY _
- WRITELN "You've played too many adventures..."
+ WRITELN "Hmmm... you've played too many adventures..."
  DONE
 
 ;-----------------------------------------------
@@ -836,6 +858,14 @@ TAKE _
  WRITELN "Please specify what you want to take."
  DONE 
 
+TAKE _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aScenery
+ WRITELN "I can't take the {OREF}."
+ DONE
+
+
+
 TAKE        _        
  AUTOG
  DONE
@@ -873,7 +903,7 @@ DROP        _
 ;SACAR _                ; No hay nombre en la frase
 ; EQ 34 255
 ; BZERO 12 1
-; WRITELN "Por favor especifica qué quieres sacar."
+; WRITELN "Por favor especifica quÃ© quieres sacar."
 ; DONE
  
 ;SACAR _                ; Hay nombre desconocido en la frase
@@ -882,14 +912,14 @@ DROP        _
 ; WRITELN "No puedes sacar eso que dices."
 ; DONE
 
-;SACAR _                ; Hay nombre pero no es un objeto
+;SACAR _                ; There is a name, but is not an object
 ; NOTEQ 34 255
 ; EQ 51 255
 ; WRITELN "No puedes sacar eso."
 ; DONE
 
 ;SACAR _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
-; BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+; BZERO 12 2                    ; Tiene que dar este mensaje porque lo que querÃ­amos que  fuera el Noun1 no es nada del vocabulario
 ;; EQ 44 255
 ; BNOTZERO 12 1
 ; WRITELN "No puedes sacar eso."
@@ -899,17 +929,17 @@ DROP        _
 ; NOTEQ 51 255             
 ; WORN @51  
 ; ONOTZERO @51 aWear
-; WRITELN "No puedes sacar {OREF} de ningún sitio, en todo caso puedes quitártelo porque lo llevas puesto..."
+; WRITELN "No puedes sacar {OREF} de ningÃºn sitio, en todo caso puedes quitÃ¡rtelo porque lo llevas puesto..."
 ; DONE
 ;
-;SACAR _                ; SACAR un objeto pero no especificar de dónde
+;SACAR _                ; SACAR un objeto pero no especificar de dÃ³nde
 ; NOTEQ 51 255             
 ; EQ 44 255
 ; BZERO 12 1
-; WRITELN "¿De dónde quieres sacar eso?"
+; WRITELN "Â¿De dÃ³nde quieres sacar eso?"
 ; DONE
 
-;SACAR _                ; SACAR un objeto pero no especificar de dónde (encuentra una palabra que no está en el vocabulario)
+;SACAR _                ; SACAR un objeto pero no especificar de dÃ³nde (encuentra una palabra que no estÃ¡ en el vocabulario)
 ; NOTEQ 51 255             
 ; CARRIED @51 
 ; EQ 44 255
@@ -919,7 +949,7 @@ DROP        _
 
 ;SACAR _                ; SACAR un objeto de un noun2 que no es un objeto.
 ; EQ 15 255             ; El segundo nombre no es un objeto
-; WRITELN "¿De dónde dices que quieres sacar {OREF}?"                         
+; WRITELN "Â¿De dÃ³nde dices que quieres sacar {OREF}?"                         
 ; DONE 
 
 ;SACAR _                ;
@@ -931,17 +961,17 @@ DROP        _
 ;SACAR _
 ;; NOTEQ 15 255   ; Es un objeto
 ; OZERO @15 aContainer    ; No es un contenedor
-; WRITELN "No puedes sacar cosas de ahí."
+; WRITELN "No puedes sacar cosas de ahÃ­."
 ; DONE
 
 ;SACAR _
 ; NOTEQ 15 255   ; Es un objeto
 ; ONOTZERO @15 aContainer ; Es un contenedor
 ; NOTCARR @15
-; WRITELN "No puedes sacar nada de ahí porque no lo llevas."
+; WRITELN "No puedes sacar nada de ahÃ­ porque no lo llevas."
 ; DONE
 
-;SACAR _                ; SACAR un objeto de un Container que está presente
+;SACAR _                ; SACAR un objeto de un Container que estÃ¡ presente
 ; NOTEQ 15 255          ; El noun2 es un objeto
 ; ONOTZERO @15 aContainer  ; Es un contenedor
 ; CARRIED @15
@@ -1472,552 +1502,510 @@ LISTEN _
 ;-----------------------------------------------
 
 
-COMER _                        ; Hay nombre desconocido en la frase
+EAT _
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes comer eso que dices."
+ WRITELN "I can't eat that."
  DONE
 
-COMER _                        ; No hay nombre en la frase
+EAT _                   
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres comer."
+ WRITELN "Pleae specify what you want me to eat."
  DONE
  
-COMER _
+EAT  _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "No crees que se deje. En cualquier caso no es muy apropiado."
+ WRITELN "I don't think it's a good idea to eat {OPRO}."
  DONE
 
-COMER _
+EAT _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO}."
  DONE
  
-COMER _                        ; Hay nombre pero no es un objeto
+EAT _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No quieres comer eso."
+ WRITELN "I don't want to eat that."
  DONE
 
-COMER _                        ; Es un objeto presente
+EAT _                        
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No ves sentido a comerte {OREF}."
+ ONOTZERO @51 ATT_EDIBLE
+ WRITELN "I have eaten the {OREF}."
+ DESTROY @51
  DONE
 
-COMER _                        ; Es un objeto ausente
+EAT _                        
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "I can't eat the {OREF}."
+ DONE
+
+EAT _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para comerte {OREF} debería estar aquí." 
+ WRITELN "The {OREF} is not here." 
  DONE
 
 ;-----------------------------------------------
 
 
-BEBER _                        ; Hay nombre desconocido en la frase
+DRINK _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes beber eso que dices."
+ WRITELN "I can't drink that."
  DONE
 
-BEBER _                        ; No hay nombre en la frase
+DRINK _                        
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres beber."
+ WRITELN "Plese specify what you want me to drink."
  DONE
  
-BEBER _
+DRINK _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Estás perdiendo el rumbo."
+ WRITELN "What? I can't drink {OPRO}."
  DONE
 
-BEBER _
+DRINK _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "What? I don't see {OPRO} anyway."
  DONE
  
-BEBER _                        ; Hay nombre pero no es un objeto
+DRINK _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No quieres beber eso."
+ WRITELN "I don't want to drink that."
  DONE
 
-BEBER _                        ; Es un objeto presente
+DRINK _                        
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No ves sentido a beberte {OREF}."  
+ WRITELN "I can't drink the {OREF}."  
  DONE
 
-BEBER _                        ; Es un objeto ausente
+DRINK _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para beberte {OREF} debería estar aquí."                                    
+ WRITELN "The {OREF} is not here."                                    
  DONE
  
 ;-----------------------------------------------
 
-MEAR _
- WRITELN "No tienes ganas."
+PEE _
+ WRITELN "I don't want to pee right now."
  DONE
 
 ;-----------------------------------------------
 
 
-ESCUPIR _                        ; Hay nombre desconocido en la frase
+SPIT _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes escupir a eso que dices."
+ WRITELN "I can't spit to that."
  DONE
 
-ESCUPIR _                        ; No hay nombre en la frase
+SPIT _                     
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué quieres escupir."
+ WRITELN "Please specify what you want me to spit to."
  DONE
  
-ESCUPIR _
+SPIT _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Eso sería de muy mala educación."
+ WRITELN "I won't spit {OPRO}. I have good manners."
  DONE
 
-ESCUPIR _
+SPIT _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I can't see {OPRO}."
  DONE
  
-ESCUPIR _                        ; Hay nombre pero no es un objeto
+SPIT _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a escupir a eso."
+ WRITELN "I don't want to spit to that."
  DONE
 
-ESCUPIR _                        ; Es un objeto presente
+SPIT _                        
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No quieres escupir a {OREF}."
+ WRITELN "I don't want to spit to the {OREF}."
  DONE
 
-ESCUPIR _                        ; Es un objeto ausente
+SPIT _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "I don't see the {OREF} over here."
  DONE
 
 ;-----------------------------------------------
 
 
-TOCAR _                        ; Hay nombre desconocido en la frase
+TOUCH _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes tocar eso que dices."
+ WRITELN "I can't touch that."
  DONE
 
-TOCAR _                        ; No hay nombre en la frase
+TOUCH _                     
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres tocar."
+ WRITELN "Please specify what you want me to touch."
  DONE
  
-TOCAR _
+TOUCH _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "No se deja."
+ WRITELN "It wouldn't be polite to touch {OPRO}."
  DONE
 
-TOCAR _
+TOUCH _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I can't see {OPRO}."
  DONE
  
-TOCAR _                        ; Hay nombre pero no es un objeto
+TOUCH _   
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a tocar eso."
+ WRITELN "I won't touch that."
  DONE
 
-TOCAR _                        ; Es un objeto presente
+TOUCH _                     
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No quieres tocar {OREF}."
+ WRITELN "I'm touching the {OREF}."
  DONE
 
-TOCAR _                        ; Es un objeto ausente
+TOUCH _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "I can't see the {OREF} over here."
  DONE
 
 ;-----------------------------------------------
 
 
-OLER _                        ; Hay nombre desconocido en la frase
+SMELL _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes oler eso que dices."
+ WRITELN "I can't smell that."
  DONE
 
-OLER _                        ; No hay nombre en la frase
+SMELL _                       
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres oler."
+ WRITELN "Please specify what you want to smell."
  DONE
  
-OLER _
+SMELL _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Es de mala educación."
+ WRITELN "I'm not smelling {OPRO}. I have good manners."
  DONE
 
-OLER _
+SMELL _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} over here."
  DONE
  
-OLER _                        ; Hay nombre pero no es un objeto
+SMELL _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a oler eso."
+ WRITELN "I can't smell that."
  DONE
 
-OLER _                        ; Es un objeto presente
+SMELL _                      
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No quieres oler {OREF}."
+ WRITELN "I'm smelling the {OREF} but I smell nothing special."
  DONE
 
-OLER _                        ; Es un objeto ausente
+SMELL _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "The {OREF} i snot here."
  DONE
 
 ;-----------------------------------------------
 
 
-AGITAR _                        ; Hay nombre desconocido en la frase
+SHAKE _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes agitar eso que dices."
+ WRITELN "I can't shake that."
  DONE
 
-AGITAR _                        ; No hay nombre en la frase
+SHAKE _                        
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres agitar."
+ WRITELN "Please specify what you want me to shake."
  DONE
  
-AGITAR _
+SHAKE _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "No crees que le guste demasiado."
+ WRITELN "It's not a good idea to shake {OPRO}."
  DONE
 
-AGITAR _
+SHAKE _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} over here."
  DONE
  
-AGITAR _                        ; Hay nombre pero no es un objeto
+SHAKE _
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a agitar eso."
+ WRITELN "I can't shake that."
  DONE
 
-AGITAR _                        ; Es un objeto presente
+SHAKE _                    
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No quieres agitar {OREF}."
+ WRITELN "I'm shaking the {OREF}. Nothing happens."
  DONE
 
-AGITAR _                        ; Es un objeto ausente
+SHAKE _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "I don't see the {OREF} over here."
  DONE
 
 ;-----------------------------------------------
 
 
-BALANCEATE _                        ; Hay nombre desconocido en la frase
- EQ 34 255
- BNOTZERO 12 1
- WRITELN "No puedes balancearte en eso que dices."
- DONE
-
-BALANCEATE _                        ; No hay nombre en la frase
- EQ 34 255
- BZERO 12 1
- WRITELN "Por favor especifica dónde quieres balancearte."
- DONE
- 
-BALANCEATE _
- NOTEQ 34 255
- NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
- PRESENT @51
- WRITELN "No crees que le guste demasiado."
- DONE
-
-BALANCEATE _
- NOTEQ 34 255
- NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
- ABSENT @51
- WRITELN "No está aquí."
- DONE
- 
-BALANCEATE _                        ; Hay nombre pero no es un objeto
- NOTEQ 34 255
- EQ 51 255
- WRITELN "No es algo adecuado para balancearse."
- DONE
-
-BALANCEATE _                        ; Es un objeto presente
- NOTEQ 51 255
- PRESENT @51
- WRITELN "Crees que {OREF} no es algo adecuado para balancearse."
- DONE
-
-BALANCEATE _                        ; Es un objeto ausente
- NOTEQ 51 255
- ABSENT @51
- WRITELN "No ves {OREF} por aquí."
- DONE
  
 ;-----------------------------------------------
 
-ESPERAR _
+WAIT _
  SYSMESS 35
  DONE
  
 ;-----------------------------------------------
 
-DORMIR _
- WRITELN "No tienes sueño."
+SLEEP _
+ WRITELN "I'm not sleepy."
  DONE
  
 ;-----------------------------------------------
 
-SALTAR _
- WRITELN "Saltas, sin conseguir nada."
+JUMP _
+ WRITELN "I'm jumping, but nothing happens."
  DONE
 
 ;-----------------------------------------------
 
-REZAR _
- WRITELN "Rezas todo lo que sabes."
+PRAY _
+ WRITELN "I'm sending a prayer to gods."
  DONE
 
 ;-----------------------------------------------
 
-CAVAR _
- WRITELN "No quieres cavar aquí."
+DIG _
+ WRITELN "I don't want to dig here."
  DONE
 
 ;-----------------------------------------------
 
-PENSAR _
- WRITELN "Pensar siempre es bueno."
+THINK _
+ WRITELN "I'm always thinking."
  DONE
 ;-----------------------------------------------
 
-DORMIR _
- WRITELN "No tienes sueño."
- DONE
 
-;-----------------------------------------------
-
-CANTAR _
- WRITELN "Cantas fatal."
+SING _
+ WRITELN "I'm singing."
  DONE
 
 ;-----------------------------------------------
 
-BAILAR _
- WRITELN "La verdad es que bailar no se te da muy bien..."
+DANCE _
+ WRITELN "I would prefer not to dance, I'm not a good dancer."
  DONE
 
 ;-----------------------------------------------
 
 
-ATACAR _                        ; Hay nombre desconocido en la frase
+ATTACK _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes atacar a eso que dices."
+ WRITELN "I can't attack that."
  DONE
  
-ATACAR _                        ; No hay nombre en la frase
+ATTACK _                        
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres atacar."
+ WRITELN "Please specify what you want me to attack."
  DONE
  
-ATACAR _
+ATTACK _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La violencia no es buena."
+ WRITELN "Violence no solution."
  DONE
 
-ATACAR _
+ATTACK _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} around."
  DONE
  
-ATACAR _                        ; Hay nombre pero no es un objeto
+ATTACK _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "La violencia no es la solución."
+ WRITELN "Violence no solution"
  DONE
 
-ATACAR _                        ; Es un objeto presente
+ATTACK _                        
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Atacar {OREF} no solucionará nada."
+ WRITELN "Attacking the {OREF} won't help."
  DONE
 
-ATACAR _                        ; Es un objeto ausente
+ATTACK _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí, en cualquier caso la violencia no es la solución."
+ WRITELN "I don't see the {OREF} over here."
  DONE
 
 ;-----------------------------------------------
 
 
-GOLPEAR _                        ; Hay nombre desconocido en la frase
+HIT _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes golpear a eso que dices."
+ WRITELN "I can't hit that."
  DONE
 
-GOLPEAR _                        ; No hay nombre en la frase
+HIT _                 
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres golpear."
+ WRITELN "Please specify what you want me to hit."
  DONE
  
-GOLPEAR _
+HIT _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La violencia no es buena."
+ WRITELN "Violence no solution."
  DONE
 
-GOLPEAR _
+HIT _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} around."
  DONE
  
-GOLPEAR _                        ; Hay nombre pero no es un objeto
+HIT _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "La violencia no es la solución."
+ WRITELN "Violence no solution."
  DONE
 
-GOLPEAR _                        ; Es un objeto presente
+GOLPEAR _                     
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Golpear {OREF} no solucionará nada."
+ WRITELN "Hitting the {OREF} won't help."
  DONE
 
-GOLPEAR _                        ; Es un objeto ausente
+GOLPEAR _                        
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí, en cualquier caso la violencia no es la solución."
+ WRITELN "I don't see the {OREF} over here."
  DONE
 
 
 ;-----------------------------------------------
 
-USAR        _
- WRITELN "USAR es demasiado genérico, por favor se más concreto. Por ejemplo, si quieres barrer el suelo utiliza BARRER SUELO, no USAR ESCOBA."
+USE        _
+ WRITELN "USE is too generic, please use specific orders with specific verbs. For instance use SWEEP instead of USE BROOM."
  DONE
 
 ;-----------------------------------------------
 
 
-EX _                        ; Hay nombre desconocido en la frase y la preposición DENTRO (EN) está presente
- PREP DENTRO
+EX _                        
+ PREP INTO
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes examinar dentro de eso que dices."  
+ WRITELN "I can't look into that."
  DONE
 
-EX _                        ; No hay nombre en la frase y la preposición DENTRO (EN) está presente
- PREP DENTRO                       
+EX _                        
+ PREP INTO    
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dentro de qué quieres examinar."
+ WRITELN "Please specifiy where do you want me to look into."
  DONE
 
-EX _                        ; Hay nombre desconocido en la frase
+EX _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes examinar eso que dices."  
+ WRITELN "I can't look into that."  
  DONE
 
-EX _                        ; No hay nombre en la frase
+EX _                        
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué o a quién quieres examinar."
+ WRITELN "Please specify where do you want me to look into."
  DONE
 
-EX        _           ; hay nombre, y es propio, y la preposición DENTRO (EN) esta presente
- PREP DENTRO
+EX        _           
+ PREP INTO
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Vaya ocurrencia..."
+ WRITELN "I don't think looking into {OPRO} is possible."
  DONE
 
 EX _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} around."
  DONE
  
 EX _
@@ -2025,7 +2013,7 @@ EX _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Es de mala educación."
+ WRITELN "I won't do that to {OPRO}."
  DONE
 
 EX _
@@ -2033,31 +2021,32 @@ EX _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} around."
  DONE
 
-EX _    ; Hay nombre pero no es un objeto, prep DENTRO presente
- PREP DENTRO
+EX _    
+ PREP INTO
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a examinar dentro de eso."   
+ WRITELN "I can't look into that."   
  DONE
 
-EX _                        ; Hay nombre pero no es un objeto
+EX _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a examinar eso."     
+ WRITELN "I can't look into that."     
  DONE
 
-EX _                        ; Es un objeto presente y contenedor
+EX _                       
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
- WRITELN "Examinas {OREF} pero no ves nada especial. En su interior puedes ver: "
+ WRITELN "I have looked into the {OREF} but I saw nothing special. Inside there is: "
  LISTAT @51
  NPCAT @51 13
  NOTZERO 13
  LISTNPC @51
+
 EX _  
  NOTEQ 51 255
  PRESENT @51
@@ -2065,115 +2054,67 @@ EX _
  NEWLINE
  DONE
 
-EX _                        ; Es un objeto presente
+EX _         
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Examinas {OREF} pero no ves nada especial."
+ WRITELN "I'm examining the {OREF} but I see nothing special."
  DONE
 
-EX _                        ; Es un objeto ausente
+EX _         
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."   
+ WRITELN "I can't see the {OREF} over here."   
  DONE
 
 ;-----------------------------------------------
 
 
-LIMPIAR _                        ; Hay nombre desconocido en la frase
+CLEAN _                        
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes limpiar eso que dices."   
+ WRITELN "I can't clean that."   
  DONE
 
-LIMPIAR _                        ; No hay nombre en la frase
+CLEAN _                   
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres limpiar."
+ WRITELN "Please specify what you want me to clean."
  DONE
  
-LIMPIAR _
+CLEAN _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "No se deja."
+ WRITELN "That's not a good idea."
  DONE
 
-LIMPIAR _
+CLEAN _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "I don't see {OPRO} around."
  DONE
  
-LIMPIAR _                        ; Hay nombre pero no es un objeto
+CLEAN _                        
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No le ves sentido a limpiar eso."
+ WRITELN "I can't clean that."
  DONE
 
-LIMPIAR _                        ; Es un objeto presente
+CLEAN _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Limpias {OREF}. No hay efecto alguno."
+ WRITELN "I have cleaned the {OREF}."
  DONE
 
-LIMPIAR _                        ; Es un objeto ausente
+CLEAN _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "I can't see the {OREF} over here."
  DONE
 
-;-----------------------------------------------
-
-
-RASCAR _                        ; Hay nombre desconocido en la frase
- EQ 34 255
- BNOTZERO 12 1
- WRITELN "No puedes rascar eso que dices."   
- DONE
-
-RASCAR _                        ; No hay nombre en la frase
- EQ 34 255
- BZERO 12 1
- WRITELN "Por favor especifica qué quieres rascar."
- DONE
- 
-RASCAR _
- NOTEQ 34 255
- NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
- PRESENT @51
- WRITELN "No se deja."
- DONE
-
-RASCAR _
- NOTEQ 34 255
- NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
- ABSENT @51
- WRITELN "No está aquí."
- DONE
- 
-RASCAR _                        ; Hay nombre pero no es un objeto
- NOTEQ 34 255
- EQ 51 255
- WRITELN "No quieres rascar eso."
- DONE
-
-RASCAR _                        ; Es un objeto presente
- NOTEQ 51 255
- PRESENT @51
- WRITELN "Rascas {OREF}. No hay efecto alguno."
- DONE
-
-RASCAR _                        ; Es un objeto ausente
- NOTEQ 51 255
- ABSENT @51
- WRITELN "No ves {OREF}_ por aquí."
- DONE
 
 ;-----------------------------------------------
 
@@ -2187,39 +2128,39 @@ QUEMAR _                        ; Hay nombre desconocido en la frase
 QUEMAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres quemar."
+ WRITELN "Por favor especifica quÃ© quieres quemar."
  DONE
 
 QUEMAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La barbarie no solucionará tus problemas."
+ WRITELN "La barbarie no solucionarÃ¡ tus problemas."
  DONE
 
 QUEMAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-QUEMAR _                        ; Hay nombre pero no es un objeto
+QUEMAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a quemar eso."
  DONE
 
-QUEMAR _                        ; Es un objeto presente
+QUEMAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Quemar {OREF} no es la solución."
+ WRITELN "Quemar {OREF} no es la soluciÃ³n."
  DONE
 
 QUEMAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2234,16 +2175,16 @@ APAGAR _                        ; Hay nombre desconocido en la frase
 APAGAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres apagar."
+ WRITELN "Por favor especifica quÃ© quieres apagar."
  DONE
  
-APAGAR _                        ; Hay nombre pero no es un objeto
+APAGAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a apagar eso."
  DONE
 
-APAGAR _                        ; Es un objeto presente
+APAGAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres apagar {OREF}."
@@ -2252,7 +2193,7 @@ APAGAR _                        ; Es un objeto presente
 APAGAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2267,30 +2208,30 @@ CORTAR _                        ; Hay nombre desconocido en la frase
 CORTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres cortar."
+ WRITELN "Por favor especifica quÃ© quieres cortar."
  DONE
  
 CORTAR _ 
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La violencia no es la solución."
+ WRITELN "La violencia no es la soluciÃ³n."
  DONE
 
 CORTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-CORTAR _                        ; Hay nombre pero no es un objeto
+CORTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a cortar eso."
  DONE
 
-CORTAR _                        ; Es un objeto presente
+CORTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No ves sentido a cortar {OREF}."
@@ -2299,7 +2240,7 @@ CORTAR _                        ; Es un objeto presente
 CORTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2314,7 +2255,7 @@ ATAR _                        ; Hay nombre desconocido en la frase
 ATAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres atar."
+ WRITELN "Por favor especifica quÃ© quieres atar."
  DONE
  
 ATAR _ 
@@ -2328,16 +2269,16 @@ ATAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-ATAR _                        ; Hay nombre pero no es un objeto
+ATAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a atar eso."
  DONE
 
-ATAR _                        ; Es un objeto presente
+ATAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres atar {OREF}."
@@ -2346,7 +2287,7 @@ ATAR _                        ; Es un objeto presente
 ATAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2361,39 +2302,39 @@ DESATAR _                        ; Hay nombre desconocido en la frase
 DESATAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desatar."
+ WRITELN "Por favor especifica quÃ© quieres desatar."
  DONE
  
 DESATAR _ 
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "¿Desatarle?."
+ WRITELN "Â¿Desatarle?."
  DONE
 
 DESATAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-DESATAR _                        ; Hay nombre pero no es un objeto
+DESATAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a desatar eso."
  DONE
 
-DESATAR _                        ; Es un objeto presente
+DESATAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "¿Desatar {OREF}?, ¿para qué?"
+ WRITELN "Â¿Desatar {OREF}?, Â¿para quÃ©?"
  DONE
 
 DESATAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2408,23 +2349,23 @@ LLENAR _                        ; Hay nombre desconocido en la frase
 LLENAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres llenar."
+ WRITELN "Por favor especifica quÃ© quieres llenar."
  DONE
  
-LLENAR _                        ; Hay nombre pero no es un objeto
+LLENAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a llenar eso."
  DONE
 
-LLENAR _                        ; Es un objeto presente
+LLENAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer                        ; es un contenedor
  WRITELN "No quieres llenar {OREF}."
  DONE
 
-LLENAR _                        ; Es un objeto presente
+LLENAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  OZERO @51 aContainer            ; no es un contenedor
@@ -2434,7 +2375,7 @@ LLENAR _                        ; Es un objeto presente
 LLENAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;------------------------------------------------------
@@ -2461,30 +2402,30 @@ RETORCER _                        ; Hay nombre desconocido en la frase
 RETORCER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres retorcer."
+ WRITELN "Por favor especifica quÃ© quieres retorcer."
  DONE
 
 RETORCER _ 
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La violencia no es la solución."
+ WRITELN "La violencia no es la soluciÃ³n."
  DONE
 
 RETORCER _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-RETORCER _                        ; Hay nombre pero no es un objeto
+RETORCER _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a retorcer eso."
  DONE
 
-RETORCER _                        ; Es un objeto presente
+RETORCER _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres retorcer {OREF}."
@@ -2493,7 +2434,7 @@ RETORCER _                        ; Es un objeto presente
 RETORCER _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2508,30 +2449,30 @@ APRETAR _                        ; Hay nombre desconocido en la frase
 APRETAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres apretar."
+ WRITELN "Por favor especifica quÃ© quieres apretar."
  DONE
 
 APRETAR _ 
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "La violencia no es la solución."
+ WRITELN "La violencia no es la soluciÃ³n."
  DONE
 
 APRETAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-APRETAR _                        ; Hay nombre pero no es un objeto
+APRETAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a apretar eso."
  DONE
 
-APRETAR _                        ; Es un objeto presente
+APRETAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres apretar {OREF}."
@@ -2540,7 +2481,7 @@ APRETAR _                        ; Es un objeto presente
 APRETAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2555,7 +2496,7 @@ BESAR _                        ; Hay nombre desconocido en la frase
 BESAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres besar."
+ WRITELN "Por favor especifica a quÃ© o a quiÃ©n quieres besar."
  DONE
  
 BESAR _
@@ -2571,16 +2512,16 @@ BESAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-BESAR _                        ; Hay nombre pero no es un objeto
+BESAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No quieres besar eso."
  DONE
 
-BESAR _                        ; Es un objeto presente
+BESAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres besar {OREF}."
@@ -2589,7 +2530,7 @@ BESAR _                        ; Es un objeto presente
 BESAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2604,7 +2545,7 @@ ABRAZAR _                        ; Hay nombre desconocido en la frase
 ABRAZAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres abrazar."
+ WRITELN "Por favor especifica a quÃ© o a quiÃ©n quieres abrazar."
  DONE
  
 ABRAZAR _
@@ -2620,16 +2561,16 @@ ABRAZAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-ABRAZAR _                        ; Hay nombre pero no es un objeto
+ABRAZAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No quieres abrazar eso."
  DONE
 
-ABRAZAR _                        ; Es un objeto presente
+ABRAZAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres abrazar {OREF}."
@@ -2638,7 +2579,7 @@ ABRAZAR _                        ; Es un objeto presente
 ABRAZAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2653,16 +2594,16 @@ CONECTAR _                        ; Hay nombre desconocido en la frase
 CONECTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres conectar."
+ WRITELN "Por favor especifica quÃ© quieres conectar."
  DONE
  
-CONECTAR _                        ; Hay nombre pero no es un objeto
+CONECTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves la manera de conectar eso."
  DONE
 
-CONECTAR _                        ; Es un objeto presente
+CONECTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No ves la manera de conectar {OREF}."
@@ -2671,7 +2612,7 @@ CONECTAR _                        ; Es un objeto presente
 CONECTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2686,16 +2627,16 @@ DESCONECTAR _                        ; No hay nombre en la frase
 DESCONECTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desconectar."
+ WRITELN "Por favor especifica quÃ© quieres desconectar."
  DONE
  
-DESCONECTAR _                        ; Hay nombre pero no es un objeto
+DESCONECTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a desconectar eso."
  DONE
 
-DESCONECTAR _                        ; Es un objeto presente
+DESCONECTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres desconectar {OREF}."
@@ -2704,7 +2645,7 @@ DESCONECTAR _                        ; Es un objeto presente
 DESCONECTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2719,16 +2660,16 @@ ABRIR _                        ; Hay nombre desconocido en la frase
 ABRIR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres abrir."
+ WRITELN "Por favor especifica quÃ© quieres abrir."
  DONE
  
-ABRIR _                        ; Hay nombre pero no es un objeto
+ABRIR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a abrir eso."
  DONE
 
-ABRIR _                        ; Es un objeto presente
+ABRIR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No puedes abrir {OREF}."
@@ -2737,7 +2678,7 @@ ABRIR _                        ; Es un objeto presente
 ABRIR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -2751,16 +2692,16 @@ CERRAR _                        ; Hay nombre desconocido en la frase
 CERRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres cerrar."
+ WRITELN "Por favor especifica quÃ© quieres cerrar."
  DONE
  
-CERRAR _                        ; Hay nombre pero no es un objeto
+CERRAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a cerrar eso."
  DONE
 
-CERRAR _                        ; Es un objeto presente
+CERRAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No puedes cerrar {OREF}."
@@ -2769,7 +2710,7 @@ CERRAR _                        ; Es un objeto presente
 CERRAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;----------------------------------------------
@@ -2784,16 +2725,16 @@ LEER _                        ; No hay nombre en la frase
 LEER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres leer."
+ WRITELN "Por favor especifica quÃ© quieres leer."
  DONE
  
-LEER _                        ; Hay nombre pero no es un objeto
+LEER _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a leer eso."
  DONE
 
-LEER _                        ; Es un objeto presente
+LEER _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No puedes leer {OREF}."
@@ -2802,7 +2743,7 @@ LEER _                        ; Es un objeto presente
 LEER _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;----------------------------------------------
@@ -2817,30 +2758,30 @@ CHUPAR _                        ; Hay nombre desconocido en la frase
 CHUPAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres chupar."
+ WRITELN "Por favor especifica quÃ© quieres chupar."
  DONE
 
 CHUPAR _ 
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Eso sería muy poco apropiado."
+ WRITELN "Eso serÃ­a muy poco apropiado."
  DONE
 
 CHUPAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-CHUPAR _                        ; Hay nombre pero no es un objeto
+CHUPAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No te imaginas chupando eso."
  DONE
 
-CHUPAR _                        ; Es un objeto presente
+CHUPAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres chupar {OREF}."
@@ -2849,7 +2790,7 @@ CHUPAR _                        ; Es un objeto presente
 CHUPAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."     
+ WRITELN "No ves {OREF} por aquÃ­."     
  DONE
 
 ;-----------------------------------------------
@@ -2864,7 +2805,7 @@ ROMPER _                        ; Hay nombre desconocido en la frase
 ROMPER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres romper."
+ WRITELN "Por favor especifica quÃ© quieres romper."
  DONE
  
 ROMPER _
@@ -2880,25 +2821,25 @@ ROMPER _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-ROMPER _                        ; Hay nombre pero no es un objeto
+ROMPER _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
- WRITELN "La violencia no es la solución."
+ WRITELN "La violencia no es la soluciÃ³n."
  DONE
 
-ROMPER _                        ; Es un objeto presente
+ROMPER _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Romper {OREF} no solucionará nada."
+ WRITELN "Romper {OREF} no solucionarÃ¡ nada."
  DONE
 
 ROMPER _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí; en cualquier caso, romper eso no es la solución."   
+ WRITELN "No ves {OREF} por aquÃ­; en cualquier caso, romper eso no es la soluciÃ³n."   
  DONE
 
  ;-----------------------------------------------
@@ -2913,7 +2854,7 @@ COMPRAR _                        ; Hay nombre desconocido en la frase
 COMPRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres comprar."
+ WRITELN "Por favor especifica quÃ© quieres comprar."
  DONE
  
 COMPRAR _
@@ -2921,7 +2862,7 @@ COMPRAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Todo el mundo tiene un precio... pero no está en venta."
+ WRITELN "Todo el mundo tiene un precio... pero no estÃ¡ en venta."
  DONE
 
 COMPRAR _
@@ -2929,16 +2870,16 @@ COMPRAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
   
-COMPRAR _                        ; Hay nombre pero no es un objeto
+COMPRAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No hay nada en venta."
  DONE
 
-COMPRAR _                        ; Es un objeto presente
+COMPRAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No hay nada en venta."
@@ -2947,7 +2888,7 @@ COMPRAR _                        ; Es un objeto presente
 COMPRAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."   
+ WRITELN "No ves {OREF} por aquÃ­."   
  DONE
 
 ;------------------------------------------------------------
@@ -2962,7 +2903,7 @@ DOBLAR _                        ; Hay nombre desconocido en la frase
 DOBLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres doblar."
+ WRITELN "Por favor especifica quÃ© quieres doblar."
  DONE
  
 DOBLAR _
@@ -2970,7 +2911,7 @@ DOBLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Piensas que ya está bien como está..."
+ WRITELN "Piensas que ya estÃ¡ bien como estÃ¡..."
  DONE
 
 DOBLAR _
@@ -2978,25 +2919,25 @@ DOBLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
   
-DOBLAR _                        ; Hay nombre pero no es un objeto
+DOBLAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "Prefieres no doblar eso."
  DONE
 
-DOBLAR _                        ; Es un objeto presente
+DOBLAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Doblar {OREF} no solucionará nada."
+ WRITELN "Doblar {OREF} no solucionarÃ¡ nada."
  DONE
 
 DOBLAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."   
+ WRITELN "No ves {OREF} por aquÃ­."   
  DONE
 
 ;------------------------------------------------------------
@@ -3011,7 +2952,7 @@ DESDOBLAR _                        ; Hay nombre desconocido en la frase
 DESDOBLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desdoblar."
+ WRITELN "Por favor especifica quÃ© quieres desdoblar."
  DONE
  
 DESDOBLAR _
@@ -3019,7 +2960,7 @@ DESDOBLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Piensas que ya está bien como está..."
+ WRITELN "Piensas que ya estÃ¡ bien como estÃ¡..."
  DONE
 
 DESDOBLAR _
@@ -3027,25 +2968,25 @@ DESDOBLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
   
-DESDOBLAR _                        ; Hay nombre pero no es un objeto
+DESDOBLAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
- WRITELN "¿Para qué quieres desdoblar eso?"
+ WRITELN "Â¿Para quÃ© quieres desdoblar eso?"
  DONE
 
-DESDOBLAR _                        ; Es un objeto presente
+DESDOBLAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "¿Desdoblar {OREF}?, ¿para qué?"
+ WRITELN "Â¿Desdoblar {OREF}?, Â¿para quÃ©?"
  DONE
 
 DESDOBLAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."   
+ WRITELN "No ves {OREF} por aquÃ­."   
  DONE
 
 ;------------------------------------------------------------
@@ -3073,7 +3014,7 @@ VERSION _
 DAR _                  ; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos
  SAME 46 34            ; cierto si el Noun1 que tenemos proviene del pronombre
  WHATOX 15             ; metemos el objeto referenciado en el flag 15
- ONOTZERO @15 aNPC     ; ¿es un NPC?
+ ONOTZERO @15 aNPC     ; Â¿es un NPC?
  NOTEQ 44 255          ; Hay Noun2
  COPYFF 34 14          ; Les damos la vuelta al Noun1 y al Noun2
  COPYFF 44 34
@@ -3084,7 +3025,7 @@ DAR _                  ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  WHATO
 
 DAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
- PREP A                ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+ PREP A                ; Tiene que dar este mensaje porque lo que querÃ­amos que  fuera el Noun1 no es nada del vocabulario
  BZERO 12 2
  EQ 44 255
  BNOTZERO 12 1
@@ -3094,7 +3035,7 @@ DAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocup
 DAR _              ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres dar."
+ WRITELN "Por favor especifica quÃ© quieres dar."
  DONE
  
 DAR _              ; Hay nombre desconocido en la frase
@@ -3103,7 +3044,7 @@ DAR _              ; Hay nombre desconocido en la frase
  WRITELN "No puedes dar eso que dices."
  DONE
 
-DAR _              ; Hay nombre pero no es un objeto
+DAR _              ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No puedes dar eso."
@@ -3113,7 +3054,7 @@ DAR _              ; Intentar dar un objeto que llevamos puesto
  NOTEQ 51 255             
  WORN @51  
  ONOTZERO @51 aWear
- WRITELN "Primero deberías quitarte {OREF} para poder hacer eso..."
+ WRITELN "Primero deberÃ­as quitarte {OREF} para poder hacer eso..."
  DONE
 
 DAR _              ; DAR un objeto pero que no lo llevamos
@@ -3122,15 +3063,15 @@ DAR _              ; DAR un objeto pero que no lo llevamos
  WRITELN "No llevas {OREF}."
  DONE
 
-DAR _              ; DAR un objeto del inventario y no especificar a quién
+DAR _              ; DAR un objeto del inventario y no especificar a quiÃ©n
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
  BZERO 12 1
- WRITELN "¿A quién quieres dar eso?"
+ WRITELN "Â¿A quiÃ©n quieres dar eso?"
  DONE
 
-DAR _              ; DAR un objeto del inventario y no especificar a quién (encuantra una palabra que no está en el vocabulario)
+DAR _              ; DAR un objeto del inventario y no especificar a quiÃ©n (encuantra una palabra que no estÃ¡ en el vocabulario)
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
@@ -3154,28 +3095,28 @@ DAR _              ; DAR un objeto del inventario a un objeto presente pero que 
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  OZERO @15 aNPC        ; pero no es un NPC
- WRITELN "Estás perdiendo la cabeza..."                         
+ WRITELN "EstÃ¡s perdiendo la cabeza..."                         
  DONE                                           
 
-DAR _              ; DAR un objeto del inventario a un NPC pero que no está presente
+DAR _              ; DAR un objeto del inventario a un NPC pero que no estÃ¡ presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aNPC     ; y es un NPC
- ABSENT @15            ; pero no está presente
- WRITELN "No le puedes dar {OREF} porque no está aquí."
+ ABSENT @15            ; pero no estÃ¡ presente
+ WRITELN "No le puedes dar {OREF} porque no estÃ¡ aquÃ­."
  DONE
 
-DAR _              ; DAR un objeto presente a un NPC que está presente
+DAR _              ; DAR un objeto presente a un NPC que estÃ¡ presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aNPC     ; y es un NPC
- PRESENT @15           ; y está presente
+ PRESENT @15           ; y estÃ¡ presente
  WRITELN "Le ofreces {OREF} pero no le hace ni caso."
  DONE
 
@@ -3184,7 +3125,7 @@ DAR _              ; DAR un objeto presente a un NPC que está presente
 MOSTRAR _              ; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos
  SAME 46 34            ; cierto si el Noun1 que tenemos proviene del pronombre
  WHATOX 15             ; metemos el objeto referenciado en el flag 15
- ONOTZERO @15 aNPC     ; ¿es un NPC?
+ ONOTZERO @15 aNPC     ; Â¿es un NPC?
  NOTEQ 44 255          ; Hay Noun2
  COPYFF 34 14          ; Les damos la vuelta al Noun1 y al Noun2
  COPYFF 44 34
@@ -3195,7 +3136,7 @@ MOSTRAR _              ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  WHATO
 
 MOSTRAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
- PREP A                ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+ PREP A                ; Tiene que dar este mensaje porque lo que querÃ­amos que  fuera el Noun1 no es nada del vocabulario
  BZERO 12 2
  EQ 44 255
  BNOTZERO 12 1
@@ -3205,7 +3146,7 @@ MOSTRAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a 
 MOSTRAR _              ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres mostrar."
+ WRITELN "Por favor especifica quÃ© quieres mostrar."
  DONE
  
 MOSTRAR _              ; Hay nombre desconocido en la frase
@@ -3214,7 +3155,7 @@ MOSTRAR _              ; Hay nombre desconocido en la frase
  WRITELN "No puedes mostrar eso que dices."
  DONE
 
-MOSTRAR _              ; Hay nombre pero no es un objeto
+MOSTRAR _              ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No puedes mostrar eso."
@@ -3224,7 +3165,7 @@ MOSTRAR _              ; Intentar mostrar un objeto que llevamos puesto
  NOTEQ 51 255             
  WORN @51  
  ONOTZERO @51 aWear
- WRITELN "Primero deberías quitarte {OREF} para poder hacer eso..."
+ WRITELN "Primero deberÃ­as quitarte {OREF} para poder hacer eso..."
  DONE
 
 MOSTRAR _              ; MOSTRAR un objeto pero que no lo llevamos
@@ -3233,15 +3174,15 @@ MOSTRAR _              ; MOSTRAR un objeto pero que no lo llevamos
  WRITELN "No llevas {OREF}."
  DONE
 
-MOSTRAR _              ; MOSTRAR un objeto del inventario y no especificar a quién
+MOSTRAR _              ; MOSTRAR un objeto del inventario y no especificar a quiÃ©n
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
  BZERO 12 1
- WRITELN "¿A quién quieres mostrar eso?"
+ WRITELN "Â¿A quiÃ©n quieres mostrar eso?"
  DONE
 
-MOSTRAR _              ; MOSTRAR un objeto del inventario y no especificar a quién (encuentra una palabra que no está en el vocabulario)
+MOSTRAR _              ; MOSTRAR un objeto del inventario y no especificar a quiÃ©n (encuentra una palabra que no estÃ¡ en el vocabulario)
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
@@ -3265,28 +3206,28 @@ MOSTRAR _              ; MOSTRAR un objeto del inventario a un objeto presente p
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  OZERO @15 aNPC        ; pero no es un NPC
- WRITELN "Estás perdiendo la cabeza..."                         
+ WRITELN "EstÃ¡s perdiendo la cabeza..."                         
  DONE                                           
 
-MOSTRAR _              ; MOSTRAR un objeto del inventario a un NPC pero que no está presente
+MOSTRAR _              ; MOSTRAR un objeto del inventario a un NPC pero que no estÃ¡ presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aNPC     ; y es un NPC
- ABSENT @15            ; pero no está presente
- WRITELN "No le puedes mostrar {OREF} porque no está aquí."
+ ABSENT @15            ; pero no estÃ¡ presente
+ WRITELN "No le puedes mostrar {OREF} porque no estÃ¡ aquÃ­."
  DONE
 
-MOSTRAR _              ; MOSTAR un objeto presente a un NPC que está presente
+MOSTRAR _              ; MOSTAR un objeto presente a un NPC que estÃ¡ presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
  WHATOX2 15            ; Pasamos el noun2 al flag 15
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aNPC     ; y es un NPC
- PRESENT @15           ; y está presente
+ PRESENT @15           ; y estÃ¡ presente
  WRITELN "Le muestras {OREF} pero no le hace ni caso."
  DONE
 
@@ -3302,7 +3243,7 @@ SOPLAR _                        ; Hay nombre desconocido en la frase
 SOPLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué quieres soplar."
+ WRITELN "Por favor especifica a quÃ© quieres soplar."
  DONE
 
 SOPLAR _
@@ -3318,16 +3259,16 @@ SOPLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-SOPLAR _                        ; Hay nombre pero no es un objeto
+SOPLAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a soplar eso."
  DONE
 
-SOPLAR _                        ; Es un objeto presente
+SOPLAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres soplar {OREF}."
@@ -3358,7 +3299,7 @@ GRITAR _
  DONE
 
 GRITAR _
- WRITELN "Gritas lo más fuerte que puedes y... no sucede nada."
+ WRITELN "Gritas lo mÃ¡s fuerte que puedes y... no sucede nada."
  DONE
  
 ;------------------------------------------------------------
@@ -3376,11 +3317,11 @@ DESPERTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
 DESPERTAR _
- WRITELN "Pellizcas tu mejilla creyendo que despertarás pero... no estás soñando...¿o sí?"
+ WRITELN "Pellizcas tu mejilla creyendo que despertarÃ¡s pero... no estÃ¡s soÃ±ando...Â¿o sÃ­?"
  DONE
 
 ;-----------------------------------------------
@@ -3395,7 +3336,7 @@ LEVANTAR _                        ; Hay nombre desconocido en la frase
 LEVANTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres levantar."
+ WRITELN "Por favor especifica quÃ© quieres levantar."
  DONE 
 
 LEVANTAR _
@@ -3411,32 +3352,32 @@ LEVANTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-LEVANTAR _                        ; Hay nombre pero no es un objeto
+LEVANTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves mucho sentido a levantar eso."
  DONE
 
-LEVANTAR _                ; Es un objeto presente pero pesa demasiado (IMPORTANTE)
+LEVANTAR _                ; Object present pero pesa demasiado (IMPORTANTE)
  NOTEQ 51 255
  PRESENT @51
  GT 55 52
  WRITELN "No puedes levantar {OREF}. Pesa demasiado."
  DONE
 
-LEVANTAR _                ; Es un objeto presente
+LEVANTAR _                ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No conseguirás nada levantando eso."
+ WRITELN "No conseguirÃ¡s nada levantando eso."
  DONE
 
 LEVANTAR _                ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para levantar {OREF} tendría que estar aquí."
+ WRITELN "Para levantar {OREF} tendrÃ­a que estar aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -3450,7 +3391,7 @@ ARRASTRAR _                        ; Hay nombre desconocido en la frase
 ARRASTRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres arrastrar."
+ WRITELN "Por favor especifica quÃ© quieres arrastrar."
  DONE
  
 ARRASTRAR _
@@ -3466,16 +3407,16 @@ ARRASTRAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-ARRASTRAR _                        ; Hay nombre pero no es un objeto
+ARRASTRAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves mucho sentido a arrastrar eso."
  DONE
 
-ARRASTRAR _                ; Es un objeto presente
+ARRASTRAR _                ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No parece que se consiga nada arrastrando {OREF}."
@@ -3484,7 +3425,7 @@ ARRASTRAR _                ; Es un objeto presente
 ARRASTRAR _                ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para arrastrar {OREF} tendría que estar aquí."
+ WRITELN "Para arrastrar {OREF} tendrÃ­a que estar aquÃ­."
  DONE
 
 ;------------------------------------------------------------
@@ -3499,7 +3440,7 @@ VACIAR _                        ; Hay nombre desconocido en la frase
 VACIAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres vaciar."
+ WRITELN "Por favor especifica quÃ© quieres vaciar."
  DONE 
  
 VACIAR _
@@ -3507,7 +3448,7 @@ VACIAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC 
  PRESENT @51
- WRITELN "No es lo más apropiado."  
+ WRITELN "No es lo mÃ¡s apropiado."  
  DONE
 
 VACIAR _
@@ -3515,16 +3456,16 @@ VACIAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-VACIAR _                        ; Hay nombre pero no es un objeto
+VACIAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a vaciar eso."
  DONE
 
-VACIAR _                        ; Es un objeto presente
+VACIAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres vaciar {OREF}."
@@ -3533,7 +3474,7 @@ VACIAR _                        ; Es un objeto presente
 VACIAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
  
 ;------------------------------------------------------------
@@ -3548,7 +3489,7 @@ LLAMAR _                        ; Hay nombre desconocido en la frase
 LLAMAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres llamar."
+ WRITELN "Por favor especifica a quÃ© o a quiÃ©n quieres llamar."
  DONE 
  
 LLAMAR _
@@ -3564,16 +3505,16 @@ LLAMAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-LLAMAR _                        ; Hay nombre pero no es un objeto
+LLAMAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a llamar a eso."
  DONE
 
-LLAMAR _                        ; Es un objeto presente
+LLAMAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres llamar a {OREF}."  
@@ -3582,7 +3523,7 @@ LLAMAR _                        ; Es un objeto presente
 LLAMAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
  ;------------------------------------------------------------
@@ -3596,7 +3537,7 @@ PREGUNTAR _                        ; Hay nombre desconocido en la frase
 PREGUNTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a quién quieres preguntar."
+ WRITELN "Por favor especifica a quiÃ©n quieres preguntar."
  DONE
  
 PREGUNTAR _
@@ -3612,16 +3553,16 @@ PREGUNTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-PREGUNTAR _                        ; Hay nombre pero no es un objeto
+PREGUNTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a preguntar a eso."
  DONE
 
-PREGUNTAR _                        ; Es un objeto presente
+PREGUNTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres preguntar a {OREF}."  
@@ -3630,7 +3571,7 @@ PREGUNTAR _                        ; Es un objeto presente
 PREGUNTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;----------------------------------------------- 
@@ -3644,16 +3585,16 @@ CONSULTAR _                        ; Hay nombre desconocido en la frase
 CONSULTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres consultar."
+ WRITELN "Por favor especifica quÃ© quieres consultar."
  DONE
  
-CONSULTAR _                        ; Hay nombre pero no es un objeto
+CONSULTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a consultar eso."
  DONE
 
-CONSULTAR _                        ; Es un objeto presente
+CONSULTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres consultar {OREF}."  
@@ -3662,7 +3603,7 @@ CONSULTAR _                        ; Es un objeto presente
 CONSULTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No ves {OREF} por aquí."
+ WRITELN "No ves {OREF} por aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -3676,7 +3617,7 @@ INSULTAR _                        ; Hay nombre desconocido en la frase
 INSULTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a quién quieres insultar."
+ WRITELN "Por favor especifica a quiÃ©n quieres insultar."
  DONE 
  
 INSULTAR _
@@ -3692,25 +3633,25 @@ INSULTAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-INSULTAR _                        ; Hay nombre pero no es un objeto
+INSULTAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No conseguirás nada insultando a eso."
+ WRITELN "No conseguirÃ¡s nada insultando a eso."
  DONE
 
-INSULTAR _                        ; Es un objeto presente
+INSULTAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Estás perdiendo la cabeza..."
+ WRITELN "EstÃ¡s perdiendo la cabeza..."
  DONE
 
 INSULTAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Ni ves eso que dices, ni crees que sea útil insultarle."
+ WRITELN "Ni ves eso que dices, ni crees que sea Ãºtil insultarle."
  DONE
 
 ;------------------------------------------------------------
@@ -3725,7 +3666,7 @@ UNIR _                        ; Hay nombre desconocido en la frase
 UNIR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres unir."
+ WRITELN "Por favor especifica quÃ© quieres unir."
  DONE 
   
 UNIR _
@@ -3741,16 +3682,16 @@ UNIR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-UNIR _                        ; Hay nombre pero no es un objeto
+UNIR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves mucho sentido a unir eso."
  DONE
 
-UNIR _                ; Es un objeto presente
+UNIR _                ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No parece que se consiga nada uniendo {OREF}."
@@ -3759,7 +3700,7 @@ UNIR _                ; Es un objeto presente
 UNIR _                ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para unir {OREF} tendría que estar aquí."
+ WRITELN "Para unir {OREF} tendrÃ­a que estar aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -3774,7 +3715,7 @@ SEPARAR _                        ; Hay nombre desconocido en la frase
 SEPARAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres separar."
+ WRITELN "Por favor especifica quÃ© quieres separar."
  DONE 
   
 SEPARAR _
@@ -3790,16 +3731,16 @@ SEPARAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
  
-SEPARAR _                        ; Hay nombre pero no es un objeto
+SEPARAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves mucho sentido a separar eso."
  DONE
 
-SEPARAR _                ; Es un objeto presente
+SEPARAR _                ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No parece que se consiga nada separando {OREF}."
@@ -3808,7 +3749,7 @@ SEPARAR _                ; Es un objeto presente
 SEPARAR _                ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para separar {OREF} tendría que estar aquí."
+ WRITELN "Para separar {OREF} tendrÃ­a que estar aquÃ­."
  DONE
 
 ;-----------------------------------------------
@@ -3823,7 +3764,7 @@ HABLAR _                        ; Hay nombre desconocido en la frase
 HABLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica con quién quieres hablar."
+ WRITELN "Por favor especifica con quiÃ©n quieres hablar."
  DONE 
  
 HABLAR _
@@ -3839,25 +3780,25 @@ HABLAR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No está aquí."
+ WRITELN "No estÃ¡ aquÃ­."
  DONE
 
-HABLAR _                        ; Hay nombre pero no es un objeto
+HABLAR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No quieres hablarle a eso."
  DONE
 
-HABLAR _                        ; Es un objeto presente
+HABLAR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
- WRITELN "Estás perdiendo la cabeza..."
+ WRITELN "EstÃ¡s perdiendo la cabeza..."
  DONE
 
 HABLAR _                        ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Ni ves eso que dices, ni crees que sea útil hablarle."
+ WRITELN "Ni ves eso que dices, ni crees que sea Ãºtil hablarle."
  DONE
  
 ;------------------------------------------------------------
@@ -3866,13 +3807,13 @@ HABLAR _                        ; Es un objeto ausente
 IR _                        ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
- WRITELN "No puedes ir ahí donde dices."
+ WRITELN "No puedes ir ahÃ­ donde dices."
  DONE
  
 IR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dónde quieres ir."
+ WRITELN "Por favor especifica dÃ³nde quieres ir."
  DONE 
  
 IR _
@@ -3880,7 +3821,7 @@ IR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  PRESENT @51
- WRITELN "Prefieres no acercarte más..."
+ WRITELN "Prefieres no acercarte mÃ¡s..."
  DONE
 
 IR _
@@ -3888,16 +3829,16 @@ IR _
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
- WRITELN "No sabes dónde está."
+ WRITELN "No sabes dÃ³nde estÃ¡."
  DONE
 
-IR _                        ; Hay nombre pero no es un objeto
+IR _                        ; There is a name, but is not an object
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No le ves sentido a ir hacia eso."
  DONE
 
-IR _                        ; Es un objeto presente
+IR _                        ; Object present
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No quieres ir a {OREF}."
@@ -3931,10 +3872,10 @@ _               _     LT 33 14
 /PRO 1
 ; ################################### PROCESO 1 ####################################
 ; #                                                                                #
-; #  El proceso 1 es ejecutado por ngPAWS tras la descripción de localidad.     #
+; #  El proceso 1 es ejecutado por ngPAWS tras la descripciÃ³n de localidad.     #
 ; #                                                                                #
-; #  Se usa principalmente para poner entradas que añadirán información            #
-; #  extra a la descripción de la localidad actual. Por ejemplo, detalles sobre    #     
+; #  Se usa principalmente para poner entradas que aÃ±adirÃ¡n informaciÃ³n            #
+; #  extra a la descripciÃ³n de la localidad actual. Por ejemplo, detalles sobre    #     
 ; #  puertas abiertas, PSI presentes, etc                                          #
 ; #                                                                                #
 ; ##################################################################################
@@ -3958,5 +3899,7 @@ _        _
 ; #  puertas que se abren, etc                                                     #
 ; #                                                                                #
 ; ##################################################################################
+
+
 
 

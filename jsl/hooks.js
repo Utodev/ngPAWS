@@ -11,6 +11,12 @@ var h_post =  function()
 {
 }
 
+// This function is called first by the restart() function that runs when the game is restarted
+var h_restart = function()
+{
+
+}
+
 // This function is called when the engine tries to write any text
 var h_writeText =  function (text)
 {

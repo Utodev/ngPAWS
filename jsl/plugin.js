@@ -338,6 +338,46 @@ function ACCpictureat(x,y,picno)
 
 }
 
+//CND POP A 2 1 0 0
+
+function ACCpop(stackno, flagno)
+{
+	if ((stackno>MAX_STACK) || (stackno<1)) return;
+	if (stacks[stackno].length == 0) return;
+	retval = stacks[stackno][0];
+	stacks[stackno].splice(0,1);
+	setFlag(flagno, retval);
+}
+
+//CND PUSH A 2 2 0 0
+
+function ACCpush(stackno, value)
+{
+	
+	if ((stackno>MAX_STACK) || (stackno<1)) return;
+	stacks[stackno-1].push(value);
+}
+
+//CND QPOP A 2 1 0 0
+
+function ACCqpop(queueno, flagno)
+{
+	if ((queueno>MAX_QUEUE) || (queueno<1)) return;
+	if (queues[queueno].length == 0) return;
+	retval = queues[queueno][0];
+	queues[queueno].splice(0,1);
+	setFlag(flagno, retval);
+}
+
+//CND QPUSH A 2 2 0 0
+
+function ACCqpush(queueno, value)
+{
+	
+	if ((queueno>MAX_QUEUE) || (queueno<1)) return;
+	queues[queueno-1].push(value);
+}
+
 //CND RANDOMX A 1 2 0 0
 
 function ACCrandomx(flagno, value)
@@ -382,6 +422,59 @@ function ACCsilence(channelno)
 {
 	if ((channelno <1) || (channelno >MAX_CHANNELS)) return;
 	sfxstop(channelno);
+}
+//CND SOFTBLOCK A 2 0 0 0
+
+function ACCsoftblock(procno)
+{
+   disableInterrupt();
+   $('.block_text').html('');
+   $('.block_graphics').html('');
+   $('.block_layer').css('background','transparent');
+   $('.block_layer').show();
+   if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
+}
+//LIB stack_queue_lib.jsp
+
+// This library implements the base code for supporting the queue and stacks condacts. It uses hooks to make sure stacks and queues are saved into the savegames
+// and ensures the queues and stacks are emptied on game restart.
+
+
+MAX_QUEUE = 4;
+MAX_STACK = 4;
+
+var queues;
+var stacks;
+
+var old_stackqueue_h_restart = h_restart;
+
+var h_restart = function() 
+{
+	old_stackqueue_h_restart();
+	queues = new Array();	
+	for (var i=0;i<MAX_QUEUE;i++) queues.push(new Array());
+	stacks = new Array();
+	for (var j=0;j<MAX_STACK;j++) stacks.push(new Array());
+}
+
+
+var old_stackqueue_h_saveGame = h_saveGame;
+
+var h_saveGame = function(savegame_object)
+{
+	savegame_object.queues = queues.slice();
+	savegame_object.stacks = stacks.slice();
+	old_stackqueue_h_saveGame(savegame_object);
+	return savegame_object;
+}
+
+var old_stackqueue_h_restoreGame = h_restoreGame;
+
+var h_restoreGame = function()
+{
+	queues = savegame_object.queues.slice();
+	stacks = savegame_object.stacks.slice();
+	old_stackqueue_h_restoreGame();
 }
 //CND TEXTPIC A 2 2 0 0
 

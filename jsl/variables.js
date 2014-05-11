@@ -48,6 +48,25 @@ ATTR_LIGHT=0;			// Object produces light
 ATTR_WEARABLE=1;		// Object is wearable
 ATTR_CONTAINER=2;       // Object is a container
 ATTR_NPC=3;             // Object is actually an NPC
+ATTR_CONCEALED = 4; /// Present but not visible
+ATTR_EDIBLE = 5;
+ATTR_DOOR = 6;
+ATTR_ENTERABLE = 7;
+ATTR_FEMALE = 8;
+ATTR_LOCKABLE = 9;
+ATTR_LOCKED = 10;
+ATTR_MALE = 11;
+ATTR_NEUTER=12;
+ATTR_OPENABLE =13;
+ATTR_OPEN=14;
+ATTR_PLURALNAME = 15;
+ATTR_TRANSPARENT=16;
+ATTR_SCENERY=17;
+ATTR_SUPPORTER = 18;
+ATTR_SWITCHABLE=19;
+ATTR_ON  =20;
+ATTR_TALKABLE=21;
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
