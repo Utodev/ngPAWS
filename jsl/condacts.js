@@ -1049,11 +1049,12 @@ function CNDozero(objno, attrno)
 		attrs = getObjectHighAttributes(objno);
 		attrno = attrno - 32;
 	}
-	return bittest(attrs, attrno);
+	return ! bittest(attrs, attrno);
 }
 
 function CNDonotzero(objno, attrno)
 {
+	if (attrno > 63) return false;
 	return ! CNDozero(objno, attrno);
 }
 
