@@ -38,6 +38,25 @@
 #define const aWear = 1
 #define const aContainer = 2
 #define const aNPC  =3
+#define const aConcealed = 4
+#define const aEdible = 5
+#define const aDrinkable = 6
+#define const aEnterable = 7
+#define const aFemale = 8
+#define const aLockable = 9
+#define const aLocked = 10
+#define const aMale = 11
+#define const aNeuter = 12
+#define const aOpenable = 13
+#define const aOpen = 14
+#define const aPluralName = 15
+#define const aTransparent = 16
+#define const aScenery = 17
+#define const aSupporter = 18
+#define const aSwitchable = 19
+#define const aOn = 20
+#define const aStatic = 21
+
 
 /CTL
 
@@ -308,8 +327,8 @@ SACUDIR       49       verb
 SACUDE        49       verb
 REMOVER       49       verb
 REMUEVE       49       verb
-BALANCEA      49       verb
-BALANCEAR     49       verb
+BALANCEA      50       verb
+BALANCEAR     50       verb
 BALANCEARTE   50       verb
 BALANCEARSE   50       verb
 BALANCEATE    50       verb
@@ -815,9 +834,9 @@ No puedes quitarte {OREF}.  ¡Tienes demasiadas cosas en las manos!
 Desgraciadamente {OREF} pesa demasiado.
 
 /44
-Metes {OREF} en 
+Pones {OREF} en 
 /45
-Ahora {OREF} no está en 
+Me temo que {OREF} no está en 
 /46
 , 
 /47
@@ -871,6 +890,10 @@ Aquí
 está 
 /65
 están 
+/66
+dentro hay 
+/67
+encima hay 
 /MTX
 /0
 La balsa está desierta!
@@ -899,13 +922,13 @@ al {ACTION|sureste|sureste}
 /1011
 al {ACTION|suroeste|suroeste}
 /1012
-{ACTION|subir|subir}
+{ACTION|arriba|arriba}
 /1013
-{ACTION|bajar|bajar}
+{ACTION|abajo|abajo}
 /1014
-{ACTION|entrar|entrar}
+{ACTION|dentro|dentro}
 /1015
-{ACTION|salir|salir}
+{ACTION|fuera|fuera}
 /OTX
 /0
 una antorcha
@@ -940,6 +963,11 @@ quemar tu piel mientras que una oscura aleta da vueltas en círculos en las clara
 ; #  en caso contrario no las tendría en cuenta.                                          #
 ; #                                                                                       #
 ; #########################################################################################
+
+COGER TODO   ; COGER TODO DE --> SACAR TODO DE
+ PREP DE
+ LET 33 &&_voc_SACAR
+
 
 COGER TODO
  OBJAT @38 15
@@ -978,19 +1006,42 @@ SACAR TODO
  NOTEQ 15 255   ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  OBJAT @15 14
- NOTCARR @15
- WRITELN "No llevas eso."
+ ABSENT @15
+ WRITELN "No ves eso por aquí."
  DONE
+
+
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; Es un supporter
+ OBJAT @15 14
+ ABSENT @15
+ WRITELN "No ves eso por aquí."
+ DONE
+
 
 SACAR TODO
  PREP DE
  NOTEQ 15 255   ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
- CARRIED @15
+ PRESENT @15
  OBJAT @15 14
  ZERO 14
  WRITELN "No hay nada ahí."
  DONE
+
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; Es un supporter
+ PRESENT @15
+ OBJAT @15 14
+ ZERO 14
+ WRITELN "No hay nada ahí."
+ DONE
+
+
  
 SACAR TODO
  PREP DE
@@ -998,6 +1049,15 @@ SACAR TODO
  ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  DOALL @15
+
+SACAR TODO
+ PREP DE
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; Es un supporter
+ CARRIED @15
+ DOALL @15
+
+
 
 ; ** Convertir "ESCONDER ALGO EN ALGO" en "METER ALGO EN ALGO" 
 ESCONDER _
@@ -1025,9 +1085,18 @@ METER TODO
  PREP EN
  NOTEQ 15 255   ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
- NOTCARR @15
- WRITELN "No llevas eso."
+ ABSENT @15
+ WRITELN "No ves eso por aquí."
  DONE
+
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; Es una superficie
+ ABSENT @15
+ WRITELN "No ves eso por aquí."
+ DONE
+
 
 METER TODO
  PREP EN
@@ -1042,9 +1111,50 @@ METER TODO
 METER TODO
  PREP EN
  NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter; es una superficie, poner todo
+ CARRIED @15
+ OBJAT 254 14  
+ EQ @14 1; no llevas nada en el inventario (sólo llevas el container)
+ WRITELN "No llevas nada."
+ DONE
+
+
+
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
+ ISAT @15 @38
+ OBJAT 254 14  
+ ZERO @14  ;no llevas nada en el inventario
+ WRITELN "No llevas nada."
+ DONE
+
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; es una superficie
+ ISAT @15 @38
+ OBJAT 254 14  
+ ZERO @14  ;no llevas nada en el inventario
+ WRITELN "No llevas nada."
+ DONE
+
+
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  CARRIED @15
  DOALL CARRIED
+
+METER TODO
+ PREP EN
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aSupporter ; Es un superficie PONER TODO
+ CARRIED @15
+ DOALL CARRIED
+
 
 QUITAR TODO
  OBJAT 253 15
@@ -1285,6 +1395,16 @@ _  _
 I        _        
  INVEN
 
+; -------------------------
+
+ENTRAR _                ; Entrar en un objeto
+ PREP EN
+ NOTEQ @51 255
+ PRESENT @51
+ ONOTZERO @51 aEnterable
+ GOTO @51 
+ DESC
+
 ;-----------------------------------------------
 
 SENTAR _
@@ -1374,6 +1494,13 @@ COGER _                        ; No hay nombre en la frase
  BZERO 12 1
  WRITELN "Por favor especifica qué quieres coger."
  DONE 
+
+COGER _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ WRITELN "Mejor no coges {OREF}, está bien donde está."
+ DONE
+
 
 COGER        _        
  AUTOG
@@ -1475,14 +1602,35 @@ SACAR _
 SACAR _
  NOTEQ 15 255   ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
- NOTCARR @15
+ ABSENT @15
  WRITELN "No puedes sacar nada de ahí porque no lo llevas."
  DONE
+
+
+SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
+ ONOTZERO @15 aOpenable
+ OZERO @15 aOpen
+ PRESENT @15
+ WRITELN "Antes abre {OBJECT|15}."
+ DONE
+
+SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
+ ONOTZERO @15 aLockable
+ OZERO @15 aLocked
+ PRESENT @15
+ WRITELN "Antes abre {OBJECT|15}."
+ DONE
+
+
 
 SACAR _                ; SACAR un objeto de un Container que está presente
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer  ; Es un contenedor
- CARRIED @15
+ PRESENT @15
  AUTOT @15
  DONE
 
@@ -1559,13 +1707,22 @@ METER _
  SAME 51 15            ; No puede meterse en si mismo
  DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el meter algo en si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta
 
-METER _                ; METER un objeto del inventario a un objeto presente pero que no es un Container
+
+METER _
+ NOTEQ 15 255          ; Es un objeto
+ ONOTZERO @15 aSupporter ; es un contenedor
+ SAME 51 15            ; No puede meterse en si mismo
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el meter algo en si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta
+
+
+METER _                ; METER un objeto del inventario a un objeto presente pero que no es un Container ni supporter
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
  NOTEQ 15 255          ; El noun2 es un objeto
  OZERO @15 aContainer  ; pero no es un Container
- CARRIED @15
+ OZERO @15 aSupporter  ; ni una superficie
+ PRESENT @15
  WRITELN "No puedes meter cosas dentro de eso..."                         
  DONE                                           
 
@@ -1575,9 +1732,45 @@ METER _                ; METER un objeto del inventario a un Container pero que 
  NOTEQ 44 255 
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer     ; y es un Container
- NOTCARR @15            ; pero no lo llevas
+ ABSENT @15            ; pero no está
  WRITELN "No puedes meter {OREF} ahí porque no llevas eso."
  DONE
+
+METER _                ; METER un objeto del inventario a un Supporter pero que no está presente
+ NOTEQ 51 255
+ CARRIED @51    
+ NOTEQ 44 255 
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aSupporter     
+ ABSENT @15            ; pero no lo está
+ WRITELN "No puedes meter {OREF} ahí porque no llevas eso."
+ DONE
+
+METER _                ; METER un objeto presente a un Container que está presente pero cerrado
+ NOTEQ 51 255
+ CARRIED @51    
+ NOTEQ 44 255
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
+ PRESENT @15
+ ONOTZERO @15 aOpenable
+ OZERO @15 aOpen
+ WRITELN "Antes abre {OBJECT|15}."
+ DONE
+
+METER _                ; METER un objeto presente a un Container que está presente pero cerrado con llave
+ NOTEQ 51 255
+ CARRIED @51    
+ NOTEQ 44 255
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aContainer  ; Es un contenedor
+ PRESENT @15
+ ONOTZERO @15 aLockable
+ OZERO @15 aLocked
+ WRITELN "Antes abre {OBJECT|15}"
+ DONE
+
+
 
 METER _                ; METER un objeto presente a un Container que está presente
  NOTEQ 51 255
@@ -1585,9 +1778,21 @@ METER _                ; METER un objeto presente a un Container que está presen
  NOTEQ 44 255
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer  ; Es un contenedor
- CARRIED @15
+ PRESENT @15
  AUTOP @15
  DONE
+
+METER _                ; METER un objeto presente a un Supporter que está presente
+ NOTEQ 51 255
+ CARRIED @51    
+ NOTEQ 44 255
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aSupporter
+ PRESENT @15
+ AUTOP @15
+ DONE
+
+
 
 ;-----------------------------------------------
 
@@ -1810,10 +2015,29 @@ EMPUJAR _
 EMPUJAR _
  NOTEQ 34 255
  NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No se mueve."
+ DONE
+
+
+EMPUJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
+
+EMPUJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ ABSENT @51
+ WRITELN "No ves eso por aquí."
+ DONE
+
+
  
 EMPUJAR _                        ; Hay nombre pero no es un objeto
  NOTEQ 34 255
@@ -1906,9 +2130,26 @@ GIRAR _
 
 GIRAR _
  NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No ves utilidad en girar eso."
+ DONE
+
+
+
+GIRAR _
+ NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
+ DONE
+
+
+GIRAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ ABSENT @51
+ WRITELN "No ves eso por aquí."
  DONE
  
 GIRAR _                        ; Hay nombre pero no es un objeto
@@ -1944,12 +2185,20 @@ LANZAR _                        ; No hay nombre en la frase
  WRITELN "Por favor especifica qué quieres lanzar."
  DONE
 
-LANZAR _
+LANZAR _   						; Es un NPC
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 
  PRESENT @51
  WRITELN "La violencia no es la solución."
  DONE
+
+LANZAR _   						; Es static
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No puedes lanzar eso."
+ DONE
+
 
 LANZAR _
  NOTEQ 51 255
@@ -1957,6 +2206,15 @@ LANZAR _
  ABSENT @51
  WRITELN "No está aquí."
  DONE
+
+
+LANZAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic 
+ ABSENT @51
+ WRITELN "No ves eso por aquí."
+ DONE
+
  
 LANZAR _                        ; Hay nombre pero no es un objeto
  NOTEQ 34 255
@@ -2024,6 +2282,15 @@ COMER _
 COMER _
  NOTEQ 34 255
  NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No es muy buena idea que te comas eso."
+ DONE
+
+
+COMER _
+ NOTEQ 34 255
+ NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
@@ -2038,8 +2305,18 @@ COMER _                        ; Hay nombre pero no es un objeto
 COMER _                        ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
+ OZERO @51 aEdible
  WRITELN "No ves sentido a comerte {OREF}."
  DONE
+
+COMER _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "Te comes {OREF}."
+ DESTROY @51
+ DONE
+
 
 COMER _                        ; Es un objeto ausente
  NOTEQ 51 255
@@ -2087,8 +2364,18 @@ BEBER _                        ; Hay nombre pero no es un objeto
 BEBER _                        ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
+ OZERO @51 aDrinkable
  WRITELN "No ves sentido a beberte {OREF}."  
  DONE
+
+BEBER _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aDrinkable
+ WRITELN "Te bebes {OREF}."  
+ DESTROY @51
+ DONE
+
 
 BEBER _                        ; Es un objeto ausente
  NOTEQ 51 255
@@ -2240,8 +2527,31 @@ OLER _                        ; Hay nombre pero no es un objeto
 OLER _                        ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "La verdad es que {OREF} huele bien."
+ DONE
+
+OLER _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aDrinkable
+ WRITELN "La verdad es que {OREF} huele bien."
+ DONE
+
+
+OLER _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
  WRITELN "No quieres oler {OREF}."
  DONE
+
+OLER _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "La verdad es que {OREF} huele bien."
+ DONE
+
 
 OLER _                        ; Es un objeto ausente
  NOTEQ 51 255
@@ -2578,21 +2888,59 @@ EX _                        ; Hay nombre pero no es un objeto
  WRITELN "No le ves sentido a examinar eso."     
  DONE
 
-EX _                        ; Es un objeto presente y contenedor
+
+EX _                        ; Es un objeto presente y contenedor, transaparente con cosas dentro
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
- WRITELN "Examinas {OREF} pero no ves nada especial. En su interior puedes ver: "
- LISTAT @51
- NPCAT @51 13
- NOTZERO 13
- LISTNPC @51
-EX _  
- NOTEQ 51 255
- PRESENT @51
- ONOTZERO @51 aContainer
- NEWLINE
+ ONOTZERO @51 aTransparent
+ OBJAT @51 13
+ WRITE "Examinas {OREF} pero no ves nada especial "
+ LISTCONTENTS @51
+ WRITELN "."
  DONE
+
+EX _                        ; Es un objeto presente y contenedor, abrible y abierto con cosas dentro
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ OBJAT @51 13
+ WRITE "Examinas {OREF} pero no ves nada especial"
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+EX _                        ; Es un objeto presente y contenedor, abrible y cerrado
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITELN "Examinas {OREF} pero no ves nada especial. Si lo abres podrás ver su contenido."
+ DONE
+
+EX _                        ; Es un objeto presente y contenedor, lockable y locked
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aLockable
+ OZERO @51 aLocked
+ WRITELN "Examinas {OREF} pero no ves nada especial. Si lo abres podrás ver su contenido."
+ DONE
+
+EX _                        ; Es un objeto presente y supporter
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSupporter
+ WRITELN "Examinas {OREF} pero no ves nada especial "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+
+
 
 EX _                        ; Es un objeto presente
  NOTEQ 51 255
@@ -2805,6 +3153,14 @@ CORTAR _
  PRESENT @51
  WRITELN "La violencia no es la solución."
  DONE
+
+CORTAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No crees que cortar eso sea de mucha utilidad."
+ DONE
+
 
 CORTAR _
  NOTEQ 51 255
@@ -3194,7 +3550,25 @@ CONECTAR _                        ; Hay nombre pero no es un objeto
 CONECTAR _                        ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No ves la manera de conectar {OREF}."
+ ONOTZERO @51 aSwitchable
+ OZERO @51 aOn
+ OSET @51 aOn
+ WRITELN "Activas {OREF}."
+ DONE
+
+CONECTAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ ONOTZERO @51 aOn
+ WRITELN "Ya lo está."
+ DONE
+
+
+CONECTAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No ves la manera de activar {OREF}."
  DONE
 
 CONECTAR _                        ; Es un objeto ausente
@@ -3227,7 +3601,26 @@ DESCONECTAR _                        ; Hay nombre pero no es un objeto
 DESCONECTAR _                        ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
- WRITELN "No quieres desconectar {OREF}."
+ ONOTZERO @51 aSwitchable
+ ONOTZERO @51 aOn
+ OCLEAR @51 aOn
+ WRITELN "Desactivas {OREF}."
+ DONE
+
+
+DESCONECTAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ OZERO @51 aOn
+ WRITELN "Ya lo está."
+ DONE
+
+
+DESCONECTAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No puedes desconectar {OREF}."
  DONE
 
 DESCONECTAR _                        ; Es un objeto ausente
@@ -3256,6 +3649,45 @@ ABRIR _                        ; Hay nombre pero no es un objeto
  EQ 51 255
  WRITELN "No le ves sentido a abrir eso."
  DONE
+
+
+ABRIR _                           
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable  ; Abrible
+ OZERO @51 aOpen         ; Cerrado
+ OZERO @51 aLocked       ; No cerrado con llave
+ OSET @51 aOpen
+ WRITELN "Abres {OREF}."
+ DONE
+
+ABRIR _                           
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable  ; Abrible
+ OZERO @51 aOpen         ; Cerrado
+ ONOTZERO @51 aLocked    ; Cerrado con llave
+ WRITELN "Está cerrado con llave."
+ DONE
+
+ABRIR _                           
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpen      ; Abierto
+ WRITELN "Ya lo está."
+ DONE
+
+ABRIR _                           
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpen      ; Abierto
+ WRITELN "Ya lo está."
+ DONE
+
+
+
 
 ABRIR _                        ; Es un objeto presente
  NOTEQ 51 255
@@ -3288,6 +3720,24 @@ CERRAR _                        ; Hay nombre pero no es un objeto
  EQ 51 255
  WRITELN "No le ves sentido a cerrar eso."
  DONE
+
+CERRAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ OCLEAR @51 aOpen
+ WRITELN "Cierras {OREF}."
+ DONE
+
+CERRAR _                        ; Es un objeto presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITELN "Ya lo está."
+ DONE
+
 
 CERRAR _                        ; Es un objeto presente
  NOTEQ 51 255
@@ -3355,6 +3805,14 @@ CHUPAR _
  PRESENT @51
  WRITELN "Eso sería muy poco apropiado."
  DONE
+
+CHUPAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aEdible
+ PRESENT @51
+ WRITELN "Piensas en comerte {OREF} pero te contienes."
+ DONE
+
 
 CHUPAR _
  NOTEQ 51 255

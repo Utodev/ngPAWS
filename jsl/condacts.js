@@ -186,6 +186,7 @@ function ACCinven()
 			if ((listnpcs_with_objects) || (!objectIsNPC(i)))
 			{
 				writeObject(i);
+				if ((objectIsAttr(i,ATTR_SUPPORTER))  || (  (objectIsAttr(i,ATTR_TRANSPARENT))  && (objectIsAttr(i,ATTR_CONTAINER))))  ACClistat(i, i);
 				ACCnewline();
 				count++;
 			}
@@ -717,29 +718,75 @@ function CNDparse()
 }
 
 
-function ACClistat(locno)
+function ACClistat(locno, container_objno)   // objno is a container/suppoter number, used to list contents of objects
 {
-  objscount =  getObjectCountAt(locno);
-  setFlag(FLAG_OBJECT_LIST_FORMAT, bitclear(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
+  var listingContainer = false;
+  if (arguments.length > 1) listingContainer = true;
+  var objscount =  getObjectCountAt(locno);
+  var concealed_objcount = getObjectCountAtWithAttr(locno, ATTR_CONCEALED);
+  var scenery_objcount = getObjectCountAtWithAttr(locno, ATTR_SCENERY);
+  objscount = objscount - concealed_objcount - scenery_objcount;
+  if (!listingContainer) setFlag(FLAG_OBJECT_LIST_FORMAT, bitclear(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
   if (!objscount) return;
+  var continouslisting = bittest(getFlag(FLAG_OBJECT_LIST_FORMAT),6);
+  if (listingContainer) 
+  	{
+  		writeText(' (');
+  		if (objectIsAttr(container_objno, ATTR_SUPPORTER)) writeSysMessage(SYSMES_OVER_YOUCANSEE); else if (objectIsAttr(container_objno, ATTR_CONTAINER)) writeSysMessage(SYSMES_INSIDE_YOUCANSEE);
+  		continouslisting = true;  // listing contents of container always continuous
+  	}
+  
+  if (!listingContainer)
+  {
+    setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
+    writeSysMessage(SYSMESS_YOUCANSEE);
+    if (!continouslisting) ACCnewline();
+  }
+  var progresscount = 0;
+  for (var i=0;i<num_objects;i++)
+  {
+  	if (getObjectLocation(i) == locno)
+  		if  ( ((!objectIsNPC(i)) || (!bittest(getFlag(FLAG_PARSER_SETTINGS),3)))  && (!objectIsAttr(i,ATTR_CONCEALED)) && (!objectIsAttr(i,ATTR_SCENERY))   ) // if not an NPC or parser setting say NPCs are considered objects, and object is not concealed nor scenery
+  		  { 
+  		     writeText(objects[i]); 
+  		     if ((objectIsAttr(i,ATTR_SUPPORTER))  || (  (objectIsAttr(i,ATTR_TRANSPARENT))  && (objectIsAttr(i,ATTR_CONTAINER))))  ACClistat(i, i);
+  		     progresscount++
+  		     if (continouslisting)
+  		     {
+		  			if (progresscount <= objscount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
+  					if (progresscount == objscount - 1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
+  					if (!listingContainer) if (progresscount == objscount ) writeSysMessage(SYSMESS_LISTEND);
+  			 } else ACCnewline();
+  		  }; 
+  }
+  if (arguments.length > 1) writeText(')');
+}
+
+
+function ACClistnpc(locno)
+{
+  var npccount =  getNPCCountAt(locno);
+  setFlag(FLAG_OBJECT_LIST_FORMAT, bitclear(getFlag(FLAG_OBJECT_LIST_FORMAT),5)); 
+  if (!npccount) return;
+  setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),5)); 
   continouslisting = bittest(getFlag(FLAG_OBJECT_LIST_FORMAT),6);
-  setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
-  writeSysMessage(SYSMESS_YOUCANSEE);
+  writeSysMessage(SYSMES_NPCLISTSTART);
   if (!continouslisting) ACCnewline();
+  if (npccount==1)  writeSysMessage(SYSMES_NPCLISTCONTINUE); else writeSysMessage(SYSMES_NPCLISTCONTINUE_PLURAL);
   var progresscount = 0;
   var i;
   for (i=0;i<num_objects;i++)
   {
   	if (getObjectLocation(i) == locno)
-  		if ((!objectIsNPC(i)) || (!bittest(getFlag(FLAG_PARSER_SETTINGS),3))) // if not an NPC or parser setting say NPCs are considered objects
+  		if ( (objectIsNPC(i)) && (!objectIsAttr(i,ATTR_CONCEALED)) ) // only NPCs not concealed
   		  { 
   		     writeText(objects[i]); 
   		     progresscount++
   		     if (continouslisting)
   		     {
-		  			if (progresscount == objscount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
-  					if (progresscount == objscount - 1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
-  					if (progresscount == objscount ) writeSysMessage(SYSMESS_LISTEND);
+		  	 	if (progresscount == npccount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
+  			 	if (progresscount == npccount - 1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
+  			 	if (progresscount == npccount ) writeSysMessage(SYSMESS_LISTEND);
   			 } else ACCnewline();
   		  }; 
   }
@@ -790,6 +837,8 @@ function ACCdoall(locno)
 	{
 		if (getObjectLocation(doall_obj) == locno)
 			if ((!objectIsNPC(doall_obj)) || (!bittest(getFlag(FLAG_PARSER_SETTINGS),3))) 
+ 			 if (!objectIsAttr(doall_obj, ATTR_CONCEALED)) 
+ 			  if (!objectIsAttr(doall_obj, ATTR_SCENERY)) 
 				if (!( (objectsNoun[doall_obj]==getFlag(FLAG_NOUN2))  &&    ((objectsAdjective[doall_obj]==getFlag(FLAG_ADJECT2)) || (objectsAdjective[doall_obj]==EMPTY_WORD)) ) ) // implements "TAKE ALL EXCEPT BIG SWORD"
 				{
 					setFlag(FLAG_NOUN1, objectsNoun[doall_obj]);
@@ -895,7 +944,7 @@ function ACCtakeout(objno, locno)
 		return;
 	}
 
-	setObjectLocation(objno, locno);
+	setObjectLocation(objno, LOCATION_CARRIED);
 	writeSysMessage(SYSMESS_YOUTAKEOBJECT);
 	success = true;
 
@@ -981,7 +1030,7 @@ function ACCautot(locno)
 	if (objno != EMPTY_OBJECT) 
 		{ 
 			writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTOUTOF);
-			writeObject(objno);
+			writeObject(locno);
 			writeSysMessage(SYSMESS_PUTINTAKEOUTTERMINATION)
 			ACCnewtext();
 			ACCdone();
@@ -1043,19 +1092,13 @@ function ACCsound(value)
 function CNDozero(objno, attrno)
 {
 	if (attrno > 63) return false;
-	attrs = getObjectLowAttributes(objno);
-	if (attrno > 31)
-	{
-		attrs = getObjectHighAttributes(objno);
-		attrno = attrno - 32;
-	}
-	return ! bittest(attrs, attrno);
+	return !objectIsAttr(objno, attrno);
+
 }
 
 function CNDonotzero(objno, attrno)
 {
-	if (attrno > 63) return false;
-	return ! CNDozero(objno, attrno);
+	return objectIsAttr(objno, attrno);
 }
 
 function ACCoset(objno, attrno)
@@ -1064,13 +1107,13 @@ function ACCoset(objno, attrno)
 	if (attrno <= 31)
 	{
 		attrs = getObjectLowAttributes(objno);
-		bitset(attrs, attrno);
+		attrs = bitset(attrs, attrno);
 		setObjectLowAttributes(objno, attrs);
 		return;
 	}
 	attrs = getObjectHighAttributes(objno);
 	attrno = attrno - 32;
-	bitset(attrs, attrno);
+	attrs = bitset(attrs, attrno);
 	setObjectHighAttributes(objno, attrs);
 
 }
@@ -1081,13 +1124,13 @@ function ACCoclear(objno, attrno)
 	if (attrno <= 31)
 	{
 		attrs = getObjectLowAttributes(objno);
-		bitclear(attrs, attrno);
+		attrs = bitclear(attrs, attrno);
 		setObjectLowAttributes(objno, attrs);
 		return;
 	}
 	attrs = getObjectHighAttributes(objno);
 	attrno = attrno - 32;
-	bitclear(attrs, attrno);
+	attrs = bitclear(attrs, attrno);
 	setObjectHighAttributes(objno, attrs);
 
 }
@@ -1137,34 +1180,6 @@ function ACCtranscript()
 
 
 
-function ACClistnpc(locno)
-{
-  var npccount =  getNPCCountAt(locno);
-  setFlag(FLAG_OBJECT_LIST_FORMAT, bitclear(getFlag(FLAG_OBJECT_LIST_FORMAT),5)); 
-  if (!npccount) return;
-  setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),5)); 
-  continouslisting = bittest(getFlag(FLAG_OBJECT_LIST_FORMAT),6);
-  writeSysMessage(SYSMES_NPCLISTSTART);
-  if (!continouslisting) ACCnewline();
-  if (npccount==1)  writeSysMessage(SYSMES_NPCLISTCONTINUE); else writeSysMessage(SYSMES_NPCLISTCONTINUE_PLURAL);
-  var progresscount = 0;
-  var i;
-  for (i=0;i<num_objects;i++)
-  {
-  	if (getObjectLocation(i) == locno)
-  		if (objectIsNPC(i)) // only NPCs
-  		  { 
-  		     writeText(objects[i]); 
-  		     progresscount++
-  		     if (continouslisting)
-  		     {
-		  	 	if (progresscount == npccount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
-  			 	if (progresscount == npccount - 1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
-  			 	if (progresscount == npccount ) writeSysMessage(SYSMESS_LISTEND);
-  			 } else ACCnewline();
-  		  }; 
-  }
-}
 
 
 //////////////////

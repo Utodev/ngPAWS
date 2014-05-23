@@ -49,8 +49,8 @@ ATTR_WEARABLE=1;		// Object is wearable
 ATTR_CONTAINER=2;       // Object is a container
 ATTR_NPC=3;             // Object is actually an NPC
 ATTR_CONCEALED = 4; /// Present but not visible
-ATTR_EDIBLE = 5;
-ATTR_DOOR = 6;
+ATTR_EDIBLE = 5;   /// Can be eaten
+ATTR_DRINKABLE=6;
 ATTR_ENTERABLE = 7;
 ATTR_FEMALE = 8;
 ATTR_LOCKABLE = 9;
@@ -65,7 +65,7 @@ ATTR_SCENERY=17;
 ATTR_SUPPORTER = 18;
 ATTR_SWITCHABLE=19;
 ATTR_ON  =20;
-ATTR_TALKABLE=21;
+ATTR_STATIC  =21;
 
 
 
@@ -232,6 +232,8 @@ SYSMESS_NONSENSE_SENTENCE = 62;
 SYSMES_NPCLISTSTART = 63;
 SYSMES_NPCLISTCONTINUE = 64;
 SYSMES_NPCLISTCONTINUE_PLURAL = 65;
+SYSMES_INSIDE_YOUCANSEE = 66;
+SYSMES_OVER_YOUCANSEE = 67;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

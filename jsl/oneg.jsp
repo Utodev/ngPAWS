@@ -6,12 +6,12 @@ function ACConeg(objno, attrno)
 	if (attrno <= 31)
 	{
 		attrs = getObjectLowAttributes(objno);
-		bitneg(attrs, attrno);
+		attrs = bitneg(attrs, attrno);
 		setObjectLowAttributes(objno, attrs);
 		return;
 	}
 	attrs = getObjectHighAttributes(objno);
 	attrno = attrno - 32;
-	bitneg(attrs, attrno);
+	attrs = bitneg(attrs, attrno);
 	setObjectHighAttributes(objno, attrs);
 }

@@ -179,7 +179,7 @@ var Base64 = {
 
 // Gender functions
 
-function getGender(objno)
+function getGender(objno)  // Simple, for english
 {
  	isPlural = getObjectLowAttributes(objno, ATTR_PLURAL);
  	if (isPlural) return "P";
@@ -189,6 +189,28 @@ function getGender(objno)
  	if (isMale) return "M";
     return "N"; // Neuter
 }
+
+function getAdvancedGender(objno)  // Complex, for spanish
+{
+ 	isPlural = getObjectLowAttributes(objno, ATTR_PLURAL);
+ 	isFemale = getObjectLowAttributes(objno, ATTR_FEMALE);
+ 	isMale = getObjectLowAttributes(objno, ATTR_MALE);
+
+ 	if (!isPlural) 
+ 	{
+	 	if (isFemale) return "F";
+	 	if (isMale) return "M";
+	    return "N"; // Neuter
+ 	}
+ 	else
+ 	{
+	 	if (isFemale) return "PF";
+	 	if (isMale) return "PM";
+	 	return "PN"; // Neuter plural
+ 	}
+
+}
+
 
 
 // JS level log functions
@@ -304,7 +326,7 @@ function implementTag(tag)
 		case 'OREF': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
    			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return objects[getFlag(FLAG_REFERRED_OBJECT)]; else return '';
 					break;
-		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};  // returns the pronoun for a given object, used for english start database
 					 switch (getGender(getFlag(FLAG_REFERRED_OBJECT)))
 					 {
 					 	case 'M' : return "him";
@@ -551,6 +573,18 @@ function objectIsContainer(objno)
 	return bittest(getObjectLowAttributes(objno), ATTR_CONTAINER);
 }
 
+function objectIsAttr(objno, attrno)
+{
+	if (attrno > 63) return false;
+	attrs = getObjectLowAttributes(objno);
+	if (attrno > 31)
+	{
+		attrs = getObjectHighAttributes(objno);
+		attrno = attrno - 32;
+	}
+	return bittest(attrs, attrno);
+}
+
 
 //Objects and NPC functions
 
@@ -690,6 +724,16 @@ function getObjectCountAt(locno)
 	return count;
 }
 
+
+function getObjectCountAtWithAttr(locno, attrno) 
+{
+	var count = 0;
+	for (i=0;i<num_objects;i++)
+		if (   (getObjectLocation(i) == locno)  && (objectIsAttr(i, attrno))) count++;
+	return count;
+}
+
+
 function getNPCCountAt(locno) 
 {
 	var count = 0;
@@ -703,11 +747,7 @@ function getNPCCountAt(locno)
 
 function lightObjectsAt(locno) 
 {
-	for (var i=0;i<num_objects;i++)  
-	{
-		if (objectIsLight(i)) return true;
-	}
-	return false;
+	return getObjectCountAtWithAttr(locno, ATTR_LIGHT) > 0;
 }
 
 
@@ -1079,7 +1119,7 @@ function getLogicSentence()
 
 			if ((aux_verb==-1) && (aux_noun1!=-1) && (previous_verb!=EMPTY_WORD)) aux_verb = previous_verb;  // Support "TAKE SWORD AND SHIELD" --> "TAKE WORD AND TAKE SHIELD"
 
-			if (aux_verb!=-1) SL_found = true;
+			if ((aux_verb!=-1) || (aux_noun1!=-1) || (aux_adject1!=-1 || (aux_preposition!=-1) || (aux_adverb!=-1))) SL_found = true;
 
 
 

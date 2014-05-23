@@ -39,7 +39,7 @@
 #define const aNPC  =3
 #define const aConcealed = 4
 #define const aEdible = 5
-#define const aDoor = 6
+#define const aDrinkable = 6
 #define const aEnterable = 7
 #define const aFemale = 8
 #define const aLockable = 9
@@ -54,7 +54,7 @@
 #define const aSupporter = 18
 #define const aSwitchable = 19
 #define const aOn = 20
-#define const aTalkable = 21
+#define const aStatic = 21
 
 
 
@@ -467,6 +467,10 @@ Here, also
 is 
 /65
 are 
+/66
+inside you can see 
+/67
+there you can see
 /MTX
 /0
 The raft is bare!
@@ -857,14 +861,6 @@ TAKE _
  BZERO 12 1
  WRITELN "Please specify what you want to take."
  DONE 
-
-TAKE _ 
- NOTEQ 51 255
- ONOTZERO @51 aScenery
- WRITELN "I can't take the {OREF}."
- DONE
-
-
 
 TAKE        _        
  AUTOG
