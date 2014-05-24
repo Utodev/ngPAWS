@@ -1049,8 +1049,24 @@ function getSentencefromBuffer()
 
 function processPronounSufixes(words)
 {
+	// This procedure will split pronominal sufixes into separated words, so COGELA will become COGE LA at the end, and work exactly as TAKE IT does.
+	if (getLang() == 'EN') return words;
 	verbFound = false;
 	if (!bittest(getFlag(FLAG_PARSER_SETTINGS),0)) return words;  // If pronoun sufixes inactive, just do nothing
+	// First, we clear the word list from any match with pronouns, cause if we already have something that matches pronouns, probably is just concidence, like in COGE LA LLAVE
+	var filtered_words = [];
+	for (var q=0;q < words.length;q++)
+	{
+		foundWord = findVocabulary(words[q]);
+		if (foundWord) 
+			{
+				if (foundWord[VOCABULARY_TYPE] != WORDTYPE_PRONOUN) filtered_words[filtered_words.length] = words[q];
+			}
+			else filtered_words[filtered_words.length] = words[q];
+	}
+	words = filtered_words;
+
+	// Now let's start trying to get sufixes
 	new_words = [];
 	for (var k=0;k < words.length;k++)
 	{
