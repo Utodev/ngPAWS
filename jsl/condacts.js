@@ -748,7 +748,7 @@ function ACClistat(locno, container_objno)   // objno is a container/suppoter nu
   	if (getObjectLocation(i) == locno)
   		if  ( ((!objectIsNPC(i)) || (!bittest(getFlag(FLAG_PARSER_SETTINGS),3)))  && (!objectIsAttr(i,ATTR_CONCEALED)) && (!objectIsAttr(i,ATTR_SCENERY))   ) // if not an NPC or parser setting say NPCs are considered objects, and object is not concealed nor scenery
   		  { 
-  		     writeText(objects[i]); 
+  		     writeText(getObjectText(i)); 
   		     if ((objectIsAttr(i,ATTR_SUPPORTER))  || (  (objectIsAttr(i,ATTR_TRANSPARENT))  && (objectIsAttr(i,ATTR_CONTAINER))))  ACClistat(i, i);
   		     progresscount++
   		     if (continouslisting)
@@ -780,7 +780,7 @@ function ACClistnpc(locno)
   	if (getObjectLocation(i) == locno)
   		if ( (objectIsNPC(i)) && (!objectIsAttr(i,ATTR_CONCEALED)) ) // only NPCs not concealed
   		  { 
-  		     writeText(objects[i]); 
+  		     writeText(getObjectText(i)); 
   		     progresscount++
   		     if (continouslisting)
   		     {
@@ -894,7 +894,7 @@ function ACCputin(objno, locno)
 	{
 		setObjectLocation(objno, locno);
 		writeSysMessage(SYSMESS_YOUPUTOBJECTIN)
-		writeObject(locno);
+		writeText(getObjectFixArticles(locno));
 		writeSysMessage(SYSMESS_PUTINTAKEOUTTERMINATION);
 		success = true;
 		return;

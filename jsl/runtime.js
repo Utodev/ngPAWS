@@ -179,7 +179,7 @@ var Base64 = {
 
 // Gender functions
 
-function getGender(objno)  // Simple, for english
+function getSimpleGender(objno)  // Simple, for english
 {
  	isPlural = objectIsAttr(objno, ATTR_PLURALNAME);
  	if (isPlural) return "P";
@@ -217,9 +217,11 @@ function getLang()
 	if (value) return "ES"; else return "EN";
 }
 
-function fixArticles(objno)
+function getObjectFixArticles(objno)
 {
-	var object_text = objects[objno];
+	console_log(objno);
+	var object_text = getObjectText(objno);
+	console_log(object_text);
 	var object_words = object_text.split(' ');
 	if (object_words.length == 1) return object_text;
 	var candidate = object_words[0];
@@ -227,7 +229,6 @@ function fixArticles(objno)
 	if (getLang()=='EN')
 	{
 		if ((candidate!='a') && (candidate!='some')) return object_text;
-
 		return 'the ' + object_words.join(' ');
 	}
 	else
@@ -292,6 +293,13 @@ function getConnection(locno, dirno)
 	return connections[locno][dirno];
 }
 
+// Objects text functions
+
+function getObjectText(objno)
+{
+	return objects[objno];
+}
+
 
 // Output processing functions
 
@@ -319,7 +327,7 @@ function implementTag(tag)
 					  return '<span style="background-color:' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
 		case 'OBJECT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
-					   if(objects[getFlag(tagparams[1])]) return fixArticles(getFlag(tagparams[1])); else return '';
+					   if(objects[getFlag(tagparams[1])]) return getObjectFixArticles(getFlag(tagparams[1])); else return '';
 					   break;
 		case 'WEIGHT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
 					   if(objectsWeight[getFlag(tagparams[1])]) return objectsWeight[getFlag(tagparams[1])]; else return '';
@@ -358,10 +366,10 @@ function implementTag(tag)
 						return getFlag(tagparams[1]);
 					    break;
 		case 'OREF': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
-   			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return fixArticles(getFlag(FLAG_REFERRED_OBJECT)); else return '';
+   			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return getObjectFixArticles(getFlag(FLAG_REFERRED_OBJECT)); else return '';
 					break;
 		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};  // returns the pronoun for a given object, used for english start database
-					 switch (getGender(getFlag(FLAG_REFERRED_OBJECT)))
+					 switch (getSimpleGender(getFlag(FLAG_REFERRED_OBJECT)))
 					 {
 					 	case 'M' : return "him";
 					 	case "F" : return "her";
@@ -419,7 +427,7 @@ function filterText(text)
 
 	// PAWS sequences (only underscore)
 	objno = getFlag(FLAG_REFERRED_OBJECT);
-	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,objects[objno].firstToLower()); else text = text.replace(/_/g,'');
+	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,getObjectText(objno).firstToLower()); else text = text.replace(/_/g,'');
 
 	return text;
 }
@@ -463,7 +471,7 @@ function writeWriteMessage(writeno)
 
 function writeObject(objno)
 {
-	writeText(objects[objno]);
+	writeText(getObjectText(objno);
 }
 
 function clearTextWindow()
@@ -712,7 +720,7 @@ function setReferredObject(objno)
 function getObjectWeight(objno) 
 {
 	var weight = objectsWeight[objno];
-	if ((objectIsContainer(objno)) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
+	if ( ((objectIsContainer(objno)) || (objectIsAttr(objno, ATTR_SUPPORTER))) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
 	{
   		weight = weight + getLocationObjectsWeight(objno);
 	}
@@ -732,7 +740,7 @@ function getLocationObjectsWeight(locno)
 			if (objweight > 0)
 			{
 				attr = getObjectLowAttributes(i);
-				if (objectIsContainer(objno))
+				if (  (objectIsContainer(objno)) || (objectIsAttr(objno, ATTR_SUPPORTER)) )
 				{
 					weight += getLocationObjectsWeight(i);
 				}
