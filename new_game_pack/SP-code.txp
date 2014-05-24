@@ -124,6 +124,7 @@ INVENTARIO    14       noun
 TODO          20       noun
 ANTORCHA      50       noun
 
+
 ;--Verbos--
 COGER         20       verb
 COGE          20       verb
@@ -691,7 +692,6 @@ PARA          10       preposition
 POR           11       preposition
 EXCEPTO       12       preposition
 FUERA         13       preposition
-AFUERA        13       preposition
 DELANTE       14       preposition
 ENTRE         15       preposition
 ENCIMA        16       preposition
@@ -949,10 +949,10 @@ quemar tu piel mientras que una oscura aleta da vueltas en círculos en las clara
 ;obj  loc          peso       nombre        adjetivo    atributo
 ;num  ini              
 
-/0    CARRIED        1        ANTORCHA      _           ATTR aLight
+/0    0        1        ANTORCHA      _           ATTR aLight
 
   
-; Importante: Recuerda que si creas un objeto contenedor debes dejar sin usar la localidad de igual número
+; Importante: Recuerda que si creas un objeto contenedor  o soporte debes dejar sin usar la localidad de igual número
 
 /PRO 0
 
@@ -969,9 +969,14 @@ COGER TODO   ; COGER TODO DE --> SACAR TODO DE
  LET 33 &&_voc_SACAR
 
 
+PONER TODO
+ PREP EN
+ LET 33 &&_voc_METER
+
+
 COGER TODO
- OBJAT @38 15
- ZERO 15  ; no hay ningún objeto en la localidad
+ OBJAT @38 13
+ ZERO 13  ; no hay ningún objeto en la localidad
  WRITELN "No hay nada por aquí."
  DONE
 
@@ -979,8 +984,8 @@ COGER TODO
  DOALL        HERE
 
 DEJAR TODO
- OBJAT 254 15
- ZERO 15  ; no llevas nada en el inventario
+ OBJAT 254 13
+ ZERO 13  ; no llevas nada en el inventario
  WRITELN "No llevas nada."
  DONE
 
@@ -999,44 +1004,42 @@ VACIAR _
  LET 43 &&_voc_DE
 
 SACAR _    ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
- WHATOX2 15
+ WHATOX2 13
 
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- OBJAT @15 14
- ABSENT @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ ABSENT @13
  WRITELN "No ves eso por aquí."
  DONE
 
 
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; Es un supporter
- OBJAT @15 14
- ABSENT @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es un supporter
+ ABSENT @13
  WRITELN "No ves eso por aquí."
  DONE
 
 
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- PRESENT @15
- OBJAT @15 14
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ PRESENT @13
+ OBJAT @13 14
  ZERO 14
  WRITELN "No hay nada ahí."
  DONE
 
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; Es un supporter
- PRESENT @15
- OBJAT @15 14
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es un supporter
+ PRESENT @13
+ OBJAT @13 14
  ZERO 14
  WRITELN "No hay nada ahí."
  DONE
@@ -1045,17 +1048,17 @@ SACAR TODO
  
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- CARRIED @15
- DOALL @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ PRESENT @13
+ DOALL @13
 
 SACAR TODO
  PREP DE
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; Es un supporter
- CARRIED @15
- DOALL @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es un supporter
+ PRESENT @13
+ DOALL @13
 
 
 
@@ -1064,9 +1067,9 @@ ESCONDER _
  NOTEQ 51 255
  PRESENT @51
  PREP EN
- WHATOX2 15
- NOTEQ 15 255   ; Es un objeto
- PRESENT @15
+ WHATOX2 13
+ NOTEQ 13 255   ; Es un objeto
+ PRESENT @13
  LET 33 &&_voc_METER
  LET 43 &&_voc_DENTRO
 
@@ -1079,42 +1082,42 @@ PONER _
 
 
 METER _                        ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
- WHATOX2 15
+ WHATOX2 13
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- ABSENT @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ ABSENT @13
  WRITELN "No ves eso por aquí."
  DONE
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; Es una superficie
- ABSENT @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es una superficie
+ ABSENT @13
  WRITELN "No ves eso por aquí."
  DONE
 
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- CARRIED @15
- OBJAT 254 14  
- EQ @14 1; no llevas nada en el inventario (sólo llevas el container)
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ CARRIED @13
+ OBJAT 254 14
+ EQ 14 1; no llevas nada en el inventario (sólo llevas el container)
  WRITELN "No llevas nada."
  DONE
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter; es una superficie, poner todo
- CARRIED @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter; es una superficie, poner todo
+ CARRIED @13
  OBJAT 254 14  
- EQ @14 1; no llevas nada en el inventario (sólo llevas el container)
+ EQ 14 1; no llevas nada en el inventario (sólo llevas el container)
  WRITELN "No llevas nada."
  DONE
 
@@ -1122,43 +1125,43 @@ METER TODO
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- ISAT @15 @38
- OBJAT 254 14  
- ZERO @14  ;no llevas nada en el inventario
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14  ;no llevas nada en el inventario
  WRITELN "No llevas nada."
  DONE
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; es una superficie
- ISAT @15 @38
- OBJAT 254 14  
- ZERO @14  ;no llevas nada en el inventario
- WRITELN "No llevas nada."
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; es una superficie
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14  ;no llevas nada en el inventario
+ WRITELN "No llevas nada"
  DONE
 
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- CARRIED @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aContainer ; Es un contenedor
+ PRESENT @13
  DOALL CARRIED
 
 METER TODO
  PREP EN
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aSupporter ; Es un superficie PONER TODO
- CARRIED @15
+ NOTEQ 13 255   ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es un superficie PONER TODO
+ PRESENT @13
  DOALL CARRIED
 
 
 QUITAR TODO
- OBJAT 253 15
- ZERO 15  ; no llevas ningún objeto "puesto"
+ OBJAT 253 13
+ ZERO 13  ; no llevas ningún objeto "puesto"
  WRITELN "No llevas nada puesto."
  DONE
 
@@ -1166,8 +1169,8 @@ QUITAR        TODO
  DOALL        WORN
 
 PONER TODO
- OBJAT 254 15
- ZERO 15  ; no llevas nada en el inventario
+ OBJAT 254 13
+ ZERO 13  ; no llevas nada en el inventario
  WRITELN "No llevas nada para ponerte."
  DONE
 
@@ -1175,8 +1178,8 @@ PONER        TODO
  DOALL        CARRIED
 
 TIRAR TODO
- OBJAT 254 15
- ZERO 15    ; no llevas nada en el inventario
+ OBJAT 254 13
+ ZERO 13    ; no llevas nada en el inventario
  WRITELN "No llevas nada."
  DONE
  
@@ -1189,7 +1192,7 @@ TIRAR TODO
  WRITELN "¡No puedes tirarlo todo a la vez!"
  DONE
 
-_    TODO
+_ TODO
  WRITELN "Por favor intenta especificar un poco más."
  DONE
 
@@ -1212,16 +1215,6 @@ _    TODO
 ; #                                                                                       #
 ; #########################################################################################
 
-; ** Convertir IR FUERA e IR DENTRO en SALIR/ENTRAR, e IR N/S/E/O en N/S/E/O etc.
-IR   _
- PREP FUERA
- EQ 34 255
- LET 33 &&_voc_SALIR
-
-IR   _
- PREP DENTRO
- EQ 34 255
- LET 33 &&_voc_ENTRAR
 
 IR   _
  LT 34 14
@@ -1365,6 +1358,13 @@ _  _
  WHATO ; fuerzo actualización de flags 54-58
 
 
+; ** Convertir "COGER DE" en "SACAR DE"
+
+COGER _
+  PREP DE
+  LET 33 &&_voc_SACAR
+
+
 
 ; ####################### RESPUESTAS MODIFICADAS POR EL PROGRAMADOR #######################
 ; #                                                                                       #
@@ -1398,7 +1398,6 @@ I        _
 ; -------------------------
 
 ENTRAR _                ; Entrar en un objeto
- PREP EN
  NOTEQ @51 255
  PRESENT @51
  ONOTZERO @51 aEnterable
@@ -1501,7 +1500,6 @@ COGER _
  WRITELN "Mejor no coges {OREF}, está bien donde está."
  DONE
 
-
 COGER        _        
  AUTOG
  DONE
@@ -1593,18 +1591,6 @@ SACAR _                ;
  SAME 51 15            ; No puede sacarse de si mismo
  DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el sacar algo de si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta                                    
 
-SACAR _
- NOTEQ 15 255   ; Es un objeto
- OZERO @15 aContainer    ; No es un contenedor
- WRITELN "No puedes sacar cosas de ahí."
- DONE
-
-SACAR _
- NOTEQ 15 255   ; Es un objeto
- ONOTZERO @15 aContainer ; Es un contenedor
- ABSENT @15
- WRITELN "No puedes sacar nada de ahí porque no lo llevas."
- DONE
 
 
 SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
@@ -1614,6 +1600,7 @@ SACAR _                ; SACAR un objeto de un Container que está presente pero 
  OZERO @15 aOpen
  PRESENT @15
  WRITELN "Antes abre {OBJECT|15}."
+ BREAK
  DONE
 
 SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
@@ -1623,8 +1610,23 @@ SACAR _                ; SACAR un objeto de un Container que está presente pero 
  OZERO @15 aLocked
  PRESENT @15
  WRITELN "Antes abre {OBJECT|15}."
+ BREAK
  DONE
 
+SACAR _
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
+ ABSENT @15
+ WRITELN "No puedes sacar nada de ahí porque no está aquí."
+ DONE
+
+
+SACAR _
+ NOTEQ 15 255   ; Es un objeto
+ ONOTZERO @15 aContainer ; Es un contenedor
+ ABSENT @15
+ WRITELN "No puedes coger nada de ahí porque no está aquí."
+ DONE
 
 
 SACAR _                ; SACAR un objeto de un Container que está presente
@@ -1633,6 +1635,21 @@ SACAR _                ; SACAR un objeto de un Container que está presente
  PRESENT @15
  AUTOT @15
  DONE
+
+SACAR _                ; SACAR un objeto de un Supporter que está presente
+ NOTEQ 15 255          ; El noun2 es un objeto
+ ONOTZERO @15 aSupporter
+ PRESENT @15
+ AUTOT @15
+ DONE
+
+
+SACAR _
+ NOTEQ 15 255   ; Es un objeto
+ WRITELN "No puedes sacar cosas de ahí."
+ DONE
+
+
 
 ;-----------------------------------------------
 
@@ -1756,6 +1773,7 @@ METER _                ; METER un objeto presente a un Container que está presen
  ONOTZERO @15 aOpenable
  OZERO @15 aOpen
  WRITELN "Antes abre {OBJECT|15}."
+ BREAK
  DONE
 
 METER _                ; METER un objeto presente a un Container que está presente pero cerrado con llave
@@ -1768,8 +1786,8 @@ METER _                ; METER un objeto presente a un Container que está presen
  ONOTZERO @15 aLockable
  OZERO @15 aLocked
  WRITELN "Antes abre {OBJECT|15}"
+ BREAK
  DONE
-
 
 
 METER _                ; METER un objeto presente a un Container que está presente
@@ -2192,7 +2210,7 @@ LANZAR _   						; Es un NPC
  WRITELN "La violencia no es la solución."
  DONE
 
-LANZAR _   						; Es static
+LANZAR _   						; Es scenery
  NOTEQ 51 255
  ONOTZERO @51 aStatic
  PRESENT @51
@@ -2888,13 +2906,13 @@ EX _                        ; Hay nombre pero no es un objeto
  WRITELN "No le ves sentido a examinar eso."     
  DONE
 
-
 EX _                        ; Es un objeto presente y contenedor, transaparente con cosas dentro
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
  ONOTZERO @51 aTransparent
  OBJAT @51 13
+ NOTZERO 13
  WRITE "Examinas {OREF} pero no ves nada especial "
  LISTCONTENTS @51
  WRITELN "."
@@ -2907,6 +2925,7 @@ EX _                        ; Es un objeto presente y contenedor, abrible y abie
  ONOTZERO @51 aOpenable
  ONOTZERO @51 aOpen
  OBJAT @51 13
+ NOTZERO 13
  WRITE "Examinas {OREF} pero no ves nada especial"
  LISTCONTENTS @51
  WRITELN "."
@@ -4045,7 +4064,7 @@ SALIDAS _
 ;------------------------------------------------------------
 
 AYUDA _
- WRITELN "Prueba en el foro de jugadores del CAAD, http://www.caad.es."
+ HELP
  DONE
  
 ;------------------------------------------------------------
@@ -4059,8 +4078,8 @@ VERSION _
 
 DAR _                  ; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos
  SAME 46 34            ; cierto si el Noun1 que tenemos proviene del pronombre
- WHATOX 15             ; metemos el objeto referenciado en el flag 15
- ONOTZERO @15 aNPC     ; ¿es un NPC?
+ WHATOX 13             ; metemos el objeto referenciado en el flag 15
+ ONOTZERO @13 aNPC     ; ¿es un NPC?
  NOTEQ 44 255          ; Hay Noun2
  COPYFF 34 14          ; Les damos la vuelta al Noun1 y al Noun2
  COPYFF 44 34
@@ -4138,9 +4157,9 @@ DAR _              ; DAR un objeto del inventario a un objeto presente pero que 
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- OZERO @15 aNPC        ; pero no es un NPC
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ OZERO @13 aNPC        ; pero no es un NPC
  WRITELN "Estás perdiendo la cabeza..."                         
  DONE                                           
 
@@ -4148,10 +4167,10 @@ DAR _              ; DAR un objeto del inventario a un NPC pero que no está pres
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- ONOTZERO @15 aNPC     ; y es un NPC
- ABSENT @15            ; pero no está presente
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ ONOTZERO @13 aNPC     ; y es un NPC
+ ABSENT @13            ; pero no está presente
  WRITELN "No le puedes dar {OREF} porque no está aquí."
  DONE
 
@@ -4159,10 +4178,10 @@ DAR _              ; DAR un objeto presente a un NPC que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- ONOTZERO @15 aNPC     ; y es un NPC
- PRESENT @15           ; y está presente
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ ONOTZERO @13 aNPC     ; y es un NPC
+ PRESENT @13           ; y está presente
  WRITELN "Le ofreces {OREF} pero no le hace ni caso."
  DONE
 
@@ -4170,8 +4189,8 @@ DAR _              ; DAR un objeto presente a un NPC que está presente
 
 MOSTRAR _              ; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos
  SAME 46 34            ; cierto si el Noun1 que tenemos proviene del pronombre
- WHATOX 15             ; metemos el objeto referenciado en el flag 15
- ONOTZERO @15 aNPC     ; ¿es un NPC?
+ WHATOX 13             ; metemos el objeto referenciado en el flag 15
+ ONOTZERO @13 aNPC     ; ¿es un NPC?
  NOTEQ 44 255          ; Hay Noun2
  COPYFF 34 14          ; Les damos la vuelta al Noun1 y al Noun2
  COPYFF 44 34
@@ -4240,8 +4259,8 @@ MOSTRAR _              ; MOSTRAR un objeto del inventario a un noun2 que no es u
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
- WHATOX2 15
- EQ 15 255             ; El segundo nombre no es un objeto
+ WHATOX2 13
+ EQ 13 255             ; El segundo nombre no es un objeto
  WRITELN "No puedes mostrarle {OREF} a eso."                         
  DONE 
 
@@ -4249,9 +4268,9 @@ MOSTRAR _              ; MOSTRAR un objeto del inventario a un objeto presente p
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- OZERO @15 aNPC        ; pero no es un NPC
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ OZERO @13 aNPC        ; pero no es un NPC
  WRITELN "Estás perdiendo la cabeza..."                         
  DONE                                           
 
@@ -4259,10 +4278,10 @@ MOSTRAR _              ; MOSTRAR un objeto del inventario a un NPC pero que no e
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- ONOTZERO @15 aNPC     ; y es un NPC
- ABSENT @15            ; pero no está presente
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ ONOTZERO @13 aNPC     ; y es un NPC
+ ABSENT @13            ; pero no está presente
  WRITELN "No le puedes mostrar {OREF} porque no está aquí."
  DONE
 
@@ -4270,10 +4289,10 @@ MOSTRAR _              ; MOSTAR un objeto presente a un NPC que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
- WHATOX2 15            ; Pasamos el noun2 al flag 15
- NOTEQ 15 255          ; El noun2 es un objeto
- ONOTZERO @15 aNPC     ; y es un NPC
- PRESENT @15           ; y está presente
+ WHATOX2 13            ; Pasamos el noun2 al flag 15
+ NOTEQ 13 255          ; El noun2 es un objeto
+ ONOTZERO @13 aNPC     ; y es un NPC
+ PRESENT @13           ; y está presente
  WRITELN "Le muestras {OREF} pero no le hace ni caso."
  DONE
 
@@ -4926,6 +4945,9 @@ _               _     LT 33 14
 ; #                                                                                #
 ; ##################################################################################
 
+_ 		 _
+ AT 0
+ BSET 12 5                      ; Spanish
 _        _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos

@@ -181,20 +181,20 @@ var Base64 = {
 
 function getGender(objno)  // Simple, for english
 {
- 	isPlural = getObjectLowAttributes(objno, ATTR_PLURAL);
+ 	isPlural = objectIsAttr(objno, ATTR_PLURALNAME);
  	if (isPlural) return "P";
- 	isFemale = getObjectLowAttributes(objno, ATTR_FEMALE);
+ 	isFemale = objectIsAttr(objno, ATTR_FEMALE);
  	if (isFemale) return "F";
- 	isMale = getObjectLowAttributes(objno, ATTR_MALE);
+ 	isMale = objectIsAttr(objno, ATTR_MALE);
  	if (isMale) return "M";
     return "N"; // Neuter
 }
 
 function getAdvancedGender(objno)  // Complex, for spanish
 {
- 	isPlural = getObjectLowAttributes(objno, ATTR_PLURAL);
- 	isFemale = getObjectLowAttributes(objno, ATTR_FEMALE);
- 	isMale = getObjectLowAttributes(objno, ATTR_MALE);
+ 	var isPlural = objectIsAttr(objno, ATTR_PLURALNAME);
+ 	var isFemale = objectIsAttr(objno, ATTR_FEMALE);
+ 	var isMale = objectIsAttr(objno, ATTR_MALE);
 
  	if (!isPlural) 
  	{
@@ -208,6 +208,40 @@ function getAdvancedGender(objno)  // Complex, for spanish
 	 	if (isMale) return "PM";
 	 	return "PN"; // Neuter plural
  	}
+
+}
+
+function getLang()
+{
+	var value = bittest(getFlag(FLAG_PARSER_SETTINGS),5);
+	if (value) return "ES"; else return "EN";
+}
+
+function fixArticles(objno)
+{
+	var object_text = objects[objno];
+	var object_words = object_text.split(' ');
+	if (object_words.length == 1) return object_text;
+	var candidate = object_words[0];
+	object_words.splice(0, 1);
+	if (getLang()=='EN')
+	{
+		if ((candidate!='a') && (candidate!='some')) return object_text;
+
+		return 'the ' + object_words.join(' ');
+	}
+	else
+	{
+		if ( (candidate!='un') && (candidate!='una') && (candidate!='unas') && (candidate!='unas') && (candidate!='alguna') && (candidate!='algunos') && (candidate!='algunas') && (candidate!='alguno')) return object_text;
+		var gender = getAdvancedGender(objno);
+		if (gender == 'F') return 'la ' + object_words.join(' ');
+		if (gender == 'M') return 'el ' + object_words.join(' ');
+		if (gender == 'N') return 'el ' + object_words.join(' ');
+		if (gender == 'PF') return 'las ' + object_words.join(' ');
+		if (gender == 'PM') return 'los ' + object_words.join(' ');
+		if (gender == 'PN') return 'los ' + object_words.join(' ');
+	}	
+
 
 }
 
@@ -285,7 +319,7 @@ function implementTag(tag)
 					  return '<span style="background-color:' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
 		case 'OBJECT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
-					   if(objects[getFlag(tagparams[1])]) return objects[getFlag(tagparams[1])]; else return '';
+					   if(objects[getFlag(tagparams[1])]) return fixArticles(getFlag(tagparams[1])); else return '';
 					   break;
 		case 'WEIGHT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
 					   if(objectsWeight[getFlag(tagparams[1])]) return objectsWeight[getFlag(tagparams[1])]; else return '';
@@ -324,7 +358,7 @@ function implementTag(tag)
 						return getFlag(tagparams[1]);
 					    break;
 		case 'OREF': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
-   			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return objects[getFlag(FLAG_REFERRED_OBJECT)]; else return '';
+   			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return fixArticles(getFlag(FLAG_REFERRED_OBJECT)); else return '';
 					break;
 		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};  // returns the pronoun for a given object, used for english start database
 					 switch (getGender(getFlag(FLAG_REFERRED_OBJECT)))
@@ -1473,3 +1507,4 @@ function start()
     },TIMER_MILLISECONDS);
 
 }
+

@@ -669,7 +669,7 @@ function ACCnewline()
 
 function ACCprint(flagno)
 {
-	writeText(getFlag(flagno));
+	writeText(getFlag(flagno) +'');
 }
 
 function ACCsysmess(sysno)
