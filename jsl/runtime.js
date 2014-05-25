@@ -311,64 +311,64 @@ function implementTag(tag)
 
 	switch(tagparams[0].toUpperCase())
 	{
-		case 'URL': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'URL': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					return '<a target="_blank" href="' + tagparams[1]+ '">' + tagparams[2] + '</a>';
 					break;
-		case 'CLASS': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'CLASS': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					  return '<span class="' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
-		case 'STYLE': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'STYLE': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					  return '<span style="' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
-		case 'INK': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'INK': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					  return '<span style="color:' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
-		case 'PAPER': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'PAPER': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					  return '<span style="background-color:' + tagparams[1]+ '">' + tagparams[2] + '</span>';
 					  break;
-		case 'OBJECT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'OBJECT': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(objects[getFlag(tagparams[1])]) return getObjectFixArticles(getFlag(tagparams[1])); else return '';
 					   break;
-		case 'WEIGHT': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'WEIGHT': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(objectsWeight[getFlag(tagparams[1])]) return objectsWeight[getFlag(tagparams[1])]; else return '';
 					   break;
-		case 'OLOCATION': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'OLOCATION': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					      if(objectsLocation[getFlag(tagparams[1])]) return objectsLocation[getFlag(tagparams[1])]; else return '';
 					      break;
-		case 'MESSAGE':if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'MESSAGE':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(messages[getFlag(tagparams[1])]) return messages[getFlag(tagparams[1])]; else return '';
 					   break;
-		case 'SYSMESS':if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'SYSMESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(sysmessages[getFlag(tagparams[1])]) return sysmessages[getFlag(tagparams[1])]; else return '';
 					   break;
-		case 'LOCATION':if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'LOCATION':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(locations[getFlag(tagparams[1])]) return locations[getFlag(tagparams[1])]; else return '';
 					   break;
-		case 'PROCESS':if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'PROCESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   callProcess(tagparams[1]);
 					   break;
-		case 'ACTION': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'ACTION': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   return '<a target="_blank" href="javascript: orderEnteredLoop(\'' + tagparams[1]+ '\')">' + tagparams[2] + '</a>';
 					   break;
-		case 'RESTART': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'RESTART': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					    return '<a target="_blank" href="javascript: restart()">' + tagparams[1] + '</a>';
 					    break;
-		case 'EXTERN': if (tagparams.length != 3) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'EXTERN': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					    return '<a target="_blank" href="javascript:  ' + tagparams[1] + ' ">' + tagparams[2] + '</a>';
 					    break;
-		case 'TEXTPIC': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'TEXTPIC': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						return "<img src='"+ RESOURCES_DIR + tagparams[1]+"' />";
 					    break;
-		case 'HTML': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'HTML': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						return tagparams[1];
 					    break;
-		case 'FLAG': if (tagparams.length != 2) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'FLAG': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						return getFlag(tagparams[1]);
 					    break;
-		case 'OREF': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};
+		case 'OREF': if (tagparams.length != 1) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
    			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return getObjectFixArticles(getFlag(FLAG_REFERRED_OBJECT)); else return '';
 					break;
-		case 'OPRO': if (tagparams.length != 1) {writeText(STR_INVALID_TAG_SEQUENCE_BADPARAMS); return ''};  // returns the pronoun for a given object, used for english start database
+		case 'OPRO': if (tagparams.length != 1) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};  // returns the pronoun for a given object, used for english start database
 					 switch (getSimpleGender(getFlag(FLAG_REFERRED_OBJECT)))
 					 {
 					 	case 'M' : return "him";
@@ -377,11 +377,8 @@ function implementTag(tag)
 					 	case "P" : return "them";  // plural returns them
 					 }
 					break;
-			default : {writeText(STR_INVALID_TAG_SEQUENCE_BADTAG + ': ' + tagparams[0]); return ''};
-
-
+			default : return h_sequencetag(tagparams);
 	}
-	return tag;
 }
 
 function processTags(text)
@@ -471,7 +468,7 @@ function writeWriteMessage(writeno)
 
 function writeObject(objno)
 {
-	writeText(getObjectText(objno);
+	writeText(getObjectText(objno));
 }
 
 function clearTextWindow()

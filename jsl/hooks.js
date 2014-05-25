@@ -57,3 +57,10 @@ var h_invalidOrder = function(player_order)
 {
 }
 
+// this function is called when a sequence tag is found but does not exist in ngPAWS, giving a last chance for any hook library to provide a response or raise error message
+// tagparams receives the params inside the tag as an array  {XXXX|nn|mm|yy} => ['XXXX', 'nn', 'mm', 'yy']
+var h_sequencetag = function (tagparams)
+{
+	return '[[[' + STR_INVALID_TAG_SEQUENCE_BADTAG + ': ' + tagparams[0] + ']]]';
+}
+
