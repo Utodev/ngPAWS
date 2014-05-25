@@ -1,7 +1,7 @@
 CC = gcc
 OPTIONS =  -g -I ./.
 LIBS =
-OBJS = condacto.o errores.o generar.o lexico.o objetos.o procesos.o salidas.o sintacti.o spg.o textos.o vocabula.o cfgvars.o
+OBJS = condacto.o errores.o generar.o lexico.o objetos.o procesos.o salidas.o sintacti.o cjs.o textos.o vocabula.o cfgvars.o
 
 all: ngpc
 
