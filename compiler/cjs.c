@@ -72,12 +72,12 @@ else {
 	strcpy(wd, pgldir);
 }
   nombre_archivo = strdup(argv[1]);
-  printf("=== Compilador Javascript v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
-  printf("Directorio JS  en %s\n",wd);
+  printf("=== ngpaws javascript compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
+  printf("JS directory found at %s\n",wd);
   InicializaCondactos();
   prepLexico (argv[1]);
   analizar ();
-  printf ("Analisis completado.\n");
+  printf ("Completed.\n");
   termLexico ();
   GenerarEnsamblador (argv[1]);
   FinalizarVocabulario ();

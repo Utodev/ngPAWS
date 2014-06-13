@@ -207,7 +207,7 @@ void VolcarRecursos (void)
 	int i , value;
 	int resourceType, resourceid;
 
-	printf ("Comprobando recursos...\n");
+	printf ("Checking multimedia resources...\n");
 	fputs("resources=[];\n", fichJS);
 
 	f = fichBlc;
@@ -356,7 +356,7 @@ void VolcarProcesos ()
 			    }
 		    break;
 			default:
-				printf ("ERROR: tipo de condacto no reconocido\n");
+				printf ("ERROR: condact type unknown.\n");
 			}
 			/* y ahora, las operaciones de limpieza del condacto según el tipo del mismo */
 			switch (elCondacto.limpieza)
@@ -505,7 +505,7 @@ VolcarFicheroCFG(const char * nombreFuente)
   /* Abrir el fichero de destino */
   if ((fichCFG = fopen (nombreDestino, "wt")) == NULL)
   {
-      printf ("No se puede crear el fichero de configuracion para escribirlo.\n");
+      printf ("Can't create configuration file..\n");
       exit (-1);
   }
   

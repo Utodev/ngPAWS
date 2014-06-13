@@ -874,23 +874,23 @@ anSeccionCtl ()
 void
 anFichPaw ()
 {
-  puts ("Analizando /CTL...");
+  puts ("Processing control section...");
   anSeccionCtl ();
-  puts ("Analizando /VOC...");
+  puts ("Processing vocabulary...");
   anSeccionVoc ();
-  puts ("Analizando /STX...");
+  puts ("Processing system messages...");
   anSeccionStx ();
-  puts ("Analizando /MTX...");
+  puts ("Processing user messages...");
   anSeccionMtx ();
-  puts ("Analizando /OTX...");
+  puts ("Processing object descriptions...");
   anSeccionOtx ();
-  puts ("Analizando /LTX...");
+  puts ("Processing location descriptions...");
   anSeccionLtx ();
-  puts ("Analizando /CON...");
+  puts ("Processing connections...");
   anSeccionCon ();
-  puts ("Analizando /OBJ...");
+  puts ("Processing objects...");
   anSeccionObj ();
-  puts ("Analizando /PRO...");
+  puts ("Processing processes and response table...");
   anProcesos ();
 }
 
