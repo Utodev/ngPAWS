@@ -487,7 +487,7 @@ void CargarCondactosUsuario ()
 	
 
 void
-InicializaCondactos ()
+InicializaCondactos()
 {
 	int i;
 	for (i=0;i<NUMCONDACTOS;i++)

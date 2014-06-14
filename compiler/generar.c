@@ -369,6 +369,9 @@ void VolcarProcesos ()
 				case aCondicional:
 					fprintf (fichJS, "\t\tif (!success) break pro%03d_restart;\n", npro); 
 				break;
+				case aHook:
+					fprintf (fichJS, "\t\tif (done_flag) break pro%03d_restart;\n", npro); 
+				break;
 			}
 			posicion += 4;
 		} // Bucle Condactos

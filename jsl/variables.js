@@ -281,3 +281,7 @@ var flags = new Array();
 // The sound channels
 var soundChannels = [];
 var soundLoopCount = [];
+
+//The last free object attribute
+var nextFreeAttr = 22;
+

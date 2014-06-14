@@ -177,6 +177,15 @@ var Base64 = {
 
 }
 
+// Dynamic attribute use functions
+function getNextFreeAttribute()
+{
+	var value = nextFreeAttr;
+	nextFreeAttr++;
+	return value;
+}
+
+
 // Gender functions
 
 function getSimpleGender(objno)  // Simple, for english
@@ -219,9 +228,7 @@ function getLang()
 
 function getObjectFixArticles(objno)
 {
-	console_log(objno);
 	var object_text = getObjectText(objno);
-	console_log(object_text);
 	var object_words = object_text.split(' ');
 	if (object_words.length == 1) return object_text;
 	var candidate = object_words[0];

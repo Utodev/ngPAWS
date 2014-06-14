@@ -3,6 +3,7 @@
 #################
 
 ide/
+newIDE/
 jsl/plugin.js
 *.pydevproject
 .project

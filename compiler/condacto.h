@@ -16,7 +16,7 @@ typedef enum
 tipoArg;
 
 typedef enum
-{ aNada, aDescribir, aEnd, aFinDeTabla, aCondicional }
+{ aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook }
 tipoLimpieza;
 
 typedef enum

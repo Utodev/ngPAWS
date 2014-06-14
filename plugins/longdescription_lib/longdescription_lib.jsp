@@ -1,0 +1,55 @@
+//LIB longdescription_lib.jsp
+
+var objects_longdescription = [];
+
+var old_longdesc_h_code = h_code;
+
+var h_code = function(str) 
+{
+	if (str=="RESPONSE_USER")
+	{
+		if (getFlag(33)==30) // Examinar
+			if (getFlag(51)!=EMPTY_OBJECT)  // Es un objeto
+				if (objects_longdescription[getFlag(51)]!='') // Tiene descrpción larga
+					if (CNDpresent(getFlag(51))) // Está presente
+					{
+						console_log('A');
+						writeText(objects_longdescription[getFlag(51)]); 	
+						var viewContents = false;
+						// Time to list contents if...
+						// It's a supporter
+						if (objectIsAttr(getFlag(51),ATTR_SUPPORTER)) viewContents = true;   
+						// It's a transparent container
+						if ((objectIsAttr(getFlag(51),ATTR_CONTAINER)) && (objectIsAttr(getFlag(51),ATTR_TRANSPARENT))) viewContents = true;
+						// It's a not openable container
+						if ((objectIsAttr(getFlag(51),ATTR_CONTAINER)) && (!objectIsAttr(getFlag(51),ATTR_OPENABLE))) viewContents = true;
+						// It's an openable container that is open
+						if ((objectIsAttr(getFlag(51),ATTR_CONTAINER)) && (objectIsAttr(getFlag(51),ATTR_OPENABLE)) && (objectIsAttr(getFlag(51),ATTR_OPEN))) viewContents = true;
+						// but if there is nothing inside/over, then no need to list
+						if (getObjectCountAt(getFlag(51))==0) viewContents = false;
+						if (viewContents) ACClistcontents(getFlag(51));
+						ACCnewline();
+						ACCdone();
+					}
+	}
+	old_longdesc_h_code(str);
+}
+
+var old_longdesc_h_init = h_init;
+
+var h_init = function()
+{
+	for (var i=0;i<objects.length;i++)
+	{
+		var pipepos = objects[i].indexOf('|');
+		if (pipepos != -1)
+		{
+			objects_longdescription[i] = objects[i].substring(pipepos + 1);
+			objects[i] = objects[i].substring(0,pipepos);
+		}
+		else objects_longdescription[i] = '';
+	}
+	old_longdesc_h_init();
+}
+
+

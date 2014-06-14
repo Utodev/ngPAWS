@@ -64,3 +64,10 @@ var h_sequencetag = function (tagparams)
 	return '[[[' + STR_INVALID_TAG_SEQUENCE_BADTAG + ': ' + tagparams[0] + ']]]';
 }
 
+// this function is called from certain points in the response or process tables via the HOOK condact. Depending on the string received it can do something or not.
+// it's designed to allow direct javascript code to take control in the start database just installing a plugin library (avoiding the wirter need to enter code to activate the library)
+var h_code = function(str)
+{
+	return false;
+}
+
