@@ -28,6 +28,7 @@ var h_code = function(str)
 						// but if there is nothing inside/over, then no need to list
 						if (getObjectCountAt(getFlag(51))==0) viewContents = false;
 						if (viewContents) ACClistcontents(getFlag(51));
+						writeSysMessage(SYSMESS_LISTEND);
 						ACCnewline();
 						ACCdone();
 					}

@@ -40,10 +40,16 @@ function CNDatlt(locno)
 
 function CNDpresent(objno)
 {
-	loc = getObjectLocation(objno);
+	var loc = getObjectLocation(objno);
 	if (loc == loc_here()) return true;
 	if (loc == LOCATION_WORN) return true;
 	if (loc == LOCATION_CARRIED) return true;
+	if ( (!bittest(getFlag(FLAG_PARSER_SETTINGS),7)) && (CNDpresent(loc)) )  // Extended context and object in another object that is present
+	{
+		if (objectIsAttr(loc,ATTR_SUPPORTER)) return true;  // On supporter
+		if ( objectIsContainer(loc) && objectIsAttr(loc, ATTR_OPENABLE) && objectIsAttr(loc, ATTR_OPEN)) return true; // In a openable & open container
+		if ( objectIsContainer(loc) && (!objectIsAttr(loc, ATTR_OPENABLE)) ) return true; // In a not openable container
+	}
 	return false;
 }
 
@@ -361,6 +367,15 @@ function ACCautog()
 	if (objno != EMPTY_OBJECT) { ACCget(objno); return; };
 	objno =findMatchingObject(LOCATION_WORN);
 	if (objno != EMPTY_OBJECT) { ACCget(objno); return; };
+	if (!bittest(getFlag(FLAG_PARSER_SETTINGS),7))  // Extended context for objects
+	for (var i=0; i<num_objects;i++) // Try to find it in present containers/supporters
+	{
+		if (CNDpresent(i) && (isAccesibleContainer(i) || objectIsAttr(i, ATTR_SUPPORTER)) )  // If there is another object present that is an accesible container or a supporter
+		{
+			objno =findMatchingObject(i);
+			if (objno != EMPTY_OBJECT) { ACCget(objno); return; };
+		}
+	}
 	writeSysMessage(SYSMESS_CANTSEETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -471,6 +486,32 @@ function ACCremove(objno)
 }
 
 
+function trytoGet(objno)  // auxiliaty function for ACCget
+{
+	if (getFlag(FLAG_OBJECTS_CARRIED_COUNT) >= getFlag(FLAG_MAXOBJECTS_CARRIED))
+	{
+		writeSysMessage(SYSMESS_CANTCARRYANYMORE);
+		ACCnewtext();
+		ACCdone();
+		doall_flag = false;
+		return;
+	}
+	weight = getLocationObjectsWeight(objno);
+	weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
+	weight +=  getLocationObjectsWeight(LOCATION_WORN);
+	if (weight > getFlag(FLAG_MAXWEIGHT_CARRIED))
+	{
+		writeSysMessage(SYSMESS_WEIGHSTOOMUCH);
+		ACCnewtext();
+		ACCdone();
+		doall_flag = false;
+		return;
+	}
+	setObjectLocation(objno, LOCATION_CARRIED);
+	writeSysMessage(SYSMESS_YOUTAKEOBJECT);
+	success = true;
+}
+
 
  function ACCget(objno)
  {
@@ -489,36 +530,22 @@ function ACCremove(objno)
 			break;
 
 		case loc_here():
-			if (getFlag(FLAG_OBJECTS_CARRIED_COUNT) >= getFlag(FLAG_MAXOBJECTS_CARRIED))
-			{
-				writeSysMessage(SYSMESS_CANTCARRYANYMORE);
-				ACCnewtext();
-				ACCdone();
-				doall_flag = false;
-				return;
-			}
-			weight = getLocationObjectsWeight(objno);
-			weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
-			weight +=  getLocationObjectsWeight(LOCATION_WORN);
-			if (weight > getFlag(FLAG_MAXWEIGHT_CARRIED))
-			{
-				writeSysMessage(SYSMESS_WEIGHSTOOMUCH);
-				ACCnewtext();
-				ACCdone();
-				doall_flag = false;
-				return;
-			}
-			setObjectLocation(objno, LOCATION_CARRIED);
-			writeSysMessage(SYSMESS_YOUTAKEOBJECT);
-			success = true;
+			trytoGet(objno);
 			break;
 
 		default: 
-			writeSysMessage(SYSMESS_CANTSEETHAT);
-			ACCnewtext();
-			ACCdone();
-			return;
-			break;
+			if  (CNDpresent(locno))    // If it's not here, carried or worn but it present, that means that bit 7 of flag 12 is cleared, thus you can get objects from present containers/supporters
+			{
+				trytoGet(objno);
+			}
+			else
+			{
+				writeSysMessage(SYSMESS_CANTSEETHAT);
+				ACCnewtext();
+				ACCdone();
+				return;
+				break;
+		    }
 	}
  }
 

@@ -631,14 +631,20 @@ function objectIsAttr(objno, attrno)
 	return bittest(attrs, attrno);
 }
 
+function isAccesibleContainer(objno)
+{
+	if (objectIsAttr(objno, ATTR_SUPPORTER)) return true;   // supporter
+	if ( objectIsContainer(objno) && !objectIsAttr(objno, ATTR_OPENABLE) ) return true;  // No openable container
+	if ( objectIsContainer(objno) && objectIsAttr(objno, ATTR_OPENABLE) && objectIsAttr(objno, ATTR_OPEN)  )  return true;  // No openable & open container
+	return false;
+}
 
 //Objects and NPC functions
 
 function findMatchingObject(locno)
 {
-
 	for (var i=0;i<num_objects;i++)
-		if ((locno==null) || (getObjectLocation(i) == locno))
+		if ((locno==-1) || (getObjectLocation(i) == locno))
 		 if (((objectsNoun[i]) == getFlag(FLAG_NOUN1)) && (((objectsAdjective[i]) == EMPTY_WORD) || ((objectsAdjective[i]) == getFlag(FLAG_ADJECT1))))  return i;
 	return EMPTY_OBJECT;
 }
@@ -657,7 +663,7 @@ function getReferredObject()
 		object_id = findMatchingObject(loc_here());
 		if (object_id != EMPTY_OBJECT)	{objectfound = object_id; break refobject_search;}	
 
-		object_id = findMatchingObject(null);
+		object_id = findMatchingObject(-1);
 		if (object_id != EMPTY_OBJECT)	{objectfound = object_id; break refobject_search;}	
 	}
 	return objectfound;
@@ -725,9 +731,7 @@ function getObjectWeight(objno)
 {
 	var weight = objectsWeight[objno];
 	if ( ((objectIsContainer(objno)) || (objectIsAttr(objno, ATTR_SUPPORTER))) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
-	{
   		weight = weight + getLocationObjectsWeight(objno);
-	}
 	return weight;
 }
 
@@ -735,20 +739,18 @@ function getObjectWeight(objno)
 function getLocationObjectsWeight(locno) 
 {
 	var weight = 0;
-	for (i=0;i<num_objects;i++)
+	for (var i=0;i<num_objects;i++)
 	{
 		if (getObjectLocation(i) == locno) 
 		{
-			objweight = getObjectWeight(i);
+			objweight = objectsWeight[i];
 			weight += objweight;
 			if (objweight > 0)
 			{
-				attr = getObjectLowAttributes(i);
-				if (  (objectIsContainer(objno)) || (objectIsAttr(objno, ATTR_SUPPORTER)) )
-				{
+				if (  (objectIsContainer(i)) || (objectIsAttr(i, ATTR_SUPPORTER)) )
+				{	
 					weight += getLocationObjectsWeight(i);
 				}
-				
 			}
 		}
 	}
