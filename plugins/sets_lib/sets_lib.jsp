@@ -29,8 +29,8 @@ var h_saveGame = function(savegame_object)
 
 var old_sets_h_restoreGame = h_restoreGame;
 
-var h_restoreGame = function()
+var h_restoreGame = function(savegame_object)
 {
 	sets = savegame_object.sets.slice();
-	old_sets_h_restoreGame();
+	old_sets_h_restoreGame(savegame_object);
 }

@@ -34,9 +34,9 @@ var h_saveGame = function(savegame_object)
 
 var old_stackqueue_h_restoreGame = h_restoreGame;
 
-var h_restoreGame = function()
+var h_restoreGame = function(savegame_object)
 {
 	queues = savegame_object.queues.slice();
 	stacks = savegame_object.stacks.slice();
-	old_stackqueue_h_restoreGame();
+	old_stackqueue_h_restoreGame(savegame_object);
 }

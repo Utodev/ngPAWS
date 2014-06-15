@@ -245,7 +245,7 @@ function CNDquit()
 
 function ACCend()
 {
-		if (confirm(sysmessages[SYSMESS_PLAYAGAIN])) restart();
+		if (confirm(sysmessages[SYSMESS_PLAYAGAIN])) location.reload();
 		else $('body').hide('slow');
 }
 

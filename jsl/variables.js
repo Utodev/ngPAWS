@@ -37,6 +37,7 @@ MAX_WORD_LENGHT = 10;  // Number of characters considered per word
 FLAG_COUNT = 256;  // Number of flags
 NUM_CONNECTION_VERBS = 14; // Number of verbs used as connection, from 0 to N - 1
 NUM_CONVERTIBLE_NOUNS = 20;
+NUM_PROPER_NOUNS = 50; // Number of proper nouns, can't be used as pronoun reference
 EMPTY_OBJECT = 255; // To remark there is no object when the action requires a objno parameter
 NO_EXIT = 0;  // If an exit does not exist, its value is this value
 MAX_CHANNELS = 17; // Number of SFX channels

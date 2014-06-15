@@ -1211,7 +1211,7 @@ function getLogicSentence()
 		if (aux_adject2 != -1) setFlag(FLAG_ADJECT2, aux_adject2);
 		setReferredObject(getReferredObject());
 		previous_verb = aux_verb;
-		if (aux_noun1!=-1) 
+		if ((aux_noun1!=-1) && (aux_noun1<NUM_PROPER_NOUNS))
 		{
 			previous_noun = aux_noun1;
 			if (aux_adject1!=-1) previous_adject = aux_adject1;
@@ -1444,10 +1444,7 @@ function orderEnteredLoop(player_order)
 
 function restart()
 {
-	h_restart();
-	initialize();
-	descriptionLoop();
-	focusInput();
+	location.reload();	
 }
 
 //called when the block layer is closed
@@ -1528,7 +1525,10 @@ function start()
 
 	});
 
-	restart();
+	initialize();
+	descriptionLoop();
+	focusInput();
+	
 	h_post();  //hook
 
     // Start interrupt process
