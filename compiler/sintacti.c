@@ -334,6 +334,15 @@ anCondacto (int numPro)
 	{
 	  casarLex (pPalabra);
 	  anArgs (&arg1, &arg2, &arg3);
+	  // IMPORTANT NOTE: In order to handle the blocks with {} and due to lack of knowledge of how the
+	  // compiler is built, I'm going to do a dirty trick: to be able to raise errors when generating
+	  // javascript if the writer uses a block end "}" without block start "{", or the writer leaves
+	  // a block without end block "}", I need to store the line number where it is somewhere. As the
+	  // block "condacts" don't have any parameters, I'm using the arg1 parameter to store it. Dirty
+	  // trick really, sorry for that.
+	  if ((condactos[cond].tipo == blockStart) || (condactos[cond].tipo == blockEnd))
+		  arg1 = lineaLeida;
+
 	  agregarCondacto (numPro, cond + 32768 * dotCondact + 65536 * colonCondact, arg1, arg2, arg3);
 	}
     }

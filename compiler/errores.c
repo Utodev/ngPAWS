@@ -9,6 +9,21 @@
 #include "lexico.h"
 #include "vocabula.h"
 
+
+void blockError(int nError, int line)
+{
+	 printf ("%s:%d:", nombre_archivo, --line);
+	 switch (nError)
+	 {
+	 case 0:  printf (":B010: Block error: unexpected '}'.\n");
+	     break;
+		 case 1:  printf (":B020: Block error: block is not closed.\n");
+	     break;
+	 }
+	 exit(-1);
+
+}
+
 void
 error (tipoError tipo, int nError)
 {

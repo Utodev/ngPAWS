@@ -270,7 +270,10 @@ TipoCondacto condactos_estandar[NUMCONDACTOS] = {
   ,
   {"RESTART",  accion, nada, nada, nada, aNada}
   ,
-  {"<<",  colonTerminator, nada, nada, nada, aBlockEnd}
+  // Blocks
+  {"}",  blockEnd, nada, nada, nada, aNada}
+  ,
+  {"{",  blockStart, nada, nada, nada, aNada}
 };
 
 
