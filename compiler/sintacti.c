@@ -309,17 +309,24 @@ anArgs (int *a1, int *a2, int *a3)
 void
 anCondacto (int numPro)
 {
+  int dotCondact;
   int cond, arg1, arg2, arg3;
   /*cond= */ arg1 = arg2 = arg3 = -1;
   if (simbolo == pPalabra)
     {
-      if ((cond = BuscarCondacto (lexema, &condacto)) == FALSE)
+	  dotCondact = 0;
+	  if (lexema[strlen(lexema)-1] == '#') 
+	  {
+		  dotCondact = 1;
+		  lexema[strlen(lexema)-1] = 0;
+	  }
+      if ((cond = BuscarCondacto (lexema, &condacto, dotCondact)) == FALSE)
 	error (errSem, 12);
       else
 	{
 	  casarLex (pPalabra);
 	  anArgs (&arg1, &arg2, &arg3);
-	  agregarCondacto (numPro, cond, arg1, arg2, arg3);
+	  agregarCondacto (numPro, cond + 32768 * dotCondact, arg1, arg2, arg3);
 	}
     }
   else

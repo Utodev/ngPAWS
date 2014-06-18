@@ -20,7 +20,7 @@ typedef enum
 tipoLimpieza;
 
 typedef enum
-{ condicion, accion, mixto }
+{ condicion, accion, mixto, dot }
 tipoCondacto;
 
 typedef struct

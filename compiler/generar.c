@@ -307,8 +307,16 @@ void VolcarProcesos ()
 	    if (laEntrada->nombre != -1) fprintf (fichJS, "\t\t\tif (!CNDnoun1(%d)) break p%03de%04d;\n", laEntrada->nombre, npro, nent);
 		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\t}\n",   npro, nent); 
 		/* generar codigo de condactos */
+		
 		while (posicion < (laEntrada->posicion))
 	    {
+			int dotCondact = 0;
+			if ((pCondacto[posicion] & 32768) != 0)
+			{
+				pCondacto[posicion] = pCondacto[posicion] - 32768;
+				dotCondact = 1;
+			}
+
 			elCondacto = condactos[pCondacto[posicion]];
 			/* generar el codigo del condacto */
 			if (!strcmp (elCondacto.nombre, "DOALL"))
@@ -341,12 +349,17 @@ void VolcarProcesos ()
             } else sprintf(p1, "");
 
 
-			// generar el condacto                
+			// generar el condacto     
+			if (dotCondact) elCondacto.tipo = dot;
+
             switch (elCondacto.tipo)
 			{
 			case condicion:
 			case mixto:
 				fprintf (fichJS, "\t\tif (!CND%s(%s%s%s)) break p%03de%04d;\n",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				break;
+			case dot:
+				fprintf (fichJS, "\t\tif (CND%s(%s%s%s))\n\t ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
 				break;
 			case accion:
 				fprintf (fichJS, " \t\tACC%s(%s%s%s);\n", aMinusculas (elCondacto.nombre), p1, p2, p3);
@@ -375,7 +388,7 @@ void VolcarProcesos ()
 			}
 			posicion += 4;
 		} // Bucle Condactos
-		fprintf (fichJS,"\t}\n\n"); // Cierro bloque de condactos
+		fprintf (fichJS,"\t\t{}\n\t}\n\n"); // Cierro bloque de condactos, the empty brackets {} ensure if a dotCondact was last, there will be no problems
 		laEntrada = SiguienteEntrada (npro, laEntrada);
 		nent++;
 	  } // Bucle entradas
