@@ -269,6 +269,8 @@ TipoCondacto condactos_estandar[NUMCONDACTOS] = {
   {"WRITELN",  accion, string, nada, nada, aNada}
   ,
   {"RESTART",  accion, nada, nada, nada, aNada}
+  ,
+  {"<<",  colonTerminator, nada, nada, nada, aBlockEnd}
 };
 
 
@@ -279,7 +281,7 @@ char libFile[2024];
 FILE *fplugin;
 
 int
-BuscarCondacto (const char *nombre, TipoCondacto * condacto, int dotCondact)
+BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition)
 {
   int i;
 
@@ -288,7 +290,7 @@ BuscarCondacto (const char *nombre, TipoCondacto * condacto, int dotCondact)
     return FALSE;
 
   // Dot condacts must be conditions
-  if (dotCondact)  if ((condactos[i].tipo != mixto) && (condactos[i].tipo != condicion)) return FALSE;
+  if (forceCondition)  if ((condactos[i].tipo != mixto) && (condactos[i].tipo != condicion)) return FALSE;
   condacto->tipo = condactos[i].tipo;
   condacto->tipoArg1 = condactos[i].tipoArg1;
   condacto->tipoArg2 = condactos[i].tipoArg2;

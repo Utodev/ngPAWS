@@ -274,6 +274,8 @@ void VolcarProcesos ()
   int *pCondacto, i;
   char verboDeLaEntrada[20], nombreDeLaEntrada[20];
   char p1[100], p2[100], p3[100] = "";
+  int numblocks;
+  int j;
 
   fputs ("\n// PROCESSES\n\n", fichJS);
   
@@ -308,13 +310,22 @@ void VolcarProcesos ()
 		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\t}\n",   npro, nent); 
 		/* generar codigo de condactos */
 		
+		numblocks = 0;
 		while (posicion < (laEntrada->posicion))
 	    {
 			int dotCondact = 0;
+			int colonCondact = 0;
+
 			if ((pCondacto[posicion] & 32768) != 0)
 			{
 				pCondacto[posicion] = pCondacto[posicion] - 32768;
 				dotCondact = 1;
+			}
+
+			if ((pCondacto[posicion] & 65536) != 0)
+			{
+				pCondacto[posicion] = pCondacto[posicion] - 65536;
+				colonCondact = 1;
 			}
 
 			elCondacto = condactos[pCondacto[posicion]];
@@ -351,6 +362,7 @@ void VolcarProcesos ()
 
 			// generar el condacto     
 			if (dotCondact) elCondacto.tipo = dot;
+			if (colonCondact) elCondacto.tipo = colon;
 
             switch (elCondacto.tipo)
 			{
@@ -359,7 +371,11 @@ void VolcarProcesos ()
 				fprintf (fichJS, "\t\tif (!CND%s(%s%s%s)) break p%03de%04d;\n",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
 				break;
 			case dot:
-				fprintf (fichJS, "\t\tif (CND%s(%s%s%s))\n\t ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				fprintf (fichJS, "\t\tif (CND%s(%s%s%s))\n ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				break;
+			case colon:
+				fprintf (fichJS, "\t\tif (CND%s(%s%s%s)) { \n ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				numblocks++;
 				break;
 			case accion:
 				fprintf (fichJS, " \t\tACC%s(%s%s%s);\n", aMinusculas (elCondacto.nombre), p1, p2, p3);
@@ -368,6 +384,8 @@ void VolcarProcesos ()
 					fprintf (fichJS,"\t\tif (describe_location_flag) break p%03de9999;\n", npro);  
 			    }
 		    break;
+			case colonTerminator: // Do nothing, the cleaner part puts the closing curly brackets
+			break;
 			default:
 				printf ("ERROR: condact type unknown.\n");
 			}
@@ -385,10 +403,16 @@ void VolcarProcesos ()
 				case aHook:
 					fprintf (fichJS, "\t\tif (done_flag) break pro%03d_restart;\n", npro); 
 				break;
+				case aBlockEnd:
+					fprintf (fichJS, "\t\t}\n", npro); 
+					numblocks--;
+				break;
 			}
 			posicion += 4;
 		} // Bucle Condactos
-		fprintf (fichJS,"\t\t{}\n\t}\n\n"); // Cierro bloque de condactos, the empty brackets {} ensure if a dotCondact was last, there will be no problems
+		fprintf (fichJS,"\t\t{}\n"); // The empty brackets {} ensure if a dotCondact was last, there will be no problems
+		for (j=0;j<numblocks;j++) fprintf (fichJS, "\t\t}\n", npro); // Close any colon blocks still open
+		fprintf (fichJS,"\n\t}\n\n"); // Close the condacts block
 		laEntrada = SiguienteEntrada (npro, laEntrada);
 		nent++;
 	  } // Bucle entradas

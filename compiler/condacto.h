@@ -3,7 +3,7 @@
 
 #include <config.h>
 
-#define NUMCONDACTOS 124
+#define NUMCONDACTOS 125
 #define CONDACTOS_USUARIO 256
 
 
@@ -16,11 +16,11 @@ typedef enum
 tipoArg;
 
 typedef enum
-{ aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook }
+{ aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook, aBlockEnd }
 tipoLimpieza;
 
 typedef enum
-{ condicion, accion, mixto, dot }
+{ condicion, accion, mixto, dot, colon, colonTerminator }
 tipoCondacto;
 
 typedef struct
@@ -34,7 +34,7 @@ TipoCondacto;
 
 extern TipoCondacto condactos[NUMCONDACTOS + CONDACTOS_USUARIO];
 
-int BuscarCondacto (const char *nombre, TipoCondacto * condacto);
+int BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition);
 
 void InicializaCondactos ();
 

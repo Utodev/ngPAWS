@@ -142,7 +142,7 @@ error (tipoError tipo, int nError)
 	    ("S120: Semantic error: invalid object number or invalid order.\n", lexema);
 	  break;
 	case 12:
-	  printf ("S130: Semantic error: \"%s\" is not a condact.\n", lexema);
+		printf ("S130: Semantic error: \"%s\" is not a condact or cannot be used with # or : modifiers.\n", lexema);
 	  break;
 	case 13:
 	  printf
