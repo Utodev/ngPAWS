@@ -9,7 +9,6 @@ jsl/plugin.js
 *.pydevproject
 .project
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
