@@ -204,6 +204,6 @@ error (tipoError tipo, int nError)
 	  break;
 		}
     }
-  /*FinalizarVocabulario(); */
+  /*Semantic error(); */
   exit (-1);
 }

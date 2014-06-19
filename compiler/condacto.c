@@ -16,9 +16,9 @@
 
 #include "comun.h"
 
-TipoCondacto condactos[NUMCONDACTOS+CONDACTOS_USUARIO];
+TipoCondacto condactos[NUMCONDACTS+USERCONDACTS];
 
-TipoCondacto condactos_estandar[NUMCONDACTOS] = {
+TipoCondacto condactos_estandar[NUMCONDACTS] = {
   {"sinCondacto", condicion, nada, nada, nada, aNada}
   ,
   {"AT", condicion, locno, nada, nada, aNada}
@@ -213,7 +213,7 @@ TipoCondacto condactos_estandar[NUMCONDACTOS] = {
   ,
   {"MOVE", condicion, flagno, nada, nada, aNada}
   ,
-/* los del spectrum */
+/* ZX Spectrum condacts*/
   {"EXTERN", accion, string, nada, nada, aNada} // Extern now runs javascript string
   ,
   {"PAPER", accion, value, nada, nada, aNada}
@@ -242,10 +242,10 @@ TipoCondacto condactos_estandar[NUMCONDACTOS] = {
   ,
   {"BEEP", accion, value, value, value, aNada}
   ,
-  /* Propio de Paguaglus */
+  /* Inherited from Paguaglús */
   {"SOUND", accion, value, nada, nada, aNada}
   ,
-  /* Propios de SuperGlus */
+  /* Inherited from Superglús */
   {"OZERO", condicion, objno, value, nada, aNada}
   ,
   {"ONOTZERO", condicion, objno, value,  nada,aNada}
@@ -270,7 +270,7 @@ TipoCondacto condactos_estandar[NUMCONDACTOS] = {
   ,
   {"RESTART",  accion, nada, nada, nada, aNada}
   ,
-  // Blocks
+  // New ngPAWS condacts:  blocks
   {"}",  blockEnd, nada, nada, nada, aNada}
   ,
   {"{",  blockStart, nada, nada, nada, aNada}
@@ -284,7 +284,7 @@ char libFile[2024];
 FILE *fplugin;
 
 int
-BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition)
+BuscarCondacto (const char *nombre, TipoCondacto * condacto, int mustBeCondition)
 {
   int i;
 
@@ -292,8 +292,8 @@ BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition)
   if (i == ultimo_condacto+1)
     return FALSE;
 
-  // Dot condacts must be conditions
-  if (forceCondition)  if ((condactos[i].tipo != mixto) && (condactos[i].tipo != condicion)) return FALSE;
+  // Sharp condacts and colon condacts must be conditions
+  if (mustBeCondition)  if ((condactos[i].tipo != mixto) && (condactos[i].tipo != condicion)) return FALSE;
   condacto->tipo = condactos[i].tipo;
   condacto->tipoArg1 = condactos[i].tipoArg1;
   condacto->tipoArg2 = condactos[i].tipoArg2;
@@ -326,7 +326,7 @@ void CargarDefinicionCondacto(char *fichero)
 	if (linea[1]!=47) error(errGeneral,3);
 	ultimo_condacto++;
 	inicial = 2;
-	/* Obtenemos tipo de plugin */
+	/* Get plugin type */
 	for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 	strncpy (bloque, linea+inicial, i-inicial);
@@ -335,17 +335,17 @@ void CargarDefinicionCondacto(char *fichero)
 
 	if (strlen(bloque)<3) error(errGeneral,3);
 
-	if (strcmp(bloque,"LIB")==0) /* Es un bloque libreria */
+	if (strcmp(bloque,"LIB")==0) /* It's a library plugin */
 	{
 		ultimo_condacto--;
 	}
 
 	else 
 
-	if (strcmp(bloque,"CND")==0) /* Es un condacto */
+	if (strcmp(bloque,"CND")==0) /* It's a condact plugin */
 	{
 
-		/* Obtenemos nombre de condacto */
+		/* Get condact name */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea + inicial, i - inicial);
@@ -358,11 +358,7 @@ void CargarDefinicionCondacto(char *fichero)
 		condactos[ultimo_condacto].nombre = (char *)malloc(strlen(bloque)+1);
 		strcpy(condactos[ultimo_condacto].nombre, bloque);
 
-
-
-		
-
-		/* Obtenemos tipo de condacto */
+		/* Get condact type */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea+inicial, i-inicial);
@@ -380,8 +376,7 @@ void CargarDefinicionCondacto(char *fichero)
 		default : error(errGeneral,3); 
 		}
 
-
-		/* Obtenemos parámetro 1 */
+		/* Get param 1 */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea+inicial, i-inicial);
@@ -394,7 +389,7 @@ void CargarDefinicionCondacto(char *fichero)
     
 		condactos[ultimo_condacto].tipoArg1 = value;
 
-		/* Obtenemos parámetro 2 */
+		/* Get param 2 */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea+inicial, i-inicial);
@@ -407,7 +402,7 @@ void CargarDefinicionCondacto(char *fichero)
     
 		condactos[ultimo_condacto].tipoArg2 = value;
 
-		/* Obtenemos parámetro 3 */
+		/* Get param 3 */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea+inicial, i-inicial);
@@ -421,7 +416,7 @@ void CargarDefinicionCondacto(char *fichero)
 		condactos[ultimo_condacto].tipoArg3 = value;
 
 
-		/* Obtenemos tipo de salida */
+		/* Get termination type */
 		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(i<32768);i++) {};
 
 		strncpy (bloque, linea+inicial, i-inicial);
@@ -436,10 +431,10 @@ void CargarDefinicionCondacto(char *fichero)
 	}
 	else
 	{
-		error(errGeneral,3); /* No era ni LIB ni CND */
+		error(errGeneral,3); /* It wasn't LIB nor CND */
 	}
 
-	fputs(linea,fplugin); /* Copiamos resto de fichero plu en el plugin.js */
+	fputs(linea,fplugin); /* Copy rest of file to plugins.js file */
   
   
     while (fgets (linea, 32768, f))
@@ -468,7 +463,7 @@ void CargarCondactosUsuario ()
    if (fplugin == NULL)    error(errGeneral,2);
    fputs("\n//   PLUGINS    ;\n\n",fplugin);
 
-   ultimo_condacto = NUMCONDACTOS - 1;
+   ultimo_condacto = NUMCONDACTS - 1;
 
   strcpy(libFile,wd);
   strcat(libFile,"/jsl/");
@@ -498,10 +493,10 @@ void
 InicializaCondactos()
 {
 	int i;
-	for (i=0;i<NUMCONDACTOS;i++)
+	for (i=0;i<NUMCONDACTS;i++)
  	 condactos[i] = condactos_estandar[i];
-	for (i = NUMCONDACTOS; i < NUMCONDACTOS+CONDACTOS_USUARIO; i++)
-		condactos[i].nombre = ""; /* Ponemos el nombre del condacto vacio para que no lo encuentre en las búsquedas */
+	/* Fill condact names with empty strings so we are sure there will be not a match when comparing */
+	for (i = NUMCONDACTS; i < NUMCONDACTS+USERCONDACTS; i++) condactos[i].nombre = ""; 
 	CargarCondactosUsuario();
 	return;
 }

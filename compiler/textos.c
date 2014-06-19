@@ -51,6 +51,8 @@ agrandarTabla (tabla_mensajes *tabla) {
 void
 agregarTexto (tabla_mensajes *tabla, int numero, char *texto)
 {
+  int i;
+  for (i=0;i<strlen(texto);i++) if (texto[i]=='"') texto[i]='\'';
   if (tabla->mensajes == NULL) {
     inicializarTabla(tabla);
   }

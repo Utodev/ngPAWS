@@ -13,7 +13,7 @@ typedef enum
 }
 Simbolo;
 
-/* Variables globales */
+/* Global vars */
 
 extern char lexema[2048];
 extern char *nombre_archivo;
@@ -21,7 +21,7 @@ extern Simbolo simbolo;
 extern int lineaLeida;
 extern int BOL;
 
-/* Funciones globales */
+/* Global functions*/
 
 void prepLexico (char *);
 void casarLex (Simbolo);

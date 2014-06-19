@@ -1,19 +1,14 @@
 
-/* Cabecera de condactos */
-
 #include <config.h>
 
-#define NUMCONDACTOS 126
-#define CONDACTOS_USUARIO 256
+#define NUMCONDACTS 126
+#define USERCONDACTS 256
 
 
 
 typedef enum
-{ nada, flagno, value, percent, objno, mesno,
-  smesno, prono, locno, locno_, adjective,
-  adverb, preposition, noun, string
-}
-tipoArg;
+{ nada, flagno, value, percent, objno, mesno,  smesno, prono, locno, locno_, adjective,
+  adverb, preposition, noun, string } tipoArg;
 
 typedef enum { aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook} tipoLimpieza;
 
@@ -25,10 +20,9 @@ typedef struct
   tipoCondacto tipo;
   tipoArg tipoArg1, tipoArg2, tipoArg3;
   tipoLimpieza limpieza;
-}
-TipoCondacto;
+} TipoCondacto;
 
-extern TipoCondacto condactos[NUMCONDACTOS + CONDACTOS_USUARIO];
+extern TipoCondacto condactos[NUMCONDACTS + USERCONDACTS];
 
 int BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition);
 

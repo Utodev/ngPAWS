@@ -309,17 +309,17 @@ anArgs (int *a1, int *a2, int *a3)
 void
 anCondacto (int numPro)
 {
-  int dotCondact;
+  int sharpCondact;
   int colonCondact;
   int cond, arg1, arg2, arg3;
   /*cond= */ arg1 = arg2 = arg3 = -1;
   if (simbolo == pPalabra)
     {
-	  dotCondact = 0;
+	  sharpCondact = 0;
 	  colonCondact = 0;
 	  if (lexema[strlen(lexema)-1] == '#') 
 	  {
-		  dotCondact = 1;
+		  sharpCondact = 1;
 		  lexema[strlen(lexema)-1] = 0;
 	  }
 	  if (lexema[strlen(lexema)-1] == ':') 
@@ -328,7 +328,7 @@ anCondacto (int numPro)
 		  lexema[strlen(lexema)-1] = 0;
 	  }
 
-      if ((cond = BuscarCondacto (lexema, &condacto, dotCondact|colonCondact)) == FALSE)
+      if ((cond = BuscarCondacto (lexema, &condacto, sharpCondact|colonCondact)) == FALSE)
 	error (errSem, 12);
       else
 	{
@@ -343,7 +343,7 @@ anCondacto (int numPro)
 	  if ((condactos[cond].tipo == blockStart) || (condactos[cond].tipo == blockEnd))
 		  arg1 = lineaLeida;
 
-	  agregarCondacto (numPro, cond + 32768 * dotCondact + 65536 * colonCondact, arg1, arg2, arg3);
+	  agregarCondacto (numPro, cond + 32768 * sharpCondact + 65536 * colonCondact, arg1, arg2, arg3);
 	}
     }
   else

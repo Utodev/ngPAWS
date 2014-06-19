@@ -19,70 +19,52 @@
 #define PATH_SEPARATOR '/'
 #endif
 
-int glulxamain (int argc, char *argv[]);
-
-/* programa principal */
-
 char wd[2024];
 char * nombre_archivo;
-
-char *comando[5]; /*={
-"glulxa",
-"-i",
-"                                                                               ",
-"-o",
-"                                                                               "
-};*/
-
 int ver_hi=0;
 int ver_lo=1;
-int ver_verylo = 1;
+int ver_verylo = 2;
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   char *buscar;
+  char *pgldir;
 
-  char *pgldir = getenv("NGPAWS_LIBPATH");
 
   if (argc < 2)
-    {
-      error (errGeneral, 0);
-      return -1;
-    };
+  {
+     error (errGeneral, 0);
+     return -1;
+   };
 
 
-  if(pgldir==NULL) {
-
-  #ifdef WIN32
-      strcpy(wd,argv[0]);
-  #else
-      strcpy (wd, getenv ("_"));
-  #endif
-    buscar = strrchr (wd, PATH_SEPARATOR);
-    if (!buscar)
-      buscar = strrchr (wd, PATH_SEPARATOR);
-    if (buscar)
-      *buscar = 0;
-    else
-      strcpy (wd, ".");
-
-}
-else {
+  // Find the folder with the JSL library	
+  pgldir = getenv("NGPAWS_LIBPATH");
+  if (pgldir==NULL) 
+  {
+	#ifdef WIN32
+		strcpy(wd,argv[0]);
+	#else
+		strcpy (wd, getenv ("_"));
+	#endif
+	buscar = strrchr (wd, PATH_SEPARATOR);
+	if (!buscar) 	buscar = strrchr (wd, PATH_SEPARATOR);
+	if (buscar) 	*buscar = 0; else strcpy (wd, ".");
+   }
+   else 
+   {
 	strcpy(wd, pgldir);
-}
-  nombre_archivo = strdup(argv[1]);
-  printf("=== ngpaws javascript compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
-  printf("JS directory found at %s\n",wd);
-  InicializaCondactos();
-  prepLexico (argv[1]);
-  analizar ();
-  printf ("Completed.\n");
-  termLexico ();
-  GenerarEnsamblador (argv[1]);
-  FinalizarVocabulario ();
+   }
 
-
-  
-  return 0;
+   nombre_archivo = strdup(argv[1]);
+   printf("=== ngpaws javascript compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
+   printf("JS directory found at %s\n",wd);
+   InicializaCondactos();
+   prepLexico (argv[1]);
+   analizar();
+   printf ("Completed.\n");
+   termLexico ();
+   GenerarEnsamblador (argv[1]);
+   FinalizarVocabulario ();
+   return 0;
 }

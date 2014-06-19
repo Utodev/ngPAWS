@@ -1,8 +1,5 @@
 /* generar.c
- *
- * En este archivo se trata todo lo
- * relacionado con la generación de
- * código.
+ *  Everything related with javascript code generation
  */
 
 #include <config.h>
@@ -24,7 +21,7 @@
 #include "cfgvars.h"
 #include "errores.h"
 
-FILE *fichJS, *fichLib,   *fichBlc;
+FILE *fichJS, *fichLib,   *fichBlc, *fichSpellCheck;
 
 char libFile[2024];
 
@@ -88,7 +85,19 @@ void GenerarEnsamblador (char *nombreFuente)
       printf ("Can't create output file.\n");
       exit (-1);
     }
-  
+
+  /* Generate spellcheck file */
+  strcpy (nombreDestino, nombreFuente);
+  finNombre = strrchr (nombreDestino, '.');
+  if (finNombre)  *finNombre = '\0';
+  strcat (nombreDestino, ".spellcheck.txt");
+  if ((fichSpellCheck = fopen (nombreDestino, "wt")) == NULL)
+    {
+      printf ("Can't create spell check file.\n");
+      exit (-1);
+    }
+
+
   /* Open BLC file */
   strcpy (nombreDestino, nombreFuente);
   finNombre = strrchr (nombreDestino, '.');
@@ -185,6 +194,10 @@ void GenerarEnsamblador (char *nombreFuente)
   VolcarConexiones ();
   VolcarRecursos();
   VolcarObjetos();
+
+  if (fichBlc) fclose(fichBlc);
+  fclose(fichJS);
+  fclose(fichSpellCheck);
   
 };
 
@@ -305,13 +318,13 @@ void VolcarProcesos ()
 		lastopenblockline = -1;
 		while (posicion < (laEntrada->posicion))
 	    {
-			int dotCondact = 0;
+			int sharpCondact = 0;
 			int colonCondact = 0;
 
 			if ((pCondacto[posicion] & 32768) != 0)
 			{
 				pCondacto[posicion] = pCondacto[posicion] - 32768;
-				dotCondact = 1;
+				sharpCondact = 1;
 			}
 
 			if ((pCondacto[posicion] & 65536) != 0)
@@ -353,7 +366,7 @@ void VolcarProcesos ()
 
 
 			// generar el condacto     
-			if (dotCondact) elCondacto.tipo = dot;
+			if (sharpCondact) elCondacto.tipo = dot;
 			if (colonCondact) elCondacto.tipo = colon;
 
             switch (elCondacto.tipo)
@@ -376,7 +389,7 @@ void VolcarProcesos ()
 			    }
 		    break;
 			case blockStart: 
-				fprintf (fichJS, " \t\t{  %i \n");
+				fprintf (fichJS, " \t\t{\n");
 				numblocks++;
 				lastopenblockline = pCondacto[posicion + 1]; // When a block happens, original code line is stored in parameter 1 place(see dirty trick at anCondacto function, sintacti.c)
 			break;
@@ -384,7 +397,7 @@ void VolcarProcesos ()
 				if (numblocks)	
 					{
 						numblocks--;
-						fprintf (fichJS, " \t\t}  \n");
+						fprintf (fichJS, " \t\t}\n");
 				    }
 				else
 					blockError(0, pCondacto[posicion + 1]); // When a block happens, original code line is stored in parameter 1 place (see dirty trick at anCondacto function, sintacti.c)
@@ -413,7 +426,7 @@ void VolcarProcesos ()
 			}
 			posicion += 4;
 		} // Bucle Condactos
-		fprintf (fichJS,"\t\t{}\n"); // The empty brackets {} ensure if a dotCondact was last, there will be no problems
+		fprintf (fichJS,"\t\t{}\n"); // The empty brackets {} ensure if a sharpCondact was last, there will be no problems
 		if (numblocks) blockError(1, lastopenblockline);
 		fprintf (fichJS,"\n\t}\n\n"); // Close the condacts block
 		laEntrada = SiguienteEntrada (npro, laEntrada);
@@ -454,7 +467,11 @@ void VolcarMensajesSistema ()
   fprintf (fichJS, "total_sysmessages=%d;\n\n", txtSistema->ocupado);
   fprintf (fichJS, "sysmessages = [];\n\n");
   for (i = 0; i < txtSistema->ocupado; i++)
+  {
     fprintf (fichJS, "sysmessages[%d] = \"%s\";\n",txtSistema->mensajes[i].num_mensaje,txtSistema->mensajes[i].mensaje );
+	fprintf (fichSpellCheck, "%s\n", txtSistema->mensajes[i].mensaje);
+  }
+  fprintf (fichSpellCheck, "\n\n");
 }
 
 
@@ -465,7 +482,11 @@ void VolcarMensajesWrite ()
   fprintf (fichJS, "total_writemessages=%d;\n\n", txtWrite->ocupado);
   fprintf (fichJS, "writemessages = [];\n\n");
   for (i = 0; i < txtWrite->ocupado; i++)
+  {
     fprintf (fichJS, "writemessages[%d] = \"%s\";\n",txtWrite->mensajes[i].num_mensaje,txtWrite->mensajes[i].mensaje );
+	fprintf (fichSpellCheck, "%s\n", txtWrite->mensajes[i].mensaje);
+  }
+  fprintf (fichSpellCheck, "\n\n");
 }
 
 void VolcarMensajesUsuario ()
@@ -475,7 +496,11 @@ void VolcarMensajesUsuario ()
   fprintf (fichJS, "total_messages=%d;\n\n", txtMensajes->ocupado);
   fprintf (fichJS, "messages = [];\n\n");
   for (i = 0; i < txtMensajes->ocupado; i++)
+  {
     fprintf (fichJS, "messages[%d] = \"%s\";\n",txtMensajes->mensajes[i].num_mensaje,txtMensajes->mensajes[i].mensaje );
+	fprintf (fichSpellCheck, "%s\n", txtMensajes->mensajes[i].mensaje);
+  }
+  fprintf (fichSpellCheck, "\n\n");
 }
 
 
@@ -488,7 +513,11 @@ void VolcarDescripcionesDeLugares ()
   fprintf (fichJS, "total_location_messages=%d;\n\n", txtLugares->ocupado);
   fprintf (fichJS, "locations = [];\n\n");
   for (i = 0; i < txtLugares->ocupado; i++)
+  {
     fprintf (fichJS, "locations[%d] = \"%s\";\n",txtLugares->mensajes[i].num_mensaje,txtLugares->mensajes[i].mensaje );
+	fprintf (fichSpellCheck, "%s\n", txtLugares->mensajes[i].mensaje);
+  }
+  fprintf (fichSpellCheck, "\n\n");
 }
 
 
@@ -672,6 +701,7 @@ void VolcarObjetos (void)
   for (i = 0; i < ultTextoObjeto + 1; i++)
   {
 	  fprintf (fichJS, "objects[%d] = \"%s\";\n",i,txtObjetos->mensajes[i].mensaje );
+	  fprintf (fichSpellCheck, "%s\n", txtObjetos->mensajes[i].mensaje);
       fprintf (fichJS, "objectsNoun[%d] = %d;\n", i, objetos[i].nombre);
       fprintf (fichJS, "objectsAdjective[%d] = %d;\n", i, objetos[i].adjetivo);
       fprintf (fichJS, "objectsLocation[%d] = %d;\n", i, objetos[i].lugar);
@@ -683,7 +713,7 @@ void VolcarObjetos (void)
       fprintf (fichJS, "objectsAttrHI[%d] = %d;\n", i, objetos[i].hi_flags);
 	  fprintf (fichJS, "objectsAttrHI_start[%d] = %d;\n\n", i, objetos[i].hi_flags);
 
-      if (objetos[i].lugar == 254)	objetosLlevados ++;
+	  if (objetos[i].lugar == 254)	objetosLlevados ++;
   }
   
   fprintf (fichJS, "last_object_number =  %d; \n", ultTextoObjeto);
