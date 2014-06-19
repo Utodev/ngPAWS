@@ -98,6 +98,9 @@ error (tipoError tipo, int nError)
 	case pDirectivaConfiguracion:
 	  printf ("L150: Syntax error: invalid setup value.\n");
 	  break;
+	case pString:
+	  printf ("L160: Syntax error: string expected.\n");
+	  break;
 	}
       /*printf (" en la linea %d.\n", lineaLeida);*/
       break;

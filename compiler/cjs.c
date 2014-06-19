@@ -36,7 +36,7 @@ char *comando[5]; /*={
 
 int ver_hi=0;
 int ver_lo=1;
-int ver_verylo = 0;
+int ver_verylo = 1;
 
 int
 main (int argc, char *argv[])

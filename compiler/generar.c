@@ -24,7 +24,7 @@
 #include "cfgvars.h"
 #include "errores.h"
 
-FILE *fichJS, *fichLib, *fichSpellCheck,  *fichBlc;
+FILE *fichJS, *fichLib,   *fichBlc;
 
 char libFile[2024];
 
@@ -88,17 +88,7 @@ void GenerarEnsamblador (char *nombreFuente)
       printf ("Can't create output file.\n");
       exit (-1);
     }
-  /* Generate spell check file. */
-  strcpy (nombreDestino, nombreFuente);
-  finNombre = strrchr (nombreDestino, '.');
-  if (finNombre) *finNombre = '\0';
-  strcat (nombreDestino, ".txt");
-  if ((fichSpellCheck = fopen (nombreDestino, "wt")) == NULL)
-    {
-      printf ("Can't create spell check file.\n");
-      exit (-1);
-    }
-
+  
   /* Open BLC file */
   strcpy (nombreDestino, nombreFuente);
   finNombre = strrchr (nombreDestino, '.');
@@ -106,7 +96,7 @@ void GenerarEnsamblador (char *nombreFuente)
   strcat (nombreDestino, ".blc");
   if ((fichBlc = fopen(nombreDestino, "rt")) == NULL)
   {
-		printf ("Cant' find blc file.\n");
+		printf ("Warning: Cant' find blc file.\n");
   }
 
 
@@ -465,7 +455,6 @@ void VolcarMensajesSistema ()
   fprintf (fichJS, "sysmessages = [];\n\n");
   for (i = 0; i < txtSistema->ocupado; i++)
     fprintf (fichJS, "sysmessages[%d] = \"%s\";\n",txtSistema->mensajes[i].num_mensaje,txtSistema->mensajes[i].mensaje );
-  fputs ("\n\n", fichSpellCheck);
 }
 
 
@@ -477,7 +466,6 @@ void VolcarMensajesWrite ()
   fprintf (fichJS, "writemessages = [];\n\n");
   for (i = 0; i < txtWrite->ocupado; i++)
     fprintf (fichJS, "writemessages[%d] = \"%s\";\n",txtWrite->mensajes[i].num_mensaje,txtWrite->mensajes[i].mensaje );
-  fputs ("\n\n", fichSpellCheck);
 }
 
 void VolcarMensajesUsuario ()
@@ -488,7 +476,6 @@ void VolcarMensajesUsuario ()
   fprintf (fichJS, "messages = [];\n\n");
   for (i = 0; i < txtMensajes->ocupado; i++)
     fprintf (fichJS, "messages[%d] = \"%s\";\n",txtMensajes->mensajes[i].num_mensaje,txtMensajes->mensajes[i].mensaje );
-  fputs ("\n\n", fichSpellCheck);
 }
 
 
@@ -502,7 +489,6 @@ void VolcarDescripcionesDeLugares ()
   fprintf (fichJS, "locations = [];\n\n");
   for (i = 0; i < txtLugares->ocupado; i++)
     fprintf (fichJS, "locations[%d] = \"%s\";\n",txtLugares->mensajes[i].num_mensaje,txtLugares->mensajes[i].mensaje );
-  fputs ("\n\n", fichSpellCheck);
 }
 
 
