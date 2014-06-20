@@ -413,11 +413,11 @@ function ACCautow()
 function ACCautor()
 {
 	objno =findMatchingObject(LOCATION_WORN);
-	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
+	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	objno =findMatchingObject(LOCATION_CARRIED);
-	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
+	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	objno =findMatchingObject(loc_here());
-	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
+	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	writeSysMessage(SYSMESS_YOURENOTWEARINGTHAT);
 	ACCnewtext();
 	ACCdone();
