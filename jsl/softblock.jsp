@@ -3,9 +3,11 @@
 function ACCsoftblock(procno)
 {
    disableInterrupt();
+
+   $('.block_layer').css('display','none');
    $('.block_text').html('');
    $('.block_graphics').html('');
    $('.block_layer').css('background','transparent');
-   $('.block_layer').show();
    if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
+   $('.block_layer').css('display','block');
 }

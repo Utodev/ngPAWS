@@ -370,8 +370,16 @@ function implementTag(tag)
 		case 'EXTERN': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					    return '<a target="_blank" href="javascript:  ' + tagparams[1] + ' ">' + tagparams[2] + '</a>';
 					    break;
-		case 'TEXTPIC': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-						return "<img src='"+ RESOURCES_DIR + tagparams[1]+"' />";
+		case 'TEXTPIC': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
+						var style = '';
+						var br='<br />';
+						align = tagparams[2];
+						switch(align)
+						{
+							case 1: style = 'float:left'; br=''; break;
+							case 2: style = 'float:right'; br=''; break;
+						}
+						return "<img class='textpic' style='"+style+"' src='"+ RESOURCES_DIR + tagparams[1]+"' />"+br;
 					    break;
 		case 'HTML': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						return tagparams[1];
@@ -1154,7 +1162,7 @@ function getLogicSentence()
 	for (var i=0;i<words.length;i++)
 	{
 		original_word = currentword = words[i];
-		if (currentword.length>10) currentword = currentword.substring(0,MAX_WORD_LENGHT - 1);
+		if (currentword.length>10) currentword = currentword.substring(0,MAX_WORD_LENGHT);
 		foundWord = findVocabulary(currentword);
 		if (foundWord)
 		{
@@ -1476,7 +1484,7 @@ function closeBlock()
     $('.block_layer').hide('slow');
     enableInterrupt();   	
     focusInput();
-    proToCall = unblock_process;
+    var proToCall = unblock_process;
 	unblock_process = null;
 	callProcess(proToCall);
 	if (describe_location_flag) descriptionLoop();
@@ -1520,17 +1528,18 @@ function start()
 
 
      // assign any click on block layer --> close it
-     $('.block_layer .block_text').mousedown( function(e) {
-     	closeBlock();
+     $(document).click( function(e) {
+     	if (unblock_process!=null)
+     	{
+     		closeBlock();
+     		event.preventDefault();
+     	}
      });
-     $('.block_layer .block_graphics').mousedown( function(e) {
-     	closeBlock();
-     });
-
+     
 
 	$(document).keydown(function(e) {
 		// if keypress and block displayed, close it
-     	if ($('.block_layer').css('display')  == 'block') 	
+     	if (unblock_process!=null)
      		{
      			closeBlock();
      			event.preventDefault();

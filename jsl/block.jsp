@@ -3,6 +3,8 @@
 function ACCblock(writeno, picno, procno)
 {
    disableInterrupt();
+   $('.block_layer').css('display','none');
+   $('.block_layer').css('background-color',$('.text').css('background-color'));
    text = writemessages[writeno]
    text = h_writeText(text); // hook
    text = filterText(text)
@@ -14,6 +16,7 @@ function ACCblock(writeno, picno, procno)
 		var imgsrc = '<img class="block_picture" src="' + filename + '" />';
 		$('.block_graphics').html(imgsrc);
 	}
-    $('.block_layer').show();
     if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
+    $('.block_layer').css('display','block');
+
 }
