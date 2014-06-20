@@ -177,6 +177,13 @@ var Base64 = {
 
 }
 
+// Check DOALL entry
+
+function skipdoall(entry)
+{
+	return  ((doall_flag==true) && (entry_for_doall!='') && (entry_for_doall > entry));
+}
+
 // Dynamic attribute use functions
 function getNextFreeAttribute()
 {
@@ -816,6 +823,17 @@ function isDarkHere()
 // Sound functions
 
 
+function preloadsfx()
+{
+	for (var i=0;i<resources.length;i++)
+	 	if (resources[i][0] == 'RESOURCE_TYPE_SND') 
+	 	{
+	 		var fileparts = resources[i][2].split('.');
+			var basename = fileparts[0];
+			var mySound = new buzz.sound( basename, {  formats: [ "ogg", "mp3" ] , preload: true} );
+	 	}
+}
+
 function sfxplay(sfxno, channelno, times, method)
 {
 	if (!soundsON) return;
@@ -900,6 +918,7 @@ function callProcess(procno)
 	var prostr = procno.toString(); 
 	while (prostr.length < 3) prostr = "0" + prostr;
 	if (procno==0) in_response = true;
+	if (doall_flag && in_response) done_flag = false;
 	eval("pro" + prostr + "()");
 	if (procno==0) in_response = false;
 	
@@ -1353,6 +1372,7 @@ function initializeSound()
 
 function initialize()
 {
+	preloadsfx();
 	initializeInternalVars();
 	initializeSound();
 	initializeFlags();
