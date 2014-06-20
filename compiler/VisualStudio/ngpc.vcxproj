@@ -122,7 +122,7 @@
       <Culture>0x0c0a</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>Release\ngpc.exe</OutputFile>
+      <OutputFile>C:\Users\Carlos\Copy\Github\ngPAWS\Release\ngpc.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDatabaseFile>.\Release/spg.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
@@ -130,7 +130,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>

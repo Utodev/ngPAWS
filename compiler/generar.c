@@ -103,7 +103,7 @@ void GenerarEnsamblador (char *nombreFuente)
   finNombre = strrchr (nombreDestino, '.');
   if (finNombre) *finNombre = '\0';
   strcat (nombreDestino, ".blc");
-  if ((fichBlc = fopen(nombreDestino, "rt")) == NULL)
+  if ((fichBlc = fopen(nombreDestino, "rb")) == NULL)
   {
 		printf ("Warning: Cant' find blc file.\n");
   }
@@ -207,8 +207,10 @@ void VolcarRecursos (void)
 	FILE *f;
 	char linea[32768];
 	char bloque[32768];
+	char bloque2[32768];
 	int inicial;
-	int i , value;
+	int i, j, k, value;
+	char c;
 	int resourceType, resourceid;
 
 	printf ("Checking multimedia resources...\n");
@@ -264,7 +266,19 @@ void VolcarRecursos (void)
 		
 
 		if ((resourceType == 1) || (resourceType == 2)) 
-			fprintf(fichJS, "resources.push([%s, %d, \"%s\"]);\n", (resourceType==1)? "RESOURCE_TYPE_IMG" : "RESOURCE_TYPE_SND", resourceid, bloque);
+		{
+			/* In Win32 the BLC file generated includes backslashes, that are not good for URLs, this replaces backslashes with slashes */
+
+			for (j=0 ; j < strlen(bloque) ; j++)
+			{
+				c = bloque[j];
+				if (c == '\\')  c ='/';
+				bloque2[j]=c;
+				bloque2[j+1] = 0;
+			}
+			
+			fprintf(fichJS, "resources.push([%s, %d, \"%s\"]);\n", (resourceType==1)? "RESOURCE_TYPE_IMG" : "RESOURCE_TYPE_SND", resourceid, bloque2);
+		}
 	}
 	fputs("\n",fichJS);	
 
@@ -307,7 +321,7 @@ void VolcarProcesos ()
 		strcpy (nombreDeLaEntrada, BuscarPalabraPorNumero (laEntrada->nombre, nombre));
 		/* generar el codigo de entrada a la entrada verbo + nombre*/
 		fprintf (fichJS, "\t// %s %s\n\tp%03de%04d:\n\t{\n", verboDeLaEntrada, nombreDeLaEntrada,npro, nent );
-		fprintf (fichJS, " \t\tif ((doall_flag==true) && (entry_for_doall!='') && (entry_for_doall > 'p%03de%04d')) break p%03de%04d;\n",   npro, nent, npro, nent);    		// generar codigo de saltarse la entrada hasta la que toque si es un bucle doall
+		fprintf (fichJS, " \t\tif (skipdoall('p%03de%04d')) break p%03de%04d;\n",   npro, nent, npro, nent);    		// generar codigo de saltarse la entrada hasta la que toque si es un bucle doall
 		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\tif (in_response)\n\t\t{\n",   npro, nent);   
 	    if (laEntrada->verbo != -1) fprintf (fichJS, "\t\t\tif (!CNDverb(%d)) break p%03de%04d;\n",  laEntrada->verbo, npro, nent);
 	    if (laEntrada->nombre != -1) fprintf (fichJS, "\t\t\tif (!CNDnoun1(%d)) break p%03de%04d;\n", laEntrada->nombre, npro, nent);
