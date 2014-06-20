@@ -546,6 +546,7 @@ function drawPicture(picno)
 	var pictureDraw = false;
 	if (graphicsON) 
 	{
+		if ((isDarkHere()) && (!lightObjectsPresent())) picno = 0;
 		var filename = getResourceById(RESOURCE_TYPE_IMG, picno);
 		if (filename)
 		{
@@ -1388,10 +1389,10 @@ function descriptionLoop()
 {
 	describe_location_flag = false;
 	clearTextWindow();
-	writeLocation(loc_here());
+	if ((isDarkHere()) && (!lightObjectsPresent())) writeSysMessage(SYSMESS_ISDARK); else writeLocation(loc_here()); 
 	h_description_init();
 	playLocationMusic(loc_here());
-	drawPicture(loc_here())
+	drawPicture(loc_here());
 	ACCminus(FLAG_AUTODEC2,1);
 	if (isDarkHere()) ACCminus(FLAG_AUTODEC3,1);
 	if ((isDarkHere()) && (lightObjectsAt(loc_here())==0)) ACCminus(FLAG_AUTODEC4,1);
