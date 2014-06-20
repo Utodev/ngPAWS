@@ -978,6 +978,11 @@ PONER TODO
 
 
 COGER TODO
+ ISNOTLIGHT  ; no hay luz
+ WRITELN "No ves nada."
+ DONE
+
+COGER TODO
  OBJAT @38 13
  ZERO 13  ; no hay ningún objeto en la localidad
  WRITELN "No hay nada por aquí."
