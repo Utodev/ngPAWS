@@ -1411,7 +1411,7 @@ I        _
 ; -------------------------
 
 ENTRAR _                ; Entrar en un objeto
- NOTEQ @51 255
+ NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aEnterable
  GOTO @51 
