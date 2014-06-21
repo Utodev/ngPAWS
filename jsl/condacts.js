@@ -44,7 +44,7 @@ function CNDpresent(objno)
 	if (loc == loc_here()) return true;
 	if (loc == LOCATION_WORN) return true;
 	if (loc == LOCATION_CARRIED) return true;
-	if ( (!bittest(getFlag(FLAG_PARSER_SETTINGS),7)) && (CNDpresent(loc)) )  // Extended context and object in another object that is present
+	if ( (!bittest(getFlag(FLAG_PARSER_SETTINGS),7)) && (loc<=last_object_number)  && (CNDpresent(loc)) )  // Extended context and object in another object that is present
 	{
 		if (objectIsAttr(loc,ATTR_SUPPORTER)) return true;  // On supporter
 		if ( objectIsContainer(loc) && objectIsAttr(loc, ATTR_OPENABLE) && objectIsAttr(loc, ATTR_OPEN)) return true; // In a openable & open container
@@ -282,35 +282,17 @@ function ACCsave()
 {
 	var savegame_object = getSaveGameObject();	
 	savegame =   JSON.stringify(savegame_object);
-
-	if (runningLocal())
-	{
-        window.prompt(STR_SAVE_LOCAL, Base64.encode(savegame));
-		ACCok();
-	}
-	else
-	{
-		filename = prompt(STR_SAVE_STORAGE,''); 
-		localStorage.setItem(filename, savegame);
-		ACCok();
-	}
+	filename = prompt(STR_SAVE_STORAGE,'').toUpperCase();; 
+	localStorage.setItem(filename, savegame);
+	ACCok();
 }
 
  
 function ACCload() 	
 {
 	var json_str;
-	if (runningLocal())
-	{
-		typed_savegame = prompt(STR_LOAD_LOCAL,'') ;
-		json_str = Base64.decode(typed_savegame);
-	}
-	else 
-	{
-		filename = prompt(STR_LOAD_STORAGE,'');
-		json_str = localStorage.getItem(filename);
-	}
-
+	filename = prompt(STR_LOAD_STORAGE,'').toUpperCase();;
+	json_str = localStorage.getItem(filename);
 	if (json_str)
 	{
 		savegame_object = JSON.parse(json_str.trim());
@@ -534,7 +516,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 			break;
 
 		default: 
-			if  (CNDpresent(locno))    // If it's not here, carried or worn but it present, that means that bit 7 of flag 12 is cleared, thus you can get objects from present containers/supporters
+			if  ((locno<=last_object_number) && (CNDpresent(locno)))    // If it's not here, carried or worn but it present, that means that bit 7 of flag 12 is cleared, thus you can get objects from present containers/supporters
 			{
 				trytoGet(objno);
 			}
