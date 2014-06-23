@@ -1189,7 +1189,7 @@ function ACCtranscript()
 
 function ACCanykey()
 {
-	//It does nothing as compiler takes care of it
+	writeSysMessage(SYSMESS_PRESSANYKEY);
 }
 
 function ACCgetkey(flagno)
