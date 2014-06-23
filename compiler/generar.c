@@ -321,7 +321,10 @@ void VolcarProcesos ()
 	  
 
       fprintf (fichJS, "function pro%03d()\n{\n", npro);
-	  fprintf (fichJS, "pro%03d_restart:\n{\n", npro);
+	  fprintf (fichJS, "process_restart=true;\n");
+	  fprintf (fichJS, "pro%03d_restart: ", npro);
+	  fprintf (fichJS, "while(process_restart)\n{\n");
+	  fprintf (fichJS, "\tprocess_restart=false;\n");
       nent = 0;
       laEntrada = SiguienteEntrada (npro, NULL);
 
@@ -368,10 +371,6 @@ void VolcarProcesos ()
 	            fprintf (fichJS, "\t\tprocess_in_doall = %d;\n", npro);
 			}
 
-			if (!strcmp (elCondacto.nombre, "RESTART"))
-			{
-				fprintf (fichJS, "\t\t\tcontinue pro%03d_restart;\n", npro); 
-		    }
 					
 
 
@@ -447,6 +446,13 @@ void VolcarProcesos ()
 				printf ("ERROR: condact type unknown.\n");
 			}
 			/* y ahora, las operaciones de limpieza del condacto según el tipo del mismo */
+
+			if (!strcmp (elCondacto.nombre, "RESTART"))
+			{
+				fprintf (fichJS, "\t\tcontinue pro%03d_restart;\n", npro); 
+		    }
+
+
 			switch (elCondacto.limpieza)
 			{
 				case aDescribir:

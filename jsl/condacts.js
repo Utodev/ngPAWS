@@ -1177,7 +1177,7 @@ function ACCwriteln(writeno)
 
 function ACCrestart()
 {
-	// This condact does nothing, cause only the compiler knows where to jump to restart the process. Thus, the compiler adds the jump code when the restart action is found, and the action itself does nothing
+  process_restart = true;
 }
 
 
