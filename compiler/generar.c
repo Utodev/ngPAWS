@@ -25,6 +25,7 @@ FILE *fichJS, *fichLib,   *fichBlc, *fichSpellCheck;
 
 char libFile[2024];
 
+
 TipoCondacto elCondacto;
 
 void VolcarProcesos (void);
@@ -292,8 +293,15 @@ void VolcarProcesos ()
   int *pCondacto, i;
   char verboDeLaEntrada[20], nombreDeLaEntrada[20];
   char p1[100], p2[100], p3[100] = "";
-  int numblocks;
+  int numblocks, numanykeyopen;
   int lastopenblockline;
+  int anykey_function;
+  char nombreFichTemp[2048];
+  FILE *fichJSBackup[2048];
+  int fichJSPointer;
+  FILE *fichTmp;
+  char lineaCopy[32768];
+  
   
   fputs ("\n// PROCESSES\n\n", fichJS);
   
@@ -303,7 +311,11 @@ void VolcarProcesos ()
 	  fprintf(fichJS, "interruptProcessExists = false;\n\n");
   else
 	  fprintf(fichJS, "interruptProcessExists = true;\n\n");
-						
+		
+  anykey_function = 0;
+  fichJSPointer = 0;
+
+
   for (npro = 0; npro < ultProceso + 1; npro++)
     {
 	  
@@ -329,6 +341,7 @@ void VolcarProcesos ()
 		/* generar codigo de condactos */
 		
 		numblocks = 0;
+		numanykeyopen = 0;
 		lastopenblockline = -1;
 		while (posicion < (laEntrada->posicion))
 	    {
@@ -401,7 +414,7 @@ void VolcarProcesos ()
 				{
 					fprintf (fichJS,"\t\tif (describe_location_flag) break p%03de9999;\n", npro);  
 			    }
-		    break;
+			break;
 			case blockStart: 
 				fprintf (fichJS, " \t\t{\n");
 				numblocks++;
@@ -418,6 +431,18 @@ void VolcarProcesos ()
 
 
 			break;
+			case waitkey:
+					fprintf (fichJS, " \t\tACC%s(%s%s%s);\n", aMinusculas (elCondacto.nombre), p1, p2, p3);
+					//fprintf(fichJS, " \t\tanykey%05d = function() \n\t\t{\n", anykey_function);
+					fichJSBackup[fichJSPointer] = fichJS;
+					fichJSPointer++;
+					sprintf(nombreFichTemp, "anykey%d.tmp", anykey_function);
+					fichJS = fopen (nombreFichTemp, "wt");
+					fprintf(fichJS, " \t\tfunction anykey%05d() \n\t\t{\n", anykey_function);
+					anykey_function++;
+					numanykeyopen++;
+				break;
+
 			default:
 				printf ("ERROR: condact type unknown.\n");
 			}
@@ -427,9 +452,11 @@ void VolcarProcesos ()
 				case aDescribir:
 				case aEnd:
 				case aFinDeTabla:
+					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n", npro); else
 					fprintf (fichJS, "\t\tbreak pro%03d_restart;\n", npro); 
 				break;
 				case aCondicional:
+					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n", npro); else
 					fprintf (fichJS, "\t\tif (!success) break pro%03d_restart;\n", npro); 
 				break;
 				case aHook:
@@ -440,6 +467,31 @@ void VolcarProcesos ()
 			}
 			posicion += 4;
 		} // Bucle Condactos
+		for (i=anykey_function-1;i>=anykey_function-numanykeyopen;i--)
+		{
+			fprintf(fichJS, " \t\twaitKey(anykey%05d);\n", i+1); // the we hide command and wait for key, then call anykey function
+			fprintf(fichJS,"\t\t}\n"); // Close previous anykey
+			fclose(fichJS);
+			fichJSPointer--;
+			fichJS = fichJSBackup[fichJSPointer];
+		}
+		for (i=anykey_function-1;i>=anykey_function-numanykeyopen;i--)
+		{
+			sprintf(nombreFichTemp, "anykey%d.tmp", i);
+			if ((fichTmp = fopen (nombreFichTemp, "rt")) != NULL)
+			{
+				while (fgets (lineaCopy, 32768, fichTmp))
+				{
+					fputs (lineaCopy, fichJS);
+				}
+				fclose (fichTmp);
+			}
+			remove(nombreFichTemp);
+		}
+		if  (numanykeyopen) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n", anykey_function-numanykeyopen);
+		numanykeyopen = 0;
+
+
 		fprintf (fichJS,"\t\t{}\n"); // The empty brackets {} ensure if a sharpCondact was last, there will be no problems
 		if (numblocks) blockError(1, lastopenblockline);
 		fprintf (fichJS,"\n\t}\n\n"); // Close the condacts block

@@ -87,7 +87,9 @@ TipoCondacto condactos_estandar[NUMCONDACTS] = {
   ,
   {"OK", accion, nada, nada, nada, aFinDeTabla}
   ,
-  {"ANYKEY", accion, nada, nada, nada, aNada}
+  {"ANYKEY", waitkey, nada, nada, nada, aNada}
+  ,
+  {"GETKEY", waitkey, flagno, nada, nada, aNada}
   ,
   {"SAVE", accion, nada, nada, nada, aDescribir}
   ,

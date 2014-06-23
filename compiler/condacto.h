@@ -1,7 +1,7 @@
 
 #include <config.h>
 
-#define NUMCONDACTS 126
+#define NUMCONDACTS 127
 #define USERCONDACTS 256
 
 
@@ -12,7 +12,7 @@ typedef enum
 
 typedef enum { aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook} tipoLimpieza;
 
-typedef enum { condicion, accion, mixto, dot, colon, blockStart, blockEnd } tipoCondacto;
+typedef enum { condicion, accion, mixto, dot, colon, blockStart, blockEnd, waitkey } tipoCondacto;
 
 typedef struct
 {
