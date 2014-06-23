@@ -42,6 +42,29 @@ function runningLocal()
 
 
 
+// waitKey helper for ANYKEY and GETKEY
+
+function waitKey(callbackFunction)
+{
+	anykey_return_function = callbackFunction;
+	disableInterrupt();
+   	$('.block_layer').css('display','none');
+    $('.block_text').html('');
+    $('.block_graphics').html('');
+    $('.block_layer').css('background','transparent');
+    $('.block_layer').css('display','block');
+    $('.input').hide();
+}
+
+function waitKeyCallback()
+{
+ 			var callback = anykey_return_function;
+     		anykey_return_function = null;
+			hideBlock();    		
+     		callback();
+     		if (describe_location_flag) descriptionLoop();  		
+}
+
 
 // Check DOALL entry
 
@@ -1346,14 +1369,20 @@ function restart()
 	location.reload();	
 }
 
+
+function hideBlock()
+{
+	clearInputWindow();
+    $('.block_layer').hide('slow');
+    enableInterrupt();   	
+    $('.input').show();  
+    focusInput();
+}
 //called when the block layer is closed
 function closeBlock()
 {
 	if (!unblock_process) return;
-	clearInputWindow();
-    $('.block_layer').hide('slow');
-    enableInterrupt();   	
-    focusInput();
+	hideBlock();
     var proToCall = unblock_process;
 	unblock_process = null;
 	callProcess(proToCall);
@@ -1394,6 +1423,7 @@ function start()
      $(window).resize(function () {
      	setFlag(FLAG_PARSER_SETTINGS, bitset(getFlag(FLAG_PARSER_SETTINGS), 4));  // Set bit at flag that marks that a window resize happened 
      	clearPictureAt();
+     	return;
      });
 
 
@@ -1402,8 +1432,17 @@ function start()
      	if (unblock_process!=null)
      	{
      		closeBlock();
-     		event.preventDefault();
+     		e.preventDefault();
+     		return;
      	}
+
+     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for ANYKEY, accepts mouse click
+     	{
+     		waitKeyCallback();
+     		e.preventDefault();
+     		return;
+    	}
+
      });
      
 
@@ -1412,14 +1451,35 @@ function start()
      	if (unblock_process!=null)
      		{
      			closeBlock();
-     			event.preventDefault();
+     			e.preventDefault();
+     			return;
      		}
+
+		if ((anykey_return_function!=null) && (getkey_return_flag!=null))  // return for getkey
+     	{
+     		setFlag(getkey_return_flag, e.keyCode);
+     		getkey_return_flag = null;
+     		waitKeyCallback();
+     		e.preventDefault();
+     		return;
+      	}
+
+
+     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for anykey
+     	{
+     		waitKeyCallback();
+     		e.preventDefault();
+     		return;
+     	}
+
+     	
 
      	// if ESC pressed and transcript layer visible, close it
      	if (($('.transcript_layer').css('display')  == 'block') &&  (e.keyCode == 27)  ) 
      		{
      			$('.transcript_layer').hide();
-     			event.preventDefault();
+     			e.preventDefault();
+     			return;
      		}
 
 

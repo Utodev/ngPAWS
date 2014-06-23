@@ -1187,6 +1187,16 @@ function ACCtranscript()
 	$('.transcript_layer').show();
 }
 
+function ACCanykey()
+{
+	//It does nothing as compiler takes care of it
+}
+
+function ACCgetkey(flagno)
+{
+	getkey_return_flag = flagno;
+}
+
 
 
 
@@ -1204,11 +1214,6 @@ function ACCbell()
 
 // From PAW Spectrum
 function ACCreset()
-{
-	// Legacy condact, does nothing now
-}
-
-function ACCanykey()
 {
 	// Legacy condact, does nothing now
 }

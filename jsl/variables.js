@@ -256,7 +256,12 @@ var transcript = '';
 var graphicsON = true; 
 var soundsON = true; 
 var interruptDisabled = false;
+
+
+// Block and anykey
 var unblock_process = null;
+var anykey_return_function = null;
+var getkey_return_flag = null;
 
 // Status flags
 var done_flag;
