@@ -3,14 +3,17 @@
 function ACCtextpic(picno, align)
 {
 	var style = '';
-	var br = '<br />';
+	var post = '';
+	var pre = '';
 	switch(align)
 	{
-		case 1: style = 'float:left'; br=''; break;
-		case 2: style = 'float:right'; br=''; break;
+		case 1: style = 'float:left'; break;
+		case 2: style = 'float:right'; break;
+		case 3: post = '<br />';
+		case 4: pre='<center>';post='</center>';break;
 	}
 	filename = getResourceById(RESOURCE_TYPE_IMG, picno);
 	if (filename)
-	texto = "<img class='textpic' style='"+style+"' src='"+filename+"' />"+br;
+	texto = pre + "<img class='textpic' style='"+style+"' src='"+filename+"' />" + post;
 	writeText(texto);
 }

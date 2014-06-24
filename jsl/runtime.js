@@ -261,14 +261,17 @@ function implementTag(tag)
 					    break;
 		case 'TEXTPIC': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						var style = '';
-						var br='<br />';
+						var post = '';
+						var pre = '';
 						align = tagparams[2];
 						switch(align)
 						{
-							case 1: style = 'float:left'; br=''; break;
-							case 2: style = 'float:right'; br=''; break;
+							case 1: style = 'float:left'; break;
+							case 2: style = 'float:right'; break;
+							case 3: post = '<br />';
+							case 4: pre='<center>';post='</center>';break;
 						}
-						return "<img class='textpic' style='"+style+"' src='"+ RESOURCES_DIR + tagparams[1]+"' />"+br;
+						return pre + "<img class='textpic' style='"+style+"' src='"+ RESOURCES_DIR + tagparams[1]+"' />" + post;
 					    break;
 		case 'HTML': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 						return tagparams[1];
