@@ -475,7 +475,7 @@ void VolcarProcesos ()
 		} // Bucle Condactos
 		for (i=anykey_function-1;i>=anykey_function-numanykeyopen;i--)
 		{
-			fprintf(fichJS, " \t\twaitKey(anykey%05d);\n", i+1); // the we hide command and wait for key, then call anykey function
+			if (i !=(anykey_function-1)) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n", i+1); // the we hide command and wait for key, then call anykey function
 			fprintf(fichJS,"\t\t}\n"); // Close previous anykey
 			fclose(fichJS);
 			fichJSPointer--;
@@ -494,7 +494,7 @@ void VolcarProcesos ()
 			}
 			remove(nombreFichTemp);
 		}
-		if  (numanykeyopen) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n", anykey_function-numanykeyopen);
+		if  (numanykeyopen) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n\t\tdone_flag=true;\n", anykey_function-numanykeyopen);
 		numanykeyopen = 0;
 
 
