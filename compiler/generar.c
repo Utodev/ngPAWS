@@ -494,7 +494,7 @@ void VolcarProcesos ()
 			}
 			remove(nombreFichTemp);
 		}
-		if  (numanykeyopen) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n\t\tdone_flag=true;\n", anykey_function-numanykeyopen);
+		if  (numanykeyopen) fprintf(fichJS, " \t\twaitKey(anykey%05d);\n\t\tdone_flag=true;\n\t\tbreak pro%03d_restart;\n", anykey_function-numanykeyopen,npro);
 		numanykeyopen = 0;
 
 
