@@ -283,7 +283,7 @@ function ACCsave()
 	var savegame_object = getSaveGameObject();	
 	savegame =   JSON.stringify(savegame_object);
 	filename = prompt(STR_SAVE_STORAGE,'').toUpperCase();; 
-	localStorage.setItem(filename, savegame);
+	localStorage.setItem('ngpaws_' + filename.toUpperCase(), savegame);
 	ACCok();
 }
 
@@ -292,7 +292,7 @@ function ACCload()
 {
 	var json_str;
 	filename = prompt(STR_LOAD_STORAGE,'').toUpperCase();;
-	json_str = localStorage.getItem(filename);
+	json_str = localStorage.getItem('ngpaws_' + filename.toUpperCase());
 	if (json_str)
 	{
 		savegame_object = JSON.parse(json_str.trim());
