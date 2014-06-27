@@ -739,6 +739,7 @@ function preloadsfx()
 
 function sfxplay(sfxno, channelno, times, method)
 {
+
 	if (!soundsON) return;
 	if ((channelno <0) || (channelno >MAX_CHANNELS)) return;
 	if (times == 0) times = -1; // more than 4000 million times
@@ -754,11 +755,11 @@ function sfxplay(sfxno, channelno, times, method)
 			for (sndloop=0;sndloop<MAX_CHANNELS;sndloop++)
 				if (soundChannels[sndloop] == this)
 				{
-					if (soundLoopCount[sndloop]==-1) {this.play(); break }
+					if (soundLoopCount[sndloop]==-1) {this.play(); return }
 					soundLoopCount[sndloop]--;
-					if (soundLoopCount[sndloop] > 0) {this.play(); break }
-					soundChannels[sndloop] = null;	
-					break;
+					if (soundLoopCount[sndloop] > 0) {this.play(); return }
+					sfxstop(sndloop);
+					return;
 				}
 		});
 		soundChannels[channelno] = mySound;
@@ -797,6 +798,7 @@ function sfxstop(channelno)
 {
 	if (soundChannels[channelno]) 
 		{
+			soundChannels[channelno].unbind('ended');
 			soundChannels[channelno].stop();
 			soundChannels[channelno] = null;
 		}
@@ -813,6 +815,12 @@ function isSFXPlaying(channelno)
 	return true;
 }
 
+
+function sfxfadeout(channelno, value)
+{
+	if (!soundChannels[channelno]) return;
+	soundChannels[channelno].fadeOut(value, function() { sfxstop(channelno) });
+}
 
 // Process functions
 
