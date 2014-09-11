@@ -3,5 +3,5 @@
 function ACCmul(flagno, valor)
 {
 	if (valor == 0) return;
-	setFlag(flagno, Math.Floor(getFlag(flagno) * valor));
+	setFlag(flagno, Math.floor(getFlag(flagno) * valor));
 }
