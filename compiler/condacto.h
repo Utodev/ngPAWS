@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 #define NUMCONDACTS 127
 #define USERCONDACTS 256

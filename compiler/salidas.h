@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 extern int salidas[256][32];
 extern int ultConexion;

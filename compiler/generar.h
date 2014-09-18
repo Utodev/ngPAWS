@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 void GenerarEnsamblador (char *nombreFuente);
 

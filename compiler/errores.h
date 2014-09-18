@@ -1,7 +1,7 @@
 
 /* errores.h */
 
-#include <config.h>
+#include "config.h"
 
 typedef enum
 { sinError, errGeneral, errLexSint, errSem, errVocab }

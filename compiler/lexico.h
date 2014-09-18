@@ -4,7 +4,7 @@
 
 /* Tipos globales */
 
-#include <config.h>
+#include "config.h"
 
 typedef enum
 { pError, pcCtl, pcVoc, pcOtx, pcLtx, pcCon, pcStx,

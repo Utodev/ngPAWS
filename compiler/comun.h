@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 #define TRUE (1==1)
 #define FALSE (!(TRUE))

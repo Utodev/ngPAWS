@@ -6,11 +6,12 @@
  *
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <malloc.h>
+#include <string.h>
 #include "textos.h"
 
 #define TAM_INICIAL_TABLA 256
@@ -76,7 +77,7 @@ dumpTexto (tabla_mensajes *tabla)
 char * limpiarTexto(char *cad)
 {
 unsigned int i;
-  for (i = 0; i < strlen (cad); i++)
+  for (i = 0; i < strlen(cad); i++)
   {
 	  
 	  if (cad[i]=='\\') 

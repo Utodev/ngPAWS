@@ -2,7 +2,7 @@
  *  Everything related with javascript code generation
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <errno.h>
 #include <malloc.h>

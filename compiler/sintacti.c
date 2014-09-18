@@ -1,7 +1,7 @@
 
 /* sintacti.c */
 
-#include <config.h>
+#include "config.h"
 
 #include "lexico.h"
 #include "sintacti.h"

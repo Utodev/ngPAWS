@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 #include "objetos.h"
 #include <stdio.h>

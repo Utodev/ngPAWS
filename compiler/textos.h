@@ -1,5 +1,5 @@
 
-#include <config.h>
+#include "config.h"
 
 typedef struct {
   int num_mensaje;

@@ -3,6 +3,6 @@
 
 /* cabeceras de funciones */
 
-#include <config.h>
+#include "config.h"
 
 void analizar (void);
