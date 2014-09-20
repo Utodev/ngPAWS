@@ -1304,7 +1304,7 @@ function descriptionLoop()
 	if ((isDarkHere()) && (!lightObjectsPresent())) writeSysMessage(SYSMESS_ISDARK); else writeLocation(loc_here()); 
 	h_description_init();
 	playLocationMusic(loc_here());
-	drawPicture(loc_here());
+	if (loc_here()) drawPicture(loc_here()); else hideGraphicsWindow(); // Don't show picture at location 0
 	ACCminus(FLAG_AUTODEC2,1);
 	if (isDarkHere()) ACCminus(FLAG_AUTODEC3,1);
 	if ((isDarkHere()) && (lightObjectsAt(loc_here())==0)) ACCminus(FLAG_AUTODEC4,1);
