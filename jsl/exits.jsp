@@ -16,7 +16,7 @@ function ACCexits(locno,mesno)
     			writeMessage(mesno + 2 + i);
     			if (exitcountprogress == exitcount) writeSysMessage(SYSMESS_LISTEND);
     			if (exitcountprogress == exitcount-1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
-    			if (exitcountprogress == exitcount-2) writeSysMessage(SYSMESS_LISTSEPARATOR);
+    			if (exitcountprogress <= exitcount-2) writeSysMessage(SYSMESS_LISTSEPARATOR);
   		  }
       } else writeMessage(mesno + 1);
   } else writeMessage(mesno + 1);
