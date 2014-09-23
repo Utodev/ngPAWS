@@ -640,7 +640,7 @@ function ACCswap(objno1,objno2)
 
 function ACCplace(objno, locno)
 {
-	setObjectLocation(locno);
+	setObjectLocation(objno, locno);
 }
 
 function ACCset(flagno)
