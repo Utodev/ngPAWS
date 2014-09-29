@@ -2,6 +2,51 @@
 
 function ACChelp()
 {
+	if (getLang()=='EN') EnglishHelp(); else SpanishHelp();
+}	
+
+function EnglishHelp()
+{
+	writeText('HOW DO I SEND COMMANDS TO THE PC?');
+	writeText(STR_NEWLINE);
+	writeText('Use simple orders: OPEN DOOR, TAKE KEY, GO UP, etc.');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I MOVE IN THE MAP?');
+	writeText(STR_NEWLINE);
+	writeText('Usually you will have to use compass directions as north (shortcut: "N"), south (S), east (E), west (W) or other directions (up, down, enter, leave, etc.). Some games allow complex order like "go to well". Usually you would be able to know avaliable exits by location description, some games also provide the "EXITS" command.');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I CHECK MY INVENTORY?');
+	writeText(STR_NEWLINE);
+	writeText('type INVENTORY (shortcut "I")');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I USE THE OBJECTS?');
+	writeText(STR_NEWLINE);
+	writeText('Use the proper verb, that is, instead of USE KEY type OPEN.');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I CHECK SOMETHING CLOSELY?');
+	writeText(STR_NEWLINE);
+	writeText('Use "examine" verb: EXAMINE DISH. (shortcut: EX)');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I SEE AGAIN THE CURRENT LOCATION DSCRIPTION?');
+	writeText(STR_NEWLINE);
+	writeText('Type LOOK (shortcut "M").');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I TALK TO OTHER CHARACTERS?');
+	writeText(STR_NEWLINE);
+	writeText('Most common methods are [CHARACTER, SENTENCE] or [SAY CHARACTER "SENTENCE"]. For instance: [JOHN, HELLO] o [SAY JOHN "HELLO"]. Some games also allow just [TALK TO JOHN]. ');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I PUT SOMETHING IN A CONTAINER, HOW CAN I TAKE SOMETHING OUT?');
+	writeText(STR_NEWLINE);
+	writeText('PUT KEY IN BOX. TAKE KEY OUT OF BOX. INSERT KEY IN BOX. EXTRACT KEY FROM BOX.');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('HOW CAN I PUT SOMETHING ON SOMETHING ELSE?');
+	writeText(STR_NEWLINE);
+	writeText('PUT KEY ON TABLE. TAKE KEY FROM TABLE');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+}
+
+function SpanishHelp()
+{
 	writeText('¿CÓMO DOY ORDENES AL PERSONAJE?');
 	writeText(STR_NEWLINE);
 	writeText('Utiliza órdenes en imperativo o infinitivo: ABRE PUERTA, COGER LLAVE, SUBIR, etc.');
