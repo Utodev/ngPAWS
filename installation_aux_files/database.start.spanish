@@ -1,4 +1,4 @@
-;a;a#############################################################
+;#############################################################
 ;############   ngPAWS - LIBRERIA DE INICIO 4.0  #############
 ;############              18/04/2014            #############      
 ;#############################################################
@@ -1011,7 +1011,7 @@ VACIAR _
  LET 34 &&_voc_TODO
  LET 43 &&_voc_DE
 
-SACAR _    ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+SACAR _    ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 13
 
 SACAR TODO
@@ -1089,7 +1089,7 @@ PONER _
  LET 33 &&_voc_METER
 
 
-METER _                        ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+METER _                        ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 13
 
 METER TODO
@@ -1233,14 +1233,14 @@ _    _
  EQ 33 255
  EQ 34 255
  LET 33 &&_voc_ENTRAR
- LET 46 255
+ LET 43 255
 
 _    _
  PREP FUERA
  EQ 33 255
  EQ 34 255
  LET 33 &&_voc_SALIR
- LET 46 255
+ LET 43 255
 
 ; ** Convertir MIRAR DENTRO en EXAMINAR DENTRO
 
