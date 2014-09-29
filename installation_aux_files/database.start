@@ -1,0 +1,2611 @@
+;#############################################################
+;############     ngPAWS - START DATABASE  4.0    ############
+;############              28/09/2014             ############      
+;#############################################################
+;#                                                           #
+;#               THIS DATABASE IS PUBLIC DOMAIN              # 
+;#          Created by Uto based in spanish version and      # 
+;#     released as public domain so you are able to decide   #
+;#           your game license without restrictions          #
+;#############################################################
+
+;######## DEFINITIONS ########
+
+; Sample location graphic
+;##define pic loc1.jpg 1
+
+; Sample standalone graphic
+;##define grf escene.jpg 1
+
+; Sample location music or sfx
+;##define msc loc1.ogg 1
+
+; Sample standalone music or sfx
+;##define snd sfx.aiff 2
+
+; Sample flag label
+;##define flg fDeadDragon 100
+
+; Sample generic constant value
+;##define const INITIAL_GOLD 50
+
+; Sample object label
+;##define obj oKey 3
+
+; Sample location label
+;##define loc lBridge 12
+
+; Object attributes constants
+#define const aLight = 0
+#define const aWear = 1
+#define const aContainer = 2
+#define const aNPC  =3
+#define const aConcealed = 4
+#define const aEdible = 5
+#define const aDrinkable = 6
+#define const aEnterable = 7
+#define const aFemale = 8
+#define const aLockable = 9
+#define const aLocked = 10
+#define const aMale = 11
+#define const aNeuter = 12
+#define const aOpenable = 13
+#define const aOpen = 14
+#define const aPluralName = 15
+#define const aTransparent = 16
+#define const aScenery = 17
+#define const aSupporter = 18
+#define const aSwitchable = 19
+#define const aOn = 20
+#define const aStatic = 21
+
+
+/CTL
+
+/VOC
+
+;--Movements, verbs and noun < 14--
+
+N             2        noun
+NORTH         2        noun
+S             3        noun
+SOUTH         3        noun
+E             4        noun
+ESTE          4        noun
+W             5        noun
+WEST          5        noun
+NE            6        noun
+NORTHEAST     6        noun
+NW            7        noun
+NORTHWEST     7        noun
+SE            8        noun
+SOUTHEAST     8        noun
+SW            9        noun
+SOUTHWEST     9        noun
+U             10       noun
+UP            10       noun
+D             11       noun
+DOWN          11       noun
+ENTER         12       verb
+LEAVE         13       verb
+
+;--Nouns --    <20 can be used as verbs
+;               <50 means they are proper nouns and ignored by pronoun system
+I             14       noun
+INVEN         14       noun
+INVENTORY     14       noun
+ALL           20       noun
+YOURSELF	  49       noun
+MYSELF        49       noun
+SELF          49       noun
+TORCH         50       noun
+
+
+
+;--Verbos--
+TAKE          20       verb
+PICK          20       verb
+DROP          21       verb
+REMOVE        22       verb
+SIT           23       verb
+L             24       verb
+LOOK          24       verb
+REDESCRIBE	  24       verb
+QUIT          25       verb
+SAVE          26       verb
+LOAD          27       verb
+RAMSAVE       28       verb
+RAMLOAD       29       verb
+EXAMINE       30       verb
+REGISTER      30       verb 
+EX            30       verb
+SAY           31       verb
+THROW         32       verb
+PUSH          33       verb
+HELP          34       verb
+ROTATE        35       verb
+TURN          35       verb
+SHOW          36       verb
+LISTEN		  37	   verb
+HEAR          37	   verb
+EAT           38       verb
+SWALLOW       38       verb
+INGEST        38       verb
+CHEW		  38	   verb	
+DRINK         39       verb
+TOUCH         40       verb
+PAT           40       verb
+EXITS         41       verb
+X             41       verb
+SMELL         42       verb
+SNIFF         42       verb
+WAIT          43       verb
+Z             43       verb
+SING          44       verb
+JUMP          45       verb
+ATTACK        46       verb
+KILL          46       verb
+FIGHT         46       verb
+PUNCH		  46       verb
+HIT           46       verb	
+KICK          47       verb
+PEE           47       verb
+PULL          48       verb
+DRAG          48       verb
+SHAKE         49       verb
+MOVE          49       verb
+BURP		  50	   verb
+DIG           51       verb
+CUT           52       verb
+LOCK          53       verb
+TIE           54       verb
+FILL          55       verb
+SWIM          56       verb
+CLIMB         57       verb
+UNLOCK        58       verb
+PRAY          59       verb
+THINK         60       verb
+SLEEP         61       verb
+REST          61       verb
+SNORR         61       verb
+KISS          62       verb
+LICK          63       verb
+TASTE         63       verb
+OPEN          64       verb
+CLOSE         65       verb
+ACTIVATE      66       verb
+DEACTIVATE    67       verb
+TRANSCRIP     68       verb
+TRANSCRIPT    68       verb
+BREAK         69       verb
+DESTROY       69       verb
+VERSION       70       verb        
+WEAR          71       verb
+PUT           71       verb
+GIVE          72       verb
+GIFT          72       verb
+SALUTE        73       verb
+WAVE          73       verb
+INSERT        74       verb
+EXTRACT       75       verb
+SCRATCH       76       verb
+SCRAPE        76       verb
+SHOUT         77       verb
+SCREAM        77       verb
+DANCE         78       verb
+RUB           79       verb
+USE           80       verb
+HUG           81       verb
+XYZZY         82       verb
+READ          83       verb
+ASK           84       verb
+BUY           85       verb
+PURCHASE      85       verb
+EMPTY         86       verb
+WAKE          87       verb
+ROUSE         87       verb
+WASH          88       verb
+CLEAN         88       verb
+TIP           89        verb
+GO            90       verb
+WALK          90       verb
+RUN           90       verb
+HIDE          91       verb
+JOIN          92       verb 
+STICK         92       verb 
+CRY           93       verb
+REMEMBER      94       verb
+BLOW          95       verb
+UNTIE         96       verb
+SPIT          97       verb
+SWITCH        98       verb
+SUICIDE	      99       verb
+
+;--Adjectives--
+SMALL         2        adjective
+BIG           3        adjective
+OLD           4        adjective
+NEW           5        adjective
+THOUGH        6        adjective
+SOFT          7        adjective
+LONG          9        adjective
+
+;--Adverbs--
+FASTLY        2        adverb
+SLOWLY        3        adverb
+QUIETLY       4        adverb
+NOISILY       5        adverb
+CAREFULLY     6        adverb
+
+
+;--Prepositions and particles
+TO            2        preposition
+FROM          3        preposition
+OFF           4        preposition
+OF            5        preposition
+INTO          6        preposition
+IN            7        preposition
+WITH          8        preposition
+FOR           9        preposition
+OUT          10        preposition
+OVER         11        preposition
+ON           12        preposition
+AT           13        preposition
+
+
+;--Pronouns--
+IT            2        pronoun
+THEM          2        pronoun
+
+
+;--Conjunctions--
+AND           2        conjunction
+THEN          2        conjunction
+          
+
+/STX
+/0
+It's too dark to see anything.     
+
+/1
+You can see:
+/2
+/3
+/4
+/5
+/6
+Sorry? Please try other words.
+
+/7
+You can't go in that direction.
+
+/8
+Sorry?
+
+/9
+You are carrying:
+/10
+ (worn)
+/11
+nothing at all.
+
+/12
+Are you sure?
+
+/13
+Play again?       
+
+/14
+Good bye...
+/15
+OK.
+
+/16
+Press any key to continue.
+
+/17
+You have typed
+/18
+ turn
+/19
+s
+/20
+.
+
+/21
+Your score is  
+/22
+%.
+
+/23
+You are not wearing that.
+
+/24
+You are already wearing that.
+
+/25
+You already have {REF}.
+
+/26
+You can't see that here.
+
+/27
+You can't carry any more things.
+
+/28
+You don't have that.
+
+/29
+You are already wearing {OREF}.
+
+/30        
+Y
+/31        
+N
+/32
+More...
+/33
+> 
+/34        ;Empty, not used
+/35
+Time passes...
+
+/36
+You take {OREF}.
+
+/37
+You put {OREF} on.
+
+/38
+You take {OREF} off.
+
+/39
+You drop {OREF}.
+
+/40
+You can't wear {OREF}.
+
+/41
+You can't remove {OREF}.
+
+/42
+You can't remove {OREF}. Your hands are full!
+
+/43
+{OREF} weights too much.
+
+/44
+You put {OREF} into 
+/45
+{OREF} is not into  
+/46
+, 
+/47
+ y 
+/48
+.
+
+/49
+You don't have {OREF}.
+
+/50
+You are not wearing {OREF}.
+
+/51
+.
+
+/52
+That is not into 
+/53
+nothing at all
+
+/54
+File not found.
+
+/55
+File corrupt.
+
+/56
+I/O error. File not saved.
+
+/57
+Directory full.
+
+/58
+Disk full.
+
+/59
+Invalid file name.
+
+/60
+File name: 
+/61
+
+
+/62
+Sorry? Please try other words.
+
+/63 
+Here 
+/64
+you can see
+/65
+you can see
+/66
+inside you see
+/67
+on top you see
+/MTX
+/0
+The raft is empty!
+
+
+/1000
+Visible exits: 
+/1001
+There are not visible exits.
+/1002
+/1003
+/1004
+{ACTION|north|north}
+/1005
+{ACTION|south|south}
+/1006
+{ACTION|east|east}
+/1007
+{ACTION|west|west}
+/1008
+{ACTION|northeast|northeast}
+/1009
+{ACTION|northwest|northwest}
+/1010
+{ACTION|southeast|southeast}
+/1011
+{ACTION|southwest|southwest}
+/1012
+{ACTION|up|up}
+/1013
+{ACTION|down|down}
+/1014
+{ACTION|enter|enter}
+/1015
+{ACTION|leave|leave}
+/OTX
+/0
+a torch
+/LTX
+/0
+You are in a small raft floating in open sea. The shiny {INK|yellow|amarillo} sun starts to affect your skin. You see
+a dark fin running in circles around the raft in the clear {PAPER|blue|{INK|white|azules}} water.
+
+
+/CON
+; Samples
+; N        4
+; E        2
+
+
+
+/OBJ
+;obj#  loc          weight   noun    adject      attributes
+;      ini              
+
+/0     252          1        TORCH   _           ATTR aLight
+
+  
+; Important: Remember if you create an object with the Supporter or Container attributes, you have to leave the room with same number
+;            free cause it will be used as location for objects you put into the container or over the supporter.
+
+
+/PRO 0
+
+_ _
+ HOOK "RESPONSE_START" ; Callback to  hook system, it does nothing by default but some plugin library would not work if deleted.
+
+; ##################################  MULTIPLE ACTIONS  ###################################
+; #                                                                                       #
+; #  These entries use a DOALL loop to perform actions over all objects found, so they    #
+; #  should be at the beginning of reponse process and specially before any other entry   #
+; #  so even custom entries made by developer are applied.                                #
+; #                                                                                       #
+; #########################################################################################
+
+
+;---------- DOALL ACTION TWEAKS -------------
+
+
+; ** TAKE ALL FROM --> EXTRACT ALL FROM
+TAKE ALL  
+ PREP FROM
+ LET 33 &&_voc_EXTRACT
+
+; ** EMPTY xxxx --> EXTRACT ALL FROM
+EMPTY _                                
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ COPYFF 34 44 
+ COPYFF 35 45
+ LET 33 &&_voc_EXTRACT
+ LET 34 &&_voc_ALL
+ LET 43 &&_voc_FROM 
+
+
+; ** HIDE xxx INTO yyy  --> INSERT xxxx INTO yyyy
+HIDE _
+ NOTEQ 51 255
+ PRESENT @51
+ PREP INTO
+ WHATOX2 13
+ NOTEQ 13 255   ; Is an object
+ PRESENT @13
+ LET 33 &&_voc_INSERT
+ 
+
+; ** PUT xxx ON yyy --> INSERT xxxx INTO Y
+PUT _
+ NOTEQ 51 255
+ PRESENT @51
+ PREP ON
+ LET 43 &&_voc_INTO
+ LET 33 &&_voc_INSERT
+
+
+INSERT _  ; Copies in flag 13 the number of the object referenced by noun 2 (or 255 if no noun 2)
+ WHATOX2 13
+
+EXTRACT _    ; Copies in flag 13 the number of the object referenced by noun 2 (or 255 if no noun 2)
+ WHATOX2 13 
+
+
+
+;---------- DOALL GENERAL RESPONSES ----------
+TAKE ALL
+ ISNOTLIGHT  ; there is no light
+ WRITELN "You can't see anything."
+ DONE
+
+TAKE ALL
+ OBJAT @38 13
+ ZERO 13  ; no objects at that location
+ WRITELN "There's nothing here."
+ DONE
+
+TAKE ALL
+ DOALL HERE
+
+
+DROP ALL
+ OBJAT 254 13
+ ZERO 13  ; nothing carried
+ WRITELN "You are not carrying anything."
+ DONE
+
+DROP ALL
+ DOALL CARRIED
+
+EXTRACT ALL   ; Object contaniner absent
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ ABSENT @13 
+ WRITELN "You can't see that here."
+ DONE
+
+EXTRACT ALL  ; Object supporter absent
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ ABSENT @13
+ WRITELN "You can't see that here."
+ DONE
+
+EXTRACT ALL ; Object container empty
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ PRESENT @13
+ OBJAT @13 14
+ ZERO 14
+ WRITELN "There's nothing in there."
+ DONE
+
+EXTRACT ALL ; object supporter empty
+ PREP DE
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ PRESENT @13
+ OBJAT @13 14
+ ZERO 14
+ WRITELN "There's nothing there."
+ DONE
+ 
+EXTRACT ALL  ; Success for containers
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ PRESENT @13
+ DOALL @13
+
+EXTRACT ALL ; Success for supporters
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ PRESENT @13
+ DOALL @13
+
+
+
+INSERT ALL ; object container absent
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ ABSENT @13
+ WRITELN "You can't see that here."
+ DONE
+
+INSERT ALL ; object supporter absent
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ ABSENT @13
+ WRITELN "You can't see that here."
+ DONE
+
+
+INSERT ALL ; Object container carried but nothing else 
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ CARRIED @13
+ OBJAT 254 14
+ EQ 14 1  ; only container carried
+ WRITELN "There's nothing you can put into that."
+ DONE
+
+INSERT ALL ; Object supporter carried but nothing else
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter
+ CARRIED @13
+ OBJAT 254 14  
+ EQ 14 1   ; only supporter carried
+ WRITELN "There's nothing you can put on that."
+ DONE
+
+INSERT ALL ; Object container in current location but nothing carried
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14 
+ WRITELN "There's nothing you can put into that."
+ DONE
+
+INSERT ALL ; Object supporter in current location but nothing carried
+ PREP EN
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14  
+ WRITELN "There's nothing you can put on that."
+ DONE
+
+
+INSERT ALL  ; Success object container
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aContainer 
+ PRESENT @13
+ DOALL CARRIED
+
+INSERT ALL ; Success object supporter
+ PREP INTO
+ NOTEQ 13 255   
+ ONOTZERO @13 aSupporter 
+ PRESENT @13
+ DOALL CARRIED
+
+
+REMOVE ALL
+ OBJAT 253 13
+ ZERO 13  
+ WRITELN "You are wearing nothing you can remove."
+ DONE
+
+REMOVE ALL
+ DOALL WORN 
+
+WEAR ALL
+ OBJAT 254 13
+ ZERO 13  
+ WRITELN "You are carrying nothing you can wear."
+ DONE
+
+WEAR ALL
+ DOALL  CARRIED
+
+_ ALL
+ WRITELN "Please be more specific."
+ DONE
+
+; ################################### SYNONYM SENTENCES ###################################
+; #                                                                                       #
+; #   Converts some sentences into others so the actions finally executed are what        #
+; #   would be expected.                                                                  #
+; #                                                                                       #
+; #########################################################################################
+
+;## SYNONYMS: Miscelaneous --------------------
+
+
+GO   _        ; Convertible nouns for directions (GO NORTH --> NORTH)
+ LT 34 14
+ COPYFF 34 33
+
+_    _        ; Prep IN with no noun and no verb ---> ENTER
+ PREP IN
+ EQ 33 255
+ EQ 34 255
+ LET 33 &&_voc_ENTER
+ LET 43 255
+
+_    _ 		; Prep out with no noun and no verb --> LEAVE
+ PREP OUT
+ EQ 33 255
+ EQ 34 255
+ LET 33 &&_voc_LEAVE
+ LET 43 255
+
+;## SYNONYMS: EXAMINE  --------------------
+
+
+; ** LOOK xxx --> EXAMINE xxx
+LOOK _
+ NOTEQ 34 255			       ; noun in the LS		
+ LET 33 &&_voc_EXAMINE
+ 
+LOOK _                        ; there was an unrecognized word after LOOK
+ BNOTZERO 12 1 
+ LET 33 &&_voc_EXAMINE
+
+; **  X something-->examine something (X without anything else is shortcut for exits, X with something else is shortcut for examine)
+X _
+ EQ 34 255
+ BNOTZERO 12 1
+ LET 33 &&_voc_EXAMINE
+
+X _
+ NOTEQ 34 255
+ LET 33 &&_voc_EXAMINE
+
+;## SYNONYMS: REMOVE --------------------
+
+
+; ** TAKE OFF-->REMOVE
+TAKE _
+ PREP OFF
+ LET 33 &&_voc_REMOVE
+
+;## SYNONYMS: WEAR --------------------
+
+; ** PUT ON --> WEAR (when is a wearable object and no noun2)
+PUT _
+ PREP ON
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ ONOTZERO @51 aWear
+ LET 33 &&_voc_WEAR
+
+
+;## SYNONOYMS: INSERT -------------------
+
+; ** PUT ON --> INSERT (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
+PUT _
+ PREP ON
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_INSERT
+
+; ** PUT OVER --> INSERT (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
+PUT _
+ PREP OVER
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_INSERT
+
+; ** PUT IN --> INSERT (when noun2 exists. We don't check if it's a container, it will fail later if not) 
+PUT _
+ PREP IN
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_INSERT
+
+; ** PUT INTO --> INSERT (when noun2 exists. We don't check if it's a container, it will fail later if not) 
+PUT _
+ PREP INTO
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_INSERT
+
+; ** DROP INTO -> INSERT
+DROP _     
+ PREP INTO
+ LET 33 &&_voc_INSERT
+
+
+
+;##  SYNONYMS: EXTRACT -------------------- 
+
+
+; ** TAKE FROM -> EXTRACT
+TAKE _
+  PREP FROM
+  LET 33 &&_voc_EXTRACT
+
+; ** TAKE OUT -> EXTRACT
+TAKE _
+  PREP OUT
+  LET 33 &&_voc_EXTRACT
+
+
+
+
+;##  SYNONYMS: ATTACK -------------------- 
+
+SPIT _                      ; Spit at NPC
+ PREP AT
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC
+ LET 33 &&_voc_ATTACK
+
+THROW _                    ; Throw carried object to present NPC
+ PREP TO
+ NOTEQ 34 255
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ WHATOX2 13
+ NOTEQ 13 255   
+ PRESENT @13
+ ONOTZERO @13 aNPC
+ LET 33 &&_voc_ATTACK
+ COPYFF 44 34
+ COPYFF 45 35
+ WHATO
+
+;##  SYNONYMS: DROP --------------------  
+
+THROW _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ CARRIED @51
+ LET 33 &&_voc_DROP
+
+;##  SYNONYMS: ACTIVATE --------------------   
+
+TURN _
+ PREP ON
+ LET 33 &&_voc_ACTIVATE
+ 
+SWITCH _
+ PREP ON
+ LET 33 &&_voc_ACTIVATE
+
+;##  SYNONYMS: DEACTIVATE --------------------   
+
+TURN _
+ PREP OFF
+ LET 33 &&_voc_DEACTIVATE
+ 
+SWITCH _
+ PREP OFF
+ LET 33 &&_voc_DEACTIVATE
+
+
+_ _
+ HOOK "RESPONSE_USER"  ; Callback to hooks system, it does nothing by default but if you erase it some plugin libraries may not work.
+ 
+; ###########################      DEVELOPER CUSTOM RESPONSES    ##########################
+; #                                                                                       #
+; #   You can add your own responses below. They are placed here so they are after the    #
+; #   synonym tweaks, and after the default responses, so you can change default response.#
+; #                                                                                       #
+; #########################################################################################
+
+
+
+
+
+
+;  ********************* [[[  Place your own responses here  ]]] *********************
+
+
+
+
+
+
+; ################################## DEFAULT RESPONSES ####################################
+; #                                                                                       #
+; #   Default reponses, if you add custome reponses before this one they won't be run     #
+; #                                                                                       #
+; #########################################################################################
+
+_ _
+ HOOK "RESPONSE_DEFAULT_START"  ; Callback to hooks system, it does nothing by default but if you erase it some plugin libraries may not work.
+
+
+; ------------------ SYSTEM ACTIONS --------------------
+
+HELP _
+ HELP
+ DONE
+
+VERSION _
+ VERSION
+ DONE 
+
+XYZZY _
+ WRITELN "You've clearly played too many text games..."
+ DONE
+
+QUIT _        
+ QUIT
+ TURNS
+ END
+
+SAVE _        
+ SAVE
+
+LOAD _
+ LOAD
+
+RAMSAVE        _        
+ RAMSAVE
+ DESC
+
+RAMLOAD        _        
+ RAMLOAD       255
+ ANYKEY
+ DESC
+                
+TRANSCRIPT _
+ TRANSCRIPT 1
+ DONE
+
+EXITS _
+ EXITS @38 1000
+ NEWLINE
+ DONE
+
+REDESCRIBE _
+ DESC
+
+I        _        
+ INVEN
+
+WAIT _
+ SYSMESS 35
+ DONE 
+
+; ------------------ DIRECTION ACTIONS --------------------
+
+ENTER _                ; Enter an enterable object
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEnterable
+ GOTO @51 
+ DESC
+
+
+; ------------------ SELF ACTIONS --------------------
+
+EXAMINE SELF
+ WRITELN "You gave yourself the once over. You think you look great!"
+ DONE
+
+SUICIDE _
+ WRITELN "That's not the solution..."
+ DONE
+
+WASH SELF
+ WRITELN "You are not in that mood right now..."
+ DONE
+
+SMELL SELF
+ WRITELN "You smell nothing unexpected."
+ DONE
+
+
+TOUCH SELF
+ WRITELN "You gently touch yourself." 
+ DONE
+
+KISS SELF 
+ WRITELN "You don't feel that narcissistic today."
+ DONE
+
+LICK SELF
+ WRITELN "You taste nothing unexpected?" 
+ DONE
+
+HIDE SELF
+ WRITELN "You are not a coward." 
+ DONE
+
+; --------------- TRANSITIVE ACTIONS -------------------
+ 
+;##ACTION: TAKE -----------------------
+
+TAKE _                        ; TAKE xxxx where xxxx is a word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't take that."
+ DONE
+
+TAKE _                        ; just "TAKE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to take."
+ DONE 
+
+TAKE _ 						; Try to take static object
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ WRITELN "You better leave {OREF} alone."
+ DONE 
+
+TAKE _ 						; Generic 
+ AUTOG
+ DONE
+
+
+;##ACTION: DROP -----------------------
+
+
+DROP _                        ; Drop xxx where xxx is a word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't drop that."
+ DONE
+ 
+DROP _                        ; Just "drop"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to drop."
+ DONE 
+
+DROP _        ; Generic
+ AUTOD
+ DONE
+
+;##ACTION: REMOVE -----------------------
+
+REMOVE _                        ; Remove xxx where xx is a word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't take that off."
+ DONE
+ 
+REMOVE _                        ; just "Remove"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to remove."
+ DONE 
+ 
+REMOVE  _        ; Generic
+ AUTOR 
+ DONE
+
+;##ACTION: EXAMINE -----------------------
+
+
+EX _                        ; Ex XXX where XXX is word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't examine that."  
+ DONE
+
+EX _                        ; just "examine"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to examine."
+ DONE
+ 
+EX _                      ; examine present NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC
+ PRESENT @51
+ WRITELN "You don't see anything relevant."
+ DONE
+
+EX _                     ; examine xxx but xxxx is not object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You see nothing special in that."   
+ DONE
+
+EX _                        ; Present transaparent container object with objects inside
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aTransparent
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "You have a look at {OREF} but find nothing unexpected "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+EX _                        ; present container not openable
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ OZERO @51 aOpenable
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "You have a look at {OREF} but find nothing unexpected "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+
+EX _                        ; present container, openable, open and with objects insidecon cosas dentro
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "You have a look at {OREF} but find nothing unexpected "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+EX _                        ; Present container, openable and closed
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITE "You have a look at {OREF} but find nothing unexpected. It's closed."
+ DONE
+
+EX _                        ;  Present container, lockable and locked
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aLockable
+ OZERO @51 aLocked
+ WRITE "You have a look at {OREF} but find nothing unexpected. It's closed."
+ DONE
+
+EX _                        ; Supporter present object, with objects 
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSupporter
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "You have a look at {OREF} but find nothing unexpected "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+
+EX _                        ; It's a present object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITE "You have a look at {OREF} but find nothing unexpected."
+ DONE
+
+EX _                        ; It's an absent object
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "You don't see {OREF} over here."   
+ DONE
+
+;##ACTION: ATTACK ----------------------- 
+
+ATTACK _                        ; ATTACK xxx but xxx is not in the vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't attack that."
+ DONE
+ 
+ATTACK _                        ;Just "attack"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify who or what you want to attack."
+ DONE
+ 
+ATTACK _                         ; Attack NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "Violence is no solution."
+ DONE
+
+ 
+ATTACK _                        ; Attack somethin that is not an object nor npc
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Violence is no solution."
+ DONE
+
+ATTACK _                        ; Attack present object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Attacking {OREF} won't help."
+ DONE
+
+;##ACTION: PULL ----------------------- 
+
+
+PULL _                        ; Pull xxx where xxx is word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't pull that."
+ DONE
+
+PULL _                        ; just "Pull"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specficy what you want to pull."
+ DONE
+ 
+PULL _                        ; Pull NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "That wouldn't be good manners."
+ DONE
+
+PULL _                        ; There is a noun in the LS but is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Pulling that won't help."
+ DONE
+
+PULL _                        ; Pull present object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You pull {OREF} but nothing happens."
+ DONE
+
+;##ACTION: PUSH ----------------------- 
+
+
+PUSH _                        ; push xxx where xxx is word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't push that."
+ DONE
+
+PUSH _                        ; just "push"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specificy what you want to push."
+ DONE
+ 
+PUSH _                        ; Push NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "That wouldn't be good manners."
+ DONE
+
+PUSH _                        ; There is a noun in the LS but is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Pushing that won't help."
+ DONE
+
+PUSH _                        ; push present object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You push {OREF} but nothing happens."
+ DONE
+
+;##ACTION: ROTATE ----------------------- 
+
+ROTATE _                        ; rotate xxx where xxx is word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't turn that."
+ DONE
+
+ROTATE _                        ; just "rotate"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specficy what you want to turn."
+ DONE
+ 
+ROTATE _                        ; rotate NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "That wouldn't be good manners."
+ DONE
+
+ROTATE _                        ; There is a noun in the LS but is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Turning that won't help."
+ DONE
+
+ROTATE _                        ; rotate present object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You turn {OREF} but nothing happens."
+ DONE
+
+;##ACTION: SHOW -----------------------  
+
+
+SHOW _                        ; show xxx where xxx is word not in vocabulary
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't show that."
+ DONE
+
+SHOW _                        ; just "show"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specificy what you want to show."
+ DONE
+
+SHOW _                        ; show something that is not object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't show that."
+ DONE
+
+SHOW _                      ; show present object around
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ BZERO 12 1                  
+ WRITELN "You show {OREF}."
+ DONE
+
+SHOW _                  ; show present object to somemething that is not an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ WHATOX2 13
+ EQ 13 255
+ WRITELN "Showing {OREF} to that makes no sense."
+ DONE
+
+
+SHOW _                  ; show present object to some object that is not NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ OZERO @13 aNPC
+ WRITELN "You cannot show {OREF} to {OBJECT|13}."
+ DONE
+ 
+SHOW _                      ; show present object to present NPC
+ PREP TO
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ ONOTZERO @13 aNPC
+ WRITELN "You show {OREF} to {OBJECT|13}."
+ DONE
+
+;##ACTION: LISTEN ----------------------- 
+
+
+LISTEN _         ; to object
+ PREP TO
+ NOTEQ 44 255
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ WRITELN "You listen to {OBJECT|13} but hear nothing unexpected."
+ DONE
+
+
+LISTEN _
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't listen to that."
+ DONE
+
+LISTEN _                      ; just "listen"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "You listen but you hear nothing unexpected."
+ DONE
+
+;##ACTION: EAT ----------------------- 
+
+
+EAT _                        ; Eat xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't eat that."
+ DONE
+
+EAT _                        ; just "EAT"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to eat."
+ DONE
+ 
+EAT _                        ; eat NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "Seriously?."
+ DONE
+
+EAT _                     ; eat Static object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "That's not a good idea."
+ DONE
+ 
+EAT _                        ; eat something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't really want to eat that."
+ DONE
+
+EAT _                        ; present object but not edible
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aEdible
+ WRITELN "Eating {OREF} makes no sense."
+ DONE
+
+EAT _                        ; present edible object
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "You eat {OREF}."
+ DESTROY @51
+ DONE
+
+;##ACTION: DRINK ----------------------- 
+
+
+
+DRINK _                        ; Drink xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't drink that."
+ DONE
+
+DRINK _                        ; just "DRINK"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to drink."
+ DONE
+ 
+ 
+DRINK _                        ; drink something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't really want to drink that."
+ DONE
+
+DRINK _                        ; present object but not drinkable
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aDrinkable
+ WRITELN "Drinking {OREF} makes no sense."
+ DONE
+
+DRINK _                        ; present drinkable object
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aDrinkable
+ WRITELN "You drink {OREF}."
+ DESTROY @51
+ DONE
+
+ ;##ACTION: TOUCH ----------------------- 
+
+TOUCH _                        ; TOUCH xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't touch that."
+ DONE
+
+TOUCH _                        ; just "TOUCH"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to touch."
+ DONE
+
+TOUCH _                        ; TOUCH something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't need to touch that."
+ DONE
+
+TOUCH _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You touch {OREF} but find nothing unexpected."
+ DESTROY @51
+ DONE
+
+;##ACTION: SMELL ----------------------- 
+
+SMELL _                        ; SMELL xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't smell that."
+ DONE
+
+SMELL _                        ; just "SMELL"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to smell."
+ DONE
+
+SMELL _                        ; SMELL something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't need to smell that."
+ DONE
+
+SMELL _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You smell {OREF} but find nothing unexpected."
+ DESTROY @51
+ DONE
+
+
+;##ACTION: SHAKE ----------------------- 
+
+SHAKE _                        ; SHAKE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't shake that."
+ DONE
+
+SHAKE _                        ; just "SHAKE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to shake."
+ DONE
+
+SHAKE _                        ; SHAKE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't need to shake that."
+ DONE
+
+SHAKE _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You shake {OREF} but nothing happens."
+ DESTROY @51
+ DONE
+
+;##ACTION: DIG ----------------------- 
+
+DIG _
+ WRITELN "You are not on the mood for digging." 
+ DONE
+
+
+;##ACTION: CUT ----------------------- 
+
+CUT _                        ; CUT xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't cut that."
+ DONE
+
+CUT _                        ; just "CUT"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to cut."
+ DONE
+
+CUT _                        ; CUT something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't cut that."
+ DONE
+
+CUT _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Cutting {OREF} won't help."
+ DESTROY @51
+ DONE
+
+;##ACTION: TIE ----------------------- 
+
+TIE _                        ; TIE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't tie that."
+ DONE
+
+TIE _                        ; just "TIE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to tie."
+ DONE
+
+TIE _                        ; TIE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't tie that."
+ DONE
+
+TIE _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Trying to tie {OREF} won't help."
+ DESTROY @51
+ DONE
+
+;##ACTION: CLIMB ----------------------- 
+
+CLIMB _                        ; CLIMB xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't climb on that."
+ DONE
+
+CLIMB _                        ; just "CLIMB"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to climb on."
+ DONE
+
+CLIMB _                        ; CLIMB something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't climb on that."
+ DONE
+
+CLIMB _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Climbing on {OREF} won't help."
+ DESTROY @51
+ DONE
+
+
+;##ACTION: KISS ----------------------- 
+
+
+KISS _                        ; KISS xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't kiss that."
+ DONE
+
+KISS _                        ; just "KISS"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to kiss."
+ DONE
+ 
+KISS _                        ; kiss NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "Well... You're not sure that's a good idea."
+ DONE
+ 
+KISS _                        ; kiss something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You don't really want to kiss that."
+ DONE
+
+KISS _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You kiss {OREF}."
+ DESTROY @51
+ DONE
+
+;##ACTION: TASTE ----------------------- 
+
+TASTE _                        ; TASTE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't lick that."
+ DONE
+
+TASTE _                        ; just "TASTE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to taste."
+ DONE
+
+TASTE _                        ; TASTE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't taste that."
+ DONE
+
+TASTE _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Licking {OREF} won't help."
+ DESTROY @51
+ DONE
+
+;##ACTION: OPEN -----------------------  
+
+OPEN _                        ; OPEN xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't open that."
+ DONE
+
+OPEN _                        ; just "OPEN"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to open."
+ DONE
+
+OPEN _                        ; OPEN something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't open that."
+ DONE
+
+OPEN _                            ; Open a non openable object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aOpenable
+ WRITELN "You can't open {OREF}."
+ DONE
+
+
+OPEN _                            ; Open an openable open object 
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ WRITELN "Sadly {OREF} is already open."
+ DONE
+
+OPEN _                            ; Open an openable lockable locked closed object 
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ ONOTZERO @51 aLockable
+ ONOTZERO @51 aLocked
+ WRITELN "Sadly  {OREF} is locked."
+ DONE
+
+OPEN _                            ; Open an openable non lockable closed object (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ OZERO @51 aLockable
+ WRITELN "You open {OREF}."
+ OSET @51 aOpen
+ DONE
+
+OPEN _                            ; Open an openable lockable non locked closed object  (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ ONOTZERO @51 aLockable
+ OZERO @51 aLocked
+ WRITELN "You open {OREF}."
+ OSET @51 aOpen
+ DONE
+
+
+;##ACTION: CLOSE -----------------------  
+
+CLOSE _                        ; OPEN xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't close that."
+ DONE
+
+CLOSE _                        ; just "CLOSE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to close."
+ DONE
+
+CLOSE _                        ; CLOSE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't close that."
+ DONE
+
+CLOSE _                            ; CLOSE a non openable object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aOpenable
+ WRITELN "You can't close {OREF}."
+ DONE
+
+
+CLOSE _                            ; CLOSE an openable closed object 
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITELN "Sadly {OREF} is already closed."
+ DONE
+
+
+CLOSE _                            ; CLOSE an openable open object  (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ WRITELN "You close {OREF}."
+ OCLEAR @51 aOpen
+ DONE
+
+
+
+;##ACTION: LOCK -----------------------  
+
+LOCK _                        ; LOCK xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't lock that."
+ DONE
+
+LOCK _                        ; just "LOCK"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to lock."
+ DONE
+
+LOCK _                        ; LOCK something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't lock that."
+ DONE
+
+LOCK _                         ; Lock present non lockable object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aLockable
+ WRITELN "You can't lock {OREF}."
+ DONE
+
+LOCK _                       ; Present lockable openable open object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aLockable
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ WRITELN "You can't lock {OREF}. You have to close it first."
+ DONE
+
+LOCK _                       ; Present lockable locked object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aLocked
+ WRITELN "But {OREF} is already locked!"
+ DONE
+
+
+LOCK _                       ; Present lockable unlocked object (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aLockable
+ OZERO @51 aLocked
+ WRITELN "You lock {OREF}."
+ OSET @51 aLocked
+ DONE
+
+
+ 
+;##ACTION: UNLOCK -----------------------  
+
+UNLOCK _                        ; UNLOCK xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't unlock that."
+ DONE
+
+UNLOCK _                        ; just "UNLOCK"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to unlock."
+ DONE
+
+UNLOCK _                        ; UNLOCK something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't unlock that."
+ DONE
+
+UNLOCK _                         ; Lock present non lockable object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aLockable
+ WRITELN "You can't unlock {OREF}."
+ DONE
+
+
+UNLOCK _                       ; Present lockable unlocked object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aLocked
+ WRITELN "But {OREF} is already unlocked!"
+ DONE
+
+
+UNLOCK _                       ; Present lockable locked object (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aLockable
+ ONOTZERO @51 aLocked
+ WRITELN "You unlock {OREF}."
+ OCLEAR @51 aLocked
+ DONE
+
+;##ACTION: ACTIVATE -----------------------  
+
+ACTIVATE _                        ; ACTIVATE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't turn that on."
+ DONE
+
+ACTIVATE _                        ; just "ACTIVATE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to turn on."
+ DONE
+
+ACTIVATE _                        ; ACTIVATE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't turn that on."
+ DONE
+
+ACTIVATE _                     ; Present switchable off (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable 
+ OZERO @51 aOn
+ WRITELN "You turn {OREF} on."
+ OSET @51 aOn
+ DONE
+
+ACTIVATE _                     ; Present switchable on
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable 
+ ONOTZERO @51 aOn
+ WRITELN "But {OREF} is already on!"
+ DONE
+
+;##ACTION: DEACTIVATE -----------------------  
+
+DEACTIVATE _                        ; DEACTIVATE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't turn that off."
+ DONE
+
+DEACTIVATE _                        ; just "DEACTIVATE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to turn off."
+ DONE
+
+DEACTIVATE _                        ; DEACTIVATE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't turn that off."
+ DONE
+
+DEACTIVATE _                     ; Present switchable on (success)
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable 
+ ONOTZERO @51 aOn
+ WRITELN "You turn {OREF} off."
+ OSET @51 aOn
+ DONE
+
+DEACTIVATE _                     ; Present switchable on
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable 
+ OZERO @51 aOn
+ WRITELN "But {OREF} is already off!"
+ DONE
+
+;##ACTION: BREAK -----------------------  
+
+BREAK _                        ; BREAK xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't break that."
+ DONE
+
+BREAK _                        ; just "BREAK"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to break."
+ DONE
+
+BREAK _                        ; BREAK something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't break that."
+ DONE
+
+
+BREAK _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Breaking {OREF} won't help."
+ DESTROY @51
+ DONE
+
+;##ACTION: WEAR -----------------------  
+
+WEAR _                        ; WEAR xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't wear that."
+ DONE
+
+WEAR _                        ; just "WEAR"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to wear."
+ DONE
+
+WEAR _                        ; WEAR something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't wear that."
+ DONE
+
+WEAR _
+ AUTOW
+ DONE
+
+;##ACTION: INSERT -----------------------  
+
+INSERT _                ; INSERT xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't put that there."
+ DONE
+
+INSERT  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to put there."
+ DONE
+
+INSERT _                        ; put something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't put that there."
+ DONE
+
+INSERT _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ AUTOP @13
+ DONE
+
+;##ACTION: GIVE -----------------------  
+
+GIVE _                ; GIVE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't give that."
+ DONE
+
+GIVE  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to give."
+ DONE
+
+GIVE _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't give that."
+ DONE
+
+GIVE _                        ; give to unknown
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ WRITELN "Please specify who do you want to give {OREF} to."
+ DONE
+
+GIVE _                        ; give to non NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ WHATOX2 13
+ PRESENT @13
+ OZERO @13 aNPC
+ WRITELN "You can't give {OREF} to that."
+ DONE
+
+GIVE _                        ; give to NPC
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ WHATOX2 13
+ PRESENT @13
+ ONOTZERO @13 aNPC
+ WRITELN "You try to give {OREF} to {OBJECT|13} but you are ignored."
+ DONE
+
+;##ACTION: EXTRACT -----------------------  
+
+EXTRACT _                ; EXTRACT xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't take that."
+ DONE
+
+EXTRACT  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to pick."
+ DONE
+
+EXTRACT _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't take that."
+ DONE
+
+EXTRACT _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ AUTOT @13
+ DONE 
+
+;##ACTION: USE -----------------------  
+
+USE _                ; USE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't use that."
+ DONE
+
+USE  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to use."
+ DONE
+
+USE _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Please be more specific. How do you want to use that?"
+ DONE
+
+
+USE _                        ; something that is an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Please be more specific. How do you want to use {OREF}?"
+ DONE
+
+;##ACTION: WASH -----------------------  
+
+WASH _                ; WASH xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't wash that."
+ DONE
+
+WASH  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to wash."
+ DONE
+
+WASH _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't wash that."
+ DONE
+
+
+WASH _                        ; something that is an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You see no point in washing {OREF}."
+ DONE
+
+
+;##ACTION: BLOW -----------------------  
+
+BLOW _                ; BLOW xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't blow that."
+ DONE
+
+BLOW  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to blow."
+ DONE
+
+BLOW _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You blow but nothing unexpected happens."
+ DONE
+
+
+BLOW _                        ; something that is an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You blow {OREF}, nothing unexpected happens."
+ DONE
+
+;##ACTION: UNTIE ----------------------- 
+
+UNTIE _                        ; UNTIE xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't untie that."
+ DONE
+
+UNTIE _                        ; just "UNTIE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to untie."
+ DONE
+
+UNTIE _                        ; UNTIE something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't untie that."
+ DONE
+
+UNTIE _                        ; present  object
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You don't see any point or sense in untiying {OREF}."
+ DESTROY @51
+ DONE
+
+ ;##ACTION: JOIN -------------------- 
+
+JOIN _                        ; JOIN xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't join that with anything."
+ DONE
+
+JOIN _                        ; just "UNTIE"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to join."
+ DONE
+
+JOIN _                        ; JOIN something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't join anything with that."
+ DONE
+
+JOIN _                        ; present  object but no second noun
+ NOTEQ 51 255
+ PRESENT @51
+ EQ 44 255
+ WRITELN "Please specify what do you want to join {OREF} with."
+ DONE
+
+JOIN _                        ; present  object but no second object
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ WHATOX2 13
+ EQ 13 255
+ WRITELN "You can't join {OREF} with that."
+ DONE
+
+JOIN _  ; present  object but and second object
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ WRITELN "You see no point in joining {OREF} with {OBJECT|13}."
+ DONE
+
+;##ACTION: RUB -----------------------  
+
+RUB _                ; RUB xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't rub that."
+ DONE
+
+RUB  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to rub."
+ DONE
+
+RUB _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You see no point in rubbing that."
+ DONE
+
+
+RUB _                        ; something that is an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You rub {OREF} but nothing happens."
+ DONE
+
+;##ACTION: SCRATCH -----------------------  
+
+SCRATCH _                ; SCRATCH xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't scratch that."
+ DONE
+
+SCRATCH  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to scratch."
+ DONE
+
+SCRATCH _                        ; something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You see no point in scratching that."
+ DONE
+
+
+SCRATCH _                        ; something that is an object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Scratching {OREF} won't help."
+ DONE
+
+; ----------------- EMOTE ACTIONS -------------------
+
+
+SIT _
+ WRITELN "You are not interested in sitting down right now."
+ DONE
+
+WAKE _
+ WRITELN "You're not sleeping."
+ DONE
+
+SING _
+ WRITELN "You sing a nice serenade." 
+ DONE
+
+JUMP _
+ WRITELN "You jump on the spot." 
+ DONE
+
+PEE _
+ WRITELN "You don't need to do that right now." 
+ DONE
+
+BURP _
+ WRITELN "You don't need to do such a thing right now." 
+ DONE
+
+SPIT _             
+ BZERO 12 1
+ EQ 34 255
+ WRITELN "You spit."
+ DONE
+
+PRAY _
+ WRITELN "You say a prayer." 
+ DONE
+
+REST _
+ WRITELN "You are not that tired." 
+ DONE
+
+SHOUT _
+ BZERO 12 1
+ EQ 34 255
+ WRITELN "You shout."
+ DONE
+
+CRY _
+ WRITELN "You cry."
+ DONE
+
+DANCE _
+ BZERO 12 1
+ EQ 34 255
+ WRITELN "You dance."
+ DONE
+
+SALUTE _
+ BZERO 12 1
+ EQ 34 255
+ WRITELN "You wave." 
+ DONE
+
+THINK _
+ WRITELN "You think about life."
+ DONE
+
+REMEMBER _
+ WRITELN "You try to remember something, but you are not successful."
+ DONE
+
+
+; ----------------- DIRECTION ACTIONS [2] -------------------
+
+
+GO _                        ; go xxx but xxx not recognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't go in that direction."
+ DONE
+ 
+GO _                        ; just "GO"
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify where do you want to go."
+ DONE 
+
+GO _                        ; go to non object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You see no point in going close to that."
+ DONE
+
+GO _                        ; present object
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "You see no point in going close to {OREF}."
+ DONE
+
+;########## EXTENDED "YOU CAN'T GO IN THAT DIRECTION" FUNCTION ####################
+ 
+_               _     LT 33 14
+                      MOVE 38
+                      DESC
+
+_               _     LT 33 14
+                      PLUS 33 1002
+                      WRITE "You can't go "
+                      MES @33
+                      WRITE ". "
+                      MINUS 33 1002
+                      EXITS @38 1000
+                      NEWLINE
+                      DONE
+ 
+_ _
+ HOOK "RESPONSE_DEFAULT_END"  ;Callback to  hook system, it does nothing by default but some plugin library would not work if deleted.
+
+ 
+
+/PRO 1
+
+; ################################### PROCESO 1 ####################################
+; #                                                                                #
+; #  This process is run by ngPAWS after every location description.               #
+; #                                                                                #
+; #  The process is mainly used to add entries that will add or change information #
+; #  in current loication description. For instace to provide details about open   #     
+; #  doors, secret passages found, etc.                                            #
+; #                                                                                #
+; ##################################################################################
+
+_ _
+ HOOK "PRO1"  ;Callback to  hook system, it does nothing by default but some plugin library would not work if deleted.borrar.
+_ _
+ AT 0
+ BCLEAR 12 5                      ; English language
+_ _        
+ ISLIGHT
+ LISTOBJ                        ;Lista present objects
+ LISTNPC @38                    ;Lista present NPCs
+
+
+
+
+
+/PRO 2
+
+; ################################### PROCESO 1 ####################################
+; #                                                                                #
+; #  Process 2 is run every player turn by ngPAWS.                                 #
+; #                                                                                #
+; #  It's used mainly to implement NPC movements, and actions, and to control      #
+; #  events that are not directly controlled by the player as sinkin ships,        #     
+; #  traffic lights, explosion countdowns, etc.                                    #
+; #                                                                                #
+; ##################################################################################
+_ _
+ HOOK "PRO2" ;Callback to  hook system, it does nothing by default but some plugin library would not work if deleted.borrar. 
+
