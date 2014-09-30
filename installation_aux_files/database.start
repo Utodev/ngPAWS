@@ -608,7 +608,6 @@ EXTRACT ALL ; Object container empty
  DONE
 
 EXTRACT ALL ; object supporter empty
- PREP DE
  NOTEQ 13 255   
  ONOTZERO @13 aSupporter 
  PRESENT @13
@@ -679,7 +678,6 @@ INSERT ALL ; Object container in current location but nothing carried
  DONE
 
 INSERT ALL ; Object supporter in current location but nothing carried
- PREP EN
  NOTEQ 13 255   
  ONOTZERO @13 aSupporter 
  ISAT @13 @38
