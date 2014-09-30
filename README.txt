@@ -25,6 +25,14 @@ For detailed documentation please check github wiki:
 https://github.com/Utodev/ngPAWS/wiki
 
 
+Builds
+------
+
+For precompiled builds go to our downloads page:
+
+https://github.com/Utodev/ngPAWS/wiki/Downloads
+
+
 Reporting bugs
 --------------
 
