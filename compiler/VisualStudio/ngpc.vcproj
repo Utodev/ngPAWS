@@ -72,7 +72,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="C:\Documents and Settings\csanchez\Mis Documentos\Proyectos\pruebas\spg.exe"
+				OutputFile=".\Debug\spg.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
