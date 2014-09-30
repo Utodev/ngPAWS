@@ -6,7 +6,7 @@ OBJS = condacto.o errores.o generar.o lexico.o objetos.o procesos.o salidas.o si
 all: ngpc
 
 ngpc: $(OBJS) config.h
-	$(CC) $(OPTIONS) -o Release/ngpc $(OBJS) $(LIBS)
+	$(CC) $(OPTIONS) -o ngpc $(OBJS) $(LIBS)
 
 config.h:
 	touch config.h
