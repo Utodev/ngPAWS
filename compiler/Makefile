@@ -12,7 +12,7 @@ config.h:
 	touch config.h
 
 clean:
-	rm -f *~ *.o *.exe ngpc
+	rm -f *~ *.o ngpc.exe ngpc
 
 .c.o:
 	$(CC) $(OPTIONS) -c $?
