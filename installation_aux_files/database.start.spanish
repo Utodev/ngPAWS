@@ -4978,10 +4978,11 @@ _ _
 
 _ _
  HOOK "PRO1"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
-  		 _
+
+_ _
  AT 0
  BSET 12 5                      ; Spanish
-_        _        
+_ _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
  LISTNPC @38                    ;Lista las personas
