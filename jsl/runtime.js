@@ -131,7 +131,7 @@ function getObjectFixArticles(objno)
 	object_words.splice(0, 1);
 	if (getLang()=='EN')
 	{
-		if ((candidate!='a') && (candidate!='some')) return object_text;
+		if ((candidate!='an') && (candidate!='a') && (candidate!='some')) return object_text;
 		return 'the ' + object_words.join(' ');
 	}
 	else

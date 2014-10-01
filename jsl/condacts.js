@@ -300,7 +300,7 @@ function ACCload()
 	}
 	else
 	{
-		writeSysMessage(SYSMES_FILENOTFOUND);
+		writeSysMessage(SYSMESS_FILENOTFOUND);
 	}
 	ACCdesc();
 	focusInput();
@@ -454,7 +454,7 @@ function ACCremove(objno)
 				return;
 			}
 			setObjectLocation(objno, LOCATION_CARRIED);
-			writeSysMessage(SYSMES_YOUREMOVEOBJECT);
+			writeSysMessage(SYSMESS_YOUREMOVEOBJECT);
 			success = true;
 			break;
 
@@ -479,6 +479,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 		return;
 	}
 	weight = getLocationObjectsWeight(objno);
+	weight += getObjectWeight(objno);
 	weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
 	weight +=  getLocationObjectsWeight(LOCATION_WORN);
 	if (weight > getFlag(FLAG_MAXWEIGHT_CARRIED))
@@ -486,7 +487,6 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 		writeSysMessage(SYSMESS_WEIGHSTOOMUCH);
 		ACCnewtext();
 		ACCdone();
-		doall_flag = false;
 		return;
 	}
 	setObjectLocation(objno, LOCATION_CARRIED);
@@ -741,7 +741,7 @@ function ACClistat(locno, container_objno)   // objno is a container/suppoter nu
   if (listingContainer) 
   	{
   		writeText(' (');
-  		if (objectIsAttr(container_objno, ATTR_SUPPORTER)) writeSysMessage(SYSMES_OVER_YOUCANSEE); else if (objectIsAttr(container_objno, ATTR_CONTAINER)) writeSysMessage(SYSMES_INSIDE_YOUCANSEE);
+  		if (objectIsAttr(container_objno, ATTR_SUPPORTER)) writeSysMessage(SYSMESS_OVER_YOUCANSEE); else if (objectIsAttr(container_objno, ATTR_CONTAINER)) writeSysMessage(SYSMESS_INSIDE_YOUCANSEE);
   		continouslisting = true;  // listing contents of container always continuous
   	}
   
@@ -779,9 +779,9 @@ function ACClistnpc(locno)
   if (!npccount) return;
   setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),5)); 
   continouslisting = bittest(getFlag(FLAG_OBJECT_LIST_FORMAT),6);
-  writeSysMessage(SYSMES_NPCLISTSTART);
+  writeSysMessage(SYSMESS_NPCLISTSTART);
   if (!continouslisting) ACCnewline();
-  if (npccount==1)  writeSysMessage(SYSMES_NPCLISTCONTINUE); else writeSysMessage(SYSMES_NPCLISTCONTINUE_PLURAL);
+  if (npccount==1)  writeSysMessage(SYSMESS_NPCLISTCONTINUE); else writeSysMessage(SYSMESS_NPCLISTCONTINUE_PLURAL);
   var progresscount = 0;
   var i;
   for (i=0;i<num_objects;i++)
@@ -793,7 +793,7 @@ function ACClistnpc(locno)
   		     progresscount++
   		     if (continouslisting)
   		     {
-		  	 	if (progresscount == npccount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
+		  	 	if (progresscount <= npccount - 2) writeSysMessage(SYSMESS_LISTSEPARATOR);
   			 	if (progresscount == npccount - 1) writeSysMessage(SYSMESS_LISTLASTSEPARATOR);
   			 	if (progresscount == npccount ) writeSysMessage(SYSMESS_LISTEND);
   			 } else ACCnewline();
@@ -893,7 +893,7 @@ function ACCputin(objno, locno)
 
 	if (getObjectLocation(objno) == loc_here())
 	{
-		writeSysMessage(SYSMESS_YOUDONHAVEOBJECT);
+		writeSysMessage(SYSMESS_YOUDONTHAVEOBJECT);
 		ACCnewtext();
 		ACCdone();
 		return;
@@ -909,7 +909,7 @@ function ACCputin(objno, locno)
 		return;
 	}
 
-	writeSysMessage(SYSMESS_YOUDONHAVEOBJECT);
+	writeSysMessage(SYSMESS_YOUDONTHAVEOBJECT);
 	ACCnewtext();
 	ACCdone();
 }
