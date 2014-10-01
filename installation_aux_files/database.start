@@ -51,7 +51,7 @@
 #define const aNeuter = 12
 #define const aOpenable = 13
 #define const aOpen = 14
-#define const aPluralName = 15
+#define const aPlural = 15
 #define const aTransparent = 16
 #define const aScenery = 17
 #define const aSupporter = 18
@@ -220,6 +220,7 @@ UNTIE         96       verb
 SPIT          97       verb
 SWITCH        98       verb
 SUICIDE	      99       verb
+LAY          100       verb
 
 ;--Adjectives--
 SMALL         2        adjective
@@ -268,7 +269,7 @@ THEN          2        conjunction
 It's too dark to see anything.     
 
 /1
-You can see:
+You can see: 
 /2
 /3
 /4
@@ -321,10 +322,10 @@ Your score is
 You are not wearing that.
 
 /24
-You are already wearing that.
+You are wearing {OREF}.
 
 /25
-You already have {REF}.
+You already have {OREF}.
 
 /26
 You can't see that here.
@@ -372,7 +373,7 @@ You can't remove {OREF}.
 You can't remove {OREF}. Your hands are full!
 
 /43
-{OREF} weights too much.
+Sadly {OREF} weights too much.
 
 /44
 You put {OREF} into 
@@ -381,7 +382,7 @@ You put {OREF} into
 /46
 , 
 /47
- y 
+ and 
 /48
 .
 
@@ -428,13 +429,13 @@ Sorry? Please try other words.
 /63 
 Here 
 /64
-you can see
+you can see 
 /65
-you can see
+you can see 
 /66
-inside you see
+inside you see 
 /67
-on top you see
+on top you see 
 /MTX
 /0
 The raft is empty!
@@ -531,24 +532,6 @@ EMPTY _
  LET 43 &&_voc_FROM 
 
 
-; ** HIDE xxx INTO yyy  --> INSERT xxxx INTO yyyy
-HIDE _
- NOTEQ 51 255
- PRESENT @51
- PREP INTO
- WHATOX2 13
- NOTEQ 13 255   ; Is an object
- PRESENT @13
- LET 33 &&_voc_INSERT
- 
-
-; ** PUT xxx ON yyy --> INSERT xxxx INTO Y
-PUT _
- NOTEQ 51 255
- PRESENT @51
- PREP ON
- LET 43 &&_voc_INTO
- LET 33 &&_voc_INSERT
 
 
 INSERT _  ; Copies in flag 13 the number of the object referenced by noun 2 (or 255 if no noun 2)
@@ -794,23 +777,36 @@ PUT _
  LET 33 &&_voc_WEAR
 
 
-;## SYNONOYMS: INSERT -------------------
+;## SYNONOYMS: LAY -------------------
 
-; ** PUT ON --> INSERT (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
+; ** PUT ON --> LAY (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
 PUT _
  PREP ON
  NOTEQ 51 255
  PRESENT @51
  NOTEQ 44 255
- LET 33 &&_voc_INSERT
+ LET 33 &&_voc_LAY
 
-; ** PUT OVER --> INSERT (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
+; ** PUT OVER --> LAY (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
 PUT _
  PREP OVER
  NOTEQ 51 255
  PRESENT @51
  NOTEQ 44 255
- LET 33 &&_voc_INSERT
+ LET 33 &&_voc_LAY
+ 
+; ** DROP ON --> LAY (When noun2 exists. We don't check if object2 it's a supporter or even an object, it will fail later if not)
+DROP _
+ PREP ON
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_LAY
+ 
+
+ 
+;## SYNONOYMS: INSERT -------------------
+
 
 ; ** PUT IN --> INSERT (when noun2 exists. We don't check if it's a container, it will fail later if not) 
 PUT _
@@ -828,6 +824,15 @@ PUT _
  NOTEQ 44 255
  LET 33 &&_voc_INSERT
 
+; ** HIDE INTO --> INSERT (when noun2 exists. We don't check if it's a container, it will fail later if not) 
+HIDE _
+ PREP INTO
+ NOTEQ 51 255
+ PRESENT @51
+ NOTEQ 44 255
+ LET 33 &&_voc_INSERT
+ 
+ 
 ; ** DROP INTO -> INSERT
 DROP _     
  PREP INTO
@@ -1134,7 +1139,7 @@ EX _                        ; Present transaparent container object with objects
  ONOTZERO @51 aTransparent
  OBJAT @51 13
  NOTZERO 13
- WRITE "You have a look at {OREF} but find nothing unexpected "
+ WRITE "You have a look at {OREF} but you find nothing unexpected "
  LISTCONTENTS @51
  WRITELN "."
  DONE
@@ -1146,7 +1151,7 @@ EX _                        ; present container not openable
  OZERO @51 aOpenable
  OBJAT @51 13
  NOTZERO 13
- WRITE "You have a look at {OREF} but find nothing unexpected "
+ WRITE "You have a look at {OREF} but you find nothing unexpected "
  LISTCONTENTS @51
  WRITELN "."
  DONE
@@ -1160,7 +1165,7 @@ EX _                        ; present container, openable, open and with objects
  ONOTZERO @51 aOpen
  OBJAT @51 13
  NOTZERO 13
- WRITE "You have a look at {OREF} but find nothing unexpected "
+ WRITE "You have a look at {OREF} but you find nothing unexpected "
  LISTCONTENTS @51
  WRITELN "."
  DONE
@@ -1171,7 +1176,7 @@ EX _                        ; Present container, openable and closed
  ONOTZERO @51 aContainer
  ONOTZERO @51 aOpenable
  OZERO @51 aOpen
- WRITE "You have a look at {OREF} but find nothing unexpected. It's closed."
+ WRITE "You have a look at {OREF} but you find nothing unexpected. It's closed."
  DONE
 
 EX _                        ;  Present container, lockable and locked
@@ -1180,7 +1185,7 @@ EX _                        ;  Present container, lockable and locked
  ONOTZERO @51 aContainer
  ONOTZERO @51 aLockable
  OZERO @51 aLocked
- WRITE "You have a look at {OREF} but find nothing unexpected. It's closed."
+ WRITE "You have a look at {OREF} but you find nothing unexpected. It's closed."
  DONE
 
 EX _                        ; Supporter present object, with objects 
@@ -1189,7 +1194,7 @@ EX _                        ; Supporter present object, with objects
  ONOTZERO @51 aSupporter
  OBJAT @51 13
  NOTZERO 13
- WRITE "You have a look at {OREF} but find nothing unexpected "
+ WRITE "You have a look at {OREF} but you find nothing unexpected "
  LISTCONTENTS @51
  WRITELN "."
  DONE
@@ -1198,7 +1203,7 @@ EX _                        ; Supporter present object, with objects
 EX _                        ; It's a present object
  NOTEQ 51 255
  PRESENT @51
- WRITE "You have a look at {OREF} but find nothing unexpected."
+ WRITELN "You have a look at {OREF} but you find nothing unexpected."
  DONE
 
 EX _                        ; It's an absent object
@@ -2122,6 +2127,48 @@ WEAR _
  AUTOW
  DONE
 
+;##ACTION: LAY --------------------------
+
+LAY _                ; LAY xxx where xxx is unrecognized
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "You can't put that there."
+ DONE
+ 
+LAY  _
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Please specify what you want to put there."
+ DONE
+
+LAY _                        ; put something that is not an object
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "You can't put that there."
+ DONE
+ 
+LAY _                       ; put object into non supporter
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ OZERO @13 aSupporter
+ WRITELN "You can't put {OREF} on {OBJECT|13}."
+ DONE 
+ 
+LAY _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ AUTOP @13
+ DONE
+ 
+ 
 ;##ACTION: INSERT -----------------------  
 
 INSERT _                ; INSERT xxx where xxx is unrecognized
@@ -2141,6 +2188,44 @@ INSERT _                        ; put something that is not an object
  EQ 51 255
  WRITELN "You can't put that there."
  DONE
+ 
+INSERT _                       ; put object into non container
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ OZERO @13 aContainer
+ WRITELN "You can't put {OREF} into {OBJECT|13}."
+ DONE
+ 
+INSERT _                       ; put object into closed container
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ ONOTZERO @13 aContainer
+ ONOTZERO @13 aOpenable
+ OZERO @13 aOpen
+ WRITELN "You can't put {OREF} into {OBJECT|13}. It's closed."
+ DONE
+ 
+INSERT _                       ; put object into locked container
+ NOTEQ 34 255
+ NOTEQ 51 255
+ PRESENT @51
+ WHATOX2 13
+ NOTEQ 13 255
+ PRESENT @13
+ ONOTZERO @13 aContainer
+ ONOTZERO @13 aLockable
+ ONOTZERO @13 aLocked
+ WRITELN "You can't put {OREF} into {OBJECT|13}. It's locked."
+ DONE
+ 
 
 INSERT _
  NOTEQ 34 255
