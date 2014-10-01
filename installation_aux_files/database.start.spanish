@@ -49,7 +49,7 @@
 #define const aNeuter = 12
 #define const aOpenable = 13
 #define const aOpen = 14
-#define const aPluralName = 15
+#define const aPlural = 15
 #define const aTransparent = 16
 #define const aScenery = 17
 #define const aSupporter = 18
