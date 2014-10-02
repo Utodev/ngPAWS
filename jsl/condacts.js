@@ -902,7 +902,7 @@ function ACCputin(objno, locno)
 	if (getObjectLocation(objno) == LOCATION_CARRIED)
 	{
 		setObjectLocation(objno, locno);
-		writeSysMessage(SYSMESS_YOUPUTOBJECTIN)
+		if (objectIsAttr(locno, ATTR_SUPPORTER)) writeSysMessage(SYSMESS_YOUPUTOBJECTON); else writeSysMessage(SYSMESS_YOUPUTOBJECTIN);
 		writeText(getObjectFixArticles(locno));
 		writeSysMessage(SYSMESS_PUTINTAKEOUTTERMINATION);
 		success = true;
@@ -929,8 +929,8 @@ function ACCtakeout(objno, locno)
 
 	if (getObjectLocation(objno) == loc_here())
 	{
-		writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTOUTOF);
-		writeObject(locno);
+		if (objectIsAttr(locno, ATTR_SUPPORTER)) writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTFROM); else writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTOUTOF);
+		writeText(getObjectFixArticles(locno));
 		writeSysMessage(SYSMESS_PUTINTAKEOUTTERMINATION);
 		ACCnewtext();
 		ACCdone();
@@ -1038,8 +1038,8 @@ function ACCautot(locno)
 	objno = findMatchingObject(null); // anywhere
 	if (objno != EMPTY_OBJECT) 
 		{ 
-			writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTOUTOF);
-			writeObject(locno);
+			if (objectIsAttr(locno, ATTR_SUPPORTER)) writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTFROM); else writeSysMessage(SYSMESS_YOUCANTTAKEOBJECTOUTOF);
+			writeText(getObjectFixArticles(locno));
 			writeSysMessage(SYSMESS_PUTINTAKEOUTTERMINATION)
 			ACCnewtext();
 			ACCdone();
