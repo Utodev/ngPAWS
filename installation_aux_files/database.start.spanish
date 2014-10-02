@@ -834,7 +834,7 @@ No puedes quitarte {OREF}.  ¡Tienes demasiadas cosas en las manos!
 Desgraciadamente {OREF} pesa demasiado.
 
 /44
-Pones {OREF} en 
+Metes {OREF} en 
 /45
 Me temo que {OREF} no está en 
 /46
@@ -894,6 +894,10 @@ están
 dentro hay 
 /67
 encima hay 
+/68
+Pones {OREF} sobre 
+/69
+No puedes coger {OREF} de 
 /MTX
 /0
 La balsa está desierta!
