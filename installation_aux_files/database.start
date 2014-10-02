@@ -376,9 +376,9 @@ You can't remove {OREF}. Your hands are full!
 Sadly {OREF} weights too much.
 
 /44
-You put {OREF} into 
+You put {OREF} in 
 /45
-{OREF} is not into  
+You can't take {OREF} out of    
 /46
 , 
 /47
@@ -396,7 +396,7 @@ You are not wearing {OREF}.
 .
 
 /52
-That is not into 
+That is not in 
 /53
 nothing at all
 
@@ -436,6 +436,10 @@ you can see
 inside you see 
 /67
 on top you see 
+/68
+You put {OREF} on 
+/69
+You can't take {OREF} from 
 /MTX
 /0
 The raft is empty!
@@ -637,7 +641,7 @@ INSERT ALL ; Object container carried but nothing else
  CARRIED @13
  OBJAT 254 14
  EQ 14 1  ; only container carried
- WRITELN "There's nothing you can put into that."
+ WRITELN "There's nothing you can put in that."
  DONE
 
 INSERT ALL ; Object supporter carried but nothing else
@@ -657,7 +661,7 @@ INSERT ALL ; Object container in current location but nothing carried
  ISAT @13 @38
  OBJAT 254 14
  ZERO 14 
- WRITELN "There's nothing you can put into that."
+ WRITELN "There's nothing you can put in that."
  DONE
 
 INSERT ALL ; Object supporter in current location but nothing carried
@@ -2197,7 +2201,7 @@ INSERT _                       ; put object into non container
  NOTEQ 13 255
  PRESENT @13
  OZERO @13 aContainer
- WRITELN "You can't put {OREF} into {OBJECT|13}."
+ WRITELN "You can't put {OREF} in {OBJECT|13}."
  DONE
  
 INSERT _                       ; put object into closed container
@@ -2210,7 +2214,7 @@ INSERT _                       ; put object into closed container
  ONOTZERO @13 aContainer
  ONOTZERO @13 aOpenable
  OZERO @13 aOpen
- WRITELN "You can't put {OREF} into {OBJECT|13}. It's closed."
+ WRITELN "You can't put {OREF} in {OBJECT|13}. It's closed."
  DONE
  
 INSERT _                       ; put object into locked container
@@ -2223,7 +2227,7 @@ INSERT _                       ; put object into locked container
  ONOTZERO @13 aContainer
  ONOTZERO @13 aLockable
  ONOTZERO @13 aLocked
- WRITELN "You can't put {OREF} into {OBJECT|13}. It's locked."
+ WRITELN "You can't put {OREF} in {OBJECT|13}. It's locked."
  DONE
  
 
