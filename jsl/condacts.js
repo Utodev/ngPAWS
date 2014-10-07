@@ -44,9 +44,9 @@ function CNDpresent(objno)
 	if (loc == loc_here()) return true;
 	if (loc == LOCATION_WORN) return true;
 	if (loc == LOCATION_CARRIED) return true;
-	if ( (!bittest(getFlag(FLAG_PARSER_SETTINGS),7)) && (loc<=last_object_number)  && (CNDpresent(loc)) )  // Extended context and object in another object that is present
+	if ( (!bittest(getFlag(FLAG_PARSER_SETTINGS),7)) && (objectIsContainer(loc) || objectIsSupporter(loc))  &&  (loc<=last_object_number)  && (CNDpresent(loc)) )  // Extended context and object in another object that is present
 	{
-		if (objectIsAttr(loc,ATTR_SUPPORTER)) return true;  // On supporter
+		if (objectIsSupporter(loc)) return true;  // On supporter
 		if ( objectIsContainer(loc) && objectIsAttr(loc, ATTR_OPENABLE) && objectIsAttr(loc, ATTR_OPEN)) return true; // In a openable & open container
 		if ( objectIsContainer(loc) && (!objectIsAttr(loc, ATTR_OPENABLE)) ) return true; // In a not openable container
 	}

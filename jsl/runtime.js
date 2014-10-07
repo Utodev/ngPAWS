@@ -527,6 +527,13 @@ function objectIsContainer(objno)
 	return bittest(getObjectLowAttributes(objno), ATTR_CONTAINER);
 }
 
+function objectIsSupporter(objno)
+{
+	if (objno > last_object_number) return false;
+	return bittest(getObjectLowAttributes(objno), ATTR_SUPPORTER);
+}
+
+
 function objectIsAttr(objno, attrno)
 {
 	if (attrno > 63) return false;
@@ -541,7 +548,7 @@ function objectIsAttr(objno, attrno)
 
 function isAccesibleContainer(objno)
 {
-	if (objectIsAttr(objno, ATTR_SUPPORTER)) return true;   // supporter
+	if (objectIsSupporter(objno)) return true;   // supporter
 	if ( objectIsContainer(objno) && !objectIsAttr(objno, ATTR_OPENABLE) ) return true;  // No openable container
 	if ( objectIsContainer(objno) && objectIsAttr(objno, ATTR_OPENABLE) && objectIsAttr(objno, ATTR_OPEN)  )  return true;  // No openable & open container
 	return false;
@@ -640,7 +647,7 @@ function setReferredObject(objno)
 function getObjectWeight(objno) 
 {
 	var weight = objectsWeight[objno];
-	if ( ((objectIsContainer(objno)) || (objectIsAttr(objno, ATTR_SUPPORTER))) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
+	if ( ((objectIsContainer(objno)) || (objectIsSupporter(objno))) && (weight!=0)) // Container with zero weigth are magic boxes, anything you put inside weigths zero
   		weight = weight + getLocationObjectsWeight(objno);
 	return weight;
 }
@@ -657,7 +664,7 @@ function getLocationObjectsWeight(locno)
 			weight += objweight;
 			if (objweight > 0)
 			{
-				if (  (objectIsContainer(i)) || (objectIsAttr(i, ATTR_SUPPORTER)) )
+				if (  (objectIsContainer(i)) || (objectIsSupporter(i)) )
 				{	
 					weight += getLocationObjectsWeight(i);
 				}
