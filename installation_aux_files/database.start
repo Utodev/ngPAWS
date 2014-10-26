@@ -277,13 +277,10 @@ You can see:
 /5
 /6
 Sorry? Please try other words.
-
 /7
 You can't go in that direction.
-
 /8
 Sorry?
-
 /9
 You are carrying:
 /10
@@ -374,7 +371,7 @@ You can't remove {OREF}.
 You can't remove {OREF}. Your hands are full!
 
 /43
-Sadly {OREF} weights too much.
+Sadly {OREF} weighs too much.
 
 /44
 You put {OREF} in 
@@ -1604,7 +1601,6 @@ SMELL _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "You smell {OREF} but find nothing unexpected."
- DESTROY @51
  DONE
 
 
@@ -1632,7 +1628,6 @@ SHAKE _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "You shake {OREF} but nothing happens."
- DESTROY @51
  DONE
 
 ;##ACTION: DIG ----------------------- 
@@ -1666,7 +1661,6 @@ CUT _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "Cutting {OREF} won't help."
- DESTROY @51
  DONE
 
 ;##ACTION: TIE ----------------------- 
@@ -1693,7 +1687,6 @@ TIE _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "Trying to tie {OREF} won't help."
- DESTROY @51
  DONE
 
 ;##ACTION: CLIMB ----------------------- 
@@ -1720,7 +1713,6 @@ CLIMB _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "Climbing on {OREF} won't help."
- DESTROY @51
  DONE
 
 
@@ -1757,7 +1749,6 @@ KISS _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "You kiss {OREF}."
- DESTROY @51
  DONE
 
 ;##ACTION: TASTE ----------------------- 
@@ -1784,7 +1775,6 @@ TASTE _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "Licking {OREF} won't help."
- DESTROY @51
  DONE
 
 ;##ACTION: OPEN -----------------------  
@@ -2121,7 +2111,6 @@ BREAK _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "Breaking {OREF} won't help."
- DESTROY @51
  DONE
 
 ;##ACTION: WEAR -----------------------  
@@ -2447,7 +2436,6 @@ UNTIE _                        ; present  object
  NOTEQ 51 255
  PRESENT @51
  WRITELN "You don't see any point or sense in untiying {OREF}."
- DESTROY @51
  DONE
 
  ;##ACTION: JOIN -------------------- 
