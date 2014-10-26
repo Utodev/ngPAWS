@@ -174,4 +174,3 @@ char * BuscarPalabraPorNumero (int nPalABuscar, TiposDePalabra tipo)
   return wordFound;
 }
 
-

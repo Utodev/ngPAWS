@@ -207,3 +207,4 @@ error (tipoError tipo, int nError)
   /*Semantic error(); */
   exit (-1);
 }
+

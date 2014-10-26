@@ -9,3 +9,4 @@ tipoError;
 
 void error (tipoError, int);
 void blockError(int nError, int line);
+
