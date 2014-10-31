@@ -49,7 +49,7 @@
 #define const aNeuter = 12
 #define const aOpenable = 13
 #define const aOpen = 14
-#define const aPlural = 15
+#define const aPluralName = 15
 #define const aTransparent = 16
 #define const aScenery = 17
 #define const aSupporter = 18
@@ -834,7 +834,7 @@ No puedes quitarte {OREF}.  ¡Tienes demasiadas cosas en las manos!
 Desgraciadamente {OREF} pesa demasiado.
 
 /44
-Metes {OREF} en 
+Pones {OREF} en 
 /45
 Me temo que {OREF} no está en 
 /46
@@ -894,10 +894,6 @@ están
 dentro hay 
 /67
 encima hay 
-/68
-Pones {OREF} sobre 
-/69
-No puedes coger {OREF} de 
 /MTX
 /0
 La balsa está desierta!
@@ -4983,10 +4979,10 @@ _ _
 _ _
  HOOK "PRO1"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
 
-_ _
+_  		 _
  AT 0
  BSET 12 5                      ; Spanish
-_ _        
+_        _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
  LISTNPC @38                    ;Lista las personas
@@ -5009,5 +5005,4 @@ _ _
 _ _
  HOOK "PRO2"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
  
-
 
