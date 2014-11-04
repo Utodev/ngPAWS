@@ -8,7 +8,7 @@
 
 typedef enum
 { nada, flagno, value, percent, objno, mesno,  smesno, prono, locno, locno_, adjective,
-  adverb, preposition, noun, string } tipoArg;
+  adverb, preposition, noun, string, verb } tipoArg;
 
 typedef enum { aNada, aDescribir, aEnd, aFinDeTabla, aCondicional, aHook} tipoLimpieza;
 
