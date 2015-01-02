@@ -1465,6 +1465,9 @@ function start()
      
 
 	$(document).keydown(function(e) {
+
+		h_keydown(e); // hook
+
 		// if keypress and block displayed, close it
      	if (unblock_process!=null)
      		{
