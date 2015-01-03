@@ -2,5 +2,5 @@
 
 function ACCcommand(value)
 {
-	if (value) $('.input').show(); else $('.input').hide();
+	if (value) {$('.input').show();$('.input').focus();} else $('.input').hide();
 }
