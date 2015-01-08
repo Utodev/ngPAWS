@@ -1082,7 +1082,7 @@ function ACCpicture(picno)
 
 function ACCgraphic(option)
 {
-	graphicsON = (value==1);  
+	graphicsON = (option==1);  
 	if (!graphicsON) hideGraphicsWindow();	
 }
 
