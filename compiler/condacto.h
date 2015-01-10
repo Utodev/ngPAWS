@@ -23,6 +23,7 @@ typedef struct
 } TipoCondacto;
 
 extern TipoCondacto condactos[NUMCONDACTS + USERCONDACTS];
+extern char *path_archivo;
 
 int BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition);
 

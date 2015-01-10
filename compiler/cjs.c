@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 #include "lexico.h"
 #include "sintacti.h"
 #include "errores.h"
@@ -21,14 +22,18 @@
 
 char wd[2024];
 char * nombre_archivo;
+char * path_archivo;
 int ver_hi=0;
 int ver_lo=1;
-int ver_verylo = 2;
+int ver_verylo = 3;
+
+
 
 int main (int argc, char *argv[])
 {
   char *buscar;
   char *pgldir;
+  char *gamedir;
 
 
   if (argc < 2)
@@ -57,8 +62,24 @@ int main (int argc, char *argv[])
    }
 
    nombre_archivo = strdup(argv[1]);
-   printf("=== ngpaws javascript compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
-   printf("JS directory found at %s\n",wd);
+   
+
+   // find the path of the file to be compiled
+   gamedir = strdup(argv[1]);
+   buscar = strrchr(gamedir, PATH_SEPARATOR);
+   if (!buscar) path_archivo = strdup("."); 
+   else { 
+	   	 int l = strlen(gamedir);
+	   	 while (gamedir[l-1] != PATH_SEPARATOR) l--;
+    	 gamedir[l-1] = 0;
+	   	 path_archivo =  strdup(gamedir);
+   	};
+   
+   printf("== ARGV 0: %s", argv[0]);
+
+   printf("=== ngpaws compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
+   printf("ngPAWS directory found at %s\n",wd);
+   printf("Game directory found at %s\n",path_archivo);
    InicializaCondactos();
    prepLexico (argv[1]);
    analizar();

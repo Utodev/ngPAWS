@@ -5,11 +5,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 #if (defined(__MSDOS__))||(defined(WIN32))
 #include "VisualStudio/dirent/dirent.h"
+#define PATH_SEPARATOR "\\"
 #else
+#define PATH_SEPARATOR "/"
 #include <dirent.h>
 #endif
+
 
 #include "condacto.h"
 #include "errores.h"
@@ -302,9 +306,7 @@ BuscarCondacto (const char *nombre, TipoCondacto * condacto, int mustBeCondition
   condacto->tipoArg3 = condactos[i].tipoArg3;
   return i;
 };
-
-
-void CargarDefinicionCondacto(char *fichero)
+void CargarDefinicionCondacto(char *fichero, int isLocal)
 {
 	FILE *f;
 	char linea[32768];
@@ -318,8 +320,10 @@ void CargarDefinicionCondacto(char *fichero)
 	fullname = strcpy(fullname, "/jsl/");
 	strcat(fullname, fichero);
 
-	strcpy(libFile,wd);
+	if (!isLocal) strcpy(libFile,wd); else strcpy(libFile, path_archivo);
 	strcat(libFile,fullname);
+
+	printf("Loading file [%s]\n", libFile);
 
 	
 	f = fopen(libFile,"rt");
@@ -467,6 +471,7 @@ void CargarCondactosUsuario ()
 
    ultimo_condacto = NUMCONDACTS - 1;
 
+  // global plugins
   strcpy(libFile,wd);
   strcat(libFile,"/jsl/");
   if ((dir = opendir(libFile)) == NULL)
@@ -478,7 +483,7 @@ void CargarCondactosUsuario ()
 		if (strstr(ent->d_name,".jsp")!=NULL)
 		{
 			printf("Loading plugin %s\n",ent->d_name);
-			CargarDefinicionCondacto(ent->d_name);
+			CargarDefinicionCondacto(ent->d_name, 0);
 		}
    }
 	printf("\n");
@@ -486,9 +491,30 @@ void CargarCondactosUsuario ()
    if (closedir(dir) != 0)
    	   error(errGeneral,2);
 
+
+  // local plugins
+  strcpy(libFile, path_archivo);
+  strcat(libFile,"/jsl/");
+  if ((dir = opendir(libFile)) != NULL)
+  {
+	  printf("Local plugin folder found...\n");
+	  while ((ent = readdir(dir)) != NULL)
+	   {
+			if (strstr(ent->d_name,".jsp")!=NULL)
+			{
+				printf("Loading local plugin %s\n",ent->d_name);
+				CargarDefinicionCondacto(ent->d_name, 1);
+			}
+	   }
+	  printf("\n");
+   
+	  if (closedir(dir) != 0)
+   	   error(errGeneral,2);
+  }
+
+
    fclose(fplugin);
 }
-
 	
 
 void
