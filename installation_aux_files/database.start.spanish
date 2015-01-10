@@ -949,7 +949,7 @@ quemar tu piel mientras que una oscura aleta da vueltas en círculos en las clara
 ;obj  loc          peso       nombre        adjetivo    atributo
 ;num  ini              
 
-/0    0        1        ANTORCHA      _           ATTR aLight
+/0    0        1        ANTORCHA      _           ATTR aLight aFemale
 
   
 ; Importante: Recuerda que si creas un objeto contenedor  o soporte debes dejar sin usar la localidad de igual número
@@ -4979,10 +4979,10 @@ _ _
 _ _
  HOOK "PRO1"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
 
-_  		 _
+_ _
  AT 0
  BSET 12 5                      ; Spanish
-_        _        
+_ _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
  LISTNPC @38                    ;Lista las personas
