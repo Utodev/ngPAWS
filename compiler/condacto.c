@@ -323,8 +323,6 @@ void CargarDefinicionCondacto(char *fichero, int isLocal)
 	if (!isLocal) strcpy(libFile,wd); else strcpy(libFile, path_archivo);
 	strcat(libFile,fullname);
 
-	printf("Loading file [%s]\n", libFile);
-
 	
 	f = fopen(libFile,"rt");
 	fgets(linea,32768,f);
