@@ -748,7 +748,6 @@ function ACClistat(locno, container_objno)   // objno is a container/suppoter nu
   if (!listingContainer)
   {
     setFlag(FLAG_OBJECT_LIST_FORMAT, bitset(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
-    writeSysMessage(SYSMESS_YOUCANSEE);
     if (!continouslisting) ACCnewline();
   }
   var progresscount = 0;
@@ -804,7 +803,16 @@ function ACClistnpc(locno)
 
 function ACClistobj()
 {
-  ACClistat(loc_here());
+  locno = loc_here();
+  var objscount =  getObjectCountAt(locno);
+  var concealed_objcount = getObjectCountAtWithAttr(locno, ATTR_CONCEALED);
+  var scenery_objcount = getObjectCountAtWithAttr(locno, ATTR_SCENERY);
+  objscount = objscount - concealed_objcount - scenery_objcount;
+  if (objscount)
+  {
+	  writeSysMessage(SYSMESS_YOUCANSEE);
+      ACClistat(loc_here());
+  }
 }
 
 function ACCprocess(procno)
