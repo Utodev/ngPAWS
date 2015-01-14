@@ -632,8 +632,8 @@ function ACCswap(objno1,objno2)
 {
 	var locno1 = getObjectLocation (objno1);
 	var locno2 = getObjectLocation (objno2);
-	place (objno1,locno2);
-	place (objno2,locno1);
+	ACCplace (objno1,locno2);
+	ACCplace (objno2,locno1);
 	setReferredObject(objno2);
 }
 
