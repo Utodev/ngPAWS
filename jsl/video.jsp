@@ -3,7 +3,11 @@
 function ACCvideo(strno)
 {
 
-	str = '<video id="videoframe" height="100%" autoplay><source src="dat/' + writemessages[strno] + '" type="video/mp4"></video>'
+	str = '<video id="videoframe" height="100%" autoplay>';
+	str = str + '<source src="dat/' + writemessages[strno] + '.mp4" type="video/mp4">';
+	str = str + '<source src="dat/' + writemessages[strno] + '.webm" type="video/webm" codecs="vp8.0, vorbis">';
+	str = str + '<source src="dat/' + writemessages[strno] + '.ogg" type="video/ogg" codecs="theora, vorbis">';
+	str = str + '</video>';
 	$('.graphics').removeClass('hidden');
 	$('.graphics').addClass('half_graphics');
 	$('.text').removeClass('all_text');
