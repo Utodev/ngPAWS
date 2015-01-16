@@ -454,7 +454,7 @@ function drawPicture(picno)
 			$('.graphics').addClass('half_graphics');
 			$('.text').removeClass('all_text');
 			$('.text').addClass('half_text');
-			$('.graphics').html('<img class="location_picture" src="' +  filename + '" />');
+			$('.graphics').html('<img alt="" class="location_picture" src="' +  filename + '" />');
 			$('.location_picture').css('height','100%');
 			pictureDraw = true;
 		}
