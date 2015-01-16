@@ -1496,7 +1496,7 @@ function start()
      	
 
      	// if ESC pressed and transcript layer visible, close it
-     	if (($('.transcript_layer').css('display')  == 'block') &&  (e.keyCode == 27)  ) 
+     	if (($('.transcript_layer').css('display')  !== 'none') &&  (e.keyCode == 27)  ) 
      		{
      			$('.transcript_layer').hide();
      			e.preventDefault();
