@@ -26,7 +26,7 @@ function ACCpictureat(x,y,picno)
 			// now load new image
 			id = 'pictureat_' + picno;
 			// add new image
-			$('.graphics').append('<img id="'+id+'" style="display:none" />');
+			$('.graphics').append('<img  alt="" id="'+id+'" style="display:none" />');
 
 			var newImage = new Image();
 			newImage.onload = function ()
