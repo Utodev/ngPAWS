@@ -14,6 +14,6 @@ function ACCtextpic(picno, align)
 	}
 	filename = getResourceById(RESOURCE_TYPE_IMG, picno);
 	if (filename)
-	texto = pre + "<img class='textpic' style='"+style+"' src='"+filename+"' />" + post;
+	texto = pre + "<img alt='' class='textpic' style='"+style+"' src='"+filename+"' />" + post;
 	writeText(texto);
 }
