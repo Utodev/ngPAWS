@@ -962,7 +962,7 @@ function toParserBuffer(player_order)  // Converts a player order in a list of s
      player_order = normalize(player_order);
 	 player_order = player_order.toUpperCase();
 
-	 words = player_order.split(' ');
+	 var words = player_order.split(' ');
 	 for (var q=0;q<words.length;q++)
 	 {
 	 	words[q] = words[q].trim();
@@ -980,7 +980,7 @@ function toParserBuffer(player_order)  // Converts a player order in a list of s
 	 	}
 	 }
 
-	 output = '';
+	 var output = '';
 	 for (q=0;q<words.length;q++)
 	 {
 	 	if (words[q] == ',') output = output + ','; else output = output + words[q] + ' ';
