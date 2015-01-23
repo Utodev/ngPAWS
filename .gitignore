@@ -2,9 +2,11 @@
 ## Eclipse
 #################
 
+Release/
+backup/
+lib/
 ide/
 ide_d2l/
-newIDE/
 RAD/
 jsl/plugin.js
 *.pydevproject
