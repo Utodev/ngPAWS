@@ -1,0 +1,389 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tfmain.caption
+msgid "ngPAWS"
+msgstr ""
+
+#: tfmain.mabout.caption
+msgid "About ngPAWS"
+msgstr ""
+
+#: tfmain.mclose.caption
+msgid "&Close"
+msgstr ""
+
+#: tfmain.mcompile.caption
+msgid "&Compile"
+msgstr ""
+
+#: tfmain.mcompilerun.caption
+msgid "Compile && &Run"
+msgstr ""
+
+#: tfmain.mconnections.caption
+msgid "&Connections"
+msgstr ""
+
+#: tfmain.mcopy.caption
+msgid "&Copy"
+msgstr ""
+
+#: tfmain.mcut.caption
+msgid "C&ut"
+msgstr ""
+
+#: tfmain.mdata.caption
+msgid "Data"
+msgstr ""
+
+#: tfmain.mdefinitions.caption
+msgid "&Definitions"
+msgstr ""
+
+#: tfmain.medit.caption
+msgid "&Edit"
+msgstr ""
+
+#: tfmain.mfile.caption
+msgid "&File"
+msgstr ""
+
+#: tfmain.mfind.caption
+msgid "Find"
+msgstr ""
+
+#: tfmain.mfindnext.caption
+msgid "&Find next"
+msgstr ""
+
+#: tfmain.mhelp.caption
+msgid "&Help"
+msgstr ""
+
+#: tfmain.mhelpcontents.caption
+msgid "Help contents"
+msgstr ""
+
+#: tfmain.mlocations.caption
+msgid "&Locations"
+msgstr ""
+
+#: tfmain.mmessages.caption
+msgid "&Messages"
+msgstr ""
+
+#: tfmain.mnew.caption
+msgid "&New"
+msgstr ""
+
+#: tfmain.mnewprocess.caption
+msgid "&New Process"
+msgstr ""
+
+#: tfmain.mobjectdata.caption
+msgid "Object Da&ta"
+msgstr ""
+
+#: tfmain.mobjecttexts.caption
+msgid "&Object Texts"
+msgstr ""
+
+#: tfmain.mopen.caption
+msgid "&Open"
+msgstr ""
+
+#: tfmain.mopenall.caption
+msgid "Open &All"
+msgstr ""
+
+#: tfmain.moptions.caption
+msgid "&Options"
+msgstr ""
+
+#: tfmain.mpaste.caption
+msgid "Pas&te"
+msgstr ""
+
+#: tfmain.mprocesses.caption
+msgid "&Processes"
+msgstr ""
+
+#: tfmain.mproject.caption
+msgid "&Project"
+msgstr ""
+
+#: tfmain.mpuzzlewizard.caption
+msgid "Puzzle &wizard"
+msgstr ""
+
+#: tfmain.mquit.caption
+msgid "Quit"
+msgstr ""
+
+#: tfmain.mrecentfiles.caption
+msgid "Recent F&iles"
+msgstr ""
+
+#: tfmain.mredo.caption
+msgid "Redo"
+msgstr ""
+
+#: tfmain.mreplace.caption
+msgid "Replace"
+msgstr ""
+
+#: tfmain.msave.caption
+msgid "&Save"
+msgstr ""
+
+#: tfmain.msaveas.caption
+msgid "Save &as"
+msgstr ""
+
+#: tfmain.msystemmessages.caption
+msgid "&System messages"
+msgstr ""
+
+#: tfmain.mtools.caption
+msgid "&Tools"
+msgstr ""
+
+#: tfmain.mundo.caption
+msgid "Undo"
+msgstr ""
+
+#: tfmain.mvocabulary.caption
+msgid "&Vocabulary"
+msgstr ""
+
+#: tfmain.panelbackground.caption
+msgid "ngPAWS Editor (C) 2014 Uto"
+msgstr ""
+
+#: tfmain.pmclosetab.caption
+msgid "Close tab"
+msgstr ""
+
+#: tfmain.pmcondacthelp.caption
+msgid "Condact Help"
+msgstr ""
+
+#: tfmain.pmcopy.caption
+msgid "Copy"
+msgstr ""
+
+#: tfmain.pmcut.caption
+msgid "Cut"
+msgstr ""
+
+#: tfmain.pminterrupt.caption
+msgid "Mark as Interrupt Process"
+msgstr ""
+
+#: tfmain.pmlargerfont.caption
+msgid "Larger font"
+msgstr ""
+
+#: tfmain.pmpaste.caption
+msgid "Paste"
+msgstr ""
+
+#: tfmain.pmseparartor2.caption
+msgctxt "TFMAIN.PMSEPARARTOR2.CAPTION"
+msgid "-"
+msgstr ""
+
+#: tfmain.pmseparator1.caption
+msgctxt "tfmain.pmseparator1.caption"
+msgid "-"
+msgstr ""
+
+#: tfmain.pmsmallerfont.caption
+msgid "Smaller font"
+msgstr ""
+
+#: tfoptions.bbrowsebrowser.caption
+msgctxt "TFOPTIONS.BBROWSEBROWSER.CAPTION"
+msgid "..."
+msgstr ""
+
+#: tfoptions.bbrowsecompiler.caption
+msgctxt "TFOPTIONS.BBROWSECOMPILER.CAPTION"
+msgid "..."
+msgstr ""
+
+#: tfoptions.bbrowsepreprocessor.caption
+msgctxt "tfoptions.bbrowsepreprocessor.caption"
+msgid "..."
+msgstr ""
+
+#: tfoptions.bbrowsestartdatabase.caption
+msgctxt "TFOPTIONS.BBROWSESTARTDATABASE.CAPTION"
+msgid "..."
+msgstr ""
+
+#: tfoptions.bcancel.caption
+msgid "&Cancel"
+msgstr ""
+
+#: tfoptions.bok.caption
+msgid "&Ok"
+msgstr ""
+
+#: tfoptions.caption
+msgid "Options"
+msgstr ""
+
+#: tfoptions.checkdeletetempfiles.caption
+msgid "Delete compiler temp files"
+msgstr ""
+
+#: tfoptions.checkopenalltabs.caption
+msgid "Open all sections on load"
+msgstr ""
+
+#: tfoptions.checksavebeforerun.caption
+msgid "Save before run or compile"
+msgstr ""
+
+#: tfoptions.checkshowtoolbar.caption
+msgid "Show tool bar"
+msgstr ""
+
+#: tfoptions.checkusepreprocessor.caption
+msgid "Use preprocessor"
+msgstr ""
+
+#: tfoptions.checkwordwrap.caption
+msgid "Word wrap"
+msgstr ""
+
+#: tfoptions.comboboxlang.text
+msgid "English"
+msgstr ""
+
+#: tfoptions.labelcompiler.caption
+msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
+msgid "Compiler"
+msgstr ""
+
+#: tfoptions.labelhelpurl.caption
+msgid "Help Base URL"
+msgstr ""
+
+#: tfoptions.labelinterpreter.caption
+msgid "Browser Path"
+msgstr ""
+
+#: tfoptions.labellang.caption
+msgid "Language"
+msgstr ""
+
+#: tfoptions.labelpreprocessor.caption
+msgid "Preprocessor"
+msgstr ""
+
+#: tfoptions.labelpreprocessorparameters.caption
+msgid "Preprocessor Parameters"
+msgstr ""
+
+#: tfoptions.labelstartdatabase.caption
+msgid "Start database"
+msgstr ""
+
+#: tfoptions.tabsheetcompiler.caption
+msgctxt "tfoptions.tabsheetcompiler.caption"
+msgid "Compiler"
+msgstr ""
+
+#: tfoptions.tabsheeteditor.caption
+msgid "Editor"
+msgstr ""
+
+#: uglobals.s_browser_not_found
+msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+msgstr ""
+
+#: uglobals.s_file_loaded_warning
+msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
+msgstr ""
+
+#: uglobals.s_file_not_found
+msgid "File not found"
+msgstr ""
+
+#: uglobals.s_invalid_format
+msgid "Not a valid TXP/SCE file"
+msgstr ""
+
+#: uglobals.s_invalid_process_number
+msgid "Invalid Process Number"
+msgstr ""
+
+#: uglobals.s_invalid_section
+msgid "Invalid section"
+msgstr ""
+
+#: uglobals.s_menuitem_process
+msgid "Process &"
+msgstr ""
+
+#: uglobals.s_menuitem_response
+msgid "&Response"
+msgstr ""
+
+#: uglobals.s_quit_not_saved
+msgid ""
+"Some changes may have not been saved.\n"
+"Are you sure?\n"
+msgstr ""
+
+#: uglobals.s_section_conn
+msgid "Connections"
+msgstr ""
+
+#: uglobals.s_section_control
+msgid "Control"
+msgstr ""
+
+#: uglobals.s_section_definitions
+msgid "Definitions"
+msgstr ""
+
+#: uglobals.s_section_interrupt
+msgid "[INT]"
+msgstr ""
+
+#: uglobals.s_section_locmess
+msgid "Locations"
+msgstr ""
+
+#: uglobals.s_section_mess
+msgid "User Messages"
+msgstr ""
+
+#: uglobals.s_section_objdata
+msgid "Object Data"
+msgstr ""
+
+#: uglobals.s_section_objmess
+msgid "Objects"
+msgstr ""
+
+#: uglobals.s_section_process
+msgid "Process"
+msgstr ""
+
+#: uglobals.s_section_response
+msgid "Response"
+msgstr ""
+
+#: uglobals.s_section_sysmess
+msgid "System Messages"
+msgstr ""
+
+#: uglobals.s_section_vocabulary
+msgid "Vocabulary"
+msgstr ""
+

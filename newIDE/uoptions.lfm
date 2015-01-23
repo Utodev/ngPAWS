@@ -1,0 +1,272 @@
+object fOptions: TfOptions
+  Left = 749
+  Height = 301
+  Top = 266
+  Width = 465
+  BorderStyle = bsDialog
+  Caption = 'Options'
+  ClientHeight = 301
+  ClientWidth = 465
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '1.2.6.0'
+  object PageControlOptions: TPageControl
+    Left = 0
+    Height = 301
+    Top = 0
+    Width = 465
+    ActivePage = TabSheetEditor
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheetEditor: TTabSheet
+      Caption = 'Editor'
+      ClientHeight = 271
+      ClientWidth = 457
+      object checkWordwrap: TCheckBox
+        Left = 250
+        Height = 21
+        Top = 24
+        Width = 88
+        Caption = 'Word wrap'
+        TabOrder = 0
+      end
+      object checkShowToolbar: TCheckBox
+        Left = 250
+        Height = 21
+        Top = 56
+        Width = 104
+        Caption = 'Show tool bar'
+        TabOrder = 1
+      end
+      object checkSaveBeforeRun: TCheckBox
+        Left = 250
+        Height = 21
+        Top = 120
+        Width = 182
+        Caption = 'Save before run or compile'
+        TabOrder = 2
+      end
+      object LabelHelpURL: TLabel
+        Left = 40
+        Height = 17
+        Top = 168
+        Width = 85
+        Caption = 'Help Base URL'
+        ParentColor = False
+      end
+      object EditHelpURL: TEdit
+        Left = 40
+        Height = 25
+        Top = 192
+        Width = 397
+        TabOrder = 3
+      end
+      object LabelLang: TLabel
+        Left = 36
+        Height = 17
+        Top = 21
+        Width = 57
+        Caption = 'Language'
+        ParentColor = False
+      end
+      object ComboBoxLang: TComboBox
+        Left = 36
+        Height = 25
+        Top = 40
+        Width = 172
+        ItemHeight = 17
+        ItemIndex = 0
+        Items.Strings = (
+          'English'
+          'Spanish'
+        )
+        Style = csDropDownList
+        TabOrder = 4
+        Text = 'English'
+      end
+      object checkOpenAllTabs: TCheckBox
+        Left = 250
+        Height = 21
+        Top = 88
+        Width = 171
+        Caption = 'Open all sections on load'
+        TabOrder = 5
+      end
+    end
+    object TabSheetCompiler: TTabSheet
+      Caption = 'Compiler'
+      ClientHeight = 271
+      ClientWidth = 457
+      object LabelPreprocessor: TLabel
+        Left = 16
+        Height = 17
+        Top = 58
+        Width = 78
+        Caption = 'Preprocessor'
+        ParentColor = False
+      end
+      object EditPreprocessor: TEdit
+        Left = 16
+        Height = 25
+        Top = 75
+        Width = 165
+        TabOrder = 0
+      end
+      object BBrowsePreprocessor: TButton
+        Left = 181
+        Height = 27
+        Top = 75
+        Width = 27
+        Caption = '...'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Verdana'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+      end
+      object LabelInterpreter: TLabel
+        Left = 16
+        Height = 17
+        Top = 115
+        Width = 76
+        Caption = 'Browser Path'
+        ParentColor = False
+      end
+      object EditInterpreter: TEdit
+        Left = 16
+        Height = 25
+        Top = 132
+        Width = 165
+        TabOrder = 2
+      end
+      object BBrowseBrowser: TButton
+        Left = 181
+        Height = 27
+        Top = 132
+        Width = 27
+        Caption = '...'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Verdana'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+      end
+      object LabelStartDatabase: TLabel
+        Left = 240
+        Height = 17
+        Top = 115
+        Width = 85
+        Caption = 'Start database'
+        ParentColor = False
+      end
+      object EditStartDatabase: TEdit
+        Left = 240
+        Height = 25
+        Top = 132
+        Width = 165
+        TabOrder = 4
+      end
+      object BBrowseStartDatabase: TButton
+        Left = 404
+        Height = 27
+        Top = 129
+        Width = 27
+        Caption = '...'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Verdana'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 5
+      end
+      object LabelCompiler: TLabel
+        Left = 240
+        Height = 17
+        Top = 51
+        Width = 53
+        Caption = 'Compiler'
+        ParentColor = False
+      end
+      object checkUsePreprocessor: TCheckBox
+        Left = 16
+        Height = 21
+        Top = 16
+        Width = 127
+        Caption = 'Use preprocessor'
+        TabOrder = 6
+      end
+      object checkDeleteTempFiles: TCheckBox
+        Left = 240
+        Height = 21
+        Top = 16
+        Width = 175
+        Caption = 'Delete compiler temp files'
+        TabOrder = 7
+      end
+      object EditCompiler: TEdit
+        Left = 240
+        Height = 25
+        Top = 75
+        Width = 165
+        TabOrder = 8
+      end
+      object BBrowseCompiler: TButton
+        Left = 404
+        Height = 27
+        Top = 72
+        Width = 27
+        Caption = '...'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -15
+        Font.Name = 'Verdana'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 9
+      end
+      object EditPreprocessorParameters: TEdit
+        Left = 16
+        Height = 25
+        Top = 184
+        Width = 416
+        TabOrder = 10
+      end
+      object LabelPreprocessorParameters: TLabel
+        Left = 16
+        Height = 17
+        Top = 168
+        Width = 148
+        Caption = 'Preprocessor Parameters'
+        ParentColor = False
+      end
+    end
+  end
+  object BOk: TButton
+    Left = 248
+    Height = 25
+    Top = 264
+    Width = 75
+    Caption = '&Ok'
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object BCancel: TButton
+    Left = 362
+    Height = 25
+    Top = 264
+    Width = 75
+    Caption = '&Cancel'
+    ModalResult = 2
+    TabOrder = 2
+  end
+end
