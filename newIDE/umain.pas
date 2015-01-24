@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types;
+  ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types, UAbout;
 
 type
 
@@ -98,8 +98,8 @@ type
     procedure BRunClick(Sender: TObject);
     procedure BSaveClick(Sender: TObject);
     procedure BUndoClick(Sender: TObject);
-    procedure ControlBarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MAboutClick(Sender: TObject);
     procedure MainPopupMenuPopup(Sender: TObject);
     procedure MCloseClick(Sender: TObject);
     procedure MConnectionsClick(Sender: TObject);
@@ -135,18 +135,21 @@ type
     procedure PMPasteClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
-
+    procedure MRecentFilesClick(Sender: TObject);
 
 
   private
+    procedure OpenFile(Filename: String);
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
     procedure BuildProcessMenu(TXP: TTXP);
+    procedure BuildRecentFilesMenu();
     procedure SetEditMode(mode : boolean);
     procedure OpenTab(Section: String; Content: TStringList);
     procedure SynEditKeyPress(Sender: TObject; var Key: Char);
     procedure CloseFile();
     procedure Terminate();
     procedure SaveFile();
+
 
     { private declarations }
   public
@@ -178,9 +181,20 @@ begin
 end;
 
 
-
-procedure TfMain.ControlBarClick(Sender: TObject);
+procedure TfMain.BuildRecentFilesMenu();
+var i:integer;
+    MenuItem : TMenuItem;
 begin
+  MRecentFiles.Clear();
+
+  for i:= 0 to 9 do if Config.GetRecentFile(i)<> '' then
+  begin
+    MenuItem := TMenuItem.Create(self);
+    MenuItem.Caption:=Config.GetRecentFile(i);
+    MenuItem.OnClick:=@MRecentFilesClick;
+    MRecentFiles.Add(MenuItem);
+  end;
+  MRecentFiles.Visible :=  (MRecentFiles.Count >0);
 
 end;
 
@@ -191,7 +205,18 @@ begin
   if FileExists('CodeHighLight.ini') then CodeHighlighter.LoadHighLighter('CodeHighLight.ini');
   if FileExists('DataHighLight.ini') then DataHighlighter.LoadHighLighter('DataHighLight.ini');
   if FileExists('VocHighLight.ini') then VOCHighlighter.LoadHighLighter('VocHighLight.ini');
+  BuildRecentFilesMenu();
+end;
 
+procedure TfMain.MAboutClick(Sender: TObject);
+begin
+  fAbout.ShowModal();
+end;
+
+
+procedure TfMain.MRecentFilesClick(Sender: TObject);
+begin
+  OpenFile(TMenuItem(Sender).Caption);
 end;
 
 procedure TfMain.MainPopupMenuPopup(Sender: TObject);
@@ -434,20 +459,25 @@ begin
    MProject.Enabled := mode;
 end;
 
+procedure TfMain.OpenFile(Filename: String);
+begin
+  TXP := TTXP.Create();
+  TXP.LoadTXP(Filename);
+  fMain.Caption:= 'ngPAWS - ' + ExtractFileName(FileName);
+  Config.AddRecentFile(FileName);
+  BuildRecentFilesMenu();
+  SetEditMode(true);
+  if  Config.OpenAllTabs then MOpenAllSections.Click() else
+   begin
+     PanelBackground.Caption := S_FILE_LOADED_WARNING;
+     PanelBackground.Font.Color:= clWhite;
+   end;
+end;
+
+
 procedure TfMain.MOpenFileClick(Sender: TObject);
 begin
-  if OpenDialog.Execute then
-  begin
-    TXP := TTXP.Create();
-    TXP.LoadTXP(OpenDialog.FileName);
-    fMain.Caption:= 'ngPAWS - ' + ExtractFileName(OpenDialog.FileName);
-    SetEditMode(true);
-    if  Config.OpenAllTabs then MOpenAllSections.Click() else
-     begin
-       PanelBackground.Caption := S_FILE_LOADED_WARNING;
-       PanelBackground.Font.Color:= clWhite;
-     end;
-  end;
+  if OpenDialog.Execute then OpenFile(OpenDialog.FileName);
 end;
 
 procedure TfMain.MProcessItemClick(Sender: TObject);

@@ -4050,7 +4050,6 @@ object fMain: TfMain
       end
       object MRecentFiles: TMenuItem
         Caption = 'Recent F&iles'
-        Enabled = False
       end
       object MQuit: TMenuItem
         Caption = 'Quit'
@@ -4191,6 +4190,7 @@ object fMain: TfMain
       end
       object MAbout: TMenuItem
         Caption = 'About ngPAWS'
+        OnClick = MAboutClick
       end
     end
   end

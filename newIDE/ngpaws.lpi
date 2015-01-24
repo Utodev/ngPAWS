@@ -39,7 +39,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="9">
       <Unit0>
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -81,6 +81,22 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UGlobals"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="uabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UAbout"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="upuzzlewizard.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fPuzzleWizard"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UPuzzleWizard"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

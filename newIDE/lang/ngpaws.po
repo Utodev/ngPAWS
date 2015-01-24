@@ -1,6 +1,31 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tfabout.caption
+msgid "ngPAWS Editor"
+msgstr ""
+
+#: tfabout.label1.caption
+msgctxt "TFABOUT.LABEL1.CAPTION"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr ""
+
+#: tfabout.label2.caption
+msgid "at GitHub (GPL)"
+msgstr ""
+
+#: tfabout.labeldetails.caption
+msgid "Lazarus source code avaliable"
+msgstr ""
+
+#: tfabout.labelngithubsite.caption
+msgid "https://github.com/Utodev/ngPAWS"
+msgstr ""
+
+#: tfabout.labelngpawssite.caption
+msgid "http://www.ngpaws.com"
+msgstr ""
+
 #: tfmain.bcompile.hint
 msgid "Compile"
 msgstr ""
@@ -357,6 +382,10 @@ msgstr ""
 
 #: tfoptions.tabsheeteditor.caption
 msgid "Editor"
+msgstr ""
+
+#: tfpuzzlewizard.caption
+msgid "fPuzzleWizard"
 msgstr ""
 
 #: uglobals.s_browser_not_found

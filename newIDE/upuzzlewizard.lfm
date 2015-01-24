@@ -1,0 +1,41 @@
+object fPuzzleWizard: TfPuzzleWizard
+  Left = 503
+  Height = 485
+  Top = 202
+  Width = 662
+  Caption = 'fPuzzleWizard'
+  ClientHeight = 485
+  ClientWidth = 662
+  LCLVersion = '1.2.6.0'
+  object Memo1: TMemo
+    Left = 104
+    Height = 359
+    Top = 81
+    Width = 456
+    Lines.Strings = (
+      'Será un asistente por pasos (Siguiente, siguiente, siguietne), y se le podrá '
+      'llamar '
+      'desde la tabla de respuesats con right click. Si se hace sobre un sitio vacío '
+      'será '
+      'nuevo puzzle, si se hace sobre un sitio donde hay algo entre corchetes se '
+      'intentará'
+      'buscar un puzzle para editar, porque al final se generará un código así:'
+      ''
+      '; Automatically generated code'
+      '; Right click in the brackets to edit: [PUZZLE DE LA LLAVE: '
+      'AFBH782368A13BHCE2387823....H3947AFB3B]'
+      '; No borrar'
+      'ABRIR PUERTA'
+      ' AT 1'
+      ' CARRIED 3.'
+      '....'
+      ''
+      'Donde lo que hay entre corchetes es la definición del puzzle en XML '
+      'pasada a hexadecimal.'
+      ''
+      'Si el editor diera problemas con cadenas hex muy largas, pensarse usar '
+      'varias filas.'
+    )
+    TabOrder = 0
+  end
+end

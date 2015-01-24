@@ -22,6 +22,7 @@ private
  FShowToolBar : Boolean;
  FOpenAllTabs : Boolean;
  FLang : String;
+ FRecentFiles: Array[0..9] of string;
 public
  property CompilerPath : String read FCompilerPath write FCompilerPath;
  property PreprocessorPath : String read FPreprocessorPath write FPreprocessorPath;
@@ -40,6 +41,11 @@ public
 
  procedure LoadConfig();
  procedure SaveConfig();
+
+ procedure LoadRecentFiles();
+ procedure SaveRecentFiles();
+ function GetRecentFile(i:integer) : string;
+ procedure AddRecentFile(Filename:String);
 end;
 
 
@@ -72,6 +78,8 @@ begin
   FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
 
   FLang :=  IniFile.ReadString('Lang','Lang','EN');
+  IniFile.Free();
+  LoadRecentFiles();
 end;
 
 
@@ -99,8 +107,58 @@ begin
   IniFile.WriteBool('Options','OpenAllTabs', FOpenAllTabs);
 
   IniFile.WriteString('Lang','Lang', FLang);
+  IniFile.Free();
+  SaveRecentFiles();
 end;
 
+
+procedure TConfig.LoadRecentFiles();
+var i : integer;
+    IniFile : TIniFile;
+    ConfigFilePath : String;
+begin
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  IniFile := TIniFile.Create(ConfigFilePath);
+  for i := 0 to 9 do FRecentFiles[i] :=  IniFile.ReadString('Recent files','File' + IntToStr(i), '');
+  IniFile.Free();
+end;
+
+procedure TConfig.SaveRecentFiles();
+var i : integer;
+    IniFile : TIniFile;
+    ConfigFilePath : String;
+begin
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  IniFile := TIniFile.Create(ConfigFilePath);
+  for i := 0 to 9 do IniFile.WriteString('Recent files','File' + IntToStr(i), FRecentFiles[i]);
+  IniFile.Free();
+end;
+
+function TConfig.GetRecentFile(i:integer) : string;
+begin
+  Result := FRecentFiles[i];
+end;
+
+
+procedure TConfig.AddRecentFile(Filename:String);
+var i,j: integer;
+    found : boolean;
+begin
+  found := false;
+  for  i:= 0  to 9 do
+   if FRecentFiles[i] = Filename then
+    begin
+      found := true;
+      for j := i downto 1 do FRecentFiles[j] := FRecentFiles[j-1];
+      FRecentFiles[0] := Filename;
+    end;
+  if not found then
+   begin
+     for i:= 9 downto 1 do FRecentFiles[i] := FRecentFiles[i-1];
+     FRecentFiles[0] := Filename;
+   end;
+  SaveRecentFiles();
+end;
 
 end.
 
