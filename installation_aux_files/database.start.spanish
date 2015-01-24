@@ -969,12 +969,13 @@ _ _
  
 COGER TODO   ; COGER TODO DE --> SACAR TODO DE
  PREP DE
- LET 33 &&_voc_SACAR
+ SYNONYM SACAR _
+ 
 
 
 PONER TODO
  PREP EN
- LET 33 &&_voc_METER
+ SYNONYM METER _
 
 
 COGER TODO
@@ -1007,8 +1008,7 @@ VACIAR _
  ONOTZERO @51 aContainer
  COPYFF 34 44 
  COPYFF 35 45
- LET 33 &&_voc_SACAR
- LET 34 &&_voc_TODO
+ SYNONYM SACAR TODO
  LET 43 &&_voc_DE
 
 SACAR _    ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
@@ -1078,7 +1078,7 @@ ESCONDER _
  WHATOX2 13
  NOTEQ 13 255   ; Es un objeto
  PRESENT @13
- LET 33 &&_voc_METER
+ SYNONYM METER _
  LET 43 &&_voc_DENTRO
 
 ; ** Convertir "PONER ALGO EN..." en "METER ALGO EN..."
@@ -1086,8 +1086,8 @@ PONER _
  NOTEQ 51 255
  PRESENT @51
  PREP EN
- LET 33 &&_voc_METER
-
+ SYNONYM METER _
+ 
 
 METER _                        ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 13
@@ -1232,14 +1232,14 @@ _    _
  PREP DENTRO
  EQ 33 255
  EQ 34 255
- LET 33 &&_voc_ENTRAR
+ SYNONYM ENTRAR _
  LET 43 255
 
 _    _
  PREP FUERA
  EQ 33 255
  EQ 34 255
- LET 33 &&_voc_SALIR
+ SYNONYM SALIR _
  LET 43 255
 
 ; ** Convertir MIRAR DENTRO en EXAMINAR DENTRO
@@ -1247,39 +1247,42 @@ _    _
 MIRAR _
  NOTEQ 34 255          
  PREP DENTRO
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
+ 
 
 ; ** Convertir MIRAR "ALGO" en EXAMINAR "ALGO"
 
 MIRAR _
  NOTEQ 34 255
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
+ 
  
 MIRAR _
  BNOTZERO 12 1 
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
+ 
   
  
 ; ** Convertir REGISTRAR en EXAMINAR DENTRO 
 
 REGISTRAR _
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
  LET 43 &&_voc_DENTRO
 
 ; ** Convertir ARRANCAR en TIRAR DE
 ARRANCAR _
- LET 33 &&_voc_TIRAR
+ SYNONYM TIRAR _
  LET 43 &&_voc_DE
 
 ; **  Convertir X "ALGO" en EXAMINAR "ALGO"
 X _
  EQ 34 255
  BNOTZERO 12 1
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
 
 X _
  NOTEQ 34 255
- LET 33 &&_voc_EXAMINAR
+ SYNONYM EXAMINAR _
  
 ; ** Convertir CONSULTAR "A ALGUIEN" en PREGUNTAR "A ALGUIEN"
 
@@ -1287,7 +1290,8 @@ CONSULTAR _
  NOTEQ 34 255
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
- LET 33 &&_voc_PREGUNTAR  
+ SYNONYM PREGUNTAR _
+ 
 
  
  ; ** Convertir "HACER ALGO CON OBJETO2 A OBJETO1" en "HACER ALGO A OBJETO1 CON OBJETO2"
@@ -1370,7 +1374,8 @@ _  _
 
 COGER _
   PREP DE
-  LET 33 &&_voc_SACAR
+  SYNONYM SACAR _
+  
 
 _ _
  HOOK "RESPONSE_USER"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
@@ -1493,7 +1498,7 @@ COGER _    ; coger un objeto que está dentro de un contenedor
  WHATOX2 14
  NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
  ONOTZERO @14 aContainer ; Es un contenedor
- LET 33 _voc_SACAR ; convertimos "coger objeto de un contenedor" en "sacar objeto de un contenedor"
+ SYNONYM SACAR _ ; convertimos "coger objeto de un contenedor" en "sacar objeto de un contenedor"
 
 COGER _                        ; Hay nombre desconocido en la frase
  EQ 34 255
@@ -1524,7 +1529,7 @@ DEJAR _    ; DEJAR un objeto dentro de un contenedor     #############
  WHATOX2 14
  NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
  ONOTZERO @14 aContainer ; Es un contenedor
- LET 33 _voc_METER ; convertimos "dejar objeto en un contenedor" en "meter objeto en un contenedor"
+ SYNONYM METER _; convertimos "dejar objeto en un contenedor" en "meter objeto en un contenedor"
 
 DEJAR _                        ; Hay nombre desconocido en la frase
  EQ 34 255
@@ -4979,10 +4984,10 @@ _ _
 _ _
  HOOK "PRO1"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
 
-_ _
+_  		 _
  AT 0
  BSET 12 5                      ; Spanish
-_ _        
+_        _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
  LISTNPC @38                    ;Lista las personas
@@ -4993,9 +4998,9 @@ _ _
 
 /PRO 2
 
-; ################################### PROCESO 1 ####################################
+; ################################### PROCESO 2 ####################################
 ; #                                                                                #
-; #  El proceso 2 es ejecutado por ngPAWS cada turno.                           #
+; #  El proceso 2 es ejecutado por ngPAWS cada turno.                              #
 ; #                                                                                #
 ; #  Se usa principalmente para implementar movimientos y acciones de PSIs,        #
 ; #  eventos no controlados por el jugador como por ejemplo puentes que se hunden, #     
