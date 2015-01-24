@@ -11,7 +11,6 @@ uses
 type TConfig = class
 private
  FCompilerPath : String;
- FInterpreterPath : String;
  FPreprocessorPath : String;
  FStartDatabasePath: String;
  FPreprocessorParameters : String;
@@ -25,7 +24,6 @@ private
  FLang : String;
 public
  property CompilerPath : String read FCompilerPath write FCompilerPath;
- property InterpreterPath : String read FInterpreterPath write FInterpreterPath;
  property PreprocessorPath : String read FPreprocessorPath write FPreprocessorPath;
  property StartDatabasePath : String read FStartDatabasePath write FStartDatabasePath;
  property PreprocessorParameters : String read FPreprocessorParameters write FPreprocessorParameters;
@@ -59,7 +57,6 @@ begin
   IniFile := TIniFile.Create(ConfigFilePath);
 
   FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath','txtpaws.exe');
-  FInterpreterPath := IniFile.ReadString('Paths','InterpreterPath','C:\Program Files (x86)\Google\Chrome\Application\chrome.exe');
   FCompilerPath := IniFile.ReadString('Paths','CompilerPath','ngpc.exe');
   FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath','database.start');;
 
@@ -87,7 +84,6 @@ begin
   IniFile := TIniFile.Create(ConfigFilePath);
 
   IniFile.WriteString('Paths','PreprocessorPath', FPreprocessorPath);
-  IniFile.WriteString('Paths','InterpreterPath', FInterpreterPath);
   IniFile.WriteString('Paths','CompilerPath', FCompilerPath);
   IniFile.WriteString('Paths','StartDatabasePath', FStartDatabasePath);
 

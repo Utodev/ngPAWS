@@ -15,9 +15,9 @@ object fOptions: TfOptions
     Height = 301
     Top = 0
     Width = 465
-    ActivePage = TabSheetEditor
+    ActivePage = TabSheetCompiler
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabSheetEditor: TTabSheet
       Caption = 'Editor'
@@ -101,7 +101,7 @@ object fOptions: TfOptions
       object LabelPreprocessor: TLabel
         Left = 16
         Height = 17
-        Top = 58
+        Top = 82
         Width = 78
         Caption = 'Preprocessor'
         ParentColor = False
@@ -109,14 +109,14 @@ object fOptions: TfOptions
       object EditPreprocessor: TEdit
         Left = 16
         Height = 25
-        Top = 75
+        Top = 99
         Width = 165
         TabOrder = 0
       end
       object BBrowsePreprocessor: TButton
         Left = 181
         Height = 27
-        Top = 75
+        Top = 99
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -128,25 +128,25 @@ object fOptions: TfOptions
         ParentFont = False
         TabOrder = 1
       end
-      object LabelInterpreter: TLabel
-        Left = 16
+      object LabelStartDatabase: TLabel
+        Left = 240
         Height = 17
-        Top = 115
-        Width = 76
-        Caption = 'Browser Path'
+        Top = 139
+        Width = 85
+        Caption = 'Start database'
         ParentColor = False
       end
-      object EditInterpreter: TEdit
-        Left = 16
+      object EditStartDatabase: TEdit
+        Left = 240
         Height = 25
-        Top = 132
+        Top = 156
         Width = 165
         TabOrder = 2
       end
-      object BBrowseBrowser: TButton
-        Left = 181
+      object BBrowseStartDatabase: TButton
+        Left = 404
         Height = 27
-        Top = 132
+        Top = 153
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -158,40 +158,10 @@ object fOptions: TfOptions
         ParentFont = False
         TabOrder = 3
       end
-      object LabelStartDatabase: TLabel
-        Left = 240
-        Height = 17
-        Top = 115
-        Width = 85
-        Caption = 'Start database'
-        ParentColor = False
-      end
-      object EditStartDatabase: TEdit
-        Left = 240
-        Height = 25
-        Top = 132
-        Width = 165
-        TabOrder = 4
-      end
-      object BBrowseStartDatabase: TButton
-        Left = 404
-        Height = 27
-        Top = 129
-        Width = 27
-        Caption = '...'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -15
-        Font.Name = 'Verdana'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 5
-      end
       object LabelCompiler: TLabel
         Left = 240
         Height = 17
-        Top = 51
+        Top = 75
         Width = 53
         Caption = 'Compiler'
         ParentColor = False
@@ -199,30 +169,30 @@ object fOptions: TfOptions
       object checkUsePreprocessor: TCheckBox
         Left = 16
         Height = 21
-        Top = 16
+        Top = 40
         Width = 127
         Caption = 'Use preprocessor'
-        TabOrder = 6
+        TabOrder = 4
       end
       object checkDeleteTempFiles: TCheckBox
         Left = 240
         Height = 21
-        Top = 16
+        Top = 40
         Width = 175
         Caption = 'Delete compiler temp files'
-        TabOrder = 7
+        TabOrder = 5
       end
       object EditCompiler: TEdit
         Left = 240
         Height = 25
-        Top = 75
+        Top = 99
         Width = 165
-        TabOrder = 8
+        TabOrder = 6
       end
       object BBrowseCompiler: TButton
         Left = 404
         Height = 27
-        Top = 72
+        Top = 96
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -232,19 +202,19 @@ object fOptions: TfOptions
         Font.Quality = fqDraft
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 7
       end
       object EditPreprocessorParameters: TEdit
         Left = 16
         Height = 25
-        Top = 184
-        Width = 416
-        TabOrder = 10
+        Top = 156
+        Width = 192
+        TabOrder = 8
       end
       object LabelPreprocessorParameters: TLabel
         Left = 16
         Height = 17
-        Top = 168
+        Top = 139
         Width = 148
         Caption = 'Preprocessor Parameters'
         ParentColor = False

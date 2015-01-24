@@ -5,7 +5,7 @@ unit UMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynMemo, SynHighlighterAny, SynEdit,
+  Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
   ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types;
 
@@ -14,6 +14,18 @@ type
   { TfMain }
 
   TfMain = class(TForm)
+    BOptions: TSpeedButton;
+    BRun: TSpeedButton;
+    BCopy: TSpeedButton;
+    BReplace: TSpeedButton;
+    BPaste: TSpeedButton;
+    BCut: TSpeedButton;
+    BFind: TSpeedButton;
+    BCompile: TSpeedButton;
+    BHelp: TSpeedButton;
+    BUndo: TSpeedButton;
+    BSave: TSpeedButton;
+    BRedo: TSpeedButton;
     MainMenu: TMainMenu;
     MEdit: TMenuItem;
     MCompile: TMenuItem;
@@ -74,14 +86,30 @@ type
     SaveDialog: TSaveDialog;
     BOpen: TSpeedButton;
     VocHighlighter: TSynAnySyn;
+    procedure BCompileClick(Sender: TObject);
+    procedure BCopyClick(Sender: TObject);
+    procedure BCutClick(Sender: TObject);
+    procedure BFindClick(Sender: TObject);
+    procedure BHelpClick(Sender: TObject);
     procedure BNewClick(Sender: TObject);
     procedure BOpenClick(Sender: TObject);
+    procedure BOptionsClick(Sender: TObject);
+    procedure BPasteClick(Sender: TObject);
+    procedure BRedoClick(Sender: TObject);
+    procedure BReplaceClick(Sender: TObject);
+    procedure BRunClick(Sender: TObject);
+    procedure BSaveClick(Sender: TObject);
+    procedure BUndoClick(Sender: TObject);
     procedure ControlBarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MCloseClick(Sender: TObject);
     procedure MConnectionsClick(Sender: TObject);
+    procedure MCopyClick(Sender: TObject);
+    procedure MCutClick(Sender: TObject);
     procedure MDataClick(Sender: TObject);
     procedure MDefinitionsClick(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
+    procedure MHelpContentsClick(Sender: TObject);
     procedure MLocationsClick(Sender: TObject);
     procedure MMessagesClick(Sender: TObject);
     procedure MNewClick(Sender: TObject);
@@ -90,16 +118,17 @@ type
     procedure MOpenAllClick(Sender: TObject);
     procedure MOpenClick(Sender: TObject);
     procedure MOptionsClick(Sender: TObject);
+    procedure MPasteClick(Sender: TObject);
     procedure MQuitClick(Sender: TObject);
+    procedure MRedoClick(Sender: TObject);
     procedure mSystemMessagesClick(Sender: TObject);
     procedure MToolsClick(Sender: TObject);
+    procedure MUndoClick(Sender: TObject);
     procedure MVocabularyClick(Sender: TObject);
     procedure PanelBackgroundClick(Sender: TObject);
     procedure MProcessItemClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
-    procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
 
 
 
@@ -108,8 +137,9 @@ type
     procedure BuildProcessMenu(TXP: TTXP);
     procedure SetEditMode(mode : boolean);
     procedure OpenTab(Section: String; Content: TStringList);
-    procedure SynMemoKeyPress(Sender: TObject; var Key: Char);
-    procedure SynMemoClick(Sender: TObject);
+    procedure SynEditKeyPress(Sender: TObject; var Key: Char);
+    procedure CloseFile();
+    procedure Terminate();
 
     { private declarations }
   public
@@ -123,7 +153,7 @@ var
 
 implementation
 
-uses uoptions, UGlobals;
+uses uoptions, UGlobals,lclintf;
 
 {$R *.lfm}
 
@@ -157,9 +187,43 @@ begin
 
 end;
 
+procedure TfMain.MCloseClick(Sender: TObject);
+begin
+  if (CodeModified and (MessageDlg(S_QUIT_NOT_SAVED,mtConfirmation,[mbYes,mbNo],0)=mrYes))
+  or (not CodeModified) then CloseFile();
+end;
+
+procedure TfMain.CloseFile();
+var i : integer;
+begin
+     for i := PageControl.PageCount - 1 downto 0 do begin
+      (PageControl.Pages[i].Controls[0] as TSynEdit).Text := '';
+      (PageControl.Pages[i].Controls[0] as TSynEdit).Free();
+      PageControl.Pages[i].Free();
+     end;
+     PageControl.Visible:= false;
+     for i := MProcesses.Count -1  downto 0 do MProcesses.Items[i].Free();
+     if Assigned(TXP) then TXP.Free();
+     SetEditMode(false);
+     PanelBackground.Caption := S_COPYRIGHT;
+end;
+
 procedure TfMain.MConnectionsClick(Sender: TObject);
 begin
   OpenTab('CON',TXP.Connections);
+end;
+
+procedure TfMain.MCopyClick(Sender: TObject);
+begin
+  if PageControl.PageCount > 0 then
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CopyToClipboard();
+end;
+
+procedure TfMain.MCutClick(Sender: TObject);
+begin
+    if PageControl.PageCount > 0 then
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CutToClipboard();
+
 end;
 
 procedure TfMain.MDataClick(Sender: TObject);
@@ -177,6 +241,14 @@ begin
 
 end;
 
+procedure TfMain.MHelpContentsClick(Sender: TObject);
+var URL : String;
+begin
+  URL := config.HelpBaseURL;
+  if config.Lang='ES' then URL:= URL + '/Inicio';
+  OpenBrowser(URL);
+end;
+
 procedure TfMain.MLocationsClick(Sender: TObject);
 begin
   OpenTab('LTX',TXP.LocationTexts);
@@ -192,10 +264,70 @@ begin
   MOpen.click();
 end;
 
+procedure TfMain.BOptionsClick(Sender: TObject);
+begin
+  MOptions.Click();
+end;
+
+procedure TfMain.BPasteClick(Sender: TObject);
+begin
+  MPaste.Click();
+end;
+
+procedure TfMain.BRedoClick(Sender: TObject);
+begin
+  MRedo.Click();
+end;
+
+procedure TfMain.BReplaceClick(Sender: TObject);
+begin
+  MReplace.Click();
+end;
+
+procedure TfMain.BRunClick(Sender: TObject);
+begin
+  MCompileRun.Click();
+end;
+
+procedure TfMain.BSaveClick(Sender: TObject);
+begin
+  MSave.Click();
+end;
+
+procedure TfMain.BUndoClick(Sender: TObject);
+begin
+  MUndo.Click();
+end;
+
 procedure TfMain.BNewClick(Sender: TObject);
 var TabSheet : TTabSheet;
 begin
   MNew.click();
+end;
+
+procedure TfMain.BCutClick(Sender: TObject);
+begin
+  MCut.Click();
+end;
+
+procedure TfMain.BFindClick(Sender: TObject);
+begin
+  MFind.Click();
+end;
+
+procedure TfMain.BHelpClick(Sender: TObject);
+begin
+  MHelpContents.Click();
+end;
+
+procedure TfMain.BCopyClick(Sender: TObject);
+begin
+  MCopy.Click();
+end;
+
+procedure TfMain.BCompileClick(Sender: TObject);
+begin
+  MCompile.Click();
 end;
 
 procedure TfMain.MNewClick(Sender: TObject);
@@ -249,6 +381,16 @@ begin
    MNew.Enabled := not mode;
    MRecentFiles.Enabled:= not mode;
 
+   BSave.Visible := mode;
+   BCopy.Visible := mode;
+   BCut.Visible := mode;
+   BPaste.Visible := mode;
+   BUndo.Visible := mode;
+   BRedo.Visible := mode;
+   BCompile.Visible := mode;
+   BRun.Visible := mode;
+   BFind.Visible := mode;
+   BReplace.Visible := mode;
    MClose.Enabled:= mode;
    MProcesses.Enabled := mode;
    MData.Enabled := mode;
@@ -290,9 +432,30 @@ begin
   end;
 end;
 
+procedure TfMain.MPasteClick(Sender: TObject);
+begin
+   if PageControl.PageCount > 0 then
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).PasteFromClipboard();
+
+end;
+
+procedure TfMain.Terminate();
+begin
+   Halt(0);
+end;
+
 procedure TfMain.MQuitClick(Sender: TObject);
 begin
-  if ShowNotSaveWarning() then Halt(0);
+  if ShowNotSaveWarning() then
+  begin
+   Terminate();
+  end;
+end;
+
+procedure TfMain.MRedoClick(Sender: TObject);
+begin
+    if PageControl.PageCount > 0 then
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Redo();
 end;
 
 procedure TfMain.mSystemMessagesClick(Sender: TObject);
@@ -305,6 +468,12 @@ begin
 
 end;
 
+procedure TfMain.MUndoClick(Sender: TObject);
+begin
+    if PageControl.PageCount > 0 then
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Undo();
+end;
+
 procedure TfMain.MVocabularyClick(Sender: TObject);
 begin
   OpenTab('VOC',TXP.Vocabulary);
@@ -313,8 +482,9 @@ end;
 procedure TfMain.OpenTab(Section: String; Content: TStringList);
 var found : boolean;
     i : integer;
-    SynEdit : TSynMemo;
+    SynEdit : TSynEdit;
     TabSheet : TTabSheet;
+
 begin
   if not PageControl.Visible then PageControl.Visible:= true;
   if (Section = 'PRO 0') then Section:= 'RESP';
@@ -322,7 +492,7 @@ begin
   i := 0;
   while ((not found) and (i< PageControl.PageCount)) do
    begin
-    if (TSynMemo(PageControl.Pages[i].Controls[0]).Hint = Section) then
+    if (TSynEdit(PageControl.Pages[i].Controls[0]).Hint = Section) then
     begin
       PageControl.ActivePage := PageControl.Pages[i];
       Exit;
@@ -333,20 +503,21 @@ begin
  TabSheet := TTabSheet.Create(PageControl);
  TabSheet.PageControl := PageControl;
  TabSheet.Color := $222827;
+ TabSheet.BorderWidth:=0;
  TabSheet.Font.Color := clWhite;
  TabSheet.Hint:=Section;
  TabSheet.ShowHint:=false;
  TabSheet.Caption:=Section;
- SynEdit := TSynMemo.Create(TabSheet);
+ TabSheet.BorderWidth:=0;
+ SynEdit := TSynEdit.Create(TabSheet);
  SynEdit.Parent := TabSheet;
+ SynEdit.BorderStyle:= bsNone;
  SynEdit.Align:=alClient;
- SynEdit.OnKeyPress := @SynMemoKeyPress;
- SynEdit.OnClick := @SynMemoClick;
+ SynEdit.OnKeyPress := @SynEditKeyPress;
  SynEdit.OnKeyDown := @HelpResponse;
- SynEdit.Font.Color := clWhite;
  SynEdit.Color:=$222827;
+ SynEdit.Font.Color := clWhite;
  SynEdit.ScrollBars := ssVertical;
- SynEdit.Gutter.Visible := false;
  SynEdit.Font.Size := 13;
  SynEdit.PopupMenu := MainPopupMenu;
  SynEdit.ScrollBars := ssBoth;
@@ -354,7 +525,17 @@ begin
  SynEdit.WantTabs := true;
  SynEdit.ShowHint:= false;
  SynEdit.Hint := Section;
- SynEdit.RightEdge:=0;
+ SynEdit.RightEdge:=1024;
+ SynEdit.ScrollBars:= ssAutoBoth;
+ SynEdit.Gutter.Visible:=true;
+
+ SynEdit.Gutter.Parts.Part[1].Visible := false;
+ SynEdit.Gutter.Parts.Part[4].MarkupInfo.Background:= $222827;
+
+ SynEdit.Gutter.Parts.Part[0].Visible:= false;
+ SynEdit.Gutter.Parts.Part[2].Visible:= false;
+ SynEdit.Gutter.Parts.Part[3].Visible:= false;
+ SynEdit.LineHighlightColor.Background:= $333333;
 
  if (Section = 'VOC') then SynEdit.Highlighter := VocHighlighter else
  if (Section = 'CTL') then begin end else
@@ -367,7 +548,7 @@ begin
 end;
 
 
-procedure TfMain.SynMemoKeyPress(Sender: TObject; var Key: Char);
+procedure TfMain.SynEditKeyPress(Sender: TObject; var Key: Char);
 begin
  CodeModified:=true;
 end;
@@ -377,13 +558,10 @@ var Sel, SelLine, URL:String;
     i : integer;
     CurrentLine: integer;
 begin
-  { TODO 1 -cREVISAR : No se por qué estaba esta linea en el codigo de Delphi }
-  //(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynMemo).ActiveLineColor := $333333;
  if key <> $70 then exit; // F1
 
-
- CurrentLine :=(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynMemo).CaretY -1;
- SelLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynMemo).Lines[CurrentLine];
+ CurrentLine :=(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretY -1;
+ SelLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Lines[CurrentLine];
  if SelLine = '' then
  begin
    MHelpContents.Click();
@@ -391,13 +569,13 @@ begin
  end;
 
  Sel := '';
- i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynMemo).CaretX;
+ i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX;
  while (i>=1) and (SelLine[i]<>' ') do
   begin
    Sel := SelLine[i] + Sel;
    I := i - 1;
   end;
- i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynMemo).CaretX + 1;
+ i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX + 1;
  while (i<=Length(SelLine)) and (SelLine[i]<>' ') do
   begin
    Sel :=   Sel + SelLine[i];
@@ -408,27 +586,16 @@ begin
    if NOT (Config.HelpBaseURL[Length(Config.HelpBaseURL)] in ['/','\']) then URL := URL + '/';
    URL := URL + AnsiUpperCase(Sel);
    if (Config.Lang='ES') then URL := URL + '_ES';
-    if FileExists(Config.InterpreterPath) then OpenBrowser(URL)
-                                          else ShowMessage(S_BROWSER_NOT_FOUND);
+   OpenBrowser(URL);
 end;
 
 
-procedure TfMain.SynMemoClick(Sender: TObject);
-begin
- { TODO : ¿Que pasa con el ActiveLineColor? }
-//  (Sender as TSynMemo).ActiveLineColor := $333333;
-end;
 
 procedure TfMain.OpenBrowser(URL: String);
 begin
- { TODO : Falta el procedimiento de lanzar el navegador }
+if not OpenURL(URL) then ShowMessage(S_BROWSER_NOT_FOUND);
 end;
 
-procedure TfMain.TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-
-end;
 
 
 end.

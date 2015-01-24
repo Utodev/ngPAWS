@@ -13,7 +13,6 @@ type
   { TfOptions }
 
   TfOptions = class(TForm)
-    BBrowseBrowser: TButton;
     BBrowseCompiler: TButton;
     BBrowseStartDatabase: TButton;
     BOk: TButton;
@@ -29,7 +28,6 @@ type
     EditPreprocessorParameters: TEdit;
     EditPreprocessor: TEdit;
     EditHelpURL: TEdit;
-    EditInterpreter: TEdit;
     EditCompiler: TEdit;
     EditStartDatabase: TEdit;
     LabelPreprocessorParameters: TLabel;
@@ -37,7 +35,6 @@ type
     LabelCompiler: TLabel;
     LabelPreprocessor: TLabel;
     LabelHelpURL: TLabel;
-    LabelInterpreter: TLabel;
     LabelStartDatabase: TLabel;
     PageControlOptions: TPageControl;
     TabSheetCompiler: TTabSheet;
@@ -74,7 +71,6 @@ begin
  EditHelpURL.Text:= fMain.Config.HelpBaseURL;
  EditPreprocessor.Text:= fMain.Config.PreprocessorPath;
  EditStartDatabase.Text:= fMain.Config.StartDatabasePath;
- EditInterpreter.Text := fMain.Config.InterpreterPath;
  EditPreprocessorParameters.Text:=fMain.Config.PreprocessorParameters;
 
  if fMain.Config.Lang = 'ES' then  ComboBoxLang.ItemIndex := 1 else ComboBoxLang.ItemIndex := 0;
@@ -96,7 +92,6 @@ begin
    Config.HelpBaseURL := EditHelpURL.Text;
    Config.PreprocessorPath := EditPreprocessor.Text;
    Config.StartDatabasePath := EditStartDatabase.Text;
-   Config.InterpreterPath := EditInterpreter.Text;
    Config.PreprocessorParameters := EditPreprocessorParameters.Text;
 
    if (ComboBoxLang.ItemIndex = 1) then Config.Lang := 'ES' else Config.Lang := 'EN';

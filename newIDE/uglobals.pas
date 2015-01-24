@@ -10,6 +10,7 @@ uses
 
 CONST LF = #13#10;
 
+
 resourcestring
 
   // UMain Messages
@@ -21,6 +22,7 @@ resourcestring
   S_BROWSER_NOT_FOUND = 'Browser not found. Please check Tools/Options and set proper path for your favorite browser.';
 
   S_FILE_LOADED_WARNING = '>> File has been loaded. To open sections use the "Project" menu <<';
+  S_COPYRIGHT = 'ngPAWS Editor (C) 2015 Uto';
 
   //UTXP Messages
   S_SECTION_DEFINITIONS = 'Definitions';

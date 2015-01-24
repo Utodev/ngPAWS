@@ -1,6 +1,70 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tfmain.bcompile.hint
+msgid "Compile"
+msgstr ""
+
+#: tfmain.bcopy.hint
+msgctxt "TFMAIN.BCOPY.HINT"
+msgid "Copy"
+msgstr ""
+
+#: tfmain.bcut.hint
+msgctxt "TFMAIN.BCUT.HINT"
+msgid "Cut"
+msgstr ""
+
+#: tfmain.bfind.hint
+msgctxt "TFMAIN.BFIND.HINT"
+msgid "Find"
+msgstr ""
+
+#: tfmain.bhelp.hint
+msgid "Help"
+msgstr ""
+
+#: tfmain.bnew.hint
+msgid "New"
+msgstr ""
+
+#: tfmain.bopen.hint
+msgid "Open"
+msgstr ""
+
+#: tfmain.boptions.hint
+msgctxt "TFMAIN.BOPTIONS.HINT"
+msgid "Options"
+msgstr ""
+
+#: tfmain.bpaste.hint
+msgctxt "TFMAIN.BPASTE.HINT"
+msgid "Paste"
+msgstr ""
+
+#: tfmain.bredo.hint
+msgctxt "TFMAIN.BREDO.HINT"
+msgid "Redo"
+msgstr ""
+
+#: tfmain.breplace.hint
+msgctxt "TFMAIN.BREPLACE.HINT"
+msgid "Replace"
+msgstr ""
+
+#: tfmain.brun.hint
+msgid "Run"
+msgstr ""
+
+#: tfmain.bsave.hint
+msgid "Save"
+msgstr ""
+
+#: tfmain.bundo.hint
+msgctxt "TFMAIN.BUNDO.HINT"
+msgid "Undo"
+msgstr ""
+
 #: tfmain.caption
 msgid "ngPAWS"
 msgstr ""
@@ -50,6 +114,7 @@ msgid "&File"
 msgstr ""
 
 #: tfmain.mfind.caption
+msgctxt "tfmain.mfind.caption"
 msgid "Find"
 msgstr ""
 
@@ -82,7 +147,7 @@ msgid "&New Process"
 msgstr ""
 
 #: tfmain.mobjectdata.caption
-msgid "Object Da&ta"
+msgid "Ob&ject Data"
 msgstr ""
 
 #: tfmain.mobjecttexts.caption
@@ -94,7 +159,7 @@ msgid "&Open"
 msgstr ""
 
 #: tfmain.mopenall.caption
-msgid "Open &All"
+msgid "Open &all sections"
 msgstr ""
 
 #: tfmain.moptions.caption
@@ -126,10 +191,12 @@ msgid "Recent F&iles"
 msgstr ""
 
 #: tfmain.mredo.caption
+msgctxt "tfmain.mredo.caption"
 msgid "Redo"
 msgstr ""
 
 #: tfmain.mreplace.caption
+msgctxt "tfmain.mreplace.caption"
 msgid "Replace"
 msgstr ""
 
@@ -150,6 +217,7 @@ msgid "&Tools"
 msgstr ""
 
 #: tfmain.mundo.caption
+msgctxt "tfmain.mundo.caption"
 msgid "Undo"
 msgstr ""
 
@@ -158,7 +226,8 @@ msgid "&Vocabulary"
 msgstr ""
 
 #: tfmain.panelbackground.caption
-msgid "ngPAWS Editor (C) 2014 Uto"
+msgctxt "tfmain.panelbackground.caption"
+msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr ""
 
 #: tfmain.pmclosetab.caption
@@ -170,10 +239,12 @@ msgid "Condact Help"
 msgstr ""
 
 #: tfmain.pmcopy.caption
+msgctxt "tfmain.pmcopy.caption"
 msgid "Copy"
 msgstr ""
 
 #: tfmain.pmcut.caption
+msgctxt "tfmain.pmcut.caption"
 msgid "Cut"
 msgstr ""
 
@@ -186,6 +257,7 @@ msgid "Larger font"
 msgstr ""
 
 #: tfmain.pmpaste.caption
+msgctxt "tfmain.pmpaste.caption"
 msgid "Paste"
 msgstr ""
 
@@ -201,11 +273,6 @@ msgstr ""
 
 #: tfmain.pmsmallerfont.caption
 msgid "Smaller font"
-msgstr ""
-
-#: tfoptions.bbrowsebrowser.caption
-msgctxt "TFOPTIONS.BBROWSEBROWSER.CAPTION"
-msgid "..."
 msgstr ""
 
 #: tfoptions.bbrowsecompiler.caption
@@ -232,6 +299,7 @@ msgid "&Ok"
 msgstr ""
 
 #: tfoptions.caption
+msgctxt "tfoptions.caption"
 msgid "Options"
 msgstr ""
 
@@ -272,10 +340,6 @@ msgstr ""
 msgid "Help Base URL"
 msgstr ""
 
-#: tfoptions.labelinterpreter.caption
-msgid "Browser Path"
-msgstr ""
-
 #: tfoptions.labellang.caption
 msgid "Language"
 msgstr ""
@@ -303,6 +367,11 @@ msgstr ""
 
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+msgstr ""
+
+#: uglobals.s_copyright
+msgctxt "uglobals.s_copyright"
+msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr ""
 
 #: uglobals.s_file_loaded_warning

@@ -59,7 +59,6 @@ implementation
 
 uses UGlobals, StrUtils, LConvEncoding;
 
-const BlockLabels : array [0..9] of String = (S_SECTION_DEFINITIONS,S_SECTION_CONTROL,S_SECTION_VOCABULARY, S_SECTION_SYSMESS,S_SECTION_MESS,S_SECTION_OBJMESS, S_SECTION_LOCMESS, S_SECTION_CONN,S_SECTION_OBJDATA,S_SECTION_PROCESS);
 const BlockNames :  array [0..9] of String = ('DEF','CTL','VOC','STX','MTX','OTX','LTX','CON','OBJ','PRO');
 
 
