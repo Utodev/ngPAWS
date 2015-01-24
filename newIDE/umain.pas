@@ -35,7 +35,7 @@ type
     MData: TMenuItem;
     MConnections: TMenuItem;
     MDefinitions: TMenuItem;
-    MOpenAll: TMenuItem;
+    MOpenAllSections: TMenuItem;
     PMCondactHelp: TMenuItem;
     PMPaste: TMenuItem;
     PMCut: TMenuItem;
@@ -44,8 +44,7 @@ type
     PMSmallerFont: TMenuItem;
     PMLargerFont: TMenuItem;
     PMSeparator1: TMenuItem;
-    PMInterrupt: TMenuItem;
-    PMCloseTab: TMenuItem;
+    PMInterruptToggle: TMenuItem;
     MMessages: TMenuItem;
     mSystemMessages: TMenuItem;
     MProcesses: TMenuItem;
@@ -66,8 +65,7 @@ type
     MQuit: TMenuItem;
     MRecentFiles: TMenuItem;
     MNewProcess: TMenuItem;
-    MSaveAs: TMenuItem;
-    MOpen: TMenuItem;
+    MOpenFile: TMenuItem;
     MNew: TMenuItem;
     MHelpContents: TMenuItem;
     MOptions: TMenuItem;
@@ -102,6 +100,7 @@ type
     procedure BUndoClick(Sender: TObject);
     procedure ControlBarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MainPopupMenuPopup(Sender: TObject);
     procedure MCloseClick(Sender: TObject);
     procedure MConnectionsClick(Sender: TObject);
     procedure MCopyClick(Sender: TObject);
@@ -115,18 +114,25 @@ type
     procedure MNewClick(Sender: TObject);
     procedure MObjectDataClick(Sender: TObject);
     procedure MObjectTextsClick(Sender: TObject);
-    procedure MOpenAllClick(Sender: TObject);
-    procedure MOpenClick(Sender: TObject);
+    procedure MOpenAllSectionsClick(Sender: TObject);
+    procedure MOpenFileClick(Sender: TObject);
     procedure MOptionsClick(Sender: TObject);
     procedure MPasteClick(Sender: TObject);
     procedure MQuitClick(Sender: TObject);
     procedure MRedoClick(Sender: TObject);
+    procedure MSaveClick(Sender: TObject);
     procedure mSystemMessagesClick(Sender: TObject);
     procedure MToolsClick(Sender: TObject);
     procedure MUndoClick(Sender: TObject);
     procedure MVocabularyClick(Sender: TObject);
+    procedure PageControlChange(Sender: TObject);
     procedure PanelBackgroundClick(Sender: TObject);
     procedure MProcessItemClick(Sender: TObject);
+    procedure PMCondactHelpClick(Sender: TObject);
+    procedure PMCopyClick(Sender: TObject);
+    procedure PMCutClick(Sender: TObject);
+    procedure PMInterruptToggleClick(Sender: TObject);
+    procedure PMPasteClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
 
@@ -140,6 +146,7 @@ type
     procedure SynEditKeyPress(Sender: TObject; var Key: Char);
     procedure CloseFile();
     procedure Terminate();
+    procedure SaveFile();
 
     { private declarations }
   public
@@ -187,6 +194,29 @@ begin
 
 end;
 
+procedure TfMain.MainPopupMenuPopup(Sender: TObject);
+var Section: String;
+    ProcNum : integer;
+    MarkAsInterruptVisible: Boolean;
+    CondactHelpVisible : Boolean;
+begin
+  MarkAsInterruptVisible:= true;
+  CondactHelpVisible := true;
+  Section := TSynEdit(PageControl.ActivePage.Controls[0]).Hint;
+  if Copy(Section, 1, 3) <> 'PRO' then MarkAsInterruptVisible:=false
+  else
+  begin
+   ProcNum := TSynEdit(PageControl.ActivePage.Controls[0]).Tag;
+   if ProcNum < 3 then MarkAsInterruptVisible:=false;
+  end;
+
+  if (Section<>'RESP') and (Copy(Section,1,3)<>'PRO') then CondactHelpVisible:=false;
+  PMInterruptToggle.Visible := MarkAsInterruptVisible;
+  PMInterruptToggle.Checked := (MarkAsInterruptVisible) and (ProcNum=TXp.InterruptProcessNum);
+  PMCondactHelp.Visible := CondactHelpVisible;
+
+end;
+
 procedure TfMain.MCloseClick(Sender: TObject);
 begin
   if (CodeModified and (MessageDlg(S_QUIT_NOT_SAVED,mtConfirmation,[mbYes,mbNo],0)=mrYes))
@@ -196,16 +226,19 @@ end;
 procedure TfMain.CloseFile();
 var i : integer;
 begin
-     for i := PageControl.PageCount - 1 downto 0 do begin
-      (PageControl.Pages[i].Controls[0] as TSynEdit).Text := '';
-      (PageControl.Pages[i].Controls[0] as TSynEdit).Free();
-      PageControl.Pages[i].Free();
-     end;
-     PageControl.Visible:= false;
-     for i := MProcesses.Count -1  downto 0 do MProcesses.Items[i].Free();
-     if Assigned(TXP) then TXP.Free();
-     SetEditMode(false);
-     PanelBackground.Caption := S_COPYRIGHT;
+
+ for i := PageControl.PageCount - 1 downto 0 do
+ begin
+   (PageControl.Pages[i].Controls[0] as TSynEdit).Text := '';
+   (PageControl.Pages[i].Controls[0] as TSynEdit).Free();
+   PageControl.Pages[i].Free();
+ end;
+ PageControl.Visible:= false;
+ for i := MProcesses.Count -1  downto 0 do MProcesses.Items[i].Free();
+ if Assigned(TXP) then TXP.Free();
+ SetEditMode(false);
+ PanelBackground.Caption := S_COPYRIGHT;
+ fMain.Caption:= 'ngPAWS';
 end;
 
 procedure TfMain.MConnectionsClick(Sender: TObject);
@@ -261,7 +294,7 @@ end;
 
 procedure TfMain.BOpenClick(Sender: TObject);
 begin
-  MOpen.click();
+  MOpenFile.click();
 end;
 
 procedure TfMain.BOptionsClick(Sender: TObject);
@@ -345,7 +378,7 @@ begin
     OpenTab('OTX',TXP.ObjectTexts);
 end;
 
-procedure TfMain.MOpenAllClick(Sender: TObject);
+procedure TfMain.MOpenAllSectionsClick(Sender: TObject);
 var i : integer;
 begin
   for i:= 0 to MData.Count - 1 do  MData.Items[i].Click();
@@ -377,7 +410,7 @@ begin
    if mode then BuildProcessMenu(TXP);
    BOpen.Visible:=not mode;
    BNew.Visible := not mode;
-   MOpen.Enabled := not mode;
+   MOpenFile.Enabled := not mode;
    MNew.Enabled := not mode;
    MRecentFiles.Enabled:= not mode;
 
@@ -395,21 +428,21 @@ begin
    MProcesses.Enabled := mode;
    MData.Enabled := mode;
    MSave.Enabled := mode;
-   MSaveAs.Enabled := mode;
    MClose.Enabled := mode;
    MPuzzleWizard.Enabled := mode;
    MEdit.Enabled := mode;
    MProject.Enabled := mode;
 end;
 
-procedure TfMain.MOpenClick(Sender: TObject);
+procedure TfMain.MOpenFileClick(Sender: TObject);
 begin
   if OpenDialog.Execute then
   begin
     TXP := TTXP.Create();
     TXP.LoadTXP(OpenDialog.FileName);
+    fMain.Caption:= 'ngPAWS - ' + ExtractFileName(OpenDialog.FileName);
     SetEditMode(true);
-    if  Config.OpenAllTabs then MOpenAll.Click() else
+    if  Config.OpenAllTabs then MOpenAllSections.Click() else
      begin
        PanelBackground.Caption := S_FILE_LOADED_WARNING;
        PanelBackground.Font.Color:= clWhite;
@@ -420,6 +453,42 @@ end;
 procedure TfMain.MProcessItemClick(Sender: TObject);
 begin
   OpenTab('PRO ' + IntToStr(TMenuItem(Sender).Tag), TXP.Processes[TMenuItem(Sender).Tag]);
+end;
+
+procedure TfMain.PMCondactHelpClick(Sender: TObject);
+var Key : Word;
+begin
+  Key := VK_F1;
+  HelpResponse(PageControl.ActivePage.Controls[0],Key,[]);
+end;
+
+procedure TfMain.PMCopyClick(Sender: TObject);
+begin
+  MCopy.Click();
+end;
+
+procedure TfMain.PMCutClick(Sender: TObject);
+begin
+  MCut.Click();
+end;
+
+procedure TfMain.PMInterruptToggleClick(Sender: TObject);
+var SynEdit: TSynEdit;
+begin
+   SynEdit := TSynEdit(PageControl.ActivePage.Controls[0]);
+   if (Copy(SynEdit.Hint, 1,3) = 'PRO')  and (SynEdit.Tag >= 3) then
+   begin
+        if (TXP.InterruptProcessNum = SynEdit.Tag) then TXP.InterruptProcessNum:=-1
+        else
+        if (TXP.InterruptProcessNum= -1) or (MessageDlg(S_REPLACE_INTERRUPT_PROCESS,mtConfirmation,[mbYes,mbNo],0)=mrYes)
+           then TXP.InterruptProcessNum := SynEdit.Tag;
+   end;
+
+end;
+
+procedure TfMain.PMPasteClick(Sender: TObject);
+begin
+  MPaste.Click();
 end;
 
 
@@ -458,6 +527,11 @@ begin
      (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Redo();
 end;
 
+procedure TfMain.MSaveClick(Sender: TObject);
+begin
+  SaveFile();
+end;
+
 procedure TfMain.mSystemMessagesClick(Sender: TObject);
 begin
     OpenTab('STX',TXP.SysMess);
@@ -477,6 +551,11 @@ end;
 procedure TfMain.MVocabularyClick(Sender: TObject);
 begin
   OpenTab('VOC',TXP.Vocabulary);
+end;
+
+procedure TfMain.PageControlChange(Sender: TObject);
+begin
+  TSynEdit(PageControl.ActivePage.Controls[0]).SetFocus();
 end;
 
 procedure TfMain.OpenTab(Section: String; Content: TStringList);
@@ -505,7 +584,6 @@ begin
  TabSheet.Color := $222827;
  TabSheet.BorderWidth:=0;
  TabSheet.Font.Color := clWhite;
- TabSheet.Hint:=Section;
  TabSheet.ShowHint:=false;
  TabSheet.Caption:=Section;
  TabSheet.BorderWidth:=0;
@@ -524,7 +602,7 @@ begin
  SynEdit.Options := SynEdit.Options + [eoSmartTabDelete, eoSmartTabs, eoAutoIndent];
  SynEdit.WantTabs := true;
  SynEdit.ShowHint:= false;
- SynEdit.Hint := Section;
+ SynEdit.Hint := Section;    // We use the hint property of SynEdit component to store the block real name
  SynEdit.RightEdge:=1024;
  SynEdit.ScrollBars:= ssAutoBoth;
  SynEdit.Gutter.Visible:=true;
@@ -537,12 +615,15 @@ begin
  SynEdit.Gutter.Parts.Part[3].Visible:= false;
  SynEdit.LineHighlightColor.Background:= $333333;
 
+ if (Copy(Section,1,3) = 'PRO') then SynEdit.Tag := StrToInt(Copy(Section,5,255));     // Por processes we also store the process number in the tag property of SynEdit component
+
  if (Section = 'VOC') then SynEdit.Highlighter := VocHighlighter else
  if (Section = 'CTL') then begin end else
  if (Copy(Section,1,3) = 'PRO') then SynEdit.Highlighter := CodeHighlighter else
+ if (Section = 'RESP') then SynEdit.Highlighter := CodeHighlighter else
  SynEdit.Highlighter := DataHighlighter;
 
- SynEdit.Text:=Content.Text;
+ SynEdit.Text:= Content.Text;
  PageControl.ActivePage := PageControl.Pages[PageControl.PageCount-1];
  SynEdit.SetFocus();
 end;
@@ -554,39 +635,39 @@ begin
 end;
 
 procedure TfMain.HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
-var Sel, SelLine, URL:String;
+var Selection, SelectedLine, URL : string;
     i : integer;
     CurrentLine: integer;
 begin
- if key <> $70 then exit; // F1
+ if key <> VK_F1 then exit;
 
  CurrentLine :=(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretY -1;
- SelLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Lines[CurrentLine];
- if SelLine = '' then
+ SelectedLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Lines[CurrentLine];
+ if SelectedLine = '' then
  begin
    MHelpContents.Click();
   Exit
  end;
 
- Sel := '';
+ Selection := '';
  i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX;
- while (i>=1) and (SelLine[i]<>' ') do
+ while (i>=1) and (SelectedLine[i]<>' ') do
   begin
-   Sel := SelLine[i] + Sel;
+   Selection := SelectedLine[i] + Selection;
    I := i - 1;
   end;
  i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX + 1;
- while (i<=Length(SelLine)) and (SelLine[i]<>' ') do
+ while (i<=Length(SelectedLine)) and (SelectedLine[i]<>' ') do
   begin
-   Sel :=   Sel + SelLine[i];
+   Selection :=   Selection + SelectedLine[i];
    I := i + 1;
   end;
 
-   URL := Config.HelpBaseURL;
-   if NOT (Config.HelpBaseURL[Length(Config.HelpBaseURL)] in ['/','\']) then URL := URL + '/';
-   URL := URL + AnsiUpperCase(Sel);
-   if (Config.Lang='ES') then URL := URL + '_ES';
-   OpenBrowser(URL);
+ URL := Config.HelpBaseURL;
+ if NOT (Config.HelpBaseURL[Length(Config.HelpBaseURL)] in ['/','\']) then URL := URL + '/';
+ URL := URL + AnsiUpperCase(Selection);
+ if (Config.Lang='ES') then URL := URL + '_ES';
+ OpenBrowser(URL);
 end;
 
 
@@ -597,6 +678,32 @@ if not OpenURL(URL) then ShowMessage(S_BROWSER_NOT_FOUND);
 end;
 
 
+procedure TfMain.SaveFile();
+var ProcNum , i : integer;
+    Section: string;
+
+begin
+  for i:= 0 to PageControl.PageCount - 1 do
+  begin
+    Section := TSynEdit(PageControl.Pages[i].Controls[0]).Hint;
+    if (Section = 'DEF') then TXP.Definitions.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'CTL') then TXP.Control.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'VOC') then TXP.Vocabulary.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'STX') then TXP.SysMess.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'MTX') then TXP.UsrMess.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'LTX') then TXP.LocationTexts.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'OTX') then TXP.ObjectTexts.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'OBJ') then TXP.ObjectData.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'CON') then TXP.Connections.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'RESP') then TXP.SetProcessCode(0,TSynEdit(PageControl.Pages[i].Controls[0]).Text) else
+    if (copy(Section, 1, 3) = 'PRO') then
+    begin
+     ProcNum :=  TSynEdit(PageControl.Pages[i].Controls[0]).Tag;
+     TXP.SetProcessCode(ProcNum, TSynEdit(PageControl.Pages[i].Controls[0]).Lines.Text);
+    end;
+  end;
+  TXP.SaveTXP('');
+end;
 
 end.
 

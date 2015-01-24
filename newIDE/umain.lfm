@@ -747,6 +747,7 @@ object fMain: TfMain
       ParentFont = False
       TabOrder = 0
       Visible = False
+      OnChange = PageControlChange
       Options = [nboMultiLine, nboKeyboardTabSwitch, nboShowAddTabButton]
     end
     object Toolbar: TPanel
@@ -4031,19 +4032,16 @@ object fMain: TfMain
         Caption = '&New'
         OnClick = MNewClick
       end
-      object MOpen: TMenuItem
+      object MOpenFile: TMenuItem
         Caption = '&Open'
-        OnClick = MOpenClick
+        OnClick = MOpenFileClick
       end
       object MSave: TMenuItem
         Caption = '&Save'
         Enabled = False
         ShortCut = 16467
         ShortCutKey2 = 113
-      end
-      object MSaveAs: TMenuItem
-        Caption = 'Save &as'
-        Enabled = False
+        OnClick = MSaveClick
       end
       object MClose: TMenuItem
         Caption = '&Close'
@@ -4104,10 +4102,10 @@ object fMain: TfMain
     object MProject: TMenuItem
       Caption = '&Project'
       Enabled = False
-      object MOpenAll: TMenuItem
+      object MOpenAllSections: TMenuItem
         Caption = 'Open &all sections'
         ShortCut = 32833
-        OnClick = MOpenAllClick
+        OnClick = MOpenAllSectionsClick
       end
       object MData: TMenuItem
         Caption = 'Data'
@@ -4281,18 +4279,18 @@ object fMain: TfMain
     top = 216
   end
   object MainPopupMenu: TPopupMenu
+    OnPopup = MainPopupMenuPopup
     left = 144
     top = 88
-    object PMCloseTab: TMenuItem
-      Caption = 'Close tab'
-    end
-    object PMInterrupt: TMenuItem
-      Caption = 'Mark as Interrupt Process'
+    object PMInterruptToggle: TMenuItem
+      Caption = 'Toggle interrupt process mark'
+      OnClick = PMInterruptToggleClick
     end
     object PMCondactHelp: TMenuItem
       Caption = 'Condact Help'
       ShortCut = 16496
       ShortCutKey2 = 32880
+      OnClick = PMCondactHelpClick
     end
     object PMSeparator1: TMenuItem
       Caption = '-'
@@ -4311,14 +4309,17 @@ object fMain: TfMain
     object PMCopy: TMenuItem
       Caption = 'Copy'
       ShortCut = 16451
+      OnClick = PMCopyClick
     end
     object PMCut: TMenuItem
       Caption = 'Cut'
       ShortCut = 16472
+      OnClick = PMCutClick
     end
     object PMPaste: TMenuItem
       Caption = 'Paste'
       ShortCut = 16470
+      OnClick = PMPasteClick
     end
   end
 end

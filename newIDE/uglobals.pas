@@ -9,12 +9,14 @@ uses
   Classes, SysUtils;
 
 CONST LF = #13#10;
+      VK_F1 = $70;
 
 
 resourcestring
 
   // UMain Messages
   S_QUIT_NOT_SAVED =   'Some changes may have not been saved.'#13#10'Are you sure?';
+  S_REPLACE_INTERRUPT_PROCESS = 'There is already another process marked as interrupt process. Marking this one will deactivate the other.'#13#10'Are you sure?';
 
   S_MENUITEM_PROCESS = 'Process &';
   S_MENUITEM_RESPONSE = '&Response';

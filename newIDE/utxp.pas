@@ -19,12 +19,11 @@ type TTXP = class
     FObjectData : TStringList;
     FConnections : TStringList;
     FProcesses : array[0..255] of  TStringList;
-    FProcessesNames : array [0..255] of String;
+    FFilePath : String;
 
     FInterruptProcesNum : integer;
     FLastProcess : integer;
 
-    procedure SetProcess(i: longint; Value: TStringList);
     function GetProcess(i:longint) : TStringList;
     procedure AddBlock(NameTag : String; Content: TStringList; Header: String);
 
@@ -39,7 +38,7 @@ type TTXP = class
     property LocationTexts : TStringList read FLocationTexts write FLocationTexts;
     property ObjectData : TStringList read FObjectData write FObjectData;
     property Connections : TStringList read FConnections write FConnections;
-    property Processes [i: longint] : TStringList read GetProcess write SetProcess;
+    property Processes [i: longint] : TStringList read GetProcess;
     property InterruptProcessNum : integer read FInterruptProcesNum write FInterruptProcesNum;
     property LastProcess : integer read FLastProcess write FLastProcess;
 
@@ -51,7 +50,8 @@ type TTXP = class
     procedure SaveTXP(Filename: String);
     function AddProcess():boolean;
     function SetInterruptProcess(ProcessID: Byte):boolean;
-
+    function AddLF(S : String):String;
+    procedure SetProcessCode(i: longint; Value: String);
 
 end;
 
@@ -90,7 +90,7 @@ begin
  FLocationTexts.Free();
  FObjectData.Free();
  FConnections.Free();
- for i:= 0 to 255 do if (FProcesses[i]<>nil) then  FProcesses[i].Free();
+ for i:= 0 to 255 do if (Assigned(FProcesses[i])) then  FProcesses[i].Free();
 end;
 
 procedure TTXP.LoadTXP(Filename: String);
@@ -104,10 +104,12 @@ var FileContents: TStringList;  // Whole File
     BlockNameCandidate : String;
     IsBlockStart : Boolean;
 begin
+  FFilePath:=Filename;
   FileContents := TStringList.Create();
   CurrentBlock := TStringList.Create();
   if (not FileExists(Filename)) then  raise Exception.Create(S_FILE_NOT_FOUND);
   FileContents.LoadFromFile(Filename);
+  FileContents.Text:= AnsiToUtf8(FileContents.Text);
   ptr := 0;
   CurrentBlockName := BlockNames[0]; // DEF
   CurrentBlockHeader := CurrentBlockName;
@@ -135,10 +137,56 @@ begin
   AddBlock(CurrentBlockName, CurrentBlock, CurrentBlockHeader);
 end;
 
-procedure TTXP.SaveTXP(Filename: String);
+function TTXP.AddLF(S : String):String; // Adds a LF at then en of each section if it doesn't have one already
 begin
+  if (S[length(s)-1] in [#13,#10]) then Result:= S else Result := S + LF;
 
+end;
 
+procedure TTXP.SaveTXP(Filename: String);
+var FileContents: TStringList;
+    i : integer;
+    AuxStr : string;
+begin
+ if (Filename = '') then Filename := FFilePath;
+ FileContents := TStringList.Create();
+
+ FileContents.Text := AddLF(FDefinitions.Text);
+
+ FileContents.Text := FileContents.Text + '/CTL'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FControl.Text);
+
+ FileContents.Text := FileContents.Text + '/VOC'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FVocabulary.Text);
+
+ FileContents.Text := FileContents.Text + '/STX'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FSysMess.Text);
+
+ FileContents.Text := FileContents.Text + '/MTX'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FUsrMess.Text);
+
+ FileContents.Text := FileContents.Text + '/OTX'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FObjectTexts.Text);
+
+ FileContents.Text := FileContents.Text + '/LTX'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FLocationTexts.Text);
+
+ FileContents.Text := FileContents.Text + '/CON'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FConnections.Text);
+
+ FileContents.Text := FileContents.Text + '/OBJ'+ LF;
+ FileContents.Text := FileContents.Text + AddLF(FObjectData.Text);
+
+ for i:= 0 to FLastProcess do
+ begin
+   AuxStr := '/PRO ';
+   if (i = FInterruptProcesNum) then AuxStr := AuxStr + 'INTERRUPT ';
+   AuxStr := AuxStr + IntToStr(i) + LF;
+   FileContents.Text := FileContents.Text + AuxStr;
+   FileContents.Text := FileContents.Text + AddLF(FProcesses[i].Text);
+ end;
+ FileContents.text := Utf8ToAnsi(FileContents.Text);
+ FileContents.SaveToFile(Filename);
 end;
 
 
@@ -147,7 +195,6 @@ var StrAux : String;
     ProcNum :   integer;
     MarkAsInterrupt :Boolean;
 begin
- ConvertEncoding(Content.Text, 'Ansi', 'UTF-8');
  if (NameTag = 'DEF') then FDefinitions.Text := Content.Text else
  if (NameTag = 'CTL') then FControl.Text := Content.Text else
  if (NameTag = 'VOC') then FVocabulary.Text := Content.Text else
@@ -183,10 +230,10 @@ begin
  else raise Exception.Create(S_INVALID_SECTION);
 end;
 
-procedure TTXP.SetProcess(i: longint; Value: TStringList);
+procedure TTXP.SetProcessCode(i: longint; Value: String);
 begin
-  if (FProcesses[i] = nil) then FProcesses[i] := TStringList.Create();
-  FProcesses[i].Text:= Value.Text;
+  if (not  Assigned(FProcesses[i])) then FProcesses[i] := TStringList.Create();
+  FProcesses[i].Text:= Value;
 end;
 
 function TTXP.GetProcess(i:longint) : TStringList;

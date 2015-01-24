@@ -154,12 +154,14 @@ msgstr ""
 msgid "&Object Texts"
 msgstr ""
 
-#: tfmain.mopen.caption
-msgid "&Open"
+#: tfmain.mopenallsections.caption
+msgctxt "TFMAIN.MOPENALLSECTIONS.CAPTION"
+msgid "Open &all sections"
 msgstr ""
 
-#: tfmain.mopenall.caption
-msgid "Open &all sections"
+#: tfmain.mopenfile.caption
+msgctxt "TFMAIN.MOPENFILE.CAPTION"
+msgid "&Open"
 msgstr ""
 
 #: tfmain.moptions.caption
@@ -204,10 +206,6 @@ msgstr ""
 msgid "&Save"
 msgstr ""
 
-#: tfmain.msaveas.caption
-msgid "Save &as"
-msgstr ""
-
 #: tfmain.msystemmessages.caption
 msgid "&System messages"
 msgstr ""
@@ -230,10 +228,6 @@ msgctxt "tfmain.panelbackground.caption"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr ""
 
-#: tfmain.pmclosetab.caption
-msgid "Close tab"
-msgstr ""
-
 #: tfmain.pmcondacthelp.caption
 msgid "Condact Help"
 msgstr ""
@@ -248,8 +242,8 @@ msgctxt "tfmain.pmcut.caption"
 msgid "Cut"
 msgstr ""
 
-#: tfmain.pminterrupt.caption
-msgid "Mark as Interrupt Process"
+#: tfmain.pminterrupttoggle.caption
+msgid "Toggle interrupt process mark"
 msgstr ""
 
 #: tfmain.pmlargerfont.caption
@@ -405,6 +399,12 @@ msgstr ""
 #: uglobals.s_quit_not_saved
 msgid ""
 "Some changes may have not been saved.\n"
+"Are you sure?\n"
+msgstr ""
+
+#: uglobals.s_replace_interrupt_process
+msgid ""
+"There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
 "Are you sure?\n"
 msgstr ""
 
