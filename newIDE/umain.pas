@@ -26,11 +26,13 @@ type
     BUndo: TSpeedButton;
     BSave: TSpeedButton;
     BRedo: TSpeedButton;
+    CompileOutputListBox: TListBox;
     MainMenu: TMainMenu;
     MEdit: TMenuItem;
     MCompile: TMenuItem;
     MCompileRun: TMenuItem;
-    MPuzzleWizard: TMenuItem;
+    MCloseCompilerOutput: TMenuItem;
+    PMPuzzleWizard: TMenuItem;
     MAbout: TMenuItem;
     MData: TMenuItem;
     MConnections: TMenuItem;
@@ -77,6 +79,7 @@ type
     PageControl: TPageControl;
     BNew: TSpeedButton;
     MainPopupMenu: TPopupMenu;
+    PopupMenuCompilerOutput: TPopupMenu;
     Toolbar: TPanel;
     PanelBackground: TPanel;
     DataHighlighter: TSynAnySyn;
@@ -99,9 +102,13 @@ type
     procedure BSaveClick(Sender: TObject);
     procedure BUndoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure MAboutClick(Sender: TObject);
     procedure MainPopupMenuPopup(Sender: TObject);
     procedure MCloseClick(Sender: TObject);
+    procedure MCloseCompilerOutputClick(Sender: TObject);
+    procedure MCompileClick(Sender: TObject);
+    procedure MCompileRunClick(Sender: TObject);
     procedure MConnectionsClick(Sender: TObject);
     procedure MCopyClick(Sender: TObject);
     procedure MCutClick(Sender: TObject);
@@ -112,6 +119,7 @@ type
     procedure MLocationsClick(Sender: TObject);
     procedure MMessagesClick(Sender: TObject);
     procedure MNewClick(Sender: TObject);
+    procedure MNewProcessClick(Sender: TObject);
     procedure MObjectDataClick(Sender: TObject);
     procedure MObjectTextsClick(Sender: TObject);
     procedure MOpenAllSectionsClick(Sender: TObject);
@@ -146,12 +154,16 @@ type
     procedure BuildProcessMenu(TXP: TTXP);
     procedure BuildRecentFilesMenu();
     procedure SetEditMode(mode : boolean);
-    procedure OpenTab(Section: String; Content: TStringList);
+    procedure OpenTab(Section: String; Content: TStringList; SetCursorToLine: integer = -1);
     procedure SynEditKeyPress(Sender: TObject; var Key: Char);
     procedure CloseFile();
     procedure Terminate();
-    procedure SaveFile();
+    procedure SaveFile(FileName : String; WithDebugInfo: boolean = false);
     procedure SetEditorsFont();
+    function Compile():Boolean;
+    procedure DeleteTempFiles(FileName : String);
+    function CheckError(ErrorLineCandidate: String;IsPreprocessor:Boolean;DebugFileName:String) : Boolean;
+    procedure GotoLine(ErrorLineCandidate:String; IsPreprocessor: Boolean;DebugFileName:String);
 
 
     { private declarations }
@@ -166,7 +178,7 @@ var
 
 implementation
 
-uses uoptions, UGlobals,lclintf;
+uses uoptions, UGlobals,URunShell, lclintf;
 
 {$R *.lfm}
 
@@ -209,6 +221,12 @@ begin
   if FileExists('DataHighLight.ini') then DataHighlighter.LoadHighLighter('DataHighLight.ini');
   if FileExists('VocHighLight.ini') then VOCHighlighter.LoadHighLighter('VocHighLight.ini');
   BuildRecentFilesMenu();
+  CompileOutputListBox.Font.Size:=Config.EditorFontSize;
+end;
+
+procedure TfMain.FormShow(Sender: TObject);
+begin
+  Toolbar.Visible:=Config.ShowToolBar;
 end;
 
 procedure TfMain.MAboutClick(Sender: TObject);
@@ -227,6 +245,7 @@ var Section: String;
     ProcNum : integer;
     MarkAsInterruptVisible: Boolean;
     CondactHelpVisible : Boolean;
+    PuzzleWizardVisible : Boolean;
 begin
   MarkAsInterruptVisible:= true;
   CondactHelpVisible := true;
@@ -239,10 +258,15 @@ begin
   end;
 
   if (Section<>'RESP') and (Copy(Section,1,3)<>'PRO') then CondactHelpVisible:=false;
+  PuzzleWizardVisible:= Section='RESP';
+
+
+
   PMInterruptToggle.Visible := MarkAsInterruptVisible;
   PMInterruptToggle.Checked := (MarkAsInterruptVisible) and (ProcNum=TXp.InterruptProcessNum);
   PMCondactHelp.Visible := CondactHelpVisible;
-  PMSeparator1.Visible := CondactHelpVisible or MarkAsInterruptVisible;
+  PMPuzzleWizard.Visible:= PuzzleWizardVisible;
+  PMSeparator1.Visible := CondactHelpVisible or MarkAsInterruptVisible or PuzzleWizardVisible;
 
 end;
 
@@ -251,6 +275,69 @@ begin
   if (CodeModified and (MessageDlg(S_QUIT_NOT_SAVED,mtConfirmation,[mbYes,mbNo],0)=mrYes))
   or (not CodeModified) then CloseFile();
 end;
+
+procedure TfMain.MCloseCompilerOutputClick(Sender: TObject);
+begin
+  CompileOutputListBox.Visible:=false;
+end;
+
+procedure TfMain.MCompileClick(Sender: TObject);
+begin
+  Compile();
+end;
+
+procedure TfMain.MCompileRunClick(Sender: TObject);
+begin
+  if (Compile()) then
+  begin
+   CompileOutputListBox.Visible:=false;
+   OpenBrowser(ExtractFilePath(TXP.FilePath) + 'index.html');
+  end;
+end;
+
+function TfMain.Compile():Boolean;
+var TXPTempFile :String;
+    SCETempFile :String;
+    Output : TStringList;
+    i : integer;
+begin
+  Result := false;
+  try
+    if Config.SaveBeforeRun then SaveFile(''); // Save the source code if requested
+    TXPTempFile := ChangeFileExt(TXP.FilePath,'.tmp');
+    SaveFile(TXPTempFile, true); // Save a temporary copy for compiling with debug info
+    CompileOutputListBox.Clear();
+    CompileOutputListBox.Visible := true;
+
+    if not FileExists(Config.PreprocessorPath) then raise Exception.Create(S_PREPROCESSOR_NOT_FOUND);
+    CompileOutputListBox.Items.Add(S_STARTING_PREPROCESSOR);
+    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters + ' ' + TXPTempFile);
+    CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
+    CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
+    for i :=0 to CompileOutputListBox.Items.Count-1 do // Errors in preprocessor may appear in any line
+      if CheckError(CompileOutputListBox.Items[i], True, ChangeFileExt(TXPTempFile, '.dbg')) then Exit;
+
+    SCETempFile:=ChangeFileExt(TXP.FilePath,'.sce');
+
+    if (not FileExists(SCETempFile)) then Exit;
+
+    if not FileExists(Config.CompilerPath) then raise Exception.Create(S_COMPILER_NOT_FOUND);
+    CompileOutputListBox.Items.Add(S_STARTING_COMPILER);
+    Output := RunShell(Config.CompilerPath,  SCETempFile);
+    CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
+    CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
+    // Errors in compiler appear in last output line
+    if CheckError(CompileOutputListBox.Items[CompileOutputListBox.Items.count-1], False, ChangeFileExt(TXPTempFile, '.dbg')) then Exit;
+
+    CompileOutputListBox.Items.Add(S_COMPILE_OK);
+    CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
+
+  finally
+    if Config.DeleteTempFiles then DeleteTempFiles(TXP.FilePath);
+  end;
+  Result := true;
+end;
+
 
 procedure TfMain.CloseFile();
 var i : integer;
@@ -272,7 +359,7 @@ end;
 
 procedure TfMain.MConnectionsClick(Sender: TObject);
 begin
-  OpenTab('CON',TXP.Connections);
+  OpenTab('CON',TXP.CON);
 end;
 
 procedure TfMain.MCopyClick(Sender: TObject);
@@ -295,7 +382,7 @@ end;
 
 procedure TfMain.MDefinitionsClick(Sender: TObject);
 begin
-  OpenTab('DEF',TXP.Definitions);
+  OpenTab('DEF',TXP.DEF);
 end;
 
 procedure TfMain.Memo1Change(Sender: TObject);
@@ -313,12 +400,12 @@ end;
 
 procedure TfMain.MLocationsClick(Sender: TObject);
 begin
-  OpenTab('LTX',TXP.LocationTexts);
+  OpenTab('LTX',TXP.LTX);
 end;
 
 procedure TfMain.MMessagesClick(Sender: TObject);
 begin
-    OpenTab('MTX',TXP.UsrMess);
+    OpenTab('MTX',TXP.MTX);
 end;
 
 procedure TfMain.BOpenClick(Sender: TObject);
@@ -397,14 +484,23 @@ begin
 
 end;
 
+procedure TfMain.MNewProcessClick(Sender: TObject);
+begin
+  if TXP.AddProcess() then
+  begin
+    BuildProcessMenu(TXP);
+    OpenTab('PRO ' + IntToStr(TXP.LastProcess), TXP.Processes[TXP.LastProcess])
+  end else raise Exception.Create(S_TOO_MANY_PROCESS);
+end;
+
 procedure TfMain.MObjectDataClick(Sender: TObject);
 begin
-    OpenTab('OBJ',TXP.ObjectData);
+    OpenTab('OBJ',TXP.OBJ);
 end;
 
 procedure TfMain.MObjectTextsClick(Sender: TObject);
 begin
-    OpenTab('OTX',TXP.ObjectTexts);
+    OpenTab('OTX',TXP.OTX);
 end;
 
 procedure TfMain.MOpenAllSectionsClick(Sender: TObject);
@@ -418,6 +514,7 @@ procedure TfMain.BuildProcessMenu(TXP: TTXP);
 var Item : TMenuItem;
     i : integer;
 begin
+  MProcesses.Clear();
   for i:= 0 to TXP.LastProcess do
   if  Assigned(TXP.Processes[i])  then
     begin
@@ -458,7 +555,6 @@ begin
    MData.Enabled := mode;
    MSave.Enabled := mode;
    MClose.Enabled := mode;
-   MPuzzleWizard.Enabled := mode;
    MEdit.Enabled := mode;
    MProject.Enabled := mode;
 end;
@@ -550,6 +646,7 @@ begin
   begin
     fOptions.SaveToConfig(Config);
     Config.SaveConfig();
+    Toolbar.Visible:=Config.ShowToolBar;
   end;
 end;
 
@@ -581,12 +678,13 @@ end;
 
 procedure TfMain.MSaveClick(Sender: TObject);
 begin
-  SaveFile();
+  SaveFile('');
+  CodeModified:=false;
 end;
 
 procedure TfMain.mSystemMessagesClick(Sender: TObject);
 begin
-    OpenTab('STX',TXP.SysMess);
+    OpenTab('STX',TXP.STX);
 end;
 
 procedure TfMain.MToolsClick(Sender: TObject);
@@ -602,7 +700,7 @@ end;
 
 procedure TfMain.MVocabularyClick(Sender: TObject);
 begin
-  OpenTab('VOC',TXP.Vocabulary);
+  OpenTab('VOC',TXP.VOC);
 end;
 
 procedure TfMain.PageControlChange(Sender: TObject);
@@ -610,7 +708,7 @@ begin
   TSynEdit(PageControl.ActivePage.Controls[0]).SetFocus();
 end;
 
-procedure TfMain.OpenTab(Section: String; Content: TStringList);
+procedure TfMain.OpenTab(Section: String; Content: TStringList; SetCursorToLine: integer = -1);
 var found : boolean;
     i : integer;
     SynEdit : TSynEdit;
@@ -626,6 +724,11 @@ begin
     if (TSynEdit(PageControl.Pages[i].Controls[0]).Hint = Section) then
     begin
       PageControl.ActivePage := PageControl.Pages[i];
+      if (SetCursorToLine <> -1) then
+      begin
+            TSynEdit(PageControl.ActivePage.Controls[0]).CaretX := 0;
+            TSynEdit(PageControl.ActivePage.Controls[0]).CaretY := SetCursorToLine;
+      end;
       Exit;
     end;
     i := i + 1;
@@ -677,6 +780,12 @@ begin
 
  SynEdit.Text:= Content.Text;
  PageControl.ActivePage := PageControl.Pages[PageControl.PageCount-1];
+ if (SetCursorToLine <> -1) then
+ begin
+       SynEdit.CaretX := 0;
+       SynEdit.CaretY := SetCursorToLine;
+ end;
+
  SynEdit.SetFocus();
 end;
 
@@ -730,7 +839,7 @@ if not OpenURL(URL) then ShowMessage(S_BROWSER_NOT_FOUND);
 end;
 
 
-procedure TfMain.SaveFile();
+procedure TfMain.SaveFile(Filename : String; WithDebugInfo: boolean = false);
 var ProcNum , i : integer;
     Section: string;
 
@@ -738,15 +847,15 @@ begin
   for i:= 0 to PageControl.PageCount - 1 do
   begin
     Section := TSynEdit(PageControl.Pages[i].Controls[0]).Hint;
-    if (Section = 'DEF') then TXP.Definitions.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'CTL') then TXP.Control.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'VOC') then TXP.Vocabulary.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'STX') then TXP.SysMess.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'MTX') then TXP.UsrMess.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'LTX') then TXP.LocationTexts.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'OTX') then TXP.ObjectTexts.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'OBJ') then TXP.ObjectData.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
-    if (Section = 'CON') then TXP.Connections.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'DEF') then TXP.DEF.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'CTL') then TXP.CTL.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'VOC') then TXP.VOC.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'STX') then TXP.STX.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'MTX') then TXP.MTX.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'LTX') then TXP.LTX.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'OTX') then TXP.OTX.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'OBJ') then TXP.OBJ.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
+    if (Section = 'CON') then TXP.CON.Text := TSynEdit(PageControl.Pages[i].Controls[0]).Text else
     if (Section = 'RESP') then TXP.SetProcessCode(0,TSynEdit(PageControl.Pages[i].Controls[0]).Text) else
     if (copy(Section, 1, 3) = 'PRO') then
     begin
@@ -754,15 +863,105 @@ begin
      TXP.SetProcessCode(ProcNum, TSynEdit(PageControl.Pages[i].Controls[0]).Lines.Text);
     end;
   end;
-  TXP.SaveTXP('');
+  TXP.SaveTXP(Filename, WithDebugInfo);
 end;
 
 procedure TfMain.SetEditorsFont();
 var i : integer;
 begin
  for i := 0 to PageControl.PageCount - 1 do
-  TSynEdit(PageControl.Pages[i].Controls[0]).Font.Size := Config.EditorFontSize;
+   TSynEdit(PageControl.Pages[i].Controls[0]).Font.Size := Config.EditorFontSize;
+ CompileOutputListBox.Font.Size:=Config.EditorFontSize;
 end;
+
+procedure TfMain.DeleteTempFiles(FileName : String);
+begin
+  DeleteFile(ChangeFileExt(FileName,'.tmp'));
+  DeleteFile(ChangeFileExt(FileName,'.dbg'));
+  DeleteFile(ChangeFileExt(FileName,'.txi'));
+  DeleteFile(ChangeFileExt(FileName,'.txi.log'));
+  DeleteFile(ChangeFileExt(FileName,'.blc'));
+  DeleteFile(ChangeFileExt(FileName,'.xml'));
+  DeleteFile(ChangeFileExt(FileName,'.tmp.log'));
+  DeleteFile(ChangeFileExt(FileName,'.blc.log'));
+end;
+
+function TfMain.CheckError(ErrorLineCandidate: String;IsPreprocessor:Boolean;DebugFileName:String) : Boolean;
+begin
+  Result := false;
+  ErrorLineCandidate := UpperCase(ErrorLineCandidate);
+  if Pos('ERROR',ErrorLineCandidate) > 0 then
+  begin
+      Result := True;
+      GoToLine(ErrorLineCandidate, IsPreprocessor, DebugFileName);
+  end;
+end;
+
+
+// Once a error line number is found, search the matching section and opens it if possible
+procedure TfMain.GotoLine(ErrorLineCandidate:String; IsPreprocessor: Boolean;DebugFileName:String);
+var ErrorLineNumber : integer;
+    DebugFileContents : TstringList;
+    SectionContents : TstringList;
+    Descriptor : String;
+    Section : String;
+    FinalLine : Integer;
+    i : integer;
+    s : string;
+
+begin
+ if not IsPreprocessor then  // Get error ErrorLineNumber number
+ begin
+     ErrorLineCandidate := Copy(ErrorLineCandidate, Pos('.',ErrorLineCandidate) + 4, MaxLongint);
+     i:= 1;
+     s := '';
+     while (i <= Length(ErrorLineCandidate)) and not (ErrorLineCandidate[i] in ['0'..'9']) do i := i + 1;
+     while (i <= Length(ErrorLineCandidate)) and (ErrorLineCandidate[i] in ['0'..'9']) do begin
+                                                               s := s + ErrorLineCandidate[i];
+                                                               i := i + 1;
+                                                              end;
+ end
+ else
+ begin
+    ErrorLineCandidate := Copy(ErrorLineCandidate, 1, Pos(',', ErrorLineCandidate) - 1);
+    s := trim(ErrorLineCandidate);
+ end;
+
+ if s = '' then Exit; // No error line number found, give up
+ try
+  ErrorLineNumber := StrToInt(s);
+ except
+    Exit; // wrong error line number found, give up
+ end;
+
+
+ // If 0 returned just exit
+ if ErrorLineNumber = 0 then Exit();
+
+ DebugFileContents := TStringList.Create();
+ DebugFileContents.LoadFromFile(DebugFileName);
+
+ if ErrorLineNumber >= DebugFileContents.Count then ErrorLineNumber:=DebugFileContents.Count -1;
+
+ Descriptor:= DebugFileContents.Strings[ErrorLineNumber];
+ if Pos('|',Descriptor) = -1 then Exit;
+ Section:= Copy(Descriptor,1,Pos('|',Descriptor)-1);
+ FinalLine:= StrToInt(Copy(Descriptor, Pos('|', Descriptor)+1,255));
+
+ if (Section = 'DEF') then SectionContents:= TXP.DEF else
+ if (Section = 'CTL') then SectionContents:=  TXP.CTL else
+ if (Section = 'VOC') then SectionContents:=  TXP.VOC else
+ if (Section = 'STX') then SectionContents:=  TXP.STX else
+ if (Section = 'MTX') then SectionContents:=  TXP.MTX else
+ if (Section = 'LTX') then SectionContents:=  TXP.LTX else
+ if (Section = 'OTX') then SectionContents:=  TXP.OTX else
+ if (Section = 'OBJ') then SectionContents:=  TXP.OBJ else
+ if (Section = 'CON') then SectionContents:=  TXP.CON else
+ if (copy(Section, 1, 3) = 'PRO') then SectionContents:= TXP.Processes[StrToInt(Copy(Section, 5, 255))];
+
+ OpenTab(Section, SectionContents, FinalLine);
+end;
+
 
 end.
 

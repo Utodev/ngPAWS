@@ -26,6 +26,16 @@ resourcestring
   S_FILE_LOADED_WARNING = '>> File has been loaded. To open sections use the "Project" menu <<';
   S_COPYRIGHT = 'ngPAWS Editor (C) 2015 Uto';
 
+  S_COMPILER_NOT_FOUND = 'Compiler not found, please check options to set valid path';
+  S_PREPROCESSOR_NOT_FOUND = 'Preprocessor not found, please check options to set valid path';
+  S_START_DATABASE_NOT_FOUND = 'Start database not found, please check options to set valid path';
+
+  S_STARTING_PREPROCESSOR = 'Running preprocessor...';
+  S_STARTING_COMPILER = 'Running compiler...';
+  S_COMPILE_OK = 'OK. Ready to run.';
+
+  S_TOO_MANY_PROCESS = 'Too many processes';
+
   //UTXP Messages
   S_SECTION_DEFINITIONS = 'Definitions';
   S_SECTION_CONTROL = 'Control';

@@ -9,15 +9,15 @@ uses
 
 type TTXP = class
   private
-    FDefinitions : TStringList;
-    FControl : TStringList;
-    FVocabulary : TStringList;
-    FSysMess : TStringList;
-    FUsrMess : TStringList;
-    FObjectTexts : TStringList;
-    FLocationTexts : TStringList;
-    FObjectData : TStringList;
-    FConnections : TStringList;
+    FDEF : TStringList;
+    FCTL : TStringList;
+    FVOC : TStringList;
+    FSTX : TStringList;
+    FMTX : TStringList;
+    FOTX : TStringList;
+    FLTX : TStringList;
+    FOBJ : TStringList;
+    FCON : TStringList;
     FProcesses : array[0..255] of  TStringList;
     FFilePath : String;
 
@@ -29,28 +29,28 @@ type TTXP = class
 
 
    public
-    property Definitions : TStringList read FDefinitions write FDefinitions;
-    property Control : TStringList read FControl write FControl;
-    property Vocabulary : TStringList read FVocabulary write FVocabulary;
-    property SysMess : TStringList read FSysMess write FSysMess;
-    property UsrMess : TStringList read FUsrMess write FUsrMess;
-    property ObjectTexts : TStringList read FObjectTexts write FObjectTexts;
-    property LocationTexts : TStringList read FLocationTexts write FLocationTexts;
-    property ObjectData : TStringList read FObjectData write FObjectData;
-    property Connections : TStringList read FConnections write FConnections;
+    property DEF : TStringList read FDEF write FDEF;
+    property CTL : TStringList read FCTL write FCTL;
+    property VOC : TStringList read FVOC write FVOC;
+    property STX : TStringList read FSTX write FSTX;
+    property MTX : TStringList read FMTX write FMTX;
+    property OTX : TStringList read FOTX write FOTX;
+    property LTX : TStringList read FLTX write FLTX;
+    property OBJ : TStringList read FOBJ write FOBJ;
+    property CON : TStringList read FCON write FCON;
     property Processes [i: longint] : TStringList read GetProcess;
     property InterruptProcessNum : integer read FInterruptProcesNum write FInterruptProcesNum;
     property LastProcess : integer read FLastProcess write FLastProcess;
+    property FilePath : String read FFilePath;
 
 
     constructor Create();
     procedure Free();
 
     procedure LoadTXP(Filename: String);
-    procedure SaveTXP(Filename: String);
+    procedure SaveTXP(Filename: String; WidthDebugInfo: Boolean = false);
     function AddProcess():boolean;
     function SetInterruptProcess(ProcessID: Byte):boolean;
-    function AddLF(S : String):String;
     procedure SetProcessCode(i: longint; Value: String);
 
 end;
@@ -66,15 +66,15 @@ const BlockNames :  array [0..9] of String = ('DEF','CTL','VOC','STX','MTX','OTX
 constructor TTXP.Create();
 var i : integer;
 begin
-    FDefinitions := TStringList.Create();
-    FControl := TStringList.Create();
-    FVocabulary := TStringList.Create();
-    FSysMess := TStringList.Create();
-    FUsrMess := TStringList.Create();
-    FObjectTexts := TStringList.Create();
-    FLocationTexts := TStringList.Create();
-    FObjectData := TStringList.Create();
-    FConnections := TStringList.Create();
+    FDEF := TStringList.Create();
+    FCTL := TStringList.Create();
+    FVOC := TStringList.Create();
+    FSTX := TStringList.Create();
+    FMTX := TStringList.Create();
+    FOTX := TStringList.Create();
+    FLTX := TStringList.Create();
+    FOBJ := TStringList.Create();
+    FCON := TStringList.Create();
     FInterruptProcesNum:= -1;
     FLastProcess:=-1;
 end;
@@ -82,14 +82,14 @@ end;
 procedure TTXP.Free();
 var i : byte;
 begin
- FDefinitions.Free();
- FVocabulary.Free();
- FSysMess.Free();
- FUsrMess.Free();
- FObjectTexts.Free();
- FLocationTexts.Free();
- FObjectData.Free();
- FConnections.Free();
+ FDEF.Free();
+ FVOC.Free();
+ FSTX.Free();
+ FMTX.Free();
+ FOTX.Free();
+ FLTX.Free();
+ FOBJ.Free();
+ FCON.Free();
  for i:= 0 to 255 do if (Assigned(FProcesses[i])) then  FProcesses[i].Free();
 end;
 
@@ -97,7 +97,7 @@ procedure TTXP.LoadTXP(Filename: String);
 var FileContents: TStringList;  // Whole File
     CurrentBlock : TStringList; // The current block contents
     CurrentBlockName : String; // Current block name tag (i.e. DEF, CTL, VOC, PRO, OTX, etc.)
-    CurrentBlockHeader : String; // Current block whole header (i.e "\DEF", "\CTL", "\CTL ; Control", "\PRO 4", "\PRO INTERRUPT 4; Proc Int", etc.)
+    CurrentBlockHeader : String; // Current block whole header (i.e "\DEF", "\CTL", "\CTL ; CTL", "\PRO 4", "\PRO INTERRUPT 4; Proc Int", etc.)
     ptr : longint;
     CurrentLine : String;
     BlockBeingProcessed :  String;
@@ -137,56 +137,108 @@ begin
   AddBlock(CurrentBlockName, CurrentBlock, CurrentBlockHeader);
 end;
 
-function TTXP.AddLF(S : String):String; // Adds a LF at then en of each section if it doesn't have one already
-begin
-  if (S[length(s)-1] in [#13,#10]) then Result:= S else Result := S + LF;
 
-end;
-
-procedure TTXP.SaveTXP(Filename: String);
+procedure TTXP.SaveTXP(Filename: String; WidthDebugInfo: Boolean = false);
 var FileContents: TStringList;
-    i : integer;
+    DebugFileContents : TStringList;
+    i,j : integer;
     AuxStr : string;
 begin
  if (Filename = '') then Filename := FFilePath;
  FileContents := TStringList.Create();
+ DebugFileContents := TStringList.Create();
 
- FileContents.Text := AddLF(FDefinitions.Text);
+ FileContents.AddStrings(FDEF);
+ if (WidthDebugInfo) then for i := 0 to FDEF.Count - 1 do DebugFileContents.Add('DEF|' + IntToStr(i));
 
- FileContents.Text := FileContents.Text + '/CTL'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FControl.Text);
+ FileContents.Add('/CTL');
+ FileContents.AddStrings(FCTL);
+ if (WidthDebugInfo) then
+ begin
+   DebugFileContents.Add('/CTL');
+   for i := 0 to FCTL.Count - 1 do DebugFileContents.Add('CTL|' + IntToStr(i));
+ end;
 
- FileContents.Text := FileContents.Text + '/VOC'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FVocabulary.Text);
+ FileContents.Add('/VOC');
+ FileContents.AddStrings(FVOC);
+ if (WidthDebugInfo) then
+ begin
+   DebugFileContents.Add('/VOC');
+   for i := 0 to FVOC.Count - 1 do DebugFileContents.Add('VOC|' + IntToStr(i));
+ end;
 
- FileContents.Text := FileContents.Text + '/STX'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FSysMess.Text);
+ FileContents.Add('/STX');
+ FileContents.AddStrings(FSTX);
+ if (WidthDebugInfo) then
+ begin
+   DebugFileContents.Add('/STX');
+   for i := 0 to FSTX.Count - 1 do DebugFileContents.Add('STX|' + IntToStr(i));
+ end;
 
- FileContents.Text := FileContents.Text + '/MTX'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FUsrMess.Text);
 
- FileContents.Text := FileContents.Text + '/OTX'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FObjectTexts.Text);
+  FileContents.Add('/MTX');
+  FileContents.AddStrings(FMTX);
+  if (WidthDebugInfo) then
+  begin
+    DebugFileContents.Add('/MTX');
+    for i := 0 to FMTX.Count - 1 do DebugFileContents.Add('MTX|' + IntToStr(i));
+  end;
 
- FileContents.Text := FileContents.Text + '/LTX'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FLocationTexts.Text);
+  FileContents.Add('/OTX');
+  FileContents.AddStrings(FOTX);
+  if (WidthDebugInfo) then
+  begin
+    DebugFileContents.Add('/OTX');
+    for i := 0 to FOTX.Count - 1 do DebugFileContents.Add('OTX|' + IntToStr(i));
+  end;
 
- FileContents.Text := FileContents.Text + '/CON'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FConnections.Text);
 
- FileContents.Text := FileContents.Text + '/OBJ'+ LF;
- FileContents.Text := FileContents.Text + AddLF(FObjectData.Text);
+  FileContents.Add('/LTX');
+  FileContents.AddStrings(FLTX);
+  if (WidthDebugInfo) then
+  begin
+    DebugFileContents.Add('/LTX');
+    for i := 0 to FLTX.Count - 1 do DebugFileContents.Add('LTX|' + IntToStr(i));
+  end;
+
+  FileContents.Add('/CON');
+  FileContents.AddStrings(FCON);
+  if (WidthDebugInfo) then
+  begin
+    DebugFileContents.Add('/CON');
+    for i := 0 to FCON.Count - 1 do DebugFileContents.Add('CON|' + IntToStr(i));
+  end;
+
+  FileContents.Add('/OBJ');
+  FileContents.AddStrings(FOBJ);
+  if (WidthDebugInfo) then
+  begin
+    DebugFileContents.Add('/OBJ');
+    for i := 0 to FOBJ.Count - 1 do DebugFileContents.Add('OBJ|' + IntToStr(i));
+  end;
+
 
  for i:= 0 to FLastProcess do
  begin
    AuxStr := '/PRO ';
    if (i = FInterruptProcesNum) then AuxStr := AuxStr + 'INTERRUPT ';
-   AuxStr := AuxStr + IntToStr(i) + LF;
-   FileContents.Text := FileContents.Text + AuxStr;
-   FileContents.Text := FileContents.Text + AddLF(FProcesses[i].Text);
+   AuxStr := AuxStr + IntToStr(i);
+   FileContents.Add(AuxStr);
+   FileContents.AddStrings(FProcesses[i]);
+   if (WidthDebugInfo) then
+   begin
+     DebugFileContents.Add(AuxStr);
+     for j := 0 to FProcesses[i].Count - 1 do DebugFileContents.Add('PRO ' + IntToStr(i) + '|' + IntToStr(j));
+   end;
  end;
  FileContents.text := Utf8ToAnsi(FileContents.Text);
  FileContents.SaveToFile(Filename);
+ FileContents.Free();
+ if WidthDebugInfo then
+ begin
+   DebugFileContents.SaveToFile(ChangeFileExt(Filename,'.dbg'));
+   DebugFileContents.Free();;
+ end;
 end;
 
 
@@ -195,15 +247,15 @@ var StrAux : String;
     ProcNum :   integer;
     MarkAsInterrupt :Boolean;
 begin
- if (NameTag = 'DEF') then FDefinitions.Text := Content.Text else
- if (NameTag = 'CTL') then FControl.Text := Content.Text else
- if (NameTag = 'VOC') then FVocabulary.Text := Content.Text else
- if (NameTag = 'STX') then FSysMess.Text := Content.Text else
- if (NameTag = 'MTX') then FUsrMess.Text := Content.Text else
- if (NameTag = 'LTX') then FLocationTexts.Text := Content.Text else
- if (NameTag = 'OTX') then FObjectTexts.Text := Content.Text else
- if (NameTag = 'CON') then FConnections.Text := Content.Text else
- if (NameTag = 'OBJ') then FObjectData.Text := Content.Text else
+ if (NameTag = 'DEF') then FDEF.Text := Content.Text else
+ if (NameTag = 'CTL') then FCTL.Text := Content.Text else
+ if (NameTag = 'VOC') then FVOC.Text := Content.Text else
+ if (NameTag = 'STX') then FSTX.Text := Content.Text else
+ if (NameTag = 'MTX') then FMTX.Text := Content.Text else
+ if (NameTag = 'LTX') then FLTX.Text := Content.Text else
+ if (NameTag = 'OTX') then FOTX.Text := Content.Text else
+ if (NameTag = 'CON') then FCON.Text := Content.Text else
+ if (NameTag = 'OBJ') then FOBJ.Text := Content.Text else
  if (NameTag = 'PRO') then
  begin
       MarkAsInterrupt := false;
@@ -250,7 +302,7 @@ begin
  if (num <256) then
  begin
       FProcesses[num] := TStringList.Create();
-      FProcesses[num].Text := '; ** New ngPAWS Process ' + IntToStr(num+1) + LF;
+      FProcesses[num].Text := '; ** New ngPAWS Process ' + IntToStr(num) + LF;
       FLastProcess := FLastProcess + 1;
       Result := true;
  end else Result := false;

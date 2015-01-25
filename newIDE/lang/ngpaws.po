@@ -94,12 +94,20 @@ msgstr ""
 msgid "ngPAWS"
 msgstr ""
 
+#: tfmain.compileoutputlistbox.hint
+msgid "Compiler output"
+msgstr ""
+
 #: tfmain.mabout.caption
 msgid "About ngPAWS"
 msgstr ""
 
 #: tfmain.mclose.caption
 msgid "&Close"
+msgstr ""
+
+#: tfmain.mclosecompileroutput.caption
+msgid "Close this frame"
 msgstr ""
 
 #: tfmain.mcompile.caption
@@ -205,10 +213,6 @@ msgstr ""
 msgid "&Project"
 msgstr ""
 
-#: tfmain.mpuzzlewizard.caption
-msgid "Puzzle &wizard"
-msgstr ""
-
 #: tfmain.mquit.caption
 msgid "Quit"
 msgstr ""
@@ -280,6 +284,10 @@ msgctxt "tfmain.pmpaste.caption"
 msgid "Paste"
 msgstr ""
 
+#: tfmain.pmpuzzlewizard.caption
+msgid "Puzzle Wizard"
+msgstr ""
+
 #: tfmain.pmseparartor2.caption
 msgctxt "TFMAIN.PMSEPARARTOR2.CAPTION"
 msgid "-"
@@ -323,7 +331,7 @@ msgid "Options"
 msgstr ""
 
 #: tfoptions.checkdeletetempfiles.caption
-msgid "Delete compiler temp files"
+msgid "Delete temp files"
 msgstr ""
 
 #: tfoptions.checkopenalltabs.caption
@@ -336,14 +344,6 @@ msgstr ""
 
 #: tfoptions.checkshowtoolbar.caption
 msgid "Show tool bar"
-msgstr ""
-
-#: tfoptions.checkusepreprocessor.caption
-msgid "Use preprocessor"
-msgstr ""
-
-#: tfoptions.checkwordwrap.caption
-msgid "Word wrap"
 msgstr ""
 
 #: tfoptions.comboboxlang.text
@@ -381,7 +381,7 @@ msgid "Compiler"
 msgstr ""
 
 #: tfoptions.tabsheeteditor.caption
-msgid "Editor"
+msgid "General"
 msgstr ""
 
 #: tfpuzzlewizard.caption
@@ -390,6 +390,14 @@ msgstr ""
 
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+msgstr ""
+
+#: uglobals.s_compiler_not_found
+msgid "Compiler not found, please check options to set valid path"
+msgstr ""
+
+#: uglobals.s_compile_ok
+msgid "OK. Ready to run."
 msgstr ""
 
 #: uglobals.s_copyright
@@ -423,6 +431,10 @@ msgstr ""
 
 #: uglobals.s_menuitem_response
 msgid "&Response"
+msgstr ""
+
+#: uglobals.s_preprocessor_not_found
+msgid "Preprocessor not found, please check options to set valid path"
 msgstr ""
 
 #: uglobals.s_quit_not_saved
@@ -483,5 +495,21 @@ msgstr ""
 
 #: uglobals.s_section_vocabulary
 msgid "Vocabulary"
+msgstr ""
+
+#: uglobals.s_starting_compiler
+msgid "Running compiler..."
+msgstr ""
+
+#: uglobals.s_starting_preprocessor
+msgid "Running preprocessor..."
+msgstr ""
+
+#: uglobals.s_start_database_not_found
+msgid "Start database not found, please check options to set valid path"
+msgstr ""
+
+#: uglobals.s_too_many_process
+msgid "Too many processes"
 msgstr ""
 

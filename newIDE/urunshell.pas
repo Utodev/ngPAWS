@@ -28,7 +28,7 @@ begin
   aProcess := TProcess.Create(nil);
   aProcess.Executable:=Executable;
   aProcess.Parameters.Add(Parameters);
-  aProcess.Options := aProcess.Options + [poUsePipes];
+  aProcess.Options := aProcess.Options + [poUsePipes, poNoConsole];
   aProcess.Execute;
   while True do
     begin

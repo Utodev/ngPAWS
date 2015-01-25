@@ -716,6 +716,7 @@ object fMain: TfMain
   }
   Menu = MainMenu
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poDesktopCenter
   LCLVersion = '1.2.6.0'
   WindowState = wsMaximized
@@ -734,7 +735,7 @@ object fMain: TfMain
     OnClick = PanelBackgroundClick
     object PageControl: TPageControl
       Left = 1
-      Height = 528
+      Height = 358
       Top = 51
       Width = 906
       Align = alClient
@@ -4022,6 +4023,27 @@ object fMain: TfMain
         OnClick = BOptionsClick
       end
     end
+    object CompileOutputListBox: TListBox
+      Left = 1
+      Height = 170
+      Hint = 'Compiler output'
+      Top = 409
+      Width = 906
+      Align = alBottom
+      Color = 2238503
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clSilver
+      Font.Height = -17
+      Font.Pitch = fpFixed
+      Font.Quality = fqDraft
+      ItemHeight = 0
+      ParentShowHint = False
+      ParentFont = False
+      PopupMenu = PopupMenuCompilerOutput
+      ShowHint = True
+      TabOrder = 2
+      Visible = False
+    end
   end
   object MainMenu: TMainMenu
     left = 40
@@ -4157,14 +4179,17 @@ object fMain: TfMain
       end
       object MNewProcess: TMenuItem
         Caption = '&New Process'
+        OnClick = MNewProcessClick
       end
       object MCompile: TMenuItem
         Caption = '&Compile'
         ShortCut = 16500
+        OnClick = MCompileClick
       end
       object MCompileRun: TMenuItem
         Caption = 'Compile && &Run'
         ShortCut = 116
+        OnClick = MCompileRunClick
       end
     end
     object MTools: TMenuItem
@@ -4174,11 +4199,6 @@ object fMain: TfMain
         Caption = '&Options'
         ShortCut = 122
         OnClick = MOptionsClick
-      end
-      object MPuzzleWizard: TMenuItem
-        Caption = 'Puzzle &wizard'
-        Enabled = False
-        ShortCut = 123
       end
     end
     object MHelp: TMenuItem
@@ -4292,6 +4312,9 @@ object fMain: TfMain
       ShortCutKey2 = 32880
       OnClick = PMCondactHelpClick
     end
+    object PMPuzzleWizard: TMenuItem
+      Caption = 'Puzzle Wizard'
+    end
     object PMSeparator1: TMenuItem
       Caption = '-'
     end
@@ -4322,6 +4345,14 @@ object fMain: TfMain
       Caption = 'Paste'
       ShortCut = 16470
       OnClick = PMPasteClick
+    end
+  end
+  object PopupMenuCompilerOutput: TPopupMenu
+    left = 288
+    top = 224
+    object MCloseCompilerOutput: TMenuItem
+      Caption = 'Close this frame'
+      OnClick = MCloseCompilerOutputClick
     end
   end
 end

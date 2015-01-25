@@ -15,37 +15,29 @@ object fOptions: TfOptions
     Height = 301
     Top = 0
     Width = 465
-    ActivePage = TabSheetCompiler
+    ActivePage = TabSheetEditor
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheetEditor: TTabSheet
-      Caption = 'Editor'
+      Caption = 'General'
       ClientHeight = 271
       ClientWidth = 457
-      object checkWordwrap: TCheckBox
-        Left = 250
+      object checkShowToolbar: TCheckBox
+        Left = 248
         Height = 21
         Top = 24
-        Width = 88
-        Caption = 'Word wrap'
-        TabOrder = 0
-      end
-      object checkShowToolbar: TCheckBox
-        Left = 250
-        Height = 21
-        Top = 56
         Width = 104
         Caption = 'Show tool bar'
-        TabOrder = 1
+        TabOrder = 0
       end
       object checkSaveBeforeRun: TCheckBox
-        Left = 250
+        Left = 248
         Height = 21
-        Top = 120
+        Top = 96
         Width = 182
         Caption = 'Save before run or compile'
-        TabOrder = 2
+        TabOrder = 1
       end
       object LabelHelpURL: TLabel
         Left = 40
@@ -60,7 +52,7 @@ object fOptions: TfOptions
         Height = 25
         Top = 192
         Width = 397
-        TabOrder = 3
+        TabOrder = 2
       end
       object LabelLang: TLabel
         Left = 36
@@ -82,16 +74,16 @@ object fOptions: TfOptions
           'Spanish'
         )
         Style = csDropDownList
-        TabOrder = 4
+        TabOrder = 3
         Text = 'English'
       end
       object checkOpenAllTabs: TCheckBox
-        Left = 250
+        Left = 248
         Height = 21
-        Top = 88
+        Top = 64
         Width = 171
         Caption = 'Open all sections on load'
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object TabSheetCompiler: TTabSheet
@@ -101,7 +93,7 @@ object fOptions: TfOptions
       object LabelPreprocessor: TLabel
         Left = 16
         Height = 17
-        Top = 82
+        Top = 23
         Width = 78
         Caption = 'Preprocessor'
         ParentColor = False
@@ -109,14 +101,14 @@ object fOptions: TfOptions
       object EditPreprocessor: TEdit
         Left = 16
         Height = 25
-        Top = 99
+        Top = 40
         Width = 165
         TabOrder = 0
       end
       object BBrowsePreprocessor: TButton
         Left = 181
         Height = 27
-        Top = 99
+        Top = 40
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -131,7 +123,7 @@ object fOptions: TfOptions
       object LabelStartDatabase: TLabel
         Left = 240
         Height = 17
-        Top = 139
+        Top = 80
         Width = 85
         Caption = 'Start database'
         ParentColor = False
@@ -139,14 +131,14 @@ object fOptions: TfOptions
       object EditStartDatabase: TEdit
         Left = 240
         Height = 25
-        Top = 156
+        Top = 97
         Width = 165
         TabOrder = 2
       end
       object BBrowseStartDatabase: TButton
         Left = 404
         Height = 27
-        Top = 153
+        Top = 94
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -161,38 +153,30 @@ object fOptions: TfOptions
       object LabelCompiler: TLabel
         Left = 240
         Height = 17
-        Top = 75
+        Top = 16
         Width = 53
         Caption = 'Compiler'
         ParentColor = False
       end
-      object checkUsePreprocessor: TCheckBox
-        Left = 16
-        Height = 21
-        Top = 40
-        Width = 127
-        Caption = 'Use preprocessor'
-        TabOrder = 4
-      end
       object checkDeleteTempFiles: TCheckBox
-        Left = 240
+        Left = 24
         Height = 21
-        Top = 40
-        Width = 175
-        Caption = 'Delete compiler temp files'
-        TabOrder = 5
+        Top = 152
+        Width = 120
+        Caption = 'Delete temp files'
+        TabOrder = 4
       end
       object EditCompiler: TEdit
         Left = 240
         Height = 25
-        Top = 99
+        Top = 40
         Width = 165
-        TabOrder = 6
+        TabOrder = 5
       end
       object BBrowseCompiler: TButton
         Left = 404
         Height = 27
-        Top = 96
+        Top = 37
         Width = 27
         Caption = '...'
         Font.CharSet = ANSI_CHARSET
@@ -202,19 +186,19 @@ object fOptions: TfOptions
         Font.Quality = fqDraft
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 6
       end
       object EditPreprocessorParameters: TEdit
         Left = 16
         Height = 25
-        Top = 156
+        Top = 97
         Width = 192
-        TabOrder = 8
+        TabOrder = 7
       end
       object LabelPreprocessorParameters: TLabel
         Left = 16
         Height = 17
-        Top = 139
+        Top = 80
         Width = 148
         Caption = 'Preprocessor Parameters'
         ParentColor = False

@@ -20,8 +20,6 @@ type
     BBrowsePreprocessor: TButton;
     checkOpenAllTabs: TCheckBox;
     checkDeleteTempFiles: TCheckBox;
-    checkUsePreprocessor: TCheckBox;
-    checkWordwrap: TCheckBox;
     checkShowToolbar: TCheckBox;
     checkSaveBeforeRun: TCheckBox;
     ComboBoxLang: TComboBox;
@@ -63,8 +61,6 @@ begin
  checkShowToolbar.Checked :=  fMain.Config.ShowToolBar;
  checkDeleteTempFiles.Checked:= fMain.Config.DeleteTempFiles;
  checkSaveBeforeRun.Checked:=fMain.Config.SaveBeforeRun;
- checkUsePreprocessor.Checked:=fMain.Config.UsePreprocessor;
- checkWordwrap.Checked:=fMain.Config.WordWrap;
  checkOpenAllTabs.Checked:=fMain.Config.OpenAllTabs;
 
  EditCompiler.Text:= fMain.Config.CompilerPath;
@@ -82,8 +78,6 @@ begin
   Config.ShowToolBar := checkShowToolbar.Checked;
   Config.DeleteTempFiles := checkDeleteTempFiles.Checked;
   Config.SaveBeforeRun := checkSaveBeforeRun.Checked;
-  Config.UsePreprocessor := checkUsePreprocessor.Checked;
-  Config.WordWrap := checkWordwrap.Checked;
   Config.OpenAllTabs := checkOpenAllTabs.Checked;
 
 

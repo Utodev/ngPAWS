@@ -15,10 +15,8 @@ private
  FStartDatabasePath: String;
  FPreprocessorParameters : String;
  FHelpBaseURL : String;
- FUsePreprocessor : Boolean;
  FDeleteTempFiles : Boolean;
  FSaveBeforeRun : Boolean;
- FWordWrap : Boolean;
  FShowToolBar : Boolean;
  FOpenAllTabs : Boolean;
  FLang : String;
@@ -31,10 +29,8 @@ public
  property PreprocessorParameters : String read FPreprocessorParameters write FPreprocessorParameters;
  property HelpBaseURL : String read FHelpBaseURL write FHelpBaseURL;
 
- property UsePreprocessor : Boolean read FUsePreprocessor write FUsePreprocessor;
  property DeleteTempFiles : Boolean read FDeleteTempFiles write FDeleteTempFiles;
  property SaveBeforeRun : Boolean read FSaveBeforeRun write FSaveBeforeRun;
- property WordWrap : Boolean read FWordWrap write FWordWrap;
  property ShowToolBar : Boolean read FShowToolBar write FShowToolBar;
  property OpenAllTabs : Boolean read  FOpenAllTabs write  FOpenAllTabs;
 
@@ -73,9 +69,7 @@ begin
   FPreprocessorParameters := IniFile.ReadString('Paths','PreprocessorParameters','-uk -CLEAN -I"dat"');
 
   FDeleteTempFiles := IniFile.ReadBool('Options','DeleteTemFiles',true);
-  FWordWrap := IniFile.ReadBool('Options','WordWrap',false);
   FSaveBeforeRun := IniFile.ReadBool('Options','SaveBeforeRun',true);
-  FUsePreprocessor := IniFile.ReadBool('Options','UsePreprocessor',true);
   FShowToolBar :=  IniFile.ReadBool('Options','ShowToolBar',true);
   FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
   FEditorFontSize :=  IniFile.ReadInteger('Options','EditorFontSize',13);
@@ -104,9 +98,7 @@ begin
   IniFile.WriteString('Paths','PreprocessorParameters',FPreprocessorParameters);
 
   IniFile.WriteBool('Options','DeleteTempFiles', FDeleteTempFiles);
-  IniFile.WriteBool('Options','WordWrap', FWordWrap);
   IniFile.WriteBool('Options','SaveBeforeRun', FSaveBeforeRun);
-  IniFile.WriteBool('Options','UsePreprocessor', FUsePreprocessor);
   IniFile.WriteBool('Options','ShowToolBar', FShowToolBar);
   IniFile.WriteBool('Options','OpenAllTabs', FOpenAllTabs);
 
