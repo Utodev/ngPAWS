@@ -132,7 +132,9 @@ type
     procedure PMCopyClick(Sender: TObject);
     procedure PMCutClick(Sender: TObject);
     procedure PMInterruptToggleClick(Sender: TObject);
+    procedure PMLargerFontClick(Sender: TObject);
     procedure PMPasteClick(Sender: TObject);
+    procedure PMSmallerFontClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
     procedure MRecentFilesClick(Sender: TObject);
@@ -149,6 +151,7 @@ type
     procedure CloseFile();
     procedure Terminate();
     procedure SaveFile();
+    procedure SetEditorsFont();
 
 
     { private declarations }
@@ -239,6 +242,7 @@ begin
   PMInterruptToggle.Visible := MarkAsInterruptVisible;
   PMInterruptToggle.Checked := (MarkAsInterruptVisible) and (ProcNum=TXp.InterruptProcessNum);
   PMCondactHelp.Visible := CondactHelpVisible;
+  PMSeparator1.Visible := CondactHelpVisible or MarkAsInterruptVisible;
 
 end;
 
@@ -516,9 +520,27 @@ begin
 
 end;
 
+procedure TfMain.PMLargerFontClick(Sender: TObject);
+begin
+  Config.EditorFontSize:=Config.EditorFontSize + 1;
+  Config.SaveConfig();
+  SetEditorsFont();
+end;
+
 procedure TfMain.PMPasteClick(Sender: TObject);
 begin
   MPaste.Click();
+end;
+
+procedure TfMain.PMSmallerFontClick(Sender: TObject);
+begin
+  if Config.EditorFontSize > 7 then
+  begin
+    Config.EditorFontSize:=Config.EditorFontSize - 1;
+    Config.SaveConfig();
+    SetEditorsFont();
+  end;
+
 end;
 
 
@@ -626,7 +648,7 @@ begin
  SynEdit.Color:=$222827;
  SynEdit.Font.Color := clWhite;
  SynEdit.ScrollBars := ssVertical;
- SynEdit.Font.Size := 13;
+ SynEdit.Font.Size := Config.EditorFontSize;
  SynEdit.PopupMenu := MainPopupMenu;
  SynEdit.ScrollBars := ssBoth;
  SynEdit.Options := SynEdit.Options + [eoSmartTabDelete, eoSmartTabs, eoAutoIndent];
@@ -733,6 +755,13 @@ begin
     end;
   end;
   TXP.SaveTXP('');
+end;
+
+procedure TfMain.SetEditorsFont();
+var i : integer;
+begin
+ for i := 0 to PageControl.PageCount - 1 do
+  TSynEdit(PageControl.Pages[i].Controls[0]).Font.Size := Config.EditorFontSize;
 end;
 
 end.

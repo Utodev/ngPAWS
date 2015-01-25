@@ -4297,11 +4297,13 @@ object fMain: TfMain
     end
     object PMLargerFont: TMenuItem
       Caption = 'Larger font'
-      ShortCut = 16417
+      ShortCut = 121
+      OnClick = PMLargerFontClick
     end
     object PMSmallerFont: TMenuItem
       Caption = 'Smaller font'
-      ShortCut = 16418
+      ShortCut = 120
+      OnClick = PMSmallerFontClick
     end
     object PMSeparartor2: TMenuItem
       Caption = '-'

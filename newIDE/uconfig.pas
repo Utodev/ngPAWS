@@ -23,6 +23,7 @@ private
  FOpenAllTabs : Boolean;
  FLang : String;
  FRecentFiles: Array[0..9] of string;
+ FEditorFontSize: integer;
 public
  property CompilerPath : String read FCompilerPath write FCompilerPath;
  property PreprocessorPath : String read FPreprocessorPath write FPreprocessorPath;
@@ -38,6 +39,7 @@ public
  property OpenAllTabs : Boolean read  FOpenAllTabs write  FOpenAllTabs;
 
  property Lang: String read FLang write FLang;
+ property EditorFontSize: integer read FEditorFontSize write FEditorFontSize;
 
  procedure LoadConfig();
  procedure SaveConfig();
@@ -76,6 +78,8 @@ begin
   FUsePreprocessor := IniFile.ReadBool('Options','UsePreprocessor',true);
   FShowToolBar :=  IniFile.ReadBool('Options','ShowToolBar',true);
   FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
+  FEditorFontSize :=  IniFile.ReadInteger('Options','EditorFontSize',13);
+
 
   FLang :=  IniFile.ReadString('Lang','Lang','EN');
   IniFile.Free();
@@ -105,6 +109,8 @@ begin
   IniFile.WriteBool('Options','UsePreprocessor', FUsePreprocessor);
   IniFile.WriteBool('Options','ShowToolBar', FShowToolBar);
   IniFile.WriteBool('Options','OpenAllTabs', FOpenAllTabs);
+
+  IniFile.WriteInteger('Options','EditorFontSize',FEditorFontSize);
 
   IniFile.WriteString('Lang','Lang', FLang);
   IniFile.Free();
