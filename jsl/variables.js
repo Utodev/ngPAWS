@@ -275,6 +275,7 @@ var success;
 var doall_flag;
 var process_in_doall;
 var entry_for_doall	= '';
+var current_process;
 
 
 var timeout_progress = 0;

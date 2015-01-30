@@ -70,7 +70,7 @@ function waitKeyCallback()
 
 function skipdoall(entry)
 {
-	return  ((doall_flag==true) && (entry_for_doall!='') && (entry_for_doall > entry));
+	return  ((doall_flag==true) && (entry_for_doall!='') && (current_process==process_in_doall) && (entry_for_doall > entry));
 }
 
 // Dynamic attribute use functions
@@ -833,6 +833,7 @@ function sfxfadeout(channelno, value)
 
 function callProcess(procno)
 {
+	current_process = procno;
 	var prostr = procno.toString(); 
 	while (prostr.length < 3) prostr = "0" + prostr;
 	if (procno==0) in_response = true;

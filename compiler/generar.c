@@ -301,6 +301,7 @@ void VolcarProcesos ()
   int fichJSPointer;
   FILE *fichTmp;
   char lineaCopy[32768];
+  int last_was_doall;
   
   
   fputs ("\n// PROCESSES\n\n", fichJS);
@@ -315,6 +316,7 @@ void VolcarProcesos ()
   anykey_function = 0;
   fichJSPointer = 0;
 
+  last_was_doall = 0;
 
   for (npro = 0; npro < ultProceso + 1; npro++)
     {
@@ -367,9 +369,10 @@ void VolcarProcesos ()
 			/* generar el codigo del condacto */
 			if (!strcmp (elCondacto.nombre, "DOALL"))
 			{
-	            fprintf (fichJS, "\t\tentry_for_doall = 'p%03de%04d';\n", npro, nent);
+	            fprintf (fichJS, "\t\tentry_for_doall = 'p%03de%04d';\n", npro, nent+1);
 	            fprintf (fichJS, "\t\tprocess_in_doall = %d;\n", npro);
-			}
+				last_was_doall = 1;
+			} else last_was_doall = 0;
 
 					
 
@@ -504,6 +507,7 @@ void VolcarProcesos ()
 		laEntrada = SiguienteEntrada (npro, laEntrada);
 		nent++;
 	  } // Bucle entradas
+	  if (last_was_doall) fprintf (fichJS, "\n\tp%03de%04d:\n\t{}\n", npro, nent );  // If someone left DOALL as last condact of a process (what is nonsense), there will be a jump to an invalid label, we create it to avoid crash
 	  fprintf (fichJS, "\n}\n}\n\n");  // Cerramos el proceso y el bloque restart, dos llaves
 	  if (npro == interrupt_proc) fprintf (fichJS, "interrupt_proc = %d;\n", npro);
 
