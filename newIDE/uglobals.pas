@@ -36,6 +36,10 @@ resourcestring
 
   S_TOO_MANY_PROCESS = 'Too many processes';
 
+  S_NO_SECTION_OPEN = 'Please open some section from the "Project" menu in order to use this feature.';
+
+  S_SEARCH_REPLACE_NOT_FOUND = ' not found.';
+
   //UTXP Messages
   S_SECTION_DEFINITIONS = 'Definitions';
   S_SECTION_CONTROL = 'Control';

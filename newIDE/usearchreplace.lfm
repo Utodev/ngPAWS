@@ -1,0 +1,102 @@
+object fSearchReplace: TfSearchReplace
+  Left = 736
+  Height = 342
+  Top = 190
+  Width = 294
+  BorderStyle = bsDialog
+  Caption = 'Search'
+  ClientHeight = 342
+  ClientWidth = 294
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  LCLVersion = '1.2.6.0'
+  object EditSearch: TEdit
+    Left = 32
+    Height = 25
+    Top = 32
+    Width = 240
+    OnKeyPress = FormKeyPress
+    TabOrder = 0
+  end
+  object checkReplace: TCheckBox
+    Left = 32
+    Height = 21
+    Top = 64
+    Width = 68
+    Caption = 'Replace'
+    OnChange = checkReplaceChange
+    OnKeyPress = FormKeyPress
+    TabOrder = 1
+  end
+  object LabelSearch: TLabel
+    Left = 32
+    Height = 17
+    Top = 16
+    Width = 39
+    Caption = 'Search'
+    ParentColor = False
+  end
+  object EditReplace: TEdit
+    Left = 32
+    Height = 25
+    Top = 96
+    Width = 240
+    OnKeyPress = FormKeyPress
+    TabOrder = 2
+  end
+  object checkCaseSensitive: TCheckBox
+    Left = 31
+    Height = 21
+    Top = 151
+    Width = 104
+    Caption = 'Case Sensitive'
+    OnKeyPress = FormKeyPress
+    TabOrder = 3
+  end
+  object checkWholeWordsOnly: TCheckBox
+    Left = 32
+    Height = 21
+    Top = 176
+    Width = 130
+    Caption = 'Whole Words only'
+    TabOrder = 4
+  end
+  object checkOnlyFromCursor: TCheckBox
+    Left = 31
+    Height = 21
+    Top = 200
+    Width = 121
+    Caption = 'Only from cursor'
+    Checked = True
+    OnKeyPress = FormKeyPress
+    State = cbChecked
+    TabOrder = 5
+  end
+  object checkOnlyInSelection: TCheckBox
+    Left = 32
+    Height = 21
+    Top = 224
+    Width = 117
+    Caption = 'Only in selection'
+    OnKeyPress = FormKeyPress
+    TabOrder = 6
+  end
+  object bOk: TButton
+    Left = 104
+    Height = 25
+    Top = 288
+    Width = 75
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 7
+  end
+  object bCancel: TButton
+    Left = 197
+    Height = 25
+    Top = 288
+    Width = 75
+    Caption = 'Cancel'
+    TabOrder = 8
+  end
+end

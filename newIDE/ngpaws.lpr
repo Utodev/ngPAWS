@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, lazcontrols, UMain, uoptions, urunshell, UConfig, UTXP, UGlobals,
-  uabout, upuzzlewizard;
+  uabout, upuzzlewizard, USearchReplace;
 
 
 
@@ -19,6 +19,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TfMain, fMain);
   Application.CreateForm(TfOptions, fOptions);
+  Application.CreateForm(TfSearchReplace, fSearchReplace);
   Application.Run;
 end.
 

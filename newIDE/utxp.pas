@@ -57,7 +57,7 @@ end;
 
 implementation
 
-uses UGlobals, StrUtils, LConvEncoding;
+uses UGlobals, StrUtils, LConvEncoding, Dialogs;
 
 const BlockNames :  array [0..9] of String = ('DEF','CTL','VOC','STX','MTX','OTX','LTX','CON','OBJ','PRO');
 
@@ -107,7 +107,11 @@ begin
   FFilePath:=Filename;
   FileContents := TStringList.Create();
   CurrentBlock := TStringList.Create();
-  if (not FileExists(Filename)) then  raise Exception.Create(S_FILE_NOT_FOUND);
+  if (not FileExists(Filename)) then
+  begin
+    ShowMessage(S_FILE_NOT_FOUND);
+    Exit;
+  end;
   FileContents.LoadFromFile(Filename);
   FileContents.Text:= AnsiToUtf8(FileContents.Text);
   ptr := 0;

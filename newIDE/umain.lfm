@@ -4110,6 +4110,7 @@ object fMain: TfMain
       object MFind: TMenuItem
         Caption = 'Find'
         ShortCut = 16454
+        OnClick = MFindClick
       end
       object MFindNext: TMenuItem
         Caption = '&Find next'
@@ -4118,6 +4119,7 @@ object fMain: TfMain
       object MReplace: TMenuItem
         Caption = 'Replace'
         ShortCut = 16466
+        OnClick = MReplaceClick
       end
     end
     object MProject: TMenuItem

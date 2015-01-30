@@ -388,6 +388,45 @@ msgstr ""
 msgid "fPuzzleWizard"
 msgstr ""
 
+#: tfsearchreplace.bcancel.caption
+msgid "Cancel"
+msgstr ""
+
+#: tfsearchreplace.bok.caption
+msgid "Ok"
+msgstr ""
+
+#: tfsearchreplace.caption
+msgctxt "tfsearchreplace.caption"
+msgid "Search"
+msgstr ""
+
+#: tfsearchreplace.checkcasesensitive.caption
+msgid "Case Sensitive"
+msgstr ""
+
+#: tfsearchreplace.checkonlyfromcursor.caption
+msgid "Only from cursor"
+msgstr ""
+
+#: tfsearchreplace.checkonlyinselection.caption
+msgid "Only in selection"
+msgstr ""
+
+#: tfsearchreplace.checkreplace.caption
+msgctxt "TFSEARCHREPLACE.CHECKREPLACE.CAPTION"
+msgid "Replace"
+msgstr ""
+
+#: tfsearchreplace.checkwholewordsonly.caption
+msgid "Whole Words only"
+msgstr ""
+
+#: tfsearchreplace.labelsearch.caption
+msgctxt "TFSEARCHREPLACE.LABELSEARCH.CAPTION"
+msgid "Search"
+msgstr ""
+
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
 msgstr ""
@@ -433,6 +472,10 @@ msgstr ""
 msgid "&Response"
 msgstr ""
 
+#: uglobals.s_no_section_open
+msgid "Please open some section from the \"Project\" menu in order to use this feature."
+msgstr ""
+
 #: uglobals.s_preprocessor_not_found
 msgid "Preprocessor not found, please check options to set valid path"
 msgstr ""
@@ -447,6 +490,10 @@ msgstr ""
 msgid ""
 "There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
 "Are you sure?\n"
+msgstr ""
+
+#: uglobals.s_search_replace_not_found
+msgid " not found."
 msgstr ""
 
 #: uglobals.s_section_conn

@@ -115,6 +115,7 @@ type
     procedure MDataClick(Sender: TObject);
     procedure MDefinitionsClick(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
+    procedure MFindClick(Sender: TObject);
     procedure MHelpContentsClick(Sender: TObject);
     procedure MLocationsClick(Sender: TObject);
     procedure MMessagesClick(Sender: TObject);
@@ -128,6 +129,7 @@ type
     procedure MPasteClick(Sender: TObject);
     procedure MQuitClick(Sender: TObject);
     procedure MRedoClick(Sender: TObject);
+    procedure MReplaceClick(Sender: TObject);
     procedure MSaveClick(Sender: TObject);
     procedure mSystemMessagesClick(Sender: TObject);
     procedure MToolsClick(Sender: TObject);
@@ -164,12 +166,14 @@ type
     procedure DeleteTempFiles(FileName : String);
     function CheckError(ErrorLineCandidate: String;IsPreprocessor:Boolean;DebugFileName:String) : Boolean;
     procedure GotoLine(ErrorLineCandidate:String; IsPreprocessor: Boolean;DebugFileName:String);
+    procedure ShowSearchReplaceDialog(IsReplaceDialog: boolean);
 
 
     { private declarations }
   public
     Config: TConfig;
     CodeModified : boolean;
+    EditMode : boolean;
     TXP : TTXP;
   end;
 
@@ -178,7 +182,7 @@ var
 
 implementation
 
-uses uoptions, UGlobals,URunShell, lclintf;
+uses uoptions, UGlobals,URunShell, USearchReplace,  lclintf, SynEditTypes;
 
 {$R *.lfm}
 
@@ -309,7 +313,11 @@ begin
     CompileOutputListBox.Clear();
     CompileOutputListBox.Visible := true;
 
-    if not FileExists(Config.PreprocessorPath) then raise Exception.Create(S_PREPROCESSOR_NOT_FOUND);
+    if not FileExists(Config.PreprocessorPath) then
+    begin
+     ShowMessage(S_PREPROCESSOR_NOT_FOUND);
+     Exit();
+    end;
     CompileOutputListBox.Items.Add(S_STARTING_PREPROCESSOR);
     Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters + ' ' + TXPTempFile);
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
@@ -321,7 +329,11 @@ begin
 
     if (not FileExists(SCETempFile)) then Exit;
 
-    if not FileExists(Config.CompilerPath) then raise Exception.Create(S_COMPILER_NOT_FOUND);
+    if not FileExists(Config.CompilerPath) then
+    begin
+      ShowMessage(S_COMPILER_NOT_FOUND);
+      Exit()
+    end;
     CompileOutputListBox.Items.Add(S_STARTING_COMPILER);
     Output := RunShell(Config.CompilerPath,  SCETempFile);
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
@@ -359,19 +371,21 @@ end;
 
 procedure TfMain.MConnectionsClick(Sender: TObject);
 begin
-  OpenTab('CON',TXP.CON);
+  if Editmode then OpenTab('CON',TXP.CON);
 end;
 
 procedure TfMain.MCopyClick(Sender: TObject);
 begin
   if PageControl.PageCount > 0 then
-     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CopyToClipboard();
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CopyToClipboard()
+     else ShowMessage(S_NO_SECTION_OPEN);
 end;
 
 procedure TfMain.MCutClick(Sender: TObject);
 begin
     if PageControl.PageCount > 0 then
-     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CutToClipboard();
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CutToClipboard()
+     else ShowMessage(S_NO_SECTION_OPEN);
 
 end;
 
@@ -382,13 +396,15 @@ end;
 
 procedure TfMain.MDefinitionsClick(Sender: TObject);
 begin
-  OpenTab('DEF',TXP.DEF);
+  if Editmode then OpenTab('DEF',TXP.DEF);
 end;
 
 procedure TfMain.Memo1Change(Sender: TObject);
 begin
 
 end;
+
+
 
 procedure TfMain.MHelpContentsClick(Sender: TObject);
 var URL : String;
@@ -400,12 +416,12 @@ end;
 
 procedure TfMain.MLocationsClick(Sender: TObject);
 begin
-  OpenTab('LTX',TXP.LTX);
+  if Editmode then OpenTab('LTX',TXP.LTX);
 end;
 
 procedure TfMain.MMessagesClick(Sender: TObject);
 begin
-    OpenTab('MTX',TXP.MTX);
+  if Editmode then OpenTab('MTX',TXP.MTX);
 end;
 
 procedure TfMain.BOpenClick(Sender: TObject);
@@ -490,17 +506,17 @@ begin
   begin
     BuildProcessMenu(TXP);
     OpenTab('PRO ' + IntToStr(TXP.LastProcess), TXP.Processes[TXP.LastProcess])
-  end else raise Exception.Create(S_TOO_MANY_PROCESS);
+  end else ShowMessage(S_TOO_MANY_PROCESS);
 end;
 
 procedure TfMain.MObjectDataClick(Sender: TObject);
 begin
-    OpenTab('OBJ',TXP.OBJ);
+    if Editmode then OpenTab('OBJ',TXP.OBJ);
 end;
 
 procedure TfMain.MObjectTextsClick(Sender: TObject);
 begin
-    OpenTab('OTX',TXP.OTX);
+    if Editmode then OpenTab('OTX',TXP.OTX);
 end;
 
 procedure TfMain.MOpenAllSectionsClick(Sender: TObject);
@@ -533,6 +549,8 @@ end;
 
 procedure TfMain.SetEditMode(mode : boolean);
 begin
+   EditMode:=mode;
+
    if mode then BuildProcessMenu(TXP);
    BOpen.Visible:=not mode;
    BNew.Visible := not mode;
@@ -582,7 +600,7 @@ end;
 
 procedure TfMain.MProcessItemClick(Sender: TObject);
 begin
-  OpenTab('PRO ' + IntToStr(TMenuItem(Sender).Tag), TXP.Processes[TMenuItem(Sender).Tag]);
+  if Editmode then OpenTab('PRO ' + IntToStr(TMenuItem(Sender).Tag), TXP.Processes[TMenuItem(Sender).Tag]);
 end;
 
 procedure TfMain.PMCondactHelpClick(Sender: TObject);
@@ -653,7 +671,8 @@ end;
 procedure TfMain.MPasteClick(Sender: TObject);
 begin
    if PageControl.PageCount > 0 then
-     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).PasteFromClipboard();
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).PasteFromClipboard()
+     else ShowMessage(S_NO_SECTION_OPEN);
 
 end;
 
@@ -673,7 +692,18 @@ end;
 procedure TfMain.MRedoClick(Sender: TObject);
 begin
     if PageControl.PageCount > 0 then
-     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Redo();
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Redo()
+     else ShowMessage(S_NO_SECTION_OPEN);
+end;
+
+procedure TfMain.MFindClick(Sender: TObject);
+begin
+  if PageControl.PageCount > 0 then ShowSearchReplaceDialog(false) else ShowMessage(S_NO_SECTION_OPEN);
+end;
+
+procedure TfMain.MReplaceClick(Sender: TObject);
+begin
+  if PageControl.PageCount > 0 then ShowSearchReplaceDialog(true) else ShowMessage(S_NO_SECTION_OPEN);
 end;
 
 procedure TfMain.MSaveClick(Sender: TObject);
@@ -684,7 +714,7 @@ end;
 
 procedure TfMain.mSystemMessagesClick(Sender: TObject);
 begin
-    OpenTab('STX',TXP.STX);
+  if Editmode then OpenTab('STX',TXP.STX);
 end;
 
 procedure TfMain.MToolsClick(Sender: TObject);
@@ -695,12 +725,12 @@ end;
 procedure TfMain.MUndoClick(Sender: TObject);
 begin
     if PageControl.PageCount > 0 then
-     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Undo();
+     (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Undo() else ShowMessage(S_NO_SECTION_OPEN);
 end;
 
 procedure TfMain.MVocabularyClick(Sender: TObject);
 begin
-  OpenTab('VOC',TXP.VOC);
+  if Editmode then OpenTab('VOC',TXP.VOC);
 end;
 
 procedure TfMain.PageControlChange(Sender: TObject);
@@ -715,6 +745,7 @@ var found : boolean;
     TabSheet : TTabSheet;
 
 begin
+  if not Assigned(TXP) then Exit();
   if not PageControl.Visible then PageControl.Visible:= true;
   if (Section = 'PRO 0') then Section:= 'RESP';
   found := false;
@@ -962,6 +993,54 @@ begin
  OpenTab(Section, SectionContents, FinalLine);
 end;
 
+
+procedure TfMain.ShowSearchReplaceDialog(IsReplaceDialog: boolean);
+var SynEdit : TSynEdit;
+    SearchText :String;
+    Options: TSynSearchOptions;
+begin
+ // Setup Replace field
+ if IsReplaceDialog then
+ begin
+   fSearchReplace.checkReplace.checked := true;
+   fSearchReplace.checkReplaceChange(nil);
+ end else
+ begin
+   fSearchReplace.checkReplace.checked := false;
+   fSearchReplace.checkReplaceChange(nil);
+ end;
+ SynEdit := TSynEdit(PageControl.ActivePage.Controls[0]);
+ // Find a selection
+ SearchText := '';
+ if SynEdit.SelAvail and (SynEdit.BlockBegin.y = SynEdit.BlockEnd.y)
+      then
+        SearchText := SynEdit.SelText
+      else
+        SearchText := SynEdit.GetWordAtRowCol(SynEdit.CaretXY);
+ fSearchReplace.EditSearch.Text := SearchText;
+
+ if (fSearchReplace.ShowModal() = mrOK) then
+ begin
+   if IsReplaceDialog then Options := [ssoPrompt, ssoReplace, ssoReplaceAll]
+                      else Options := [];
+
+   if fSearchReplace.checkCaseSensitive.Checked then Options := Options + [ssoMatchCase];
+   if not fSearchReplace.checkOnlyFromCursor.Checked then Options := Options + [ssoEntireScope];
+   if fSearchReplace.checkWholeWordsOnly.Checked then Options := Options + [ssoWholeWord];
+   if fSearchReplace.checkOnlyInSelection.Checked then Options := Options + [ssoSelectedOnly];
+
+   if SynEdit.SearchReplace(SearchText, fSearchReplace.EditReplace.Text, Options) = 0
+     then ShowMessage(SearchText + S_SEARCH_REPLACE_NOT_FOUND)
+     else
+     begin
+        SynEdit.BlockBegin := SynEdit.BlockEnd;
+        SynEdit.CaretXY := SynEdit.BlockBegin;
+     end;
+
+
+ end;
+
+end;
 
 end.
 
