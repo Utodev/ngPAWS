@@ -1,5 +1,8 @@
-	// This file is (C) Carlos Sanchez 2014, released under the MIT license
+// This file is (C) Carlos Sanchez 2014, released under the MIT license
 
+
+// IMPORTANT: Please notice this file must be encoded with the same encoding the index.html file is, so the "normalize" function works properly.
+//            As currently the ngpwas compiler generates iso-8859-1, and the index.html is using iso-8859-1 also, this file must be using that encoding.
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -942,10 +945,12 @@ function findVocabulary(word)  // Pending: sort the vocabulary at the beginning 
 function normalize(player_order)   
 // Removes accented characters and makes sure every sentence separator (colon, semicolon, quotes, etc.) has one space before and after. Also, all separators are converted to comma
 {
-	var originalchars = 'Ã¡Ã©Ã­Ã³ÃºÃ¤Ã«Ã¯Ã¶Ã¼Ã¢ÃªÃ®Ã´Ã»Ã Ã¨Ã¬Ã²Ã¹ÃÃ‰ÃÃ“ÃšÃ„Ã‹ÃÃ–ÃœÃ‚ÃŠÃÃ”Ã›Ã€ÃˆÃŒÃ’Ã™';
-	output = '';
+	var originalchars = 'áéíóúäëïöüâêîôûàèìòùÁÉÍÓÚÄËÏÖÜÂÊÎÔÛÀÈÌÒÙ';
+	var i;
+	var output = '';
+	var pos;
 
-	for (var i=0;i<player_order.length;i++) 
+	for (i=0;i<player_order.length;i++) 
 	{
 		pos = originalchars.indexOf(player_order.charAt(i));
 		if (pos!=-1) output = output + "aeiou".charAt(pos % 5); else 
@@ -961,8 +966,8 @@ function normalize(player_order)
 function toParserBuffer(player_order)  // Converts a player order in a list of sentences separated by dot.
 {
      player_order = normalize(player_order);
-	 player_order = player_order.toUpperCase();
-
+     player_order = player_order.toUpperCase();
+    
 	 var words = player_order.split(' ');
 	 for (var q=0;q<words.length;q++)
 	 {
