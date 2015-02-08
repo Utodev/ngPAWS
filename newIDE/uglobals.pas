@@ -11,6 +11,9 @@ uses
 CONST LF = #13#10;
       VK_F1 = $70;
 
+function StrToHex(Str: String) : String;
+function HexToStr(Hex: String): String;
+
 
 resourcestring
 
@@ -59,8 +62,40 @@ resourcestring
   S_INVALID_PROCESS_NUMBER = 'Invalid Process Number';
   S_INVALID_SECTION = 'Invalid section';
 
+  // UPuzzleWizard
+  S_FINISH_MESSAGE = '&Finish';
+  S_NEXT_MESSAGE = '&Next >';
+  S_WRONG_PUZZLEWIZARD_POSITION = 'Please select an empty zone in the response table or the token of a previous puzzle';
+
+  S_PUZZLE_HR = ';****************************************************************************************************************************';
+  S_PUZZLE_TITLE = '; Automatically generated puzzle, please right click the token below and select "Puzzle Wizard" to edit it';
+  S_PUZZLE_TITLE2 = '; Don''t delete the token';
+  S_PUZZLE_TOKEN = '; TOKEN: [XXXX] TOKEN';
+  S_PUZZLE_BOTTOM = '; Please don''t remove the keep the puzzle end mark below. Removing it may lead to code corruption';
+  S_PUZZLE_BOTTOM_MARK = '; <ENDPUZZLE>';
+
 
 implementation
+
+function StrToHex(Str: String) : String;
+var i : integer;
+begin
+  result := '';
+  for i := 1 to length(Str) do
+      result := result + IntToHex(ord(Str[i]),2)
+end;
+
+function HexToStr(Hex: String): String;
+var i: integer;
+begin
+  Result:=''; i:=1;
+  while i<Length(Hex) do
+  begin
+    Result:=Result+Chr(StrToIntDef('$'+Copy(Hex,i,2),0));
+    i := i+ 2;
+  end;
+end;
+
 
 end.
 

@@ -384,8 +384,82 @@ msgstr ""
 msgid "General"
 msgstr ""
 
+#: tfpuzzlewizard.buttonnext.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONNEXT.CAPTION"
+msgid "&Next >"
+msgstr ""
+
+#: tfpuzzlewizard.buttonprev.caption
+msgid "< &Previous"
+msgstr ""
+
 #: tfpuzzlewizard.caption
 msgid "fPuzzleWizard"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxlinkedtolocation.caption
+msgid "CheckBoxLinkedToLocation"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequiresadject1.caption
+msgid "Requires Adjective"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequiresadject2.caption
+msgid "Requires Adjective 2"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequiresadverb.caption
+msgid "Requires Adverb"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequiresnoun.caption
+msgid "Requires Noun"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequiresnoun2.caption
+msgid "Requires Noun 2"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxrequirespreposition.caption
+msgid "Requires Preposition"
+msgstr ""
+
+#: tfpuzzlewizard.groupboxloc.caption
+msgid "GroupBoxLoc"
+msgstr ""
+
+#: tfpuzzlewizard.groupboxvoc.caption
+msgctxt "TFPUZZLEWIZARD.GROUPBOXVOC.CAPTION"
+msgid "Vocabulary"
+msgstr ""
+
+#: tfpuzzlewizard.label1.caption
+msgid "Verb"
+msgstr ""
+
+#: tfpuzzlewizard.label2.caption
+msgid "Text on failure"
+msgstr ""
+
+#: tfpuzzlewizard.label2.hint
+msgid "Response to player if he/she tries to perform this action in other location"
+msgstr ""
+
+#: tfpuzzlewizard.tabsheetactions.caption
+msgid "Actions"
+msgstr ""
+
+#: tfpuzzlewizard.tabsheetcodegen.caption
+msgid "Puzzle Code"
+msgstr ""
+
+#: tfpuzzlewizard.tabsheetconditions.caption
+msgid "Conditions"
+msgstr ""
+
+#: tfpuzzlewizard.tabsheetvocloc.caption
+msgid "Vocabulary & Location"
 msgstr ""
 
 #: tfsearchreplace.bcancel.caption
@@ -452,6 +526,10 @@ msgstr ""
 msgid "File not found"
 msgstr ""
 
+#: uglobals.s_finish_message
+msgid "&Finish"
+msgstr ""
+
 #: uglobals.s_invalid_format
 msgid "Not a valid TXP/SCE file"
 msgstr ""
@@ -472,12 +550,41 @@ msgstr ""
 msgid "&Response"
 msgstr ""
 
+#: uglobals.s_next_message
+msgctxt "uglobals.s_next_message"
+msgid "&Next >"
+msgstr ""
+
 #: uglobals.s_no_section_open
 msgid "Please open some section from the \"Project\" menu in order to use this feature."
 msgstr ""
 
 #: uglobals.s_preprocessor_not_found
 msgid "Preprocessor not found, please check options to set valid path"
+msgstr ""
+
+#: uglobals.s_puzzle_bottom
+msgid "; Please don't remove the keep the puzzle end mark below. Removing it may lead to code corruption"
+msgstr ""
+
+#: uglobals.s_puzzle_bottom_mark
+msgid "; <ENDPUZZLE>"
+msgstr ""
+
+#: uglobals.s_puzzle_hr
+msgid ";****************************************************************************************************************************"
+msgstr ""
+
+#: uglobals.s_puzzle_title
+msgid "; Automatically generated puzzle, please right click the token below and select \"Puzzle Wizard\" to edit it"
+msgstr ""
+
+#: uglobals.s_puzzle_title2
+msgid "; Don't delete the token"
+msgstr ""
+
+#: uglobals.s_puzzle_token
+msgid "; TOKEN: [XXXX] TOKEN"
 msgstr ""
 
 #: uglobals.s_quit_not_saved
@@ -541,6 +648,7 @@ msgid "System Messages"
 msgstr ""
 
 #: uglobals.s_section_vocabulary
+msgctxt "uglobals.s_section_vocabulary"
 msgid "Vocabulary"
 msgstr ""
 
@@ -558,5 +666,9 @@ msgstr ""
 
 #: uglobals.s_too_many_process
 msgid "Too many processes"
+msgstr ""
+
+#: uglobals.s_wrong_puzzlewizard_position
+msgid "Please select an empty zone in the response table or the token of a previous puzzle"
 msgstr ""
 

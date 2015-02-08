@@ -19,7 +19,9 @@ begin
   Application.Initialize;
   Application.CreateForm(TfMain, fMain);
   Application.CreateForm(TfOptions, fOptions);
+  Application.CreateForm(TfAbout, fAbout);
   Application.CreateForm(TfSearchReplace, fSearchReplace);
+  Application.CreateForm(TfPuzzleWizard, fPuzzleWizard);
   Application.Run;
 end.
 

@@ -4115,6 +4115,7 @@ object fMain: TfMain
       object MFindNext: TMenuItem
         Caption = '&Find next'
         ShortCut = 114
+        OnClick = MFindNextClick
       end
       object MReplace: TMenuItem
         Caption = 'Replace'
@@ -4316,6 +4317,7 @@ object fMain: TfMain
     end
     object PMPuzzleWizard: TMenuItem
       Caption = 'Puzzle Wizard'
+      OnClick = PMPuzzleWizardClick
     end
     object PMSeparator1: TMenuItem
       Caption = '-'

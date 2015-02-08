@@ -97,6 +97,7 @@ object fSearchReplace: TfSearchReplace
     Top = 288
     Width = 75
     Caption = 'Cancel'
+    ModalResult = 2
     TabOrder = 8
   end
 end

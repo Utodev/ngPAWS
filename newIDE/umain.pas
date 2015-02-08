@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types, UAbout;
+  ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types, UAbout, SynEditTypes;
 
 type
 
@@ -116,6 +116,7 @@ type
     procedure MDefinitionsClick(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
     procedure MFindClick(Sender: TObject);
+    procedure MFindNextClick(Sender: TObject);
     procedure MHelpContentsClick(Sender: TObject);
     procedure MLocationsClick(Sender: TObject);
     procedure MMessagesClick(Sender: TObject);
@@ -144,6 +145,7 @@ type
     procedure PMInterruptToggleClick(Sender: TObject);
     procedure PMLargerFontClick(Sender: TObject);
     procedure PMPasteClick(Sender: TObject);
+    procedure PMPuzzleWizardClick(Sender: TObject);
     procedure PMSmallerFontClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
@@ -151,6 +153,7 @@ type
 
 
   private
+    procedure DoSearchReplace(SynEdit : TSynEdit; SearchText, ReplaceText: String; Options: TSynSearchOptions);
     procedure OpenFile(Filename: String);
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
     procedure BuildProcessMenu(TXP: TTXP);
@@ -175,6 +178,7 @@ type
     CodeModified : boolean;
     EditMode : boolean;
     TXP : TTXP;
+    LastSearchText : String;
   end;
 
 var
@@ -182,7 +186,7 @@ var
 
 implementation
 
-uses uoptions, UGlobals,URunShell, USearchReplace,  lclintf, SynEditTypes;
+uses uoptions, UGlobals,URunShell, USearchReplace,  lclintf, UPuzzleWizard;
 
 {$R *.lfm}
 
@@ -226,6 +230,7 @@ begin
   if FileExists('VocHighLight.ini') then VOCHighlighter.LoadHighLighter('VocHighLight.ini');
   BuildRecentFilesMenu();
   CompileOutputListBox.Font.Size:=Config.EditorFontSize;
+  LastSearchText:='';
 end;
 
 procedure TfMain.FormShow(Sender: TObject);
@@ -646,6 +651,61 @@ begin
   MPaste.Click();
 end;
 
+procedure TfMain.PMPuzzleWizardClick(Sender: TObject);
+var Selection, SelectedLine : string;
+    i : integer;
+    CurrentLine: integer;
+begin
+ CurrentLine :=(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretY -1;
+ SelectedLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Lines[CurrentLine];
+ if SelectedLine = '' then
+ begin
+   fPuzzleWizard.ClearPuzzle();
+   if (fPuzzleWizard.ShowModal() = mrOK) then
+   begin
+     fPuzzleWizard.SynEditCodeGen.SelectAll();
+     fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
+     (PageControl.ActivePage.Controls[0] as TSynEdit).PasteFromClipboard();
+   end;
+  Exit
+ end;
+
+ Selection := '';
+ i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX;
+ while (i>=1) and (SelectedLine[i]<>' ') do
+  begin
+   Selection := SelectedLine[i] + Selection;
+   I := i - 1;
+  end;
+ i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX + 1;
+ while (i<=Length(SelectedLine)) and (SelectedLine[i]<>' ') do
+  begin
+   Selection :=   Selection + SelectedLine[i];
+   I := i + 1;
+  end;
+
+ if (Selection[Length(Selection)-1] in [' ',#13,#10]) then Selection := LeftStr(Selection, Length(Selection)-1);
+
+ // Try to find a puzzle in selection
+  if (Length(Selection)>2) and (LeftStr(Selection,1) = '<') and  (RightStr(Selection,1) = '>')  then
+ begin
+   if (fPuzzleWizard.SetupPuzzle(Selection)) then // if Valid Token
+   begin
+     if (fPuzzleWizard.ShowModal() = mrOK) then
+     begin
+       fPuzzleWizard.SynEditCodeGen.SelectAll();
+       fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
+       (PageControl.ActivePage.Controls[0] as TSynEdit).PasteFromClipboard();
+     end;
+     Exit();
+   end;
+ end;
+
+// Wrong place selection
+ShowMessage(S_WRONG_PUZZLEWIZARD_POSITION);
+
+end;
+
 procedure TfMain.PMSmallerFontClick(Sender: TObject);
 begin
   if Config.EditorFontSize > 7 then
@@ -700,6 +760,8 @@ procedure TfMain.MFindClick(Sender: TObject);
 begin
   if PageControl.PageCount > 0 then ShowSearchReplaceDialog(false) else ShowMessage(S_NO_SECTION_OPEN);
 end;
+
+
 
 procedure TfMain.MReplaceClick(Sender: TObject);
 begin
@@ -997,6 +1059,7 @@ end;
 procedure TfMain.ShowSearchReplaceDialog(IsReplaceDialog: boolean);
 var SynEdit : TSynEdit;
     SearchText :String;
+    ReplaceText :String;
     Options: TSynSearchOptions;
 begin
  // Setup Replace field
@@ -1028,19 +1091,46 @@ begin
    if not fSearchReplace.checkOnlyFromCursor.Checked then Options := Options + [ssoEntireScope];
    if fSearchReplace.checkWholeWordsOnly.Checked then Options := Options + [ssoWholeWord];
    if fSearchReplace.checkOnlyInSelection.Checked then Options := Options + [ssoSelectedOnly];
+   SearchText:= fSearchReplace.EditSearch.Text;
+   ReplaceText:= fSearchReplace.EditReplace.Text;
 
-   if SynEdit.SearchReplace(SearchText, fSearchReplace.EditReplace.Text, Options) = 0
-     then ShowMessage(SearchText + S_SEARCH_REPLACE_NOT_FOUND)
-     else
-     begin
-        SynEdit.BlockBegin := SynEdit.BlockEnd;
-        SynEdit.CaretXY := SynEdit.BlockBegin;
-     end;
 
+   DoSearchReplace(SynEdit, SearchText, ReplaceText, Options);
 
  end;
 
 end;
 
+procedure TfMain.DoSearchReplace(SynEdit : TSynEdit; SearchText, ReplaceText: String; Options: TSynSearchOptions);
+begin
+ LastSearchText:=SearchText;
+ if SynEdit.SearchReplace(SearchText, ReplaceText, Options) = 0
+  then ShowMessage('"' + SearchText + '" ' + S_SEARCH_REPLACE_NOT_FOUND)
+  else
+  begin
+     SynEdit.CaretXY := SynEdit.BlockBegin;
+     SynEdit.SelectWord;
+  end;
+end;
+
+procedure TfMain.MFindNextClick(Sender: TObject);
+var Options: TSynSearchOptions;
+
+begin
+  if PageControl.PageCount = 0 then Exit();
+  if LastSearchText='' then MFind.Click()
+  else
+  begin
+    Options := [];
+    if fSearchReplace.checkCaseSensitive.Checked then Options := Options + [ssoMatchCase];
+    if fSearchReplace.checkWholeWordsOnly.Checked then Options := Options + [ssoWholeWord];
+    if fSearchReplace.checkOnlyInSelection.Checked then Options := Options + [ssoSelectedOnly];
+    DoSearchReplace(TSynEdit(PageControl.ActivePage.Controls[0]), LastSearchText, LastSearchText, Options);
+  end;
+end;
+
+
+
 end.
+
 
