@@ -65,17 +65,48 @@ resourcestring
   // UPuzzleWizard
   S_FINISH_MESSAGE = '&Finish';
   S_NEXT_MESSAGE = '&Next >';
-  S_WRONG_PUZZLEWIZARD_POSITION = 'Please select an empty zone in the response table or the token of a previous puzzle';
+  S_WRONG_PUZZLEWIZARD_POSITION = 'Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified.';
 
   S_PUZZLE_HR = ';****************************************************************************************************************************';
   S_PUZZLE_TITLE = '; Automatically generated puzzle, please right click the token below and select "Puzzle Wizard" to edit it';
   S_PUZZLE_TITLE2 = '; Don''t delete the token';
   S_PUZZLE_TOKEN = '; TOKEN: [XXXX] TOKEN';
-  S_PUZZLE_BOTTOM = '; Please don''t remove the keep the puzzle end mark below. Removing it may lead to code corruption';
+  S_PUZZLE_BOTTOM = '; Please don''t remove the ''end of puzzle'' mark below. Removing it may lead to code corruption';
   S_PUZZLE_BOTTOM_MARK = '; <ENDPUZZLE>';
+  S_OBJECT = 'Object';
+  S_OBJECT_HINT = 'Please enter number or txtpaws label of an object';
+  S_FLAG = 'Flag';
+  S_FLAG_HINT = 'Please enter number or txtpaws label of a flag';
+  S_LOCATION = 'Location';
+  S_LOCATIONS_HINT = 'Please enter number or txtpaws label of a location';
+  S_VALUE = 'Value';
+  S_VALUE_HINT = 'Please enter a integer positive value or zero';
 
+  S_PLEASE_SELECT_CONDITION = 'Please select a condition';
+
+  S_PLEASE_FILL_IN_FIELDS = 'Please fill in fields';
+
+  S_DIRECTION = 'Direction';
+  S_DIRECTION_HINT = 'Please enter a valir direction verb';
+
+  S_VERB_MISSING = 'Please specify a verb for player order';
+  S_NOUN_MISSING ='Please specify a noun for player order';
+  S_NOUN2_MISSING ='Please specify a second noun for player order';
+  S_ADVERB_MISSING ='Please specify an adverb for player order';
+  S_PREP_MISSING ='Please specify a preposition for player order';
+  S_ADJECT1_MISSING ='Please specify an adjetive for player order';
+  S_ADJECT2_MISSING ='Please specify an adjetive for second noun player order';
+  S_LOCATION_MISSING ='Please specify a location if puzzle is linked to location';
+  S_LOCATION_TOF_MISSING ='Please specify a text on failute is player is not at specified location';
+  S_TOS_MISSING ='Please specify a text on success';
+
+  S_UNEXPECTED_CONDITION = 'Unexpected condition';
+
+  S_NO_END_OF_PUZZLE = 'Mark of end of puzzle not found.';
 
 implementation
+
+uses lclintf;
 
 function StrToHex(Str: String) : String;
 var i : integer;
@@ -94,6 +125,7 @@ begin
     Result:=Result+Chr(StrToIntDef('$'+Copy(Hex,i,2),0));
     i := i+ 2;
   end;
+  Result := AnsiToUtf8(Result);
 end;
 
 

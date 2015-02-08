@@ -655,9 +655,12 @@ procedure TfMain.PMPuzzleWizardClick(Sender: TObject);
 var Selection, SelectedLine : string;
     i : integer;
     CurrentLine: integer;
+    StartLine, EndLine : integer;
+    SynEdit : TSynEdit;
 begin
- CurrentLine :=(PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretY -1;
- SelectedLine := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).Lines[CurrentLine];
+ SynEdit :=  (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit);
+ CurrentLine :=SynEdit.CaretY -1;
+ SelectedLine := SynEdit.Lines[CurrentLine];
  if SelectedLine = '' then
  begin
    fPuzzleWizard.ClearPuzzle();
@@ -665,37 +668,52 @@ begin
    begin
      fPuzzleWizard.SynEditCodeGen.SelectAll();
      fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
-     (PageControl.ActivePage.Controls[0] as TSynEdit).PasteFromClipboard();
+     SynEdit.PasteFromClipboard();
    end;
   Exit
  end;
 
  Selection := '';
- i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX;
- while (i>=1) and (SelectedLine[i]<>' ') do
+ i := SynEdit.CaretX;
+ while (i>=1) and (SelectedLine[i]<>'[') do
   begin
    Selection := SelectedLine[i] + Selection;
-   I := i - 1;
+   i := i - 1;
   end;
- i := (PageControl.Pages[PageControl.ActivePageIndex].Controls[0] as TSynEdit).CaretX + 1;
- while (i<=Length(SelectedLine)) and (SelectedLine[i]<>' ') do
+ i := SynEdit.CaretX + 1;
+ while (i<=Length(SelectedLine)) and (SelectedLine[i]<>']') do
   begin
    Selection :=   Selection + SelectedLine[i];
-   I := i + 1;
+   i := i + 1;
   end;
 
- if (Selection[Length(Selection)-1] in [' ',#13,#10]) then Selection := LeftStr(Selection, Length(Selection)-1);
-
  // Try to find a puzzle in selection
-  if (Length(Selection)>2) and (LeftStr(Selection,1) = '<') and  (RightStr(Selection,1) = '>')  then
+  if (Length(Selection)>2) then
  begin
    if (fPuzzleWizard.SetupPuzzle(Selection)) then // if Valid Token
    begin
      if (fPuzzleWizard.ShowModal() = mrOK) then
      begin
-       fPuzzleWizard.SynEditCodeGen.SelectAll();
-       fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
-       (PageControl.ActivePage.Controls[0] as TSynEdit).PasteFromClipboard();
+       // Remove old code
+       StartLine :=SynEdit.CaretY - 3;
+       if StartLine < 0 then StartLine:=0;
+       EndLine := StartLine;
+       while (EndLine<SynEdit.Lines.Count) and (SynEdit.Lines[EndLine]<> S_PUZZLE_BOTTOM_MARK) do
+         EndLine := EndLine + 1;
+
+       if (SynEdit.Lines[EndLine] =  S_PUZZLE_BOTTOM_MARK) then
+       begin
+         EndLine := EndLine + 1;
+         while EndLine >= SynEdit.Lines.Count do EndLine:= EndLine - 1;
+         for i := EndLine downto StartLine do SynEdit.Lines.Delete(i);
+         SynEdit.CaretY:= StartLine + 1;
+         SynEdit.CaretX:= 0;
+         fPuzzleWizard.SynEditCodeGen.SelectAll();
+         fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
+         SynEdit.PasteFromClipboard();
+       end else ShowMessage(S_NO_END_OF_PUZZLE);
+
+
      end;
      Exit();
    end;

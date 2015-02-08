@@ -285,6 +285,7 @@ msgid "Paste"
 msgstr ""
 
 #: tfmain.pmpuzzlewizard.caption
+msgctxt "tfmain.pmpuzzlewizard.caption"
 msgid "Puzzle Wizard"
 msgstr ""
 
@@ -384,6 +385,24 @@ msgstr ""
 msgid "General"
 msgstr ""
 
+#: tfpuzzlewizard.buttonaddaction.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONADDACTION.CAPTION"
+msgid "Add"
+msgstr ""
+
+#: tfpuzzlewizard.buttonaddaction.hint
+msgid "Add Action"
+msgstr ""
+
+#: tfpuzzlewizard.buttonaddcondition.caption
+msgctxt "tfpuzzlewizard.buttonaddcondition.caption"
+msgid "Add"
+msgstr ""
+
+#: tfpuzzlewizard.buttonaddcondition.hint
+msgid "Add Condition"
+msgstr ""
+
 #: tfpuzzlewizard.buttonnext.caption
 msgctxt "TFPUZZLEWIZARD.BUTTONNEXT.CAPTION"
 msgid "&Next >"
@@ -394,11 +413,20 @@ msgid "< &Previous"
 msgstr ""
 
 #: tfpuzzlewizard.caption
-msgid "fPuzzleWizard"
+msgctxt "tfpuzzlewizard.caption"
+msgid "Puzzle Wizard"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.caption
+msgid "Include aditional words in failure entries"
+msgstr ""
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.hint
+msgid "Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name"
 msgstr ""
 
 #: tfpuzzlewizard.checkboxlinkedtolocation.caption
-msgid "CheckBoxLinkedToLocation"
+msgid "Puzzle is linked to location"
 msgstr ""
 
 #: tfpuzzlewizard.checkboxrequiresadject1.caption
@@ -425,8 +453,33 @@ msgstr ""
 msgid "Requires Preposition"
 msgstr ""
 
+#: tfpuzzlewizard.comboboxactionselect.text
+msgid "Choose an action..."
+msgstr ""
+
+#: tfpuzzlewizard.comboboxconditionselect.text
+msgid "Choose a condition..."
+msgstr ""
+
+#: tfpuzzlewizard.editconditiontof.hint
+msgid "Please specify response for player if this condition is not successful"
+msgstr ""
+
+#: tfpuzzlewizard.edittos.hint
+msgid "Enter text in case of success"
+msgstr ""
+
+#: tfpuzzlewizard.groupbox1.caption
+msgid "On success"
+msgstr ""
+
 #: tfpuzzlewizard.groupboxloc.caption
-msgid "GroupBoxLoc"
+msgctxt "tfpuzzlewizard.groupboxloc.caption"
+msgid "Location"
+msgstr ""
+
+#: tfpuzzlewizard.groupboxloc.hint
+msgid "Fill in this box if this puzzle can only be solved in a given location"
 msgstr ""
 
 #: tfpuzzlewizard.groupboxvoc.caption
@@ -434,16 +487,77 @@ msgctxt "TFPUZZLEWIZARD.GROUPBOXVOC.CAPTION"
 msgid "Vocabulary"
 msgstr ""
 
-#: tfpuzzlewizard.label1.caption
-msgid "Verb"
+#: tfpuzzlewizard.groupboxvoc.hint
+msgid "Fill in this box to determine which words will the player have to type for this puzzle to get triggered"
 msgstr ""
 
-#: tfpuzzlewizard.label2.caption
+#: tfpuzzlewizard.labelactionp1.caption
+msgid "LabelActionP1"
+msgstr ""
+
+#: tfpuzzlewizard.labelactionp2.caption
+msgid "LabelActionP2"
+msgstr ""
+
+#: tfpuzzlewizard.labelcondp1.caption
+msgid "LabelCondP1"
+msgstr ""
+
+#: tfpuzzlewizard.labelcondp2.caption
+msgid "LabelCondP2"
+msgstr ""
+
+#: tfpuzzlewizard.labelcondtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELCONDTOF.CAPTION"
 msgid "Text on failure"
 msgstr ""
 
-#: tfpuzzlewizard.label2.hint
+#: tfpuzzlewizard.labelinstrructions3.caption
+msgid "In case of success, please specify text output, and add any other actions that should be performed."
+msgstr ""
+
+#: tfpuzzlewizard.labelinstructions1.caption
+msgid "Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location"
+msgstr ""
+
+#: tfpuzzlewizard.labelinstructions2.caption
+msgid "If any additional conditions should be met for player success, add them here."
+msgstr ""
+
+#: tfpuzzlewizard.labelinstructions4.caption
+msgid "Puzzle code has been generated, please click \"Finish\" to add it to your game code."
+msgstr ""
+
+#: tfpuzzlewizard.labellocationtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.CAPTION"
+msgid "Text on failure"
+msgstr ""
+
+#: tfpuzzlewizard.labellocationtof.hint
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.HINT"
 msgid "Response to player if he/she tries to perform this action in other location"
+msgstr ""
+
+#: tfpuzzlewizard.labeltos.caption
+msgctxt "TFPUZZLEWIZARD.LABELTOS.CAPTION"
+msgid "Text on success"
+msgstr ""
+
+#: tfpuzzlewizard.labelverb.caption
+msgctxt "TFPUZZLEWIZARD.LABELVERB.CAPTION"
+msgid "Verb"
+msgstr ""
+
+#: tfpuzzlewizard.pmdeleteline.caption
+msgid "Delete"
+msgstr ""
+
+#: tfpuzzlewizard.pmmovedown.caption
+msgid "Move down"
+msgstr ""
+
+#: tfpuzzlewizard.pmmoveup.caption
+msgid "Move up"
 msgstr ""
 
 #: tfpuzzlewizard.tabsheetactions.caption
@@ -451,7 +565,7 @@ msgid "Actions"
 msgstr ""
 
 #: tfpuzzlewizard.tabsheetcodegen.caption
-msgid "Puzzle Code"
+msgid "Success and options"
 msgstr ""
 
 #: tfpuzzlewizard.tabsheetconditions.caption
@@ -501,6 +615,18 @@ msgctxt "TFSEARCHREPLACE.LABELSEARCH.CAPTION"
 msgid "Search"
 msgstr ""
 
+#: uglobals.s_adject1_missing
+msgid "Please specify an adjetive for player order"
+msgstr ""
+
+#: uglobals.s_adject2_missing
+msgid "Please specify an adjetive for second noun player order"
+msgstr ""
+
+#: uglobals.s_adverb_missing
+msgid "Please specify an adverb for player order"
+msgstr ""
+
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
 msgstr ""
@@ -518,6 +644,14 @@ msgctxt "uglobals.s_copyright"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr ""
 
+#: uglobals.s_direction
+msgid "Direction"
+msgstr ""
+
+#: uglobals.s_direction_hint
+msgid "Please enter a valir direction verb"
+msgstr ""
+
 #: uglobals.s_file_loaded_warning
 msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
 msgstr ""
@@ -530,6 +664,14 @@ msgstr ""
 msgid "&Finish"
 msgstr ""
 
+#: uglobals.s_flag
+msgid "Flag"
+msgstr ""
+
+#: uglobals.s_flag_hint
+msgid "Please enter number or txtpaws label of a flag"
+msgstr ""
+
 #: uglobals.s_invalid_format
 msgid "Not a valid TXP/SCE file"
 msgstr ""
@@ -540,6 +682,23 @@ msgstr ""
 
 #: uglobals.s_invalid_section
 msgid "Invalid section"
+msgstr ""
+
+#: uglobals.s_location
+msgctxt "uglobals.s_location"
+msgid "Location"
+msgstr ""
+
+#: uglobals.s_locations_hint
+msgid "Please enter number or txtpaws label of a location"
+msgstr ""
+
+#: uglobals.s_location_missing
+msgid "Please specify a location if puzzle is linked to location"
+msgstr ""
+
+#: uglobals.s_location_tof_missing
+msgid "Please specify a text on failute is player is not at specified location"
 msgstr ""
 
 #: uglobals.s_menuitem_process
@@ -555,16 +714,48 @@ msgctxt "uglobals.s_next_message"
 msgid "&Next >"
 msgstr ""
 
+#: uglobals.s_noun2_missing
+msgid "Please specify a second noun for player order"
+msgstr ""
+
+#: uglobals.s_noun_missing
+msgid "Please specify a noun for player order"
+msgstr ""
+
+#: uglobals.s_no_end_of_puzzle
+msgid "Mark of end of puzzle not found."
+msgstr ""
+
 #: uglobals.s_no_section_open
 msgid "Please open some section from the \"Project\" menu in order to use this feature."
+msgstr ""
+
+#: uglobals.s_object
+msgid "Object"
+msgstr ""
+
+#: uglobals.s_object_hint
+msgid "Please enter number or txtpaws label of an object"
+msgstr ""
+
+#: uglobals.s_please_fill_in_fields
+msgid "Please fill in fields"
+msgstr ""
+
+#: uglobals.s_please_select_condition
+msgid "Please select a condition"
 msgstr ""
 
 #: uglobals.s_preprocessor_not_found
 msgid "Preprocessor not found, please check options to set valid path"
 msgstr ""
 
+#: uglobals.s_prep_missing
+msgid "Please specify a preposition for player order"
+msgstr ""
+
 #: uglobals.s_puzzle_bottom
-msgid "; Please don't remove the keep the puzzle end mark below. Removing it may lead to code corruption"
+msgid "; Please don't remove the 'end of puzzle' mark below. Removing it may lead to code corruption"
 msgstr ""
 
 #: uglobals.s_puzzle_bottom_mark
@@ -668,7 +859,27 @@ msgstr ""
 msgid "Too many processes"
 msgstr ""
 
+#: uglobals.s_tos_missing
+msgid "Please specify a text on success"
+msgstr ""
+
+#: uglobals.s_unexpected_condition
+msgid "Unexpected condition"
+msgstr ""
+
+#: uglobals.s_value
+msgid "Value"
+msgstr ""
+
+#: uglobals.s_value_hint
+msgid "Please enter a integer positive value or zero"
+msgstr ""
+
+#: uglobals.s_verb_missing
+msgid "Please specify a verb for player order"
+msgstr ""
+
 #: uglobals.s_wrong_puzzlewizard_position
-msgid "Please select an empty zone in the response table or the token of a previous puzzle"
+msgid "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
 msgstr ""
 

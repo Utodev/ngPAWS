@@ -985,6 +985,8 @@ object fMain: TfMain
         }
         NumGlyphs = 2
         OnClick = BOpenClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BNew: TSpeedButton
         AnchorSideLeft.Control = Toolbar
@@ -1210,6 +1212,8 @@ object fMain: TfMain
         }
         NumGlyphs = 2
         OnClick = BNewClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BSave: TSpeedButton
         AnchorSideLeft.Control = Toolbar
@@ -1437,6 +1441,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BSaveClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BCopy: TSpeedButton
         AnchorSideLeft.Control = BCut
@@ -1689,6 +1695,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BCopyClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BCut: TSpeedButton
         AnchorSideLeft.Control = BSave
@@ -1916,6 +1924,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BCutClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BPaste: TSpeedButton
         AnchorSideLeft.Control = BCopy
@@ -2168,6 +2178,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BPasteClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BUndo: TSpeedButton
         AnchorSideLeft.Control = BPaste
@@ -2395,6 +2407,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BUndoClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BRedo: TSpeedButton
         AnchorSideLeft.Control = BUndo
@@ -2622,6 +2636,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BRedoClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BFind: TSpeedButton
         AnchorSideLeft.Control = BRedo
@@ -2849,6 +2865,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BFindClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BReplace: TSpeedButton
         AnchorSideLeft.Control = BFind
@@ -3076,6 +3094,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BReplaceClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BCompile: TSpeedButton
         AnchorSideLeft.Control = BReplace
@@ -3309,6 +3329,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BCompileClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BRun: TSpeedButton
         AnchorSideLeft.Control = BCompile
@@ -3542,6 +3564,8 @@ object fMain: TfMain
         NumGlyphs = 2
         Visible = False
         OnClick = BRunClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BHelp: TSpeedButton
         AnchorSideLeft.Control = BCompile
@@ -3782,6 +3806,8 @@ object fMain: TfMain
         }
         NumGlyphs = 2
         OnClick = BHelpClick
+        ShowHint = True
+        ParentShowHint = False
       end
       object BOptions: TSpeedButton
         AnchorSideLeft.Control = BHelp
@@ -4021,6 +4047,8 @@ object fMain: TfMain
         }
         NumGlyphs = 2
         OnClick = BOptionsClick
+        ShowHint = True
+        ParentShowHint = False
       end
     end
     object CompileOutputListBox: TListBox
@@ -4353,7 +4381,7 @@ object fMain: TfMain
   end
   object PopupMenuCompilerOutput: TPopupMenu
     left = 288
-    top = 224
+    top = 216
     object MCloseCompilerOutput: TMenuItem
       Caption = 'Close this frame'
       OnClick = MCloseCompilerOutputClick
