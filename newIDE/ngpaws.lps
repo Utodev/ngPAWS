@@ -21,7 +21,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="314"/>
@@ -40,10 +39,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uoptions"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="45"/>
-        <CursorPos X="21" Y="61"/>
+        <TopLine Value="46"/>
+        <CursorPos X="25" Y="52"/>
         <UsageCount Value="191"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -242,7 +242,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="umain.pas"/>
         <Caret Line="475" Column="24" TopLine="473"/>
@@ -328,41 +328,37 @@
         <Caret Line="16" Column="13" TopLine="1"/>
       </Position21>
       <Position22>
-        <Filename Value="uconfig.pas"/>
-        <Caret Line="90" Column="10" TopLine="117"/>
+        <Filename Value="uoptions.pas"/>
+        <Caret Line="16" Column="13" TopLine="1"/>
       </Position22>
       <Position23>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="16" Column="13" TopLine="1"/>
+        <Caret Line="113" Column="1" TopLine="86"/>
       </Position23>
       <Position24>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="113" Column="1" TopLine="86"/>
+        <Caret Line="112" Column="1" TopLine="88"/>
       </Position24>
       <Position25>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="112" Column="1" TopLine="88"/>
+        <Caret Line="126" Column="1" TopLine="94"/>
       </Position25>
       <Position26>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="126" Column="1" TopLine="94"/>
+        <Caret Line="120" Column="1" TopLine="94"/>
       </Position26>
       <Position27>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="120" Column="1" TopLine="94"/>
+        <Caret Line="8" Column="37" TopLine="1"/>
       </Position27>
       <Position28>
         <Filename Value="uoptions.pas"/>
-        <Caret Line="8" Column="37" TopLine="1"/>
+        <Caret Line="120" Column="54" TopLine="100"/>
       </Position28>
       <Position29>
-        <Filename Value="uoptions.pas"/>
-        <Caret Line="120" Column="54" TopLine="100"/>
-      </Position29>
-      <Position30>
         <Filename Value="uconfig.pas"/>
         <Caret Line="69" Column="93" TopLine="62"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
