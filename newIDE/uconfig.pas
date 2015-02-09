@@ -66,7 +66,7 @@ begin
 
   FHelpBaseURL :=  IniFile.ReadString('URLS','HelpBaseURL','https://github.com/Utodev/ngPAWS/wiki');
 
-  FPreprocessorParameters := IniFile.ReadString('Paths','PreprocessorParameters','-uk -CLEAN -I"dat"');
+  FPreprocessorParameters := IniFile.ReadString('Paths','PreprocessorParameters','-uk -CLEAN');
 
   FDeleteTempFiles := IniFile.ReadBool('Options','DeleteTemFiles',true);
   FSaveBeforeRun := IniFile.ReadBool('Options','SaveBeforeRun',true);

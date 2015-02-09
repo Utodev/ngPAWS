@@ -15,9 +15,9 @@ object fOptions: TfOptions
     Height = 301
     Top = 0
     Width = 465
-    ActivePage = TabSheetEditor
+    ActivePage = TabSheetCompiler
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabSheetEditor: TTabSheet
       Caption = 'General'
@@ -73,6 +73,7 @@ object fOptions: TfOptions
           'English'
           'Spanish'
         )
+        OnChange = ComboBoxLangChange
         Style = csDropDownList
         TabOrder = 3
         Text = 'English'
@@ -117,6 +118,7 @@ object fOptions: TfOptions
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
         Font.Style = [fsBold]
+        OnClick = BBrowsePreprocessorClick
         ParentFont = False
         TabOrder = 1
       end
@@ -147,6 +149,7 @@ object fOptions: TfOptions
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
         Font.Style = [fsBold]
+        OnClick = BBrowseStartDatabaseClick
         ParentFont = False
         TabOrder = 3
       end
@@ -185,6 +188,7 @@ object fOptions: TfOptions
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
         Font.Style = [fsBold]
+        OnClick = BBrowseCompilerClick
         ParentFont = False
         TabOrder = 6
       end
@@ -222,5 +226,9 @@ object fOptions: TfOptions
     Caption = '&Cancel'
     ModalResult = 2
     TabOrder = 2
+  end
+  object OpenDialogOptions: TOpenDialog
+    left = 25
+    top = 239
   end
 end

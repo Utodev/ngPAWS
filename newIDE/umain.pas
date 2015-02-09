@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, UConfig, UTXP, types, UAbout, SynEditTypes;
+  ComCtrls, StdCtrls, Buttons, UConfig, UTXP,  UAbout, SynEditTypes, DefaultTranslator;
 
 type
 
@@ -324,7 +324,7 @@ begin
      Exit();
     end;
     CompileOutputListBox.Items.Add(S_STARTING_PREPROCESSOR);
-    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters + ' ' + TXPTempFile);
+    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters +  ' -I"' + ExtractFilePath(TXPTempFile) + 'dat" "' + TXPTempFile + '"');
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     for i :=0 to CompileOutputListBox.Items.Count-1 do // Errors in preprocessor may appear in any line
@@ -340,7 +340,7 @@ begin
       Exit()
     end;
     CompileOutputListBox.Items.Add(S_STARTING_COMPILER);
-    Output := RunShell(Config.CompilerPath,  SCETempFile);
+    Output := RunShell(Config.CompilerPath,  '"' + SCETempFile + '"');
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     // Errors in compiler appear in last output line
@@ -468,6 +468,7 @@ procedure TfMain.BUndoClick(Sender: TObject);
 begin
   MUndo.Click();
 end;
+
 
 procedure TfMain.BNewClick(Sender: TObject);
 var TabSheet : TTabSheet;

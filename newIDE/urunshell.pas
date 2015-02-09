@@ -42,6 +42,7 @@ begin
   aOutputStringList.LoadFromStream(aMemStream);
   aMemStream.Free();
   aProcess.Free;
+  aOutputStringList.Insert(0,Executable + ' ' + Parameters);
   Result := aOutputStringList;
 end;
 

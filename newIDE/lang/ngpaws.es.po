@@ -1,5 +1,14 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: tfabout.caption
 msgid "ngPAWS Editor"
@@ -207,19 +216,19 @@ msgstr "Pegar"
 
 #: tfmain.mprocesses.caption
 msgid "&Processes"
-msgstr ""
+msgstr "&Procesos"
 
 #: tfmain.mproject.caption
 msgid "&Project"
-msgstr ""
+msgstr "&Proyecto"
 
 #: tfmain.mquit.caption
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: tfmain.mrecentfiles.caption
 msgid "Recent F&iles"
-msgstr ""
+msgstr "Archivos Recientes"
 
 #: tfmain.mredo.caption
 msgctxt "tfmain.mredo.caption"
@@ -233,15 +242,15 @@ msgstr "Reemplazar"
 
 #: tfmain.msave.caption
 msgid "&Save"
-msgstr ""
+msgstr "&Guardar"
 
 #: tfmain.msystemmessages.caption
 msgid "&System messages"
-msgstr ""
+msgstr "Mensajes del &sistema"
 
 #: tfmain.mtools.caption
 msgid "&Tools"
-msgstr ""
+msgstr "&Herramientas"
 
 #: tfmain.mundo.caption
 msgctxt "tfmain.mundo.caption"
@@ -250,7 +259,7 @@ msgstr "Deshacer"
 
 #: tfmain.mvocabulary.caption
 msgid "&Vocabulary"
-msgstr ""
+msgstr "&Vocabulario"
 
 #: tfmain.panelbackground.caption
 msgctxt "tfmain.panelbackground.caption"
@@ -259,7 +268,7 @@ msgstr "ngPAWS Editor (C) 2015 Uto"
 
 #: tfmain.pmcondacthelp.caption
 msgid "Condact Help"
-msgstr ""
+msgstr "Ayuda de condacto"
 
 #: tfmain.pmcopy.caption
 msgctxt "tfmain.pmcopy.caption"
@@ -273,11 +282,11 @@ msgstr "Cortar"
 
 #: tfmain.pminterrupttoggle.caption
 msgid "Toggle interrupt process mark"
-msgstr ""
+msgstr "Activar/desactivar marca de interrupción"
 
 #: tfmain.pmlargerfont.caption
 msgid "Larger font"
-msgstr ""
+msgstr "Fuente más grande"
 
 #: tfmain.pmpaste.caption
 msgctxt "tfmain.pmpaste.caption"
@@ -287,7 +296,7 @@ msgstr "Pegar"
 #: tfmain.pmpuzzlewizard.caption
 msgctxt "tfmain.pmpuzzlewizard.caption"
 msgid "Puzzle Wizard"
-msgstr ""
+msgstr "Asistente de puzles"
 
 #: tfmain.pmseparartor2.caption
 msgctxt "TFMAIN.PMSEPARARTOR2.CAPTION"
@@ -301,7 +310,7 @@ msgstr ""
 
 #: tfmain.pmsmallerfont.caption
 msgid "Smaller font"
-msgstr ""
+msgstr "Fuente más pequeña"
 
 #: tfoptions.bbrowsecompiler.caption
 msgctxt "TFOPTIONS.BBROWSECOMPILER.CAPTION"
@@ -320,11 +329,11 @@ msgstr ""
 
 #: tfoptions.bcancel.caption
 msgid "&Cancel"
-msgstr ""
+msgstr "&Cancelar"
 
 #: tfoptions.bok.caption
 msgid "&Ok"
-msgstr ""
+msgstr "&Ok"
 
 #: tfoptions.caption
 msgctxt "tfoptions.caption"
@@ -333,7 +342,7 @@ msgstr "Opciones"
 
 #: tfoptions.checkdeletetempfiles.caption
 msgid "Delete temp files"
-msgstr ""
+msgstr "Borrar archivos temporales"
 
 #: tfoptions.checkopenalltabs.caption
 msgid "Open all sections on load"
@@ -415,7 +424,7 @@ msgstr ""
 #: tfpuzzlewizard.caption
 msgctxt "tfpuzzlewizard.caption"
 msgid "Puzzle Wizard"
-msgstr ""
+msgstr "Asistente de puzles"
 
 #: tfpuzzlewizard.checkboxincludewordsonfailure.caption
 msgid "Include aditional words in failure entries"
@@ -713,11 +722,11 @@ msgstr ""
 
 #: uglobals.s_menuitem_process
 msgid "Process &"
-msgstr ""
+msgstr "Proceso &"
 
 #: uglobals.s_menuitem_response
 msgid "&Response"
-msgstr ""
+msgstr "&Respuestas"
 
 #: uglobals.s_next_message
 msgctxt "uglobals.s_next_message"
@@ -734,7 +743,7 @@ msgstr ""
 
 #: uglobals.s_no_end_of_puzzle
 msgid "Mark of end of puzzle not found."
-msgstr ""
+msgstr "No se encontró la marca de fin de puzle"
 
 #: uglobals.s_no_section_open
 msgid "Please open some section from the \"Project\" menu in order to use this feature."
@@ -742,7 +751,7 @@ msgstr ""
 
 #: uglobals.s_object
 msgid "Object"
-msgstr ""
+msgstr "Objeto"
 
 #: uglobals.s_object_hint
 msgid "Please enter number or txtpaws label of an object"
@@ -766,19 +775,19 @@ msgstr ""
 
 #: uglobals.s_puzzle_bottom
 msgid "; Please don't remove the 'end of puzzle' mark below. Removing it may lead to code corruption"
-msgstr ""
+msgstr "; Por favor no  borres la marca de \"fin de puzzle\" de abajo. Hacerlo puede llevar a corrupción del código."
 
 #: uglobals.s_puzzle_bottom_mark
 msgid "; <ENDPUZZLE>"
-msgstr ""
+msgstr "; <ENDPUZZLE>"
 
 #: uglobals.s_puzzle_hr
 msgid ";****************************************************************************************************************************"
-msgstr ""
+msgstr ";****************************************************************************************************************************"
 
 #: uglobals.s_puzzle_title
 msgid "; Automatically generated puzzle, please right click the token below and select \"Puzzle Wizard\" to edit it"
-msgstr ""
+msgstr "; Puzle generado automáticamente, haga click derecho sobre el token con el ratón y selecciona \"Asistente de Puzles\" para editarlo"
 
 #: uglobals.s_puzzle_title2
 msgid "; Don't delete the token"
@@ -786,80 +795,84 @@ msgstr ""
 
 #: uglobals.s_puzzle_token
 msgid "; TOKEN: [XXXX] TOKEN"
-msgstr ""
+msgstr "; TOKEN: [XXXX] TOKEN"
 
 #: uglobals.s_quit_not_saved
 msgid ""
 "Some changes may have not been saved.\n"
 "Are you sure?\n"
 msgstr ""
+"Algunos cambios no se han guardad.\n"
+"¿Estás seguro?\n"
 
 #: uglobals.s_replace_interrupt_process
 msgid ""
 "There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
 "Are you sure?\n"
 msgstr ""
+"Ya hay otro proceso marcado como interrupción. Marcar este desactivará el otro.\n"
+"¿Estás seguro?\n"
 
 #: uglobals.s_search_replace_not_found
 msgid " not found."
-msgstr ""
+msgstr " no encontrado"
 
 #: uglobals.s_section_conn
 msgid "Connections"
-msgstr ""
+msgstr "Conexiones"
 
 #: uglobals.s_section_control
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 #: uglobals.s_section_definitions
 msgid "Definitions"
-msgstr ""
+msgstr "Definiciones"
 
 #: uglobals.s_section_interrupt
 msgid "[INT]"
-msgstr ""
+msgstr "[INT]"
 
 #: uglobals.s_section_locmess
 msgid "Locations"
-msgstr ""
+msgstr "Localidades"
 
 #: uglobals.s_section_mess
 msgid "User Messages"
-msgstr ""
+msgstr "Mensajes de usuario"
 
 #: uglobals.s_section_objdata
 msgid "Object Data"
-msgstr ""
+msgstr "Datos de Objectos"
 
 #: uglobals.s_section_objmess
 msgid "Objects"
-msgstr ""
+msgstr "Objetos"
 
 #: uglobals.s_section_process
 msgid "Process"
-msgstr ""
+msgstr "Proceso "
 
 #: uglobals.s_section_response
 msgid "Response"
-msgstr ""
+msgstr "Respuestas"
 
 #: uglobals.s_section_sysmess
 msgid "System Messages"
-msgstr ""
+msgstr "Mensajes del sistema"
 
 #: uglobals.s_section_vocabulary
 msgctxt "uglobals.s_section_vocabulary"
 msgid "Vocabulary"
-msgstr ""
+msgstr "Vocabulario"
 
 #: uglobals.s_starting_compiler
 msgid "Running compiler..."
-msgstr ""
+msgstr "Ejecutando compilador..."
 
 #: uglobals.s_starting_preprocessor
 msgid "Running preprocessor..."
-msgstr ""
+msgstr "Ejecutando preprocesador..."
 
 #: uglobals.s_start_database_not_found
 msgid "Start database not found, please check options to set valid path"
@@ -867,19 +880,19 @@ msgstr ""
 
 #: uglobals.s_too_many_process
 msgid "Too many processes"
-msgstr ""
+msgstr "Demasiados proceso"
 
 #: uglobals.s_tos_missing
 msgid "Please specify a text on success"
-msgstr ""
+msgstr "Por favor especifica un texto en caso de éxito"
 
 #: uglobals.s_unexpected_condition
 msgid "Unexpected condition"
-msgstr ""
+msgstr "Condición inesperada"
 
 #: uglobals.s_value
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: uglobals.s_value_hint
 msgid "Please enter a integer positive value or zero"

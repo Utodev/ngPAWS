@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  StdCtrls, Menus, UConfig;
+  StdCtrls, Menus, UConfig, DefaultTranslator;
 
 type
 
@@ -34,13 +34,19 @@ type
     LabelPreprocessor: TLabel;
     LabelHelpURL: TLabel;
     LabelStartDatabase: TLabel;
+    OpenDialogOptions: TOpenDialog;
     PageControlOptions: TPageControl;
     TabSheetCompiler: TTabSheet;
     TabSheetEditor: TTabSheet;
+    procedure BBrowseCompilerClick(Sender: TObject);
+    procedure BBrowsePreprocessorClick(Sender: TObject);
+    procedure BBrowseStartDatabaseClick(Sender: TObject);
+    procedure ComboBoxLangChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure SaveToConfig(var Config: TConfig);
   private
     procedure LoadFromConfig();
+    procedure SetLang(Code: String);
   public
     { public declarations }
   end;
@@ -52,7 +58,7 @@ implementation
 
 {$R *.lfm}
 
-uses UMain;
+uses UMain, UGlobals;
 
 { TfOptions }
 
@@ -95,6 +101,34 @@ end;
 procedure TfOptions.FormShow(Sender: TObject);
 begin
   LoadFromConfig();
+end;
+
+procedure TfOptions.ComboBoxLangChange(Sender: TObject);
+begin
+  if ComboBoxLang.ItemIndex = 0 then SetLang('en') else SetLang('es');
+end;
+
+procedure TfOptions.BBrowsePreprocessorClick(Sender: TObject);
+begin
+  OpenDialogOptions.Filter := S_EXEFILTER;
+  if OpenDialogOptions.Execute then EditPreprocessor.Text:=OpenDialogOptions.FileName;
+end;
+
+procedure TfOptions.BBrowseStartDatabaseClick(Sender: TObject);
+begin
+  OpenDialogOptions.Filter := S_ANYFILTER;
+  if OpenDialogOptions.Execute then EditStartDatabase.Text:=OpenDialogOptions.FileName;
+end;
+
+procedure TfOptions.BBrowseCompilerClick(Sender: TObject);
+begin
+  OpenDialogOptions.Filter := S_EXEFILTER;
+  if OpenDialogOptions.Execute then EditCompiler.Text:=OpenDialogOptions.FileName;
+end;
+
+procedure TfOptions.SetLang(Code: String);
+begin
+  SetDefaultLang(Code);
 end;
 
 end.

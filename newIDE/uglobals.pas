@@ -62,6 +62,11 @@ resourcestring
   S_INVALID_PROCESS_NUMBER = 'Invalid Process Number';
   S_INVALID_SECTION = 'Invalid section';
 
+  //UOptions
+
+  S_EXEFILTER = 'Any files|*.*';
+  S_ANYFILTER = 'Any files|*.*';
+
   // UPuzzleWizard
   S_FINISH_MESSAGE = '&Finish';
   S_NEXT_MESSAGE = '&Next >';
