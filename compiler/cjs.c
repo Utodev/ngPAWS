@@ -75,8 +75,6 @@ int main (int argc, char *argv[])
 	   	 path_archivo =  strdup(gamedir);
    	};
    
-   printf("== ARGV 0: %s", argv[0]);
-
    printf("=== ngpaws compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
    printf("ngPAWS directory found at %s\n",wd);
    printf("Game directory found at %s\n",path_archivo);
