@@ -260,7 +260,7 @@ void VolcarRecursos (void)
 		inicial=i+1;
 
 		/* Obtenemos nombre del fichero */
-		for (i=inicial;(linea[i]!=0)&&(linea[i]!=32)&&(linea[i]!=10)&&(linea[i]!=13)&&(i<32768);i++) {};
+		for (i=inicial;(linea[i]!=0)&&(linea[i]!=10)&&(linea[i]!=13)&&(i<32768);i++) {};
 		strncpy (bloque, linea+inicial, i-inicial);
 		bloque[i-inicial]=0;
 		inicial=i+1;
