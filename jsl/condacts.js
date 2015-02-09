@@ -310,9 +310,9 @@ function ACCload()
 
 function ACCturns()
 {
-	turns = getFlag(FLAG_TURNS_HIGH) * 256 +  getFlag(FLAG_TURNS_LOW);
+	var turns = getFlag(FLAG_TURNS_HIGH) * 256 +  getFlag(FLAG_TURNS_LOW);
 	writeSysMessage(SYSMESS_TURNS_START);
-	writeText(turns);
+	writeText(turns + '');
 	writeSysMessage(SYSMESS_TURNS_CONTINUE);
 	if (turns > 1) writeSysMessage(SYSMESS_TURNS_PLURAL);
 	writeSysMessage(SYSMESS_TURNS_END);
@@ -320,9 +320,9 @@ function ACCturns()
 
 function ACCscore()
 {
-	score = getFlag(FLAG_SCORE);
+	var score = getFlag(FLAG_SCORE);
 	writeSysMessage(SYSMESS_SCORE_START);
-	writeTex(score);
+	writeTex(score + '');
 	writeSysMessage(SYSMESS_SCORE_END);
 }
 
