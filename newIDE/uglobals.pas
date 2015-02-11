@@ -21,6 +21,9 @@ resourcestring
   S_QUIT_NOT_SAVED =   'Some changes may have not been saved.'#13#10'Are you sure?';
   S_REPLACE_INTERRUPT_PROCESS = 'There is already another process marked as interrupt process. Marking this one will deactivate the other.'#13#10'Are you sure?';
 
+  S_WRONG_SETTINGS = 'Compiler, Preprocessor and/or start database not found. Please check paths in the "Compiler" tab in Tools/Options menu';
+
+
   S_MENUITEM_PROCESS = 'Process &';
   S_MENUITEM_RESPONSE = '&Response';
 
@@ -112,6 +115,7 @@ resourcestring
   S_UNEXPECTED_CONDITION = 'Unexpected condition';
 
   S_NO_END_OF_PUZZLE = 'Mark of end of puzzle not found.';
+
 
 implementation
 

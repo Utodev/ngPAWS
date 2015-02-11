@@ -155,6 +155,7 @@ type
   private
     procedure DoSearchReplace(SynEdit : TSynEdit; SearchText, ReplaceText: String; Options: TSynSearchOptions);
     procedure OpenFile(Filename: String);
+    procedure CheckPaths();
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
     procedure BuildProcessMenu(TXP: TTXP);
     procedure BuildRecentFilesMenu();
@@ -237,6 +238,7 @@ procedure TfMain.FormShow(Sender: TObject);
 begin
   Toolbar.Visible:=Config.ShowToolBar;
   if Config.Lang<>'' then SetDefaultLang(Config.Lang);
+  CheckPaths();
 end;
 
 procedure TfMain.MAboutClick(Sender: TObject);
@@ -1150,7 +1152,11 @@ begin
   end;
 end;
 
-
+procedure TfMain.CheckPaths();
+begin
+ if (not FileExists(COnfig.CompilerPath) or not FileExists(Config.PreprocessorPath) or not FileExists(COnfig.StartDatabasePath))
+  then ShowMessage(S_WRONG_SETTINGS);
+end;
 
 end.
 

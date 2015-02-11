@@ -925,3 +925,7 @@ msgstr ""
 msgid "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
 msgstr ""
 
+#: uglobals.s_wrong_settings
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu"
+msgstr ""
+

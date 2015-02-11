@@ -745,6 +745,9 @@ msgstr "Sección no válida"
 #| msgid ""
 #| "English\n"
 #| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
 msgid ""
 "OS Default\n"
 "English\n"
@@ -956,4 +959,8 @@ msgstr "Por favor especifique un verbo para la orden del jugador"
 #: uglobals.s_wrong_puzzlewizard_position
 msgid "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
 msgstr "Por favor seleccione una zona vacía en la tabla de respuestas, o el token de otro puzzle. Si seleccionó un token y ve este mensaje, probablemente el token has sido modificado."
+
+#: uglobals.s_wrong_settings
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu"
+msgstr ""
 

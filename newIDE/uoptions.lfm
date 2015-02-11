@@ -40,17 +40,17 @@ object fOptions: TfOptions
         TabOrder = 1
       end
       object LabelHelpURL: TLabel
-        Left = 40
+        Left = 36
         Height = 17
-        Top = 168
+        Top = 136
         Width = 85
         Caption = 'Help Base URL'
         ParentColor = False
       end
       object EditHelpURL: TEdit
-        Left = 40
+        Left = 36
         Height = 25
-        Top = 192
+        Top = 160
         Width = 456
         TabOrder = 2
       end
@@ -129,7 +129,7 @@ object fOptions: TfOptions
         Height = 25
         Top = 97
         Width = 165
-        TabOrder = 2
+        TabOrder = 5
       end
       object BBrowseStartDatabase: TButton
         Left = 404
@@ -145,7 +145,7 @@ object fOptions: TfOptions
         Font.Style = [fsBold]
         OnClick = BBrowseStartDatabaseClick
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 6
       end
       object LabelCompiler: TLabel
         Left = 240
@@ -161,14 +161,14 @@ object fOptions: TfOptions
         Top = 152
         Width = 120
         Caption = 'Delete temp files'
-        TabOrder = 4
+        TabOrder = 7
       end
       object EditCompiler: TEdit
         Left = 240
         Height = 25
         Top = 40
         Width = 165
-        TabOrder = 5
+        TabOrder = 2
       end
       object BBrowseCompiler: TButton
         Left = 404
@@ -184,14 +184,14 @@ object fOptions: TfOptions
         Font.Style = [fsBold]
         OnClick = BBrowseCompilerClick
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 3
       end
       object EditPreprocessorParameters: TEdit
         Left = 16
         Height = 25
         Top = 97
         Width = 192
-        TabOrder = 7
+        TabOrder = 4
       end
       object LabelPreprocessorParameters: TLabel
         Left = 16
@@ -204,19 +204,32 @@ object fOptions: TfOptions
     end
   end
   object BOk: TButton
+    AnchorSideRight.Control = BCancel
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
     Left = 312
     Height = 25
-    Top = 264
-    Width = 75
+    Top = 256
+    Width = 84
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Right = 20
+    BorderSpacing.Bottom = 20
     Caption = '&Ok'
     ModalResult = 1
     TabOrder = 1
   end
   object BCancel: TButton
-    Left = 426
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 416
     Height = 25
-    Top = 264
-    Width = 75
+    Top = 256
+    Width = 90
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 20
+    BorderSpacing.Bottom = 20
     Caption = '&Cancel'
     ModalResult = 2
     TabOrder = 2
