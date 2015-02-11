@@ -17,5 +17,6 @@ function ACCtextpic(picno, align)
 	{
 		var texto = pre + "<img alt='' class='textpic' style='"+style+"' src='"+filename+"' />" + post;
 		writeText(texto);
+		$(".text").scrollTop($(".text")[0].scrollHeight);
 	}
 }
