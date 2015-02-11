@@ -236,6 +236,7 @@ end;
 procedure TfMain.FormShow(Sender: TObject);
 begin
   Toolbar.Visible:=Config.ShowToolBar;
+  SetDefaultLang(Config.Lang);
 end;
 
 procedure TfMain.MAboutClick(Sender: TObject);
@@ -744,6 +745,7 @@ begin
     fOptions.SaveToConfig(Config);
     Config.SaveConfig();
     Toolbar.Visible:=Config.ShowToolBar;
+    SetDefaultLang(Config.Lang);
   end;
 end;
 

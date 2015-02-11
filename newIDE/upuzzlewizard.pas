@@ -90,6 +90,7 @@ type
     procedure PMMoveDownClick(Sender: TObject);
     procedure PMMoveUpClick(Sender: TObject);
     procedure SynEditCodeGenChange(Sender: TObject);
+    procedure TabSheetConditionsShow(Sender: TObject);
   private
     { private declarations }
     procedure GeneratePuzzle();
@@ -121,6 +122,14 @@ uses UGlobals, DOM, XMLRead ;
 procedure TfPuzzleWizard.SynEditCodeGenChange(Sender: TObject);
 begin
 
+end;
+
+procedure TfPuzzleWizard.TabSheetConditionsShow(Sender: TObject);
+begin
+  ComboBoxActionSelect.Items.Text:= S_ACTIONS;
+  ComboBoxActionSelect.ItemIndex:=0;
+  ComboBoxConditionSelect.Items.Text := S_CONDITIONS;
+  ComboBoxConditionSelect.ItemIndex:=0;
 end;
 
 procedure TfPuzzleWizard.ButtonNextClick(Sender: TObject);

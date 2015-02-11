@@ -66,8 +66,12 @@ resourcestring
 
   S_EXEFILTER = 'Any files|*.*';
   S_ANYFILTER = 'Any files|*.*';
+  S_LANGUAGES = 'English'#13#10'Spanish';
 
   // UPuzzleWizard
+
+  S_ACTIONS = 'Choose an action...'#13#10'Object <....> appears'#13#10'Object <....> disappears'#13#10'Object <....> appears at location <....>'#13#10'Flag <....> is increased by <....>'#13#10'Flag <....> is decreased by <....>'#13#10'Flag <....> value is set to <....>'#13#10'Destroy connection in direction <....>'#13#10'Set connection in direction <....> to location <....>';
+  S_CONDITIONS = 'Choose a condition...'#13#10'Player carries object <....>'#13#10'Player wears object <....>'#13#10'Player does not carry object <....>'#13#10'Object <....> is present'#13#10'Object <....> is absent'#13#10'Object <....> is at location <....>'#13#10'Object <....> is not at location <....>'#13#10'Flag <....> value is <....>'#13#10'Flag <....> value is not <....>'#13#10'Flag <....> value is greater than <....>'#13#10'Flag <....> value is less than <....>'#13#10;
   S_FINISH_MESSAGE = '&Finish';
   S_NEXT_MESSAGE = '&Next >';
   S_WRONG_PUZZLEWIZARD_POSITION = 'Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified.';

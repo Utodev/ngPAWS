@@ -46,7 +46,6 @@ type
     procedure SaveToConfig(var Config: TConfig);
   private
     procedure LoadFromConfig();
-    procedure SetLang(Code: String);
   public
     { public declarations }
   end;
@@ -94,18 +93,20 @@ begin
    Config.StartDatabasePath := EditStartDatabase.Text;
    Config.PreprocessorParameters := EditPreprocessorParameters.Text;
 
-   if (ComboBoxLang.ItemIndex = 1) then Config.Lang := 'ES' else Config.Lang := 'EN';
+   if (ComboBoxLang.ItemIndex = 1) then Config.Lang := 'es' else Config.Lang := 'en';
 
 end;
 
+
+
 procedure TfOptions.FormShow(Sender: TObject);
 begin
+  ComboBoxLang.Items.Text := S_LANGUAGES;
   LoadFromConfig();
 end;
 
 procedure TfOptions.ComboBoxLangChange(Sender: TObject);
 begin
-  if ComboBoxLang.ItemIndex = 0 then SetLang('en') else SetLang('es');
 end;
 
 procedure TfOptions.BBrowsePreprocessorClick(Sender: TObject);
@@ -126,10 +127,6 @@ begin
   if OpenDialogOptions.Execute then EditCompiler.Text:=OpenDialogOptions.FileName;
 end;
 
-procedure TfOptions.SetLang(Code: String);
-begin
-  SetDefaultLang(Code);
-end;
 
 end.
 

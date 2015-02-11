@@ -13,7 +13,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="lang"/>
+      <OutDir Value="..\..\Release\languages"/>
     </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
@@ -70,7 +70,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="Release\ngpaws"/>
+            <Filename Value="..\..\Release\ngpaws"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>

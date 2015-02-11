@@ -2,11 +2,11 @@ object fOptions: TfOptions
   Left = 749
   Height = 301
   Top = 266
-  Width = 465
+  Width = 526
   BorderStyle = bsDialog
   Caption = 'Options'
   ClientHeight = 301
-  ClientWidth = 465
+  ClientWidth = 526
   OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '1.2.6.0'
@@ -14,7 +14,7 @@ object fOptions: TfOptions
     Left = 0
     Height = 301
     Top = 0
-    Width = 465
+    Width = 526
     ActivePage = TabSheetEditor
     Align = alClient
     TabIndex = 0
@@ -22,19 +22,19 @@ object fOptions: TfOptions
     object TabSheetEditor: TTabSheet
       Caption = 'General'
       ClientHeight = 271
-      ClientWidth = 457
+      ClientWidth = 518
       object checkShowToolbar: TCheckBox
-        Left = 248
+        Left = 272
         Height = 21
-        Top = 24
+        Top = 32
         Width = 104
         Caption = 'Show tool bar'
         TabOrder = 0
       end
       object checkSaveBeforeRun: TCheckBox
-        Left = 248
+        Left = 272
         Height = 21
-        Top = 96
+        Top = 104
         Width = 182
         Caption = 'Save before run or compile'
         TabOrder = 1
@@ -51,7 +51,7 @@ object fOptions: TfOptions
         Left = 40
         Height = 25
         Top = 192
-        Width = 397
+        Width = 456
         TabOrder = 2
       end
       object LabelLang: TLabel
@@ -68,20 +68,13 @@ object fOptions: TfOptions
         Top = 40
         Width = 172
         ItemHeight = 17
-        ItemIndex = 0
-        Items.Strings = (
-          'English'
-          'Spanish'
-        )
-        OnChange = ComboBoxLangChange
         Style = csDropDownList
         TabOrder = 3
-        Text = 'English'
       end
       object checkOpenAllTabs: TCheckBox
-        Left = 248
+        Left = 272
         Height = 21
-        Top = 64
+        Top = 72
         Width = 171
         Caption = 'Open all sections on load'
         TabOrder = 4
@@ -90,7 +83,7 @@ object fOptions: TfOptions
     object TabSheetCompiler: TTabSheet
       Caption = 'Compiler'
       ClientHeight = 271
-      ClientWidth = 457
+      ClientWidth = 518
       object LabelPreprocessor: TLabel
         Left = 16
         Height = 17
@@ -210,7 +203,7 @@ object fOptions: TfOptions
     end
   end
   object BOk: TButton
-    Left = 248
+    Left = 312
     Height = 25
     Top = 264
     Width = 75
@@ -219,7 +212,7 @@ object fOptions: TfOptions
     TabOrder = 1
   end
   object BCancel: TButton
-    Left = 362
+    Left = 426
     Height = 25
     Top = 264
     Width = 75

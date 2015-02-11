@@ -224,6 +224,7 @@ object fPuzzleWizard: TfPuzzleWizard
       Caption = 'Conditions'
       ClientHeight = 472
       ClientWidth = 632
+      OnShow = TabSheetConditionsShow
       object ListBoxConditions: TListBox
         Left = 392
         Height = 344
@@ -242,17 +243,6 @@ object fPuzzleWizard: TfPuzzleWizard
         ItemIndex = 0
         Items.Strings = (
           'Choose a condition...'
-          'Player carries object <....>'
-          'Player wears object <....>'
-          'Player does not carry object <....>'
-          'Object <....> is present'
-          'Object <....> is absent'
-          'Object <....> is at location <....>'
-          'Object <....> is not at location <....>'
-          'Flag <....> value is <....>'
-          'Flag <....> value is not <....>'
-          'Flag <....> value is greater than <....>'
-          'Flag <....> value is less than <....>'
         )
         OnChange = ComboBoxConditionSelectChange
         Style = csDropDownList
@@ -356,14 +346,6 @@ object fPuzzleWizard: TfPuzzleWizard
         ItemIndex = 0
         Items.Strings = (
           'Choose an action...'
-          'Object <....> appears'
-          'Object <....> disappears'
-          'Object <....> appears at location <....>'
-          'Flag <....> is increased by <....>'
-          'Flag <....> is decreased by <....>'
-          'Flag <....> value is set to <....>'
-          'Destroy connection in direction <....>'
-          'Set connection in direction <....> to location <....>'
         )
         OnChange = ComboBoxActionSelectChange
         Style = csDropDownList
