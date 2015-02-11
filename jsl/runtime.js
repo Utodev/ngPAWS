@@ -342,6 +342,7 @@ function filterText(text)
 	// PAWS sequences (only underscore)
 	objno = getFlag(FLAG_REFERRED_OBJECT);
 	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,getObjectText(objno).firstToLower()); else text = text.replace(/_/g,'');
+	text = text.replace(/¬/g,' ');
 
 	return text;
 }
