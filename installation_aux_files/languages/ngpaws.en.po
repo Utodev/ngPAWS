@@ -1,0 +1,939 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: tfabout.caption
+msgid "ngPAWS Editor"
+msgstr "ngPAWS Editor"
+
+#: tfabout.label1.caption
+msgctxt "TFABOUT.LABEL1.CAPTION"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: tfabout.label2.caption
+msgid "at GitHub (GPL)"
+msgstr "at GitHub (GPL)"
+
+#: tfabout.labeldetails.caption
+msgid "Lazarus source code avaliable"
+msgstr "Lazarus source code avaliable"
+
+#: tfabout.labelngithubsite.caption
+msgid "https://github.com/Utodev/ngPAWS"
+msgstr "https://github.com/Utodev/ngPAWS"
+
+#: tfabout.labelngpawssite.caption
+msgid "http://www.ngpaws.com"
+msgstr "http://www.ngpaws.com"
+
+#: tfmain.bcompile.hint
+msgid "Compile"
+msgstr "Compile"
+
+#: tfmain.bcopy.hint
+msgctxt "TFMAIN.BCOPY.HINT"
+msgid "Copy"
+msgstr "Copy"
+
+#: tfmain.bcut.hint
+msgctxt "TFMAIN.BCUT.HINT"
+msgid "Cut"
+msgstr "Cut"
+
+#: tfmain.bfind.hint
+msgctxt "TFMAIN.BFIND.HINT"
+msgid "Find"
+msgstr "Find"
+
+#: tfmain.bhelp.hint
+msgid "Help"
+msgstr "Help"
+
+#: tfmain.bnew.hint
+msgid "New"
+msgstr "New"
+
+#: tfmain.bopen.hint
+msgid "Open"
+msgstr "Open"
+
+#: tfmain.boptions.hint
+msgctxt "TFMAIN.BOPTIONS.HINT"
+msgid "Options"
+msgstr "Options"
+
+#: tfmain.bpaste.hint
+msgctxt "TFMAIN.BPASTE.HINT"
+msgid "Paste"
+msgstr "Paste"
+
+#: tfmain.bredo.hint
+msgctxt "TFMAIN.BREDO.HINT"
+msgid "Redo"
+msgstr "Redo"
+
+#: tfmain.breplace.hint
+msgctxt "TFMAIN.BREPLACE.HINT"
+msgid "Replace"
+msgstr "Replace"
+
+#: tfmain.brun.hint
+msgid "Run"
+msgstr "Run"
+
+#: tfmain.bsave.hint
+msgid "Save"
+msgstr "Save"
+
+#: tfmain.bundo.hint
+msgctxt "TFMAIN.BUNDO.HINT"
+msgid "Undo"
+msgstr "Undo"
+
+#: tfmain.caption
+msgid "ngPAWS"
+msgstr "ngPAWS"
+
+#: tfmain.compileoutputlistbox.hint
+msgid "Compiler output"
+msgstr "Compiler output"
+
+#: tfmain.mabout.caption
+msgid "About ngPAWS"
+msgstr "About ngPAWS"
+
+#: tfmain.mclose.caption
+msgid "&Close"
+msgstr "&Close"
+
+#: tfmain.mclosecompileroutput.caption
+msgid "Close this frame"
+msgstr "Close this frame"
+
+#: tfmain.mcompile.caption
+msgid "&Compile"
+msgstr "&Compile"
+
+#: tfmain.mcompilerun.caption
+msgid "Compile && &Run"
+msgstr "Compile && &Run"
+
+#: tfmain.mconnections.caption
+msgid "&Connections"
+msgstr "&Connections"
+
+#: tfmain.mcopy.caption
+msgid "&Copy"
+msgstr "&Copy"
+
+#: tfmain.mcut.caption
+msgid "C&ut"
+msgstr "C&ut"
+
+#: tfmain.mdata.caption
+msgid "Data"
+msgstr "Data"
+
+#: tfmain.mdefinitions.caption
+msgid "&Definitions"
+msgstr "&Definitions"
+
+#: tfmain.medit.caption
+msgid "&Edit"
+msgstr "&Edit"
+
+#: tfmain.mfile.caption
+msgid "&File"
+msgstr "&File"
+
+#: tfmain.mfind.caption
+msgctxt "tfmain.mfind.caption"
+msgid "Find"
+msgstr "Find"
+
+#: tfmain.mfindnext.caption
+msgid "&Find next"
+msgstr "&Find next"
+
+#: tfmain.mhelp.caption
+msgid "&Help"
+msgstr "&Help"
+
+#: tfmain.mhelpcontents.caption
+msgid "Help contents"
+msgstr "Help contents"
+
+#: tfmain.mlocations.caption
+msgid "&Locations"
+msgstr "&Locations"
+
+#: tfmain.mmessages.caption
+msgid "&Messages"
+msgstr "&Messages"
+
+#: tfmain.mnew.caption
+msgid "&New"
+msgstr "&New"
+
+#: tfmain.mnewprocess.caption
+msgid "&New Process"
+msgstr "&New Process"
+
+#: tfmain.mobjectdata.caption
+msgid "Ob&ject Data"
+msgstr "Ob&ject Data"
+
+#: tfmain.mobjecttexts.caption
+msgid "&Object Texts"
+msgstr "&Object Texts"
+
+#: tfmain.mopenallsections.caption
+msgctxt "TFMAIN.MOPENALLSECTIONS.CAPTION"
+msgid "Open &all sections"
+msgstr "Open &all sections"
+
+#: tfmain.mopenfile.caption
+msgctxt "TFMAIN.MOPENFILE.CAPTION"
+msgid "&Open"
+msgstr "&Open"
+
+#: tfmain.moptions.caption
+msgid "&Options"
+msgstr "&Options"
+
+#: tfmain.mpaste.caption
+msgid "Pas&te"
+msgstr "Pas&te"
+
+#: tfmain.mprocesses.caption
+msgid "&Processes"
+msgstr "&Processes"
+
+#: tfmain.mproject.caption
+msgid "&Project"
+msgstr "&Project"
+
+#: tfmain.mquit.caption
+msgid "Quit"
+msgstr "Quit"
+
+#: tfmain.mrecentfiles.caption
+msgid "Recent F&iles"
+msgstr "Recent F&iles"
+
+#: tfmain.mredo.caption
+msgctxt "tfmain.mredo.caption"
+msgid "Redo"
+msgstr "Redo"
+
+#: tfmain.mreplace.caption
+msgctxt "tfmain.mreplace.caption"
+msgid "Replace"
+msgstr "Replace"
+
+#: tfmain.msave.caption
+msgid "&Save"
+msgstr "&Save"
+
+#: tfmain.msystemmessages.caption
+msgid "&System messages"
+msgstr "&System messages"
+
+#: tfmain.mtools.caption
+msgid "&Tools"
+msgstr "&Tools"
+
+#: tfmain.mundo.caption
+msgctxt "tfmain.mundo.caption"
+msgid "Undo"
+msgstr "Undo"
+
+#: tfmain.mvocabulary.caption
+msgid "&Vocabulary"
+msgstr "&Vocabulary"
+
+#: tfmain.panelbackground.caption
+msgctxt "tfmain.panelbackground.caption"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: tfmain.pmcondacthelp.caption
+msgid "Condact Help"
+msgstr "Condact Help"
+
+#: tfmain.pmcopy.caption
+msgctxt "tfmain.pmcopy.caption"
+msgid "Copy"
+msgstr "Copy"
+
+#: tfmain.pmcut.caption
+msgctxt "tfmain.pmcut.caption"
+msgid "Cut"
+msgstr "Cut"
+
+#: tfmain.pminterrupttoggle.caption
+msgid "Toggle interrupt process mark"
+msgstr "Toggle interrupt process mark"
+
+#: tfmain.pmlargerfont.caption
+msgid "Larger font"
+msgstr "Larger font"
+
+#: tfmain.pmpaste.caption
+msgctxt "tfmain.pmpaste.caption"
+msgid "Paste"
+msgstr "Paste"
+
+#: tfmain.pmpuzzlewizard.caption
+msgctxt "tfmain.pmpuzzlewizard.caption"
+msgid "Puzzle Wizard"
+msgstr "Puzzle Wizard"
+
+#: tfmain.pmseparartor2.caption
+msgctxt "TFMAIN.PMSEPARARTOR2.CAPTION"
+msgid "-"
+msgstr "-"
+
+#: tfmain.pmseparator1.caption
+msgctxt "tfmain.pmseparator1.caption"
+msgid "-"
+msgstr "-"
+
+#: tfmain.pmsmallerfont.caption
+msgid "Smaller font"
+msgstr "Smaller font"
+
+#: tfoptions.bbrowsecompiler.caption
+msgctxt "TFOPTIONS.BBROWSECOMPILER.CAPTION"
+msgid "..."
+msgstr "..."
+
+#: tfoptions.bbrowsepreprocessor.caption
+msgctxt "tfoptions.bbrowsepreprocessor.caption"
+msgid "..."
+msgstr "..."
+
+#: tfoptions.bbrowsestartdatabase.caption
+msgctxt "TFOPTIONS.BBROWSESTARTDATABASE.CAPTION"
+msgid "..."
+msgstr "..."
+
+#: tfoptions.bcancel.caption
+msgid "&Cancel"
+msgstr "&Cancel"
+
+#: tfoptions.bok.caption
+msgid "&Ok"
+msgstr "&Ok"
+
+#: tfoptions.caption
+msgctxt "tfoptions.caption"
+msgid "Options"
+msgstr "Options"
+
+#: tfoptions.checkdeletetempfiles.caption
+msgid "Delete temp files"
+msgstr "Delete temp files"
+
+#: tfoptions.checkopenalltabs.caption
+msgid "Open all sections on load"
+msgstr "Open all sections on load"
+
+#: tfoptions.checksavebeforerun.caption
+msgid "Save before run or compile"
+msgstr "Save before run or compile"
+
+#: tfoptions.checkshowtoolbar.caption
+msgid "Show tool bar"
+msgstr "Show tool bar"
+
+#: tfoptions.labelcompiler.caption
+msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
+msgid "Compiler"
+msgstr "Compiler"
+
+#: tfoptions.labelhelpurl.caption
+msgid "Help Base URL"
+msgstr "Help Base URL"
+
+#: tfoptions.labellang.caption
+msgid "Language"
+msgstr "Language"
+
+#: tfoptions.labelpreprocessor.caption
+msgid "Preprocessor"
+msgstr "Preprocessor"
+
+#: tfoptions.labelpreprocessorparameters.caption
+msgid "Preprocessor Parameters"
+msgstr "Preprocessor Parameters"
+
+#: tfoptions.labelstartdatabase.caption
+msgid "Start database"
+msgstr "Start database"
+
+#: tfoptions.tabsheetcompiler.caption
+msgctxt "tfoptions.tabsheetcompiler.caption"
+msgid "Compiler"
+msgstr "Compiler"
+
+#: tfoptions.tabsheeteditor.caption
+msgid "General"
+msgstr "General"
+
+#: tfpuzzlewizard.buttonaddaction.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONADDACTION.CAPTION"
+msgid "Add"
+msgstr "Add"
+
+#: tfpuzzlewizard.buttonaddaction.hint
+msgid "Add Action"
+msgstr "Add Action"
+
+#: tfpuzzlewizard.buttonaddcondition.caption
+msgctxt "tfpuzzlewizard.buttonaddcondition.caption"
+msgid "Add"
+msgstr "Add"
+
+#: tfpuzzlewizard.buttonaddcondition.hint
+msgid "Add Condition"
+msgstr "Add Condition"
+
+#: tfpuzzlewizard.buttonnext.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONNEXT.CAPTION"
+msgid "&Next >"
+msgstr "&Next >"
+
+#: tfpuzzlewizard.buttonprev.caption
+msgid "< &Previous"
+msgstr "< &Previous"
+
+#: tfpuzzlewizard.caption
+msgctxt "tfpuzzlewizard.caption"
+msgid "Puzzle Wizard"
+msgstr "Puzzle Wizard"
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.caption
+msgid "Include aditional words in failure entries"
+msgstr "Include aditional words in failure entries"
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.hint
+msgid "Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name"
+msgstr "Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name"
+
+#: tfpuzzlewizard.checkboxlinkedtolocation.caption
+msgid "Puzzle is linked to location"
+msgstr "Puzzle is linked to location"
+
+#: tfpuzzlewizard.checkboxrequiresadject1.caption
+msgid "Requires Adjective"
+msgstr "Requires Adjective"
+
+#: tfpuzzlewizard.checkboxrequiresadject2.caption
+msgid "Requires Adjective 2"
+msgstr "Requires Adjective 2"
+
+#: tfpuzzlewizard.checkboxrequiresadverb.caption
+msgid "Requires Adverb"
+msgstr "Requires Adverb"
+
+#: tfpuzzlewizard.checkboxrequiresnoun.caption
+msgid "Requires Noun"
+msgstr "Requires Noun"
+
+#: tfpuzzlewizard.checkboxrequiresnoun2.caption
+msgid "Requires Noun 2"
+msgstr "Requires Noun 2"
+
+#: tfpuzzlewizard.checkboxrequirespreposition.caption
+msgid "Requires Preposition"
+msgstr "Requires Preposition"
+
+#: tfpuzzlewizard.comboboxactionselect.text
+msgid "Choose an action..."
+msgstr "Choose an action..."
+
+#: tfpuzzlewizard.comboboxconditionselect.text
+msgid "Choose a condition..."
+msgstr "Choose a condition..."
+
+#: tfpuzzlewizard.editconditiontof.hint
+msgid "Please specify response for player if this condition is not successful"
+msgstr "Please specify response for player if this condition is not successful"
+
+#: tfpuzzlewizard.edittos.hint
+msgid "Enter text in case of success"
+msgstr "Enter text in case of success"
+
+#: tfpuzzlewizard.groupbox1.caption
+msgid "On success"
+msgstr "On success"
+
+#: tfpuzzlewizard.groupboxloc.caption
+msgctxt "tfpuzzlewizard.groupboxloc.caption"
+msgid "Location"
+msgstr "Location"
+
+#: tfpuzzlewizard.groupboxloc.hint
+msgid "Fill in this box if this puzzle can only be solved in a given location"
+msgstr "Fill in this box if this puzzle can only be solved in a given location"
+
+#: tfpuzzlewizard.groupboxvoc.caption
+msgctxt "TFPUZZLEWIZARD.GROUPBOXVOC.CAPTION"
+msgid "Vocabulary"
+msgstr "Vocabulary"
+
+#: tfpuzzlewizard.groupboxvoc.hint
+msgid "Fill in this box to determine which words will the player have to type for this puzzle to get triggered"
+msgstr "Fill in this box to determine which words will the player have to type for this puzzle to get triggered"
+
+#: tfpuzzlewizard.labelactionp1.caption
+msgid "LabelActionP1"
+msgstr "LabelActionP1"
+
+#: tfpuzzlewizard.labelactionp2.caption
+msgid "LabelActionP2"
+msgstr "LabelActionP2"
+
+#: tfpuzzlewizard.labelcondp1.caption
+msgid "LabelCondP1"
+msgstr "LabelCondP1"
+
+#: tfpuzzlewizard.labelcondp2.caption
+msgid "LabelCondP2"
+msgstr "LabelCondP2"
+
+#: tfpuzzlewizard.labelcondtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELCONDTOF.CAPTION"
+msgid "Text on failure"
+msgstr "Text on failure"
+
+#: tfpuzzlewizard.labelinstrructions3.caption
+msgid "In case of success, please specify text output, and add any other actions that should be performed."
+msgstr "In case of success, please specify text output, and add any other actions that should be performed."
+
+#: tfpuzzlewizard.labelinstructions1.caption
+msgid "Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location"
+msgstr "Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location"
+
+#: tfpuzzlewizard.labelinstructions2.caption
+msgid "If any additional conditions should be met for player success, add them here."
+msgstr "If any additional conditions should be met for player success, add them here."
+
+#: tfpuzzlewizard.labelinstructions4.caption
+msgid "Puzzle code has been generated, please click \"Finish\" to add it to your game code."
+msgstr "Puzzle code has been generated, please click \"Finish\" to add it to your game code."
+
+#: tfpuzzlewizard.labellocationtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.CAPTION"
+msgid "Text on failure"
+msgstr "Text on failure"
+
+#: tfpuzzlewizard.labellocationtof.hint
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.HINT"
+msgid "Response to player if he/she tries to perform this action in other location"
+msgstr "Response to player if he/she tries to perform this action in other location"
+
+#: tfpuzzlewizard.labeltos.caption
+msgctxt "TFPUZZLEWIZARD.LABELTOS.CAPTION"
+msgid "Text on success"
+msgstr "Text on success"
+
+#: tfpuzzlewizard.labelverb.caption
+msgctxt "TFPUZZLEWIZARD.LABELVERB.CAPTION"
+msgid "Verb"
+msgstr "Verb"
+
+#: tfpuzzlewizard.pmdeleteline.caption
+msgid "Delete"
+msgstr "Delete"
+
+#: tfpuzzlewizard.pmmovedown.caption
+msgid "Move down"
+msgstr "Move down"
+
+#: tfpuzzlewizard.pmmoveup.caption
+msgid "Move up"
+msgstr "Move up"
+
+#: tfpuzzlewizard.tabsheetactions.caption
+msgid "Actions"
+msgstr "Actions"
+
+#: tfpuzzlewizard.tabsheetcodegen.caption
+msgid "Success and options"
+msgstr "Success and options"
+
+#: tfpuzzlewizard.tabsheetconditions.caption
+msgid "Conditions"
+msgstr "Conditions"
+
+#: tfpuzzlewizard.tabsheetvocloc.caption
+msgid "Vocabulary & Location"
+msgstr "Vocabulary & Location"
+
+#: tfsearchreplace.bcancel.caption
+msgid "Cancel"
+msgstr "Cancel"
+
+#: tfsearchreplace.bok.caption
+msgid "Ok"
+msgstr "Ok"
+
+#: tfsearchreplace.caption
+msgctxt "tfsearchreplace.caption"
+msgid "Search"
+msgstr "Search"
+
+#: tfsearchreplace.checkcasesensitive.caption
+msgid "Case Sensitive"
+msgstr "Case Sensitive"
+
+#: tfsearchreplace.checkonlyfromcursor.caption
+msgid "Only from cursor"
+msgstr "Only from cursor"
+
+#: tfsearchreplace.checkonlyinselection.caption
+msgid "Only in selection"
+msgstr "Only in selection"
+
+#: tfsearchreplace.checkreplace.caption
+msgctxt "TFSEARCHREPLACE.CHECKREPLACE.CAPTION"
+msgid "Replace"
+msgstr "Replace"
+
+#: tfsearchreplace.checkwholewordsonly.caption
+msgid "Whole Words only"
+msgstr "Whole Words only"
+
+#: tfsearchreplace.labelsearch.caption
+msgctxt "TFSEARCHREPLACE.LABELSEARCH.CAPTION"
+msgid "Search"
+msgstr "Search"
+
+#: uglobals.s_actions
+msgid ""
+"Choose an action...\n"
+"Object <....> appears\n"
+"Object <....> disappears\n"
+"Object <....> appears at location <....>\n"
+"Flag <....> is increased by <....>\n"
+"Flag <....> is decreased by <....>\n"
+"Flag <....> value is set to <....>\n"
+"Destroy connection in direction <....>\n"
+"Set connection in direction <....> to location <....>\n"
+msgstr ""
+
+#: uglobals.s_adject1_missing
+msgid "Please specify an adjetive for player order"
+msgstr "Please specify an adjetive for player order"
+
+#: uglobals.s_adject2_missing
+msgid "Please specify an adjetive for second noun player order"
+msgstr "Please specify an adjetive for second noun player order"
+
+#: uglobals.s_adverb_missing
+msgid "Please specify an adverb for player order"
+msgstr "Please specify an adverb for player order"
+
+#: uglobals.s_anyfilter
+msgctxt "uglobals.s_anyfilter"
+msgid "Any files|*.*"
+msgstr ""
+
+#: uglobals.s_browser_not_found
+msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+msgstr "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+
+#: uglobals.s_compiler_not_found
+msgid "Compiler not found, please check options to set valid path"
+msgstr "Compiler not found, please check options to set valid path"
+
+#: uglobals.s_compile_ok
+msgid "OK. Ready to run."
+msgstr "OK. Ready to run."
+
+#: uglobals.s_conditions
+msgid ""
+"Choose a condition...\n"
+"Player carries object <....>\n"
+"Player wears object <....>\n"
+"Player does not carry object <....>\n"
+"Object <....> is present\n"
+"Object <....> is absent\n"
+"Object <....> is at location <....>\n"
+"Object <....> is not at location <....>\n"
+"Flag <....> value is <....>\n"
+"Flag <....> value is not <....>\n"
+"Flag <....> value is greater than <....>\n"
+"Flag <....> value is less than <....>\n"
+msgstr ""
+
+#: uglobals.s_copyright
+msgctxt "uglobals.s_copyright"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: uglobals.s_direction
+msgid "Direction"
+msgstr "Direction"
+
+#: uglobals.s_direction_hint
+msgid "Please enter a valir direction verb"
+msgstr "Please enter a valir direction verb"
+
+#: uglobals.s_exefilter
+msgctxt "uglobals.s_exefilter"
+msgid "Any files|*.*"
+msgstr ""
+
+#: uglobals.s_file_loaded_warning
+msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
+msgstr ">> File has been loaded. To open sections use the \"Project\" menu <<"
+
+#: uglobals.s_file_not_found
+msgid "File not found"
+msgstr "File not found"
+
+#: uglobals.s_finish_message
+msgid "&Finish"
+msgstr "&Finish"
+
+#: uglobals.s_flag
+msgid "Flag"
+msgstr "Flag"
+
+#: uglobals.s_flag_hint
+msgid "Please enter number or txtpaws label of a flag"
+msgstr "Please enter number or txtpaws label of a flag"
+
+#: uglobals.s_invalid_format
+msgid "Not a valid TXP/SCE file"
+msgstr "Not a valid TXP/SCE file"
+
+#: uglobals.s_invalid_process_number
+msgid "Invalid Process Number"
+msgstr "Invalid Process Number"
+
+#: uglobals.s_invalid_section
+msgid "Invalid section"
+msgstr "Invalid section"
+
+#: uglobals.s_languages
+msgid ""
+"English\n"
+"Spanish\n"
+msgstr ""
+
+#: uglobals.s_location
+msgctxt "uglobals.s_location"
+msgid "Location"
+msgstr "Location"
+
+#: uglobals.s_locations_hint
+msgid "Please enter number or txtpaws label of a location"
+msgstr "Please enter number or txtpaws label of a location"
+
+#: uglobals.s_location_missing
+msgid "Please specify a location if puzzle is linked to location"
+msgstr "Please specify a location if puzzle is linked to location"
+
+#: uglobals.s_location_tof_missing
+msgid "Please specify a text on failute is player is not at specified location"
+msgstr "Please specify a text on failute is player is not at specified location"
+
+#: uglobals.s_menuitem_process
+msgid "Process &"
+msgstr "Process &"
+
+#: uglobals.s_menuitem_response
+msgid "&Response"
+msgstr "&Response"
+
+#: uglobals.s_next_message
+msgctxt "uglobals.s_next_message"
+msgid "&Next >"
+msgstr "&Next >"
+
+#: uglobals.s_noun2_missing
+msgid "Please specify a second noun for player order"
+msgstr "Please specify a second noun for player order"
+
+#: uglobals.s_noun_missing
+msgid "Please specify a noun for player order"
+msgstr "Please specify a noun for player order"
+
+#: uglobals.s_no_end_of_puzzle
+msgid "Mark of end of puzzle not found."
+msgstr "Mark of end of puzzle not found."
+
+#: uglobals.s_no_section_open
+msgid "Please open some section from the \"Project\" menu in order to use this feature."
+msgstr "Please open some section from the \"Project\" menu in order to use this feature."
+
+#: uglobals.s_object
+msgid "Object"
+msgstr "Object"
+
+#: uglobals.s_object_hint
+msgid "Please enter number or txtpaws label of an object"
+msgstr "Please enter number or txtpaws label of an object"
+
+#: uglobals.s_please_fill_in_fields
+msgid "Please fill in fields"
+msgstr "Please fill in fields"
+
+#: uglobals.s_please_select_condition
+msgid "Please select a condition"
+msgstr "Please select a condition"
+
+#: uglobals.s_preprocessor_not_found
+msgid "Preprocessor not found, please check options to set valid path"
+msgstr "Preprocessor not found, please check options to set valid path"
+
+#: uglobals.s_prep_missing
+msgid "Please specify a preposition for player order"
+msgstr "Please specify a preposition for player order"
+
+#: uglobals.s_puzzle_bottom
+msgid "; Please don't remove the 'end of puzzle' mark below. Removing it may lead to code corruption"
+msgstr "; Please don't remove the 'end of puzzle' mark below. Removing it may lead to code corruption"
+
+#: uglobals.s_puzzle_bottom_mark
+msgid "; <ENDPUZZLE>"
+msgstr "; <ENDPUZZLE>"
+
+#: uglobals.s_puzzle_hr
+msgid ";****************************************************************************************************************************"
+msgstr ";****************************************************************************************************************************"
+
+#: uglobals.s_puzzle_title
+msgid "; Automatically generated puzzle, please right click the token below and select \"Puzzle Wizard\" to edit it"
+msgstr "; Automatically generated puzzle, please right click the token below and select \"Puzzle Wizard\" to edit it"
+
+#: uglobals.s_puzzle_title2
+msgid "; Don't delete the token"
+msgstr "; Don't delete the token"
+
+#: uglobals.s_puzzle_token
+msgid "; TOKEN: [XXXX] TOKEN"
+msgstr "; TOKEN: [XXXX] TOKEN"
+
+#: uglobals.s_quit_not_saved
+msgid ""
+"Some changes may have not been saved.\n"
+"Are you sure?\n"
+msgstr ""
+"Some changes may have not been saved.\n"
+"Are you sure?\n"
+
+#: uglobals.s_replace_interrupt_process
+msgid ""
+"There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
+"Are you sure?\n"
+msgstr ""
+"There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
+"Are you sure?\n"
+
+#: uglobals.s_search_replace_not_found
+msgid " not found."
+msgstr " not found."
+
+#: uglobals.s_section_conn
+msgid "Connections"
+msgstr "Connections"
+
+#: uglobals.s_section_control
+msgid "Control"
+msgstr "Control"
+
+#: uglobals.s_section_definitions
+msgid "Definitions"
+msgstr "Definitions"
+
+#: uglobals.s_section_interrupt
+msgid "[INT]"
+msgstr "[INT]"
+
+#: uglobals.s_section_locmess
+msgid "Locations"
+msgstr "Locations"
+
+#: uglobals.s_section_mess
+msgid "User Messages"
+msgstr "User Messages"
+
+#: uglobals.s_section_objdata
+msgid "Object Data"
+msgstr "Object Data"
+
+#: uglobals.s_section_objmess
+msgid "Objects"
+msgstr "Objects"
+
+#: uglobals.s_section_process
+msgid "Process"
+msgstr "Process"
+
+#: uglobals.s_section_response
+msgid "Response"
+msgstr "Response"
+
+#: uglobals.s_section_sysmess
+msgid "System Messages"
+msgstr "System Messages"
+
+#: uglobals.s_section_vocabulary
+msgctxt "uglobals.s_section_vocabulary"
+msgid "Vocabulary"
+msgstr "Vocabulary"
+
+#: uglobals.s_starting_compiler
+msgid "Running compiler..."
+msgstr "Running compiler..."
+
+#: uglobals.s_starting_preprocessor
+msgid "Running preprocessor..."
+msgstr "Running preprocessor..."
+
+#: uglobals.s_start_database_not_found
+msgid "Start database not found, please check options to set valid path"
+msgstr "Start database not found, please check options to set valid path"
+
+#: uglobals.s_too_many_process
+msgid "Too many processes"
+msgstr "Too many processes"
+
+#: uglobals.s_tos_missing
+msgid "Please specify a text on success"
+msgstr "Please specify a text on success"
+
+#: uglobals.s_unexpected_condition
+msgid "Unexpected condition"
+msgstr "Unexpected condition"
+
+#: uglobals.s_value
+msgid "Value"
+msgstr "Value"
+
+#: uglobals.s_value_hint
+msgid "Please enter a integer positive value or zero"
+msgstr "Please enter a integer positive value or zero"
+
+#: uglobals.s_verb_missing
+msgid "Please specify a verb for player order"
+msgstr "Please specify a verb for player order"
+
+#: uglobals.s_wrong_puzzlewizard_position
+msgid "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
+msgstr "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
+
