@@ -730,9 +730,13 @@ msgstr "Invalid section"
 
 #: uglobals.s_languages
 msgid ""
+"OS Default\n"
 "English\n"
 "Spanish\n"
 msgstr ""
+"OS Default\n"
+"English\n"
+"Spanish\n"
 
 #: uglobals.s_location
 msgctxt "uglobals.s_location"

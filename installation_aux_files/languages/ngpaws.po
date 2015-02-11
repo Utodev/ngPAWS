@@ -721,6 +721,7 @@ msgstr ""
 
 #: uglobals.s_languages
 msgid ""
+"OS Default\n"
 "English\n"
 "Spanish\n"
 msgstr ""

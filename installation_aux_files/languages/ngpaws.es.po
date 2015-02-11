@@ -741,10 +741,16 @@ msgid "Invalid section"
 msgstr "Sección no válida"
 
 #: uglobals.s_languages
+#, fuzzy
+#| msgid ""
+#| "English\n"
+#| "Spanish\n"
 msgid ""
+"OS Default\n"
 "English\n"
 "Spanish\n"
 msgstr ""
+"Por defecto del SO\n"
 "Inglés\n"
 "Español\n"
 
