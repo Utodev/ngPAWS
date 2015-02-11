@@ -66,7 +66,7 @@ resourcestring
 
   S_EXEFILTER = 'Any files|*.*';
   S_ANYFILTER = 'Any files|*.*';
-  S_LANGUAGES = 'English'#13#10'Spanish';
+  S_LANGUAGES = 'OS Default'#13#10'English'#13#10'Spanish';
 
   // UPuzzleWizard
 

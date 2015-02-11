@@ -68,6 +68,7 @@ object fOptions: TfOptions
         Top = 40
         Width = 172
         ItemHeight = 17
+        OnChange = ComboBoxLangChange
         Style = csDropDownList
         TabOrder = 3
       end

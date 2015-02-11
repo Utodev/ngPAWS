@@ -75,7 +75,7 @@ begin
   FEditorFontSize :=  IniFile.ReadInteger('Options','EditorFontSize',13);
 
 
-  FLang :=  IniFile.ReadString('Lang','Lang','EN');
+  FLang :=  IniFile.ReadString('Lang','Lang','');
   IniFile.Free();
   LoadRecentFiles();
 end;
