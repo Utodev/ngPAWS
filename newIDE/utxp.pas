@@ -113,7 +113,9 @@ begin
     Exit;
   end;
   FileContents.LoadFromFile(Filename);
+  {$ifdef Windows}
   FileContents.Text:= AnsiToUtf8(FileContents.Text);
+  {$endif}
   ptr := 0;
   CurrentBlockName := BlockNames[0]; // DEF
   CurrentBlockHeader := CurrentBlockName;
@@ -235,7 +237,9 @@ begin
      for j := 0 to FProcesses[i].Count - 1 do DebugFileContents.Add('PRO ' + IntToStr(i) + '|' + IntToStr(j));
    end;
  end;
+ {$IfDef Windows}
  FileContents.text := Utf8ToAnsi(FileContents.Text);
+ {$EndIf}
  FileContents.SaveToFile(Filename);
  FileContents.Free();
  if WidthDebugInfo then
@@ -323,4 +327,4 @@ begin
 end;
 
 end.
-
+

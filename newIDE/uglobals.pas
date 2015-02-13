@@ -21,7 +21,7 @@ resourcestring
   S_QUIT_NOT_SAVED =   'Some changes may have not been saved.'#13#10'Are you sure?';
   S_REPLACE_INTERRUPT_PROCESS = 'There is already another process marked as interrupt process. Marking this one will deactivate the other.'#13#10'Are you sure?';
 
-  S_WRONG_SETTINGS = 'Compiler, Preprocessor and/or start database not found. Please check paths in the "Compiler" tab in Tools/Options menu';
+  S_WRONG_SETTINGS = 'Compiler, Preprocessor and/or start database not found. Please check paths in the "Compiler" tab in Tools/Options menu.';
 
 
   S_MENUITEM_PROCESS = 'Process &';
@@ -65,10 +65,11 @@ resourcestring
   S_INVALID_PROCESS_NUMBER = 'Invalid Process Number';
   S_INVALID_SECTION = 'Invalid section';
 
+  S_DEFAULT_FILENAME = 'NewAdventure.txp';
+  S_NEWGAME_FILES_NOT_FOUND = 'One or more files required to create a new game are missing, please check your installation.';
+
   //UOptions
 
-  S_EXEFILTER = 'Any files|*.*';
-  S_ANYFILTER = 'Any files|*.*';
   S_LANGUAGES = 'OS Default'#13#10'English'#13#10'Spanish';
 
   // UPuzzleWizard

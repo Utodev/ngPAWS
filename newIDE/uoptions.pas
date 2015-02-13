@@ -28,6 +28,8 @@ type
     EditHelpURL: TEdit;
     EditCompiler: TEdit;
     EditStartDatabase: TEdit;
+    GroupBoxCompilerOptions: TGroupBox;
+    GroupBoxEditor: TGroupBox;
     LabelPreprocessorParameters: TLabel;
     LabelLang: TLabel;
     LabelCompiler: TLabel;
@@ -35,9 +37,6 @@ type
     LabelHelpURL: TLabel;
     LabelStartDatabase: TLabel;
     OpenDialogOptions: TOpenDialog;
-    PageControlOptions: TPageControl;
-    TabSheetCompiler: TTabSheet;
-    TabSheetEditor: TTabSheet;
     procedure BBrowseCompilerClick(Sender: TObject);
     procedure BBrowsePreprocessorClick(Sender: TObject);
     procedure BBrowseStartDatabaseClick(Sender: TObject);
@@ -120,22 +119,19 @@ end;
 
 procedure TfOptions.BBrowsePreprocessorClick(Sender: TObject);
 begin
-  OpenDialogOptions.Filter := S_EXEFILTER;
   if OpenDialogOptions.Execute then EditPreprocessor.Text:=OpenDialogOptions.FileName;
 end;
 
 procedure TfOptions.BBrowseStartDatabaseClick(Sender: TObject);
 begin
-  OpenDialogOptions.Filter := S_ANYFILTER;
   if OpenDialogOptions.Execute then EditStartDatabase.Text:=OpenDialogOptions.FileName;
 end;
 
 procedure TfOptions.BBrowseCompilerClick(Sender: TObject);
 begin
-  OpenDialogOptions.Filter := S_EXEFILTER;
   if OpenDialogOptions.Execute then EditCompiler.Text:=OpenDialogOptions.FileName;
 end;
 
 
 end.
-
+

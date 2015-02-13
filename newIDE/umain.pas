@@ -158,6 +158,7 @@ type
     procedure CheckPaths();
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
     procedure BuildProcessMenu(TXP: TTXP);
+    function CreateNewGame(Filename: String):boolean;
     procedure BuildRecentFilesMenu();
     procedure SetEditMode(mode : boolean);
     procedure OpenTab(Section: String; Content: TStringList; SetCursorToLine: integer = -1);
@@ -343,7 +344,11 @@ begin
       Exit()
     end;
     CompileOutputListBox.Items.Add(S_STARTING_COMPILER);
+    {$IFDEF WIndows}
     Output := RunShell(Config.CompilerPath,  '"' + SCETempFile + '"');
+    {$ELSE}
+    Output := RunShell(Config.CompilerPath,  SCETempFile);
+    {$ENDIF}
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     // Errors in compiler appear in last output line
@@ -506,7 +511,9 @@ end;
 
 procedure TfMain.MNewClick(Sender: TObject);
 begin
+  SaveDialog.FileName:=S_DEFAULT_FILENAME;
 
+  if (SaveDialog.Execute) then if (CreateNewGame(SaveDialog.FileName)) then OpenFile(SaveDialog.FileName);
 end;
 
 procedure TfMain.MNewProcessClick(Sender: TObject);
@@ -853,7 +860,7 @@ begin
  TabSheet := TTabSheet.Create(PageControl);
  TabSheet.PageControl := PageControl;
  TabSheet.Color := $222827;
- TabSheet.BorderWidth:=0;
+ TabSheet.BorderWidth:=5;
  TabSheet.Font.Color := clWhite;
  TabSheet.ShowHint:=false;
  TabSheet.Caption:=Section;
@@ -1158,6 +1165,64 @@ begin
   then ShowMessage(S_WRONG_SETTINGS);
 end;
 
+function TfMain.CreateNewGame(Filename: String):boolean;
+var StringList :TStringList;
+    SourcePath : String;
+    DestPath :String;
+    FileBaseName :String;
+    i : integer;
+begin
+ // Check required files exist
+
+ FileBaseName:= ExtractFileNameOnly(Filename);
+ SourcePath:= ExtractFilePath(Config.StartDatabasePath);
+
+ if (not FileExists(Config.StartDatabasePath)) then
+ begin
+    ShowMessage(S_START_DATABASE_NOT_FOUND);
+    Result := false;
+    Exit;
+ end;
+
+  if (not FileExists(SourcePath + 'index.html')) or
+     (not FileExists(SourcePath + 'css.css')) or
+     (not FileExists(SourcePath + 'buzz.js')) or
+     (not FileExists(SourcePath + 'jquery.js')) then
+  begin
+    ShowMessage(S_NEWGAME_FILES_NOT_FOUND);
+    Result := false;
+    Exit;
+  end;
+
+  //Create new game
+  DestPath := ExtractFilePath(Filename);
+
+  StringList := TStringList.Create();
+  StringList.LoadFromFile(Config.StartDatabasePath);
+  StringList.SaveToFile(Filename);
+
+
+  // Copy And Patch the Index File
+  StringList.LoadFromFile(SourcePath + 'index.html');
+  for i:= 0 to StringList.Count -1 do
+       StringList.Strings[i] := StringReplace(StringList.Strings[i],'code.js', FileBaseName + '.js',[rfIgnoreCase]);
+  StringList.SaveToFile(DestPath +  'index.html');
+
+  // Copy jquery, buzz and css file
+  StringList.LoadFromFile(SourcePath + 'jquery.js');
+  StringList.SaveToFile(DestPath + 'jquery.js');
+  StringList.LoadFromFile(SourcePath + 'buzz.js');
+  StringList.SaveToFile(DestPath + 'buzz.js');
+  StringList.LoadFromFile(SourcePath + 'css.css');
+  StringList.SaveToFile(DestPath + 'css.css');
+
+  //Create dat folder
+  {$I-}
+  MkDir(DestPath + 'dat');
+  {$I+}
+  Result := true;
+end;
+
 end.
 
-
+

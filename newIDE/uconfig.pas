@@ -57,11 +57,22 @@ procedure TConfig.LoadConfig();
 var IniFile : TIniFile;
     ConfigFilePath : String;
 begin
+
+  {$IFDEF Windows}
   ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  {$ELSE}
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.conf');
+  {$ENDIF}
   IniFile := TIniFile.Create(ConfigFilePath);
 
+  {$IFDEF Windows}
   FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath','txtpaws.exe');
   FCompilerPath := IniFile.ReadString('Paths','CompilerPath','ngpc.exe');
+  {$ELSE}
+  FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath', 'txtpaws');
+  FCompilerPath := IniFile.ReadString('Paths','CompilerPath', 'ngpc');
+  {$ENDIF}
+
   FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath','database.start');;
 
   FHelpBaseURL :=  IniFile.ReadString('URLS','HelpBaseURL','https://github.com/Utodev/ngPAWS/wiki');
@@ -86,7 +97,11 @@ procedure TConfig.SaveConfig();
 var IniFile : TIniFile;
     ConfigFilePath : String;
 begin
+  {$IFDEF Windows}
   ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  {$ELSE}
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.conf');
+  {$ENDIF}
   IniFile := TIniFile.Create(ConfigFilePath);
 
   IniFile.WriteString('Paths','PreprocessorPath', FPreprocessorPath);
@@ -115,7 +130,11 @@ var i : integer;
     IniFile : TIniFile;
     ConfigFilePath : String;
 begin
+  {$IFDEF Windows}
   ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  {$ELSE}
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.conf');
+  {$ENDIF}
   IniFile := TIniFile.Create(ConfigFilePath);
   for i := 0 to 9 do FRecentFiles[i] :=  IniFile.ReadString('Recent files','File' + IntToStr(i), '');
   IniFile.Free();
@@ -126,7 +145,11 @@ var i : integer;
     IniFile : TIniFile;
     ConfigFilePath : String;
 begin
+  {$IFDEF Windows}
   ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.ini');
+  {$ELSE}
+  ConfigFilePath:= ChangeFileExt(GetAppConfigFile(False), '.conf');
+  {$ENDIF}
   IniFile := TIniFile.Create(ConfigFilePath);
   for i := 0 to 9 do IniFile.WriteString('Recent files','File' + IntToStr(i), FRecentFiles[i]);
   IniFile.Free();
@@ -159,4 +182,4 @@ begin
 end;
 
 end.
-
+
