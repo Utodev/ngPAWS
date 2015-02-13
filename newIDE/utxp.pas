@@ -113,7 +113,7 @@ begin
     Exit;
   end;
   FileContents.LoadFromFile(Filename);
-  {$ifdef Windows}
+  {$ifdef ANSI}
   FileContents.Text:= AnsiToUtf8(FileContents.Text);
   {$endif}
   ptr := 0;
@@ -237,9 +237,9 @@ begin
      for j := 0 to FProcesses[i].Count - 1 do DebugFileContents.Add('PRO ' + IntToStr(i) + '|' + IntToStr(j));
    end;
  end;
- {$IfDef Windows}
+ {$IFDEF ANSI}
  FileContents.text := Utf8ToAnsi(FileContents.Text);
- {$EndIf}
+ {$ENDIF}
  FileContents.SaveToFile(Filename);
  FileContents.Free();
  if WidthDebugInfo then
