@@ -79,7 +79,7 @@ begin
 
   FPreprocessorParameters := IniFile.ReadString('Paths','PreprocessorParameters','-uk -CLEAN');
 
-  FDeleteTempFiles := IniFile.ReadBool('Options','DeleteTemFiles',true);
+  FDeleteTempFiles := IniFile.ReadBool('Options','DeleteTempFiles',true);
   FSaveBeforeRun := IniFile.ReadBool('Options','SaveBeforeRun',true);
   FShowToolBar :=  IniFile.ReadBool('Options','ShowToolBar',true);
   FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
@@ -182,4 +182,4 @@ begin
 end;
 
 end.
-
+

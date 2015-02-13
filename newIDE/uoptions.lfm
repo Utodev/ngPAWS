@@ -63,7 +63,7 @@ object fOptions: TfOptions
       Top = 16
       Width = 191
       Caption = 'Open all sections on load'
-      TabOrder = 0
+      TabOrder = 1
     end
     object ComboBoxLang: TComboBox
       Left = 24
@@ -73,7 +73,7 @@ object fOptions: TfOptions
       ItemHeight = 0
       OnChange = ComboBoxLangChange
       Style = csDropDownList
-      TabOrder = 1
+      TabOrder = 0
     end
     object LabelLang: TLabel
       Left = 24
@@ -96,7 +96,7 @@ object fOptions: TfOptions
       Height = 31
       Top = 118
       Width = 544
-      TabOrder = 3
+      TabOrder = 4
     end
     object checkShowToolbar: TCheckBox
       Left = 328
@@ -104,7 +104,7 @@ object fOptions: TfOptions
       Top = 80
       Width = 117
       Caption = 'Show tool bar'
-      TabOrder = 4
+      TabOrder = 3
     end
     object LabelHelpURL: TLabel
       Left = 24
@@ -135,7 +135,7 @@ object fOptions: TfOptions
       Height = 31
       Top = 93
       Width = 165
-      TabOrder = 0
+      TabOrder = 3
     end
     object checkDeleteTempFiles: TCheckBox
       Left = 329
@@ -143,7 +143,7 @@ object fOptions: TfOptions
       Top = 88
       Width = 139
       Caption = 'Delete temp files'
-      TabOrder = 1
+      TabOrder = 5
     end
     object LabelPreprocessorParameters: TLabel
       Left = 328
@@ -158,14 +158,14 @@ object fOptions: TfOptions
       Height = 31
       Top = 32
       Width = 165
-      TabOrder = 2
+      TabOrder = 0
     end
     object EditStartDatabase: TEdit
       Left = 24
       Height = 31
       Top = 160
       Width = 165
-      TabOrder = 3
+      TabOrder = 6
     end
     object BBrowseStartDatabase: TButton
       Left = 184
@@ -181,7 +181,7 @@ object fOptions: TfOptions
       Font.Style = [fsBold]
       OnClick = BBrowseStartDatabaseClick
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 7
     end
     object BBrowseCompiler: TButton
       Left = 184
@@ -197,7 +197,7 @@ object fOptions: TfOptions
       Font.Style = [fsBold]
       OnClick = BBrowseCompilerClick
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 4
     end
     object LabelCompiler: TLabel
       Left = 24
@@ -229,14 +229,14 @@ object fOptions: TfOptions
       Font.Style = [fsBold]
       OnClick = BBrowsePreprocessorClick
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 1
     end
     object EditPreprocessorParameters: TEdit
       Left = 328
       Height = 31
       Top = 32
       Width = 192
-      TabOrder = 7
+      TabOrder = 2
     end
     object LabelPreprocessor: TLabel
       Left = 24

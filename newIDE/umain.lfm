@@ -6,7 +6,7 @@ object fMain: TfMain
   Align = alClient
   AlphaBlend = True
   Caption = 'ngPAWS'
-  ClientHeight = 571
+  ClientHeight = 600
   ClientWidth = 908
   Color = 2238503
   Icon.Data = {
@@ -722,12 +722,12 @@ object fMain: TfMain
   WindowState = wsMaximized
   object PanelBackground: TPanel
     Left = 0
-    Height = 571
+    Height = 580
     Top = 0
     Width = 908
     Align = alClient
     Caption = 'ngPAWS Editor (C) 2015 Uto'
-    ClientHeight = 571
+    ClientHeight = 580
     ClientWidth = 908
     Font.Color = clSilver
     ParentFont = False
@@ -735,7 +735,7 @@ object fMain: TfMain
     OnClick = PanelBackgroundClick
     object PageControl: TPageControl
       Left = 1
-      Height = 349
+      Height = 358
       Top = 51
       Width = 906
       Align = alClient
@@ -4055,7 +4055,7 @@ object fMain: TfMain
       Left = 1
       Height = 170
       Hint = 'Compiler output'
-      Top = 400
+      Top = 409
       Width = 906
       Align = alBottom
       Color = 2238503
@@ -4071,7 +4071,6 @@ object fMain: TfMain
       ScrollWidth = 904
       ShowHint = True
       TabOrder = 2
-      TopIndex = -1
       Visible = False
     end
   end

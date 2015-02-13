@@ -950,7 +950,7 @@ begin
  URL := Config.HelpBaseURL;
  if NOT (Config.HelpBaseURL[Length(Config.HelpBaseURL)] in ['/','\']) then URL := URL + '/';
  URL := URL + AnsiUpperCase(Selection);
- if (Config.Lang='ES') then URL := URL + '_ES';
+ if (Config.Lang='es') then URL := URL + '_ES';
  OpenBrowser(URL);
 end;
 
