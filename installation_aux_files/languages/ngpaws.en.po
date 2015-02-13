@@ -356,6 +356,14 @@ msgstr "Save before run or compile"
 msgid "Show tool bar"
 msgstr "Show tool bar"
 
+#: tfoptions.groupboxcompileroptions.caption
+msgid "Compiler Options"
+msgstr "Compiler Options"
+
+#: tfoptions.groupboxeditor.caption
+msgid "Editor Options"
+msgstr "Editor Options"
+
 #: tfoptions.labelcompiler.caption
 msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
 msgid "Compiler"
@@ -380,15 +388,6 @@ msgstr "Preprocessor Parameters"
 #: tfoptions.labelstartdatabase.caption
 msgid "Start database"
 msgstr "Start database"
-
-#: tfoptions.tabsheetcompiler.caption
-msgctxt "tfoptions.tabsheetcompiler.caption"
-msgid "Compiler"
-msgstr "Compiler"
-
-#: tfoptions.tabsheeteditor.caption
-msgid "General"
-msgstr "General"
 
 #: tfpuzzlewizard.buttonaddaction.caption
 msgctxt "TFPUZZLEWIZARD.BUTTONADDACTION.CAPTION"
@@ -632,6 +631,15 @@ msgid ""
 "Destroy connection in direction <....>\n"
 "Set connection in direction <....> to location <....>\n"
 msgstr ""
+"Choose an action...\n"
+"Object <....> appears\n"
+"Object <....> disappears\n"
+"Object <....> appears at location <....>\n"
+"Flag <....> is increased by <....>\n"
+"Flag <....> is decreased by <....>\n"
+"Flag <....> value is set to <....>\n"
+"Destroy connection in direction <....>\n"
+"Set connection in direction <....> to location <....>\n"
 
 #: uglobals.s_adject1_missing
 msgid "Please specify an adjetive for player order"
@@ -644,11 +652,6 @@ msgstr "Please specify an adjetive for second noun player order"
 #: uglobals.s_adverb_missing
 msgid "Please specify an adverb for player order"
 msgstr "Please specify an adverb for player order"
-
-#: uglobals.s_anyfilter
-msgctxt "uglobals.s_anyfilter"
-msgid "Any files|*.*"
-msgstr ""
 
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
@@ -677,11 +680,27 @@ msgid ""
 "Flag <....> value is greater than <....>\n"
 "Flag <....> value is less than <....>\n"
 msgstr ""
+"Choose a condition...\n"
+"Player carries object <....>\n"
+"Player wears object <....>\n"
+"Player does not carry object <....>\n"
+"Object <....> is present\n"
+"Object <....> is absent\n"
+"Object <....> is at location <....>\n"
+"Object <....> is not at location <....>\n"
+"Flag <....> value is <....>\n"
+"Flag <....> value is not <....>\n"
+"Flag <....> value is greater than <....>\n"
+"Flag <....> value is less than <....>\n"
 
 #: uglobals.s_copyright
 msgctxt "uglobals.s_copyright"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: uglobals.s_default_filename
+msgid "NewAdventure.txp"
+msgstr "NewAdventure.txp"
 
 #: uglobals.s_direction
 msgid "Direction"
@@ -690,11 +709,6 @@ msgstr "Direction"
 #: uglobals.s_direction_hint
 msgid "Please enter a valir direction verb"
 msgstr "Please enter a valir direction verb"
-
-#: uglobals.s_exefilter
-msgctxt "uglobals.s_exefilter"
-msgid "Any files|*.*"
-msgstr ""
 
 #: uglobals.s_file_loaded_warning
 msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
@@ -762,6 +776,10 @@ msgstr "Process &"
 #: uglobals.s_menuitem_response
 msgid "&Response"
 msgstr "&Response"
+
+#: uglobals.s_newgame_files_not_found
+msgid "One or more files required to create a new game are missing, please check your installation."
+msgstr "One or more files required to create a new game are missing, please check your installation."
 
 #: uglobals.s_next_message
 msgctxt "uglobals.s_next_message"
@@ -942,6 +960,6 @@ msgid "Please select an empty zone in the response table or the token of a previ
 msgstr "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
 
 #: uglobals.s_wrong_settings
-msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu"
-msgstr ""
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu."
+msgstr "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu."
 

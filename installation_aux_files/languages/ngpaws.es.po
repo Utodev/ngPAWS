@@ -347,6 +347,14 @@ msgstr "Grabar antes de ejecutar o compilar"
 msgid "Show tool bar"
 msgstr "Mostrar barra de herramientas"
 
+#: tfoptions.groupboxcompileroptions.caption
+msgid "Compiler Options"
+msgstr "Opciones del compilador"
+
+#: tfoptions.groupboxeditor.caption
+msgid "Editor Options"
+msgstr "Opciones del editor"
+
 #: tfoptions.labelcompiler.caption
 msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
 msgid "Compiler"
@@ -371,15 +379,6 @@ msgstr "Parámetros del preprocesador"
 #: tfoptions.labelstartdatabase.caption
 msgid "Start database"
 msgstr "Base de datos Inicio"
-
-#: tfoptions.tabsheetcompiler.caption
-msgctxt "tfoptions.tabsheetcompiler.caption"
-msgid "Compiler"
-msgstr "Compilador"
-
-#: tfoptions.tabsheeteditor.caption
-msgid "General"
-msgstr "General"
 
 #: tfpuzzlewizard.buttonaddaction.caption
 msgctxt "TFPUZZLEWIZARD.BUTTONADDACTION.CAPTION"
@@ -645,11 +644,6 @@ msgstr "Por favor especifique un adjetivo para el segundo nombre de la orden del
 msgid "Please specify an adverb for player order"
 msgstr "Por favor especifique un adverbio para la orden del jugador"
 
-#: uglobals.s_anyfilter
-msgctxt "uglobals.s_anyfilter"
-msgid "Any files|*.*"
-msgstr "Todos los archivos|*.*"
-
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
 msgstr "Navegador no encontrado."
@@ -695,6 +689,10 @@ msgctxt "uglobals.s_copyright"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr "ngPAWS Editor (C) 2015 Uto"
 
+#: uglobals.s_default_filename
+msgid "NewAdventure.txp"
+msgstr "NuevaAventura.txp"
+
 #: uglobals.s_direction
 msgid "Direction"
 msgstr "Dirección"
@@ -702,11 +700,6 @@ msgstr "Dirección"
 #: uglobals.s_direction_hint
 msgid "Please enter a valir direction verb"
 msgstr "Por favor introduzca un verbo de dirección válido"
-
-#: uglobals.s_exefilter
-msgctxt "uglobals.s_exefilter"
-msgid "Any files|*.*"
-msgstr "Todos los archivos|*.*"
 
 #: uglobals.s_file_loaded_warning
 msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
@@ -748,6 +741,24 @@ msgstr "Sección no válida"
 #| "OS Default\n"
 #| "English\n"
 #| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
 msgid ""
 "OS Default\n"
 "English\n"
@@ -781,6 +792,10 @@ msgstr "Proceso &"
 #: uglobals.s_menuitem_response
 msgid "&Response"
 msgstr "&Respuestas"
+
+#: uglobals.s_newgame_files_not_found
+msgid "One or more files required to create a new game are missing, please check your installation."
+msgstr "Uno o más ficheros necesarios para crear una nueva aventura no se encuentran, por favor compruebe su instalación"
 
 #: uglobals.s_next_message
 msgctxt "uglobals.s_next_message"
@@ -961,6 +976,6 @@ msgid "Please select an empty zone in the response table or the token of a previ
 msgstr "Por favor seleccione una zona vacía en la tabla de respuestas, o el token de otro puzzle. Si seleccionó un token y ve este mensaje, probablemente el token has sido modificado."
 
 #: uglobals.s_wrong_settings
-msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu"
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu."
 msgstr ""
 

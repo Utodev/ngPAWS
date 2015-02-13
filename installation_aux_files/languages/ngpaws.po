@@ -3,207 +3,207 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tfabout.caption
 msgid "ngPAWS Editor"
-msgstr "ngPAWS Editor"
+msgstr ""
 
 #: tfabout.label1.caption
 msgctxt "TFABOUT.LABEL1.CAPTION"
 msgid "ngPAWS Editor (C) 2015 Uto"
-msgstr "ngPAWS Editor (C) 2015 Uto"
+msgstr ""
 
 #: tfabout.label2.caption
 msgid "at GitHub (GPL)"
-msgstr "en GitHub (GPL)"
+msgstr ""
 
 #: tfabout.labeldetails.caption
 msgid "Lazarus source code avaliable"
-msgstr "Código fuente Lazarus disponible"
+msgstr ""
 
 #: tfabout.labelngithubsite.caption
 msgid "https://github.com/Utodev/ngPAWS"
-msgstr "https://github.com/Utodev/ngPAWS"
+msgstr ""
 
 #: tfabout.labelngpawssite.caption
 msgid "http://www.ngpaws.com"
-msgstr "http://www.ngpaws.com"
+msgstr ""
 
 #: tfmain.bcompile.hint
 msgid "Compile"
-msgstr "Compilar"
+msgstr ""
 
 #: tfmain.bcopy.hint
 msgctxt "TFMAIN.BCOPY.HINT"
 msgid "Copy"
-msgstr "Copiar"
+msgstr ""
 
 #: tfmain.bcut.hint
 msgctxt "TFMAIN.BCUT.HINT"
 msgid "Cut"
-msgstr "Cortar"
+msgstr ""
 
 #: tfmain.bfind.hint
 msgctxt "TFMAIN.BFIND.HINT"
 msgid "Find"
-msgstr "Buscar"
+msgstr ""
 
 #: tfmain.bhelp.hint
 msgid "Help"
-msgstr "Ayuda"
+msgstr ""
 
 #: tfmain.bnew.hint
 msgid "New"
-msgstr "Nuevo"
+msgstr ""
 
 #: tfmain.bopen.hint
 msgid "Open"
-msgstr "Abrir"
+msgstr ""
 
 #: tfmain.boptions.hint
 msgctxt "TFMAIN.BOPTIONS.HINT"
 msgid "Options"
-msgstr "Opciones"
+msgstr ""
 
 #: tfmain.bpaste.hint
 msgctxt "TFMAIN.BPASTE.HINT"
 msgid "Paste"
-msgstr "Pegar"
+msgstr ""
 
 #: tfmain.bredo.hint
 msgctxt "TFMAIN.BREDO.HINT"
 msgid "Redo"
-msgstr "Rehacer"
+msgstr ""
 
 #: tfmain.breplace.hint
 msgctxt "TFMAIN.BREPLACE.HINT"
 msgid "Replace"
-msgstr "Reemplazar"
+msgstr ""
 
 #: tfmain.brun.hint
 msgid "Run"
-msgstr "Ejecutar"
+msgstr ""
 
 #: tfmain.bsave.hint
 msgid "Save"
-msgstr "Guadar"
+msgstr ""
 
 #: tfmain.bundo.hint
 msgctxt "TFMAIN.BUNDO.HINT"
 msgid "Undo"
-msgstr "Deshacer"
+msgstr ""
 
 #: tfmain.caption
 msgid "ngPAWS"
-msgstr "ngPAWS"
+msgstr ""
 
 #: tfmain.compileoutputlistbox.hint
 msgid "Compiler output"
-msgstr "Mensajes del compilador"
+msgstr ""
 
 #: tfmain.mabout.caption
 msgid "About ngPAWS"
-msgstr "Acerca de ngPAWS"
+msgstr ""
 
 #: tfmain.mclose.caption
 msgid "&Close"
-msgstr "&Cerra"
+msgstr ""
 
 #: tfmain.mclosecompileroutput.caption
 msgid "Close this frame"
-msgstr "Cerrar esta ventana"
+msgstr ""
 
 #: tfmain.mcompile.caption
 msgid "&Compile"
-msgstr "&Compilar"
+msgstr ""
 
 #: tfmain.mcompilerun.caption
 msgid "Compile && &Run"
-msgstr "Compilar y Ejecuta&r"
+msgstr ""
 
 #: tfmain.mconnections.caption
 msgid "&Connections"
-msgstr "&Conexiones"
+msgstr ""
 
 #: tfmain.mcopy.caption
 msgid "&Copy"
-msgstr "&Copiar"
+msgstr ""
 
 #: tfmain.mcut.caption
 msgid "C&ut"
-msgstr "Cortar"
+msgstr ""
 
 #: tfmain.mdata.caption
 msgid "Data"
-msgstr "Datos"
+msgstr ""
 
 #: tfmain.mdefinitions.caption
 msgid "&Definitions"
-msgstr "&Definiciones"
+msgstr ""
 
 #: tfmain.medit.caption
 msgid "&Edit"
-msgstr "&Editar"
+msgstr ""
 
 #: tfmain.mfile.caption
 msgid "&File"
-msgstr "&Archivo"
+msgstr ""
 
 #: tfmain.mfind.caption
 msgctxt "tfmain.mfind.caption"
 msgid "Find"
-msgstr "Buscar"
+msgstr ""
 
 #: tfmain.mfindnext.caption
 msgid "&Find next"
-msgstr "&Buscar siguiente"
+msgstr ""
 
 #: tfmain.mhelp.caption
 msgid "&Help"
-msgstr "&Ayuda"
+msgstr ""
 
 #: tfmain.mhelpcontents.caption
 msgid "Help contents"
-msgstr "Ayuda"
+msgstr ""
 
 #: tfmain.mlocations.caption
 msgid "&Locations"
-msgstr "&Localidades"
+msgstr ""
 
 #: tfmain.mmessages.caption
 msgid "&Messages"
-msgstr "&Mensajes"
+msgstr ""
 
 #: tfmain.mnew.caption
 msgid "&New"
-msgstr "&Nuevo"
+msgstr ""
 
 #: tfmain.mnewprocess.caption
 msgid "&New Process"
-msgstr "&Nuevo proceso"
+msgstr ""
 
 #: tfmain.mobjectdata.caption
 msgid "Ob&ject Data"
-msgstr "Datos de Ob&jeto"
+msgstr ""
 
 #: tfmain.mobjecttexts.caption
 msgid "&Object Texts"
-msgstr "Textos de &Objeto"
+msgstr ""
 
 #: tfmain.mopenallsections.caption
 msgctxt "TFMAIN.MOPENALLSECTIONS.CAPTION"
 msgid "Open &all sections"
-msgstr "Abrir tod&as las secciones"
+msgstr ""
 
 #: tfmain.mopenfile.caption
 msgctxt "TFMAIN.MOPENFILE.CAPTION"
 msgid "&Open"
-msgstr "&Abrir"
+msgstr ""
 
 #: tfmain.moptions.caption
 msgid "&Options"
-msgstr "&Opciones"
+msgstr ""
 
 #: tfmain.mpaste.caption
 msgid "Pas&te"
-msgstr "Pegar"
+msgstr ""
 
 #: tfmain.mprocesses.caption
 msgid "&Processes"
@@ -224,12 +224,12 @@ msgstr ""
 #: tfmain.mredo.caption
 msgctxt "tfmain.mredo.caption"
 msgid "Redo"
-msgstr "Rehacer"
+msgstr ""
 
 #: tfmain.mreplace.caption
 msgctxt "tfmain.mreplace.caption"
 msgid "Replace"
-msgstr "Reemplazar"
+msgstr ""
 
 #: tfmain.msave.caption
 msgid "&Save"
@@ -246,7 +246,7 @@ msgstr ""
 #: tfmain.mundo.caption
 msgctxt "tfmain.mundo.caption"
 msgid "Undo"
-msgstr "Deshacer"
+msgstr ""
 
 #: tfmain.mvocabulary.caption
 msgid "&Vocabulary"
@@ -255,7 +255,7 @@ msgstr ""
 #: tfmain.panelbackground.caption
 msgctxt "tfmain.panelbackground.caption"
 msgid "ngPAWS Editor (C) 2015 Uto"
-msgstr "ngPAWS Editor (C) 2015 Uto"
+msgstr ""
 
 #: tfmain.pmcondacthelp.caption
 msgid "Condact Help"
@@ -264,12 +264,12 @@ msgstr ""
 #: tfmain.pmcopy.caption
 msgctxt "tfmain.pmcopy.caption"
 msgid "Copy"
-msgstr "Copiar"
+msgstr ""
 
 #: tfmain.pmcut.caption
 msgctxt "tfmain.pmcut.caption"
 msgid "Cut"
-msgstr "Cortar"
+msgstr ""
 
 #: tfmain.pminterrupttoggle.caption
 msgid "Toggle interrupt process mark"
@@ -282,7 +282,7 @@ msgstr ""
 #: tfmain.pmpaste.caption
 msgctxt "tfmain.pmpaste.caption"
 msgid "Paste"
-msgstr "Pegar"
+msgstr ""
 
 #: tfmain.pmpuzzlewizard.caption
 msgctxt "tfmain.pmpuzzlewizard.caption"
@@ -347,6 +347,14 @@ msgstr ""
 msgid "Show tool bar"
 msgstr ""
 
+#: tfoptions.groupboxcompileroptions.caption
+msgid "Compiler Options"
+msgstr ""
+
+#: tfoptions.groupboxeditor.caption
+msgid "Editor Options"
+msgstr ""
+
 #: tfoptions.labelcompiler.caption
 msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
 msgid "Compiler"
@@ -370,15 +378,6 @@ msgstr ""
 
 #: tfoptions.labelstartdatabase.caption
 msgid "Start database"
-msgstr ""
-
-#: tfoptions.tabsheetcompiler.caption
-msgctxt "tfoptions.tabsheetcompiler.caption"
-msgid "Compiler"
-msgstr ""
-
-#: tfoptions.tabsheeteditor.caption
-msgid "General"
 msgstr ""
 
 #: tfpuzzlewizard.buttonaddaction.caption
@@ -636,11 +635,6 @@ msgstr ""
 msgid "Please specify an adverb for player order"
 msgstr ""
 
-#: uglobals.s_anyfilter
-msgctxt "uglobals.s_anyfilter"
-msgid "Any files|*.*"
-msgstr ""
-
 #: uglobals.s_browser_not_found
 msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
 msgstr ""
@@ -674,17 +668,16 @@ msgctxt "uglobals.s_copyright"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr "ngPAWS Editor (C) 2015 Uto"
 
+#: uglobals.s_default_filename
+msgid "NewAdventure.txp"
+msgstr ""
+
 #: uglobals.s_direction
 msgid "Direction"
 msgstr ""
 
 #: uglobals.s_direction_hint
 msgid "Please enter a valir direction verb"
-msgstr ""
-
-#: uglobals.s_exefilter
-msgctxt "uglobals.s_exefilter"
-msgid "Any files|*.*"
 msgstr ""
 
 #: uglobals.s_file_loaded_warning
@@ -749,6 +742,10 @@ msgstr ""
 
 #: uglobals.s_menuitem_response
 msgid "&Response"
+msgstr ""
+
+#: uglobals.s_newgame_files_not_found
+msgid "One or more files required to create a new game are missing, please check your installation."
 msgstr ""
 
 #: uglobals.s_next_message
@@ -926,6 +923,6 @@ msgid "Please select an empty zone in the response table or the token of a previ
 msgstr ""
 
 #: uglobals.s_wrong_settings
-msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu"
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu."
 msgstr ""
 
