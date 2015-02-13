@@ -453,7 +453,7 @@ void CargarDefinicionCondacto(char *fichero, int isLocal)
 	free(fullname);
 }
 
-void CargarCondactosUsuario ()
+void LoadPluginCondacts ()
 {
 	
 
@@ -516,14 +516,14 @@ void CargarCondactosUsuario ()
 	
 
 void
-InicializaCondactos()
+InitializeCondacts()
 {
 	int i;
 	for (i=0;i<NUMCONDACTS;i++)
  	 condactos[i] = condactos_estandar[i];
 	/* Fill condact names with empty strings so we are sure there will be not a match when comparing */
 	for (i = NUMCONDACTS; i < NUMCONDACTS+USERCONDACTS; i++) condactos[i].nombre = ""; 
-	CargarCondactosUsuario();
+	LoadPluginCondacts();
 	return;
 }
 

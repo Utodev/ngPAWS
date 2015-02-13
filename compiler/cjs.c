@@ -35,6 +35,8 @@ int main (int argc, char *argv[])
   char *pgldir;
   char *gamedir;
 
+  printf("=== ngpaws compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
+   
 
   if (argc < 2)
   {
@@ -75,10 +77,9 @@ int main (int argc, char *argv[])
 	   	 path_archivo =  strdup(gamedir);
    	};
    
-   printf("=== ngpaws compiler v%i.%i.%i ===\n\n",ver_hi,ver_lo, ver_verylo);
    printf("ngPAWS directory found at %s\n",wd);
    printf("Game directory found at %s\n",path_archivo);
-   InicializaCondactos();
+   InitializeCondacts();
    prepLexico (argv[1]);
    analizar();
    printf ("Completed.\n");

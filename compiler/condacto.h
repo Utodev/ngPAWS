@@ -27,7 +27,7 @@ extern char *path_archivo;
 
 int BuscarCondacto (const char *nombre, TipoCondacto * condacto, int forceCondition);
 
-void InicializaCondactos ();
+void InitializeCondacts ();
 
 
 
