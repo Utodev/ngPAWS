@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, UConfig, UTXP,  UAbout, SynEditTypes, DefaultTranslator;
+  ComCtrls, StdCtrls, Buttons, UConfig, UTXP,  UAbout, SynEditTypes,Clipbrd, DefaultTranslator;
 
 type
 
@@ -32,6 +32,7 @@ type
     MCompile: TMenuItem;
     MCompileRun: TMenuItem;
     MCloseCompilerOutput: TMenuItem;
+    MCopyAll: TMenuItem;
     PMPuzzleWizard: TMenuItem;
     MAbout: TMenuItem;
     MData: TMenuItem;
@@ -110,6 +111,7 @@ type
     procedure MCompileClick(Sender: TObject);
     procedure MCompileRunClick(Sender: TObject);
     procedure MConnectionsClick(Sender: TObject);
+    procedure MCopyAllClick(Sender: TObject);
     procedure MCopyClick(Sender: TObject);
     procedure MCutClick(Sender: TObject);
     procedure MDataClick(Sender: TObject);
@@ -328,7 +330,7 @@ begin
      Exit();
     end;
     CompileOutputListBox.Items.Add(S_STARTING_PREPROCESSOR);
-    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters +  ' -I"' + ExtractFilePath(TXPTempFile) + 'dat" "' + TXPTempFile + '"');
+    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters +  ' -I"' + ExtractFilePath(TXPTempFile) + 'dat/" "' + TXPTempFile + '"');
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     for i :=0 to CompileOutputListBox.Items.Count-1 do // Errors in preprocessor may appear in any line
@@ -385,6 +387,12 @@ end;
 procedure TfMain.MConnectionsClick(Sender: TObject);
 begin
   if Editmode then OpenTab('CON',TXP.CON);
+end;
+
+procedure TfMain.MCopyAllClick(Sender: TObject);
+begin
+  Clipboard.AsText:=CompileOutputListBox.Items.Text;
+
 end;
 
 procedure TfMain.MCopyClick(Sender: TObject);
