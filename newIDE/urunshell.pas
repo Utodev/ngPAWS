@@ -12,11 +12,11 @@ const
   READ_BYTES = 2048;
 
 
-function RunShell(Executable: String; Parameters: String):TStringList;
+function RunShell(Executable: String; Parameters: String;WorkDir:String=''):TStringList;
 
 implementation
 
-function RunShell(Executable: String; Parameters: String):TStringList;
+function RunShell(Executable: String; Parameters: String;WorkDir:String=''):TStringList;
 var aProcess : TProcess;
     bytesRead: Longint;
     aMemStream :TMemoryStream;
@@ -26,6 +26,7 @@ var aProcess : TProcess;
     inQuotes: Boolean;
     i : integer;
     ngPAWSLIBPATH : String;
+    isEscaped : Boolean;
 begin
   {$IFNDEF Windows}
   ngPAWSLIBPATH := GetEnvironmentVariable('NGPAWS_LIBPATH');
@@ -39,17 +40,21 @@ begin
   aProcess.Environment.Add('NGPAWS_LIBPATH=' + ngPAWSLIBPATH);
   {$ENDIF}
   aProcess.Executable:=Executable;
+  if (WorkDir<>'') then aProcess.CurrentDirectory:=WorkDir;
   inQuotes:= false;
+  isEscaped := falsE;
   NextParameter:='';
   for i:=1 to Length(Parameters) do
    begin
     if (Parameters[i]='"') then inQuotes := not inQuotes;
-    if (Parameters[i] = ' ') and (not inQuotes) then
+    if (Parameters[i] = ' ') and (not inQuotes) and (not isEscaped) then
     begin
       if NextParameter<>'' then begin aProcess.Parameters.Add(NextParameter);  end;
       NextParameter := '';
     end else NextParameter := NextParameter + Parameters[i];
    end;
+   isEscaped:=false;
+   if (Parameters[i]='\') then isEscaped := true;
   if NextParameter<>'' then begin aProcess.Parameters.Add(NextParameter); end;
 
   aProcess.Options := aProcess.Options + [poUsePipes, poNoConsole,poStderrToOutPut];
