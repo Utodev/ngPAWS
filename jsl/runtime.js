@@ -342,7 +342,7 @@ function filterText(text)
 	// PAWS sequences (only underscore)
 	objno = getFlag(FLAG_REFERRED_OBJECT);
 	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,getObjectText(objno).firstToLower()); else text = text.replace(/_/g,'');
-	text = text.replace(/¬/g,' ');
+	text = text.replace(/Â¬/g,' ');
 
 	return text;
 }
@@ -946,7 +946,7 @@ function findVocabulary(word)  // Pending: sort the vocabulary at the beginning 
 function normalize(player_order)   
 // Removes accented characters and makes sure every sentence separator (colon, semicolon, quotes, etc.) has one space before and after. Also, all separators are converted to comma
 {
-	var originalchars = 'áéíóúäëïöüâêîôûàèìòùÁÉÍÓÚÄËÏÖÜÂÊÎÔÛÀÈÌÒÙ';
+	var originalchars = 'Ã¡Ã©Ã­Ã³ÃºÃ¤Ã«Ã¯Ã¶Ã¼Ã¢ÃªÃ®Ã´Ã»Ã Ã¨Ã¬Ã²Ã¹ÃÃ‰ÃÃ“ÃšÃ„Ã‹ÃÃ–ÃœÃ‚ÃŠÃÃ”Ã›Ã€ÃˆÃŒÃ’Ã™';
 	var i;
 	var output = '';
 	var pos;
