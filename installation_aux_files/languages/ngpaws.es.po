@@ -126,6 +126,10 @@ msgstr "&Conexiones"
 msgid "&Copy"
 msgstr "&Copiar"
 
+#: tfmain.mcopyall.caption
+msgid "Copy All To Clipboard"
+msgstr "Copiar todo"
+
 #: tfmain.mcut.caption
 msgid "C&ut"
 msgstr "Cortar"
@@ -736,6 +740,9 @@ msgstr "Sección no válida"
 #: uglobals.s_languages
 #, fuzzy
 #| msgid ""
+#| "English\n"
+#| "Spanish\n"
+#| "OS Default\n"
 #| "English\n"
 #| "Spanish\n"
 #| "OS Default\n"

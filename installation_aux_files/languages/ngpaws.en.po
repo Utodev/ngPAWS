@@ -135,6 +135,10 @@ msgstr "&Connections"
 msgid "&Copy"
 msgstr "&Copy"
 
+#: tfmain.mcopyall.caption
+msgid "Copy All To Clipboard"
+msgstr "Copy All To Clipboard"
+
 #: tfmain.mcut.caption
 msgid "C&ut"
 msgstr "C&ut"
