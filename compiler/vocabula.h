@@ -17,7 +17,7 @@ typedef struct
 {
   char *pal;
   TiposDePalabra tipo;
-  unsigned char num;
+  unsigned int num;
 }
 TipoPalabra;
 
