@@ -52,7 +52,7 @@ begin
    end;
   if NextParameter<>'' then begin aProcess.Parameters.Add(NextParameter); end;
 
-  aProcess.Options := aProcess.Options + [poUsePipes, poNoConsole];
+  aProcess.Options := aProcess.Options + [poUsePipes, poNoConsole,poStderrToOutPut];
   aProcess.Execute;
   while True do
     begin
