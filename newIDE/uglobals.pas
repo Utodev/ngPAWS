@@ -13,6 +13,7 @@ CONST LF = #13#10;
 
 function StrToHex(Str: String) : String;
 function HexToStr(Hex: String): String;
+function QuotePath(Path:String):String;
 
 
 resourcestring
@@ -142,6 +143,17 @@ begin
   Result := AnsiToUtf8(Result);
 end;
 
+function QuotePath(Path:String):String;
+begin
+  {$ifdef Windows}
+    Path:= StringReplace(Path, '"','\"', []);
+    Path := '"' + Path + '"';
+  {$else}
+    Path:= StringReplace(Path, ' ','\ ', []);
+  {$endif}
+  Result := Path;
+end;
+
 
 end.
-
+

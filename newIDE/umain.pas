@@ -330,7 +330,8 @@ begin
      Exit();
     end;
     CompileOutputListBox.Items.Add(S_STARTING_PREPROCESSOR);
-    Output := RunShell(Config.PreprocessorPath, Config.PreprocessorParameters +  ' -I"' + ExtractFilePath(TXPTempFile) + 'dat/" "' + TXPTempFile + '"');
+    // txpaws is run using the TXP file folder as work directory, to be able to add the "dat" folder to search path without having to deal with paths with spaces
+    Output := RunShell( Config.PreprocessorPath ,  Config.PreprocessorParameters +  ' -Idat'+ DirectorySeparator +' ' + QuotePath(TXPTempFile) + '', ExtractFilePath(TXPTempFile));
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     for i :=0 to CompileOutputListBox.Items.Count-1 do // Errors in preprocessor may appear in any line
@@ -346,11 +347,7 @@ begin
       Exit()
     end;
     CompileOutputListBox.Items.Add(S_STARTING_COMPILER);
-    {$IFDEF WIndows}
-    Output := RunShell(Config.CompilerPath,  '"' + SCETempFile + '"');
-    {$ELSE}
-    Output := RunShell(Config.CompilerPath,  SCETempFile);
-    {$ENDIF}
+    Output := RunShell(Config.CompilerPath,  QuotePath(SCETempFile));
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     // Errors in compiler appear in last output line

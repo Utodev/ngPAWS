@@ -5,7 +5,7 @@ unit UConfig;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils {$IFNDEF Windows}, BaseUnix {$ENDIF} ;
 
 
 type TConfig = class
@@ -44,6 +44,8 @@ public
  procedure SaveRecentFiles();
  function GetRecentFile(i:integer) : string;
  procedure AddRecentFile(Filename:String);
+
+ function FullPath(Path:String):String;
 end;
 
 
@@ -68,12 +70,13 @@ begin
   {$IFDEF Windows}
   FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath','txtpaws.exe');
   FCompilerPath := IniFile.ReadString('Paths','CompilerPath','ngpc.exe');
+  FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath','database.start');
   {$ELSE}
-  FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath', 'txtpaws');
-  FCompilerPath := IniFile.ReadString('Paths','CompilerPath', 'ngpc');
+  FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath', FullPath('txtpaws'));
+  FCompilerPath := IniFile.ReadString('Paths','CompilerPath', FullPath('ngpc'));
+  FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath',FullPath('database.start'));
   {$ENDIF}
 
-  FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath','database.start');;
 
   FHelpBaseURL :=  IniFile.ReadString('URLS','HelpBaseURL','https://github.com/Utodev/ngPAWS/wiki');
 
@@ -104,9 +107,9 @@ begin
   {$ENDIF}
   IniFile := TIniFile.Create(ConfigFilePath);
 
-  IniFile.WriteString('Paths','PreprocessorPath', FPreprocessorPath);
-  IniFile.WriteString('Paths','CompilerPath', FCompilerPath);
-  IniFile.WriteString('Paths','StartDatabasePath', FStartDatabasePath);
+  IniFile.WriteString('Paths','PreprocessorPath', FullPath(FPreprocessorPath));
+  IniFile.WriteString('Paths','CompilerPath', FullPath(FCompilerPath));
+  IniFile.WriteString('Paths','StartDatabasePath', FullPath(FStartDatabasePath));
 
   IniFile.WriteString('URLS','HelpBaseURL', FHelpBaseURL);
 
@@ -181,5 +184,14 @@ begin
   SaveRecentFiles();
 end;
 
-end.
+function TConfig.FullPath(Path:String):String;
+begin
+  {$ifndef Windows}
+    if (Pos('/',Path)=0) then Path := ExtractFilePath(fpReadLink('/proc/self/exe')) + Path;
+  {$endif}
+  Result := Path;
 
+end;
+
+end.
+

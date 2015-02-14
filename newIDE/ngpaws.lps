@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Release"/>
-    <Units Count="23">
+    <Units Count="22">
       <Unit0>
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -21,7 +21,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="321"/>
@@ -63,10 +62,11 @@
         <Filename Value="uconfig.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UConfig"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="87"/>
-        <CursorPos X="38" Y="113"/>
+        <TopLine Value="88"/>
+        <CursorPos X="14" Y="93"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -102,7 +102,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="163"/>
       </Unit7>
       <Unit8>
         <Filename Value="upuzzlewizard.pas"/>
@@ -115,7 +115,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="126"/>
         <CursorPos X="27" Y="132"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="163"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit8>
@@ -129,7 +129,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="9" Y="42"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="147"/>
       </Unit9>
       <Unit10>
         <Filename Value="images\buttons\upuzzlewizard.pas"/>
@@ -140,7 +140,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit10>
       <Unit11>
         <Filename Value="images\uabout.pas"/>
@@ -151,7 +151,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="1" Y="55"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit11>
       <Unit12>
         <Filename Value="uinifile.pas"/>
@@ -159,7 +159,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="22"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit12>
       <Unit13>
         <Filename Value="graficos\icono\urunshell.pas"/>
@@ -167,7 +167,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="13"/>
         <CursorPos X="30" Y="40"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit13>
       <Unit14>
         <Filename Value="graficos\icono\usaveload.pas"/>
@@ -175,7 +175,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="78"/>
         <CursorPos X="25" Y="116"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit14>
       <Unit15>
         <Filename Value="graficos\icono\uoptions.pas"/>
@@ -185,7 +185,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="96" Y="6"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit15>
       <Unit16>
         <Filename Value="usaveload.pas"/>
@@ -193,53 +193,46 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="47" Y="113"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit16>
       <Unit17>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="67"/>
         <CursorPos X="1" Y="86"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit17>
       <Unit18>
-        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="6301"/>
-        <CursorPos X="1" Y="6318"/>
-        <UsageCount Value="1"/>
-      </Unit18>
-      <Unit19>
         <Filename Value="upuzzle.pas"/>
         <UnitName Value="UPuzzle"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="9" Y="12"/>
-        <UsageCount Value="11"/>
-      </Unit19>
-      <Unit20>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="437"/>
         <CursorPos X="31" Y="456"/>
-        <UsageCount Value="12"/>
-      </Unit20>
-      <Unit21>
+        <UsageCount Value="11"/>
+      </Unit19>
+      <Unit20>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="11"/>
-      </Unit21>
-      <Unit22>
+        <UsageCount Value="10"/>
+      </Unit20>
+      <Unit21>
         <Filename Value="C:\lazarus\components\synedit\synedittextbuffer.pp"/>
         <UnitName Value="SynEditTextBuffer"/>
         <WindowIndex Value="0"/>
         <TopLine Value="523"/>
         <CursorPos X="28" Y="529"/>
-        <UsageCount Value="11"/>
-      </Unit22>
+        <UsageCount Value="10"/>
+      </Unit21>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>

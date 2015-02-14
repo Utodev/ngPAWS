@@ -3,12 +3,12 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Release"/>
-    <Units Count="12">
+    <Units Count="13">
       <Unit0>
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ngpaws"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
       </Unit0>
       <Unit1>
         <Filename Value="umain.pas"/>
@@ -17,12 +17,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="295"/>
-        <CursorPos X="126" Y="331"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="1180"/>
+        <CursorPos X="47" Y="1213"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -36,28 +35,31 @@
         <WindowIndex Value="0"/>
         <TopLine Value="90"/>
         <CursorPos X="26" Y="100"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="urunshell.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="URunShell"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="32"/>
-        <CursorPos X="83" Y="55"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="1"/>
+        <CursorPos X="77" Y="9"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="uconfig.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UConfig"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="125"/>
-        <CursorPos X="26" Y="136"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="154"/>
+        <CursorPos X="24" Y="190"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="utxp.pas"/>
@@ -66,16 +68,18 @@
         <WindowIndex Value="0"/>
         <TopLine Value="220"/>
         <CursorPos X="60" Y="229"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
       </Unit5>
       <Unit6>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UGlobals"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="35"/>
-        <CursorPos X="1" Y="70"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="116"/>
+        <CursorPos X="1" Y="157"/>
+        <UsageCount Value="34"/>
+        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="uabout.pas"/>
@@ -84,7 +88,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UAbout"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
       </Unit7>
       <Unit8>
         <Filename Value="upuzzlewizard.pas"/>
@@ -97,7 +101,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit8>
@@ -108,7 +112,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="USearchReplace"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
       </Unit9>
       <Unit10>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/lclclasses.pp"/>
@@ -125,11 +129,19 @@
         <CursorPos X="2" Y="30"/>
         <UsageCount Value="10"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="/usr/share/applications/gimp.desktop"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit12>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="umain.pas"/>
         <Caret Line="1228" Column="1" TopLine="1185"/>
@@ -154,7 +166,74 @@
         <Filename Value="umain.pas"/>
         <Caret Line="331" Column="146" TopLine="295"/>
       </Position6>
+      <Position7>
+        <Filename Value="urunshell.pas"/>
+        <Caret Line="41" Column="55" TopLine="28"/>
+      </Position7>
+      <Position8>
+        <Filename Value="umain.pas"/>
+        <Caret Line="333" Column="147" TopLine="329"/>
+      </Position8>
+      <Position9>
+        <Filename Value="umain.pas"/>
+        <Caret Line="350" Column="68" TopLine="327"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="17" Column="1" TopLine="2"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="48" Column="1" TopLine="24"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="186" Column="14" TopLine="144"/>
+      </Position12>
+      <Position13>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="48" Column="34" TopLine="28"/>
+      </Position13>
+      <Position14>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="186" Column="15" TopLine="146"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="48" Column="34" TopLine="28"/>
+      </Position15>
+      <Position16>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="186" Column="2" TopLine="148"/>
+      </Position16>
+      <Position17>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="48" Column="10" TopLine="20"/>
+      </Position17>
+      <Position18>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="79" Column="46" TopLine="46"/>
+      </Position18>
+      <Position19>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="8" Column="21" TopLine="1"/>
+      </Position19>
+      <Position20>
+        <Filename Value="uconfig.pas"/>
+        <Caret Line="76" Column="80" TopLine="54"/>
+      </Position20>
     </JumpHistory>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="uconfig.pas"/>
+        <Line Value="75"/>
+      </Item1>
+    </BreakPoints>
+  </Debugging>
   <EditorMacros Count="0"/>
 </CONFIG>
