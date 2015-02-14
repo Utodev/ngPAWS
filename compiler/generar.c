@@ -269,16 +269,15 @@ void VolcarRecursos (void)
 		if ((resourceType == 1) || (resourceType == 2)) 
 		{
 			/* In Win32 the BLC file generated includes backslashes, that are not good for URLs, this replaces backslashes with slashes */
-
-			for (j=0 ; j < strlen(bloque) ; j++)
+			k = 0;
+			for (j=0 ; j < strlen(bloque) ; j++,k++)
 			{
-				c = bloque[j];
-				if (c == '\\')  c ='/';
-				bloque2[j]=c;
-				bloque2[j+1] = 0;
+				
+				bloque2[k]=bloque[j];
+				bloque2[k+1] = 0;
+				if ((bloque[j]=='/') || (bloque[j] == '\\')) k = -1;
 			}
-			
-			fprintf(fichJS, "resources.push([%s, %d, \"%s\"]);\n", (resourceType==1)? "RESOURCE_TYPE_IMG" : "RESOURCE_TYPE_SND", resourceid, bloque2);
+			fprintf(fichJS, "resources.push([%s, %d, \"dat/%s\"]);\n", (resourceType==1)? "RESOURCE_TYPE_IMG" : "RESOURCE_TYPE_SND", resourceid, bloque2);
 		}
 	}
 	fputs("\n",fichJS);	
