@@ -7,7 +7,7 @@ function ACCgetexit(value,flagno)
 			setFlag(flagno, NO_EXIT);
 			return;
 		}
-	locno = getConnection(loc_here(),value);
+	var locno = getConnection(loc_here(),value);
 	if (locno == -1)
 		{
 			setFlag(flagno, NO_EXIT);

@@ -2,7 +2,7 @@
 
 function ACCrndwrite(writeno1,writeno2,writeno3)
 {
-	val = Math.floor((Math.random()*3));
+	var val = Math.floor((Math.random()*3));
 	switch (val)
 	{
 		case 0 : writeWriteMessage(writeno1);break;

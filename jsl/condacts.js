@@ -81,7 +81,7 @@ function CNDnotcarr(objno)
 
 function CNDchance(percent)
 {
-	 val = Math.floor((Math.random()*101));
+	 var val = Math.floor((Math.random()*101));
 	 return (val<=percent);
 }
 
@@ -265,16 +265,14 @@ function ACCok()
 
 function ACCramsave()
 {
-	savegame_object = getSaveGameObject();
-	ramsave_value = savegame_object;
+	ramsave_value = getSaveGameObject();
 	ACCok();
 }
 
 function ACCramload()
 {
-	savegame_object = ramsave_value;
-	if (!savegame_object) {writeText (STR_RAMLOAD_ERROR); done_flag=true; return}
-	restoreSaveGameObject(savegame_object);
+	if (!ramsave_value) {writeText (STR_RAMLOAD_ERROR); done_flag=true; return}
+	restoreSaveGameObject(ramsave_value);
 	ACCdesc();
 }
 
@@ -366,7 +364,7 @@ function ACCautog()
 
 function ACCautod()
 {
-	objno =findMatchingObject(LOCATION_CARRIED);
+	var objno =findMatchingObject(LOCATION_CARRIED);
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };
 	objno =findMatchingObject(LOCATION_WORN);
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };  
@@ -380,7 +378,7 @@ function ACCautod()
 
 function ACCautow()
 {
-	objno =findMatchingObject(LOCATION_CARRIED);
+	var objno =findMatchingObject(LOCATION_CARRIED);
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
 	objno =findMatchingObject(LOCATION_WORN);
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
@@ -394,7 +392,7 @@ function ACCautow()
 
 function ACCautor()
 {
-	objno =findMatchingObject(LOCATION_WORN);
+	var objno =findMatchingObject(LOCATION_WORN);
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	objno =findMatchingObject(LOCATION_CARRIED);
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
@@ -434,7 +432,7 @@ function ACCremove(objno)
 	success = false; 
 	setFlag(FLAG_REFERRED_OBJECT, objno);
 	setReferredObject(objno);
-	locno = getObjectLocation(objno);
+	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
 		case LOCATION_CARRIED:  
@@ -478,7 +476,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 		doall_flag = false;
 		return;
 	}
-	weight = getLocationObjectsWeight(objno);
+	var weight = getLocationObjectsWeight(objno);
 	weight += getObjectWeight(objno);
 	weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
 	weight +=  getLocationObjectsWeight(LOCATION_WORN);
@@ -500,7 +498,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
  	success = false; 
 	setFlag(FLAG_REFERRED_OBJECT, objno);
 	setReferredObject(objno);
-	locno = getObjectLocation(objno);
+	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
 		case LOCATION_CARRIED:  
@@ -536,7 +534,7 @@ function ACCdrop(objno)
 	success = false; 
 	setFlag(FLAG_REFERRED_OBJECT, objno);
 	setReferredObject(objno);
-	locno = getObjectLocation(objno);
+	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
 		case LOCATION_WORN:  
@@ -574,7 +572,7 @@ function ACCwear(objno)
 	success = false; 
 	setFlag(FLAG_REFERRED_OBJECT, objno);
 	setReferredObject(objno);
-	locno = getObjectLocation(objno);
+	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
 		case LOCATION_WORN:  
@@ -655,13 +653,13 @@ function ACCclear(flagno)
 
 function ACCplus(flagno,value)
 {
-	newval = getFlag(flagno) + value;
+	var newval = getFlag(flagno) + value;
 	setFlag(flagno, newval);
 }
 
 function ACCminus(flagno,value)
 {
-    newval = getFlag(flagno) - value;
+    var newval = getFlag(flagno) - value;
     if (newval < 0) newval = 0;
 	setFlag(flagno, newval);
 }
@@ -709,13 +707,13 @@ function ACCcopyff(flagno1, flagno2)
 
 function ACCadd(flagno1, flagno2)
 {
-	newval = getFlag(flagno1) + getFlag(flagno2);
+	var newval = getFlag(flagno1) + getFlag(flagno2);
 	setFlag(flagno2, newval);
 }
 
 function ACCsub(flagno1,flagno2)
 {
-	newval = getFlag(flagno2) - getFlag(flagno1);
+	var newval = getFlag(flagno2) - getFlag(flagno1);
 	if (newval < 0) newval = 0;
 	setFlag(flagno2, newval);
 }
@@ -803,7 +801,7 @@ function ACClistnpc(locno)
 
 function ACClistobj()
 {
-  locno = loc_here();
+  var locno = loc_here();
   var objscount =  getObjectCountAt(locno);
   var concealed_objcount = getObjectCountAtWithAttr(locno, ATTR_CONCEALED);
   var scenery_objcount = getObjectCountAtWithAttr(locno, ATTR_SCENERY);
@@ -883,7 +881,7 @@ function ACCprompt(value)  // deprecated
 
 function ACCweigh(objno, flagno)
 {
-	weight = getObjectWeight(objno);
+	var weight = getObjectWeight(objno);
 	setFlag(flagno, weight);
 }
 
@@ -980,9 +978,9 @@ function ACCability(maxObjectsCarried, maxWeightCarried)
 
 function ACCweight(flagno)
 {
-	weight_carried = getLocationObjectsWeight(LOCATION_CARRIED);
-	weight_worn = getLocationObjectsWeight(LOCATION_WORN);
-	total_weight = weight_worn + weight_carried;
+	var weight_carried = getLocationObjectsWeight(LOCATION_CARRIED);
+	var weight_worn = getLocationObjectsWeight(LOCATION_WORN);
+	var total_weight = weight_worn + weight_carried;
 	setFlag(flagno, total_weight);
 }
 
@@ -994,7 +992,7 @@ function ACCrandom(flagno)
 
 function ACCwhato()
 {
-	whatofound = getReferredObject();
+	var whatofound = getReferredObject();
 	if (whatofound != EMPTY_OBJECT) setReferredObject(whatofound);
 }
 
@@ -1010,7 +1008,7 @@ function ACCnotdone()
 
 function ACCautop(locno)
 {
-	objno =findMatchingObject(LOCATION_CARRIED);
+	var objno =findMatchingObject(LOCATION_CARRIED);
 	if (objno != EMPTY_OBJECT) { ACCputin(objno, locno); return; };
 	objno =findMatchingObject(LOCATION_WORN);
 	if (objno != EMPTY_OBJECT) { ACCputin(objno, locno); return; };
@@ -1034,7 +1032,7 @@ function ACCautop(locno)
 function ACCautot(locno)
 {
 
-	objno =findMatchingObject(locno);
+	var objno =findMatchingObject(locno);
 	if (objno != EMPTY_OBJECT) { ACCtakeout(objno, locno); return; };
 	objno =findMatchingObject(LOCATION_CARRIED);
 	if (objno != EMPTY_OBJECT) { ACCtakeout(objno, locno); return; };
@@ -1065,7 +1063,7 @@ function CNDmove(flagno)
 {
 	var locno = getFlag(flagno);
 	var dirno = getFlag(FLAG_VERB);
-	destination = getConnection( locno,  dirno);
+	var destination = getConnection( locno,  dirno);
 	if (destination != -1) 
 		{
 			 setFlag(flagno, destination);

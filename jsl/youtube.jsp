@@ -3,7 +3,7 @@
 function ACCyoutube(strno)
 {
 
-	str = '<iframe id="youtube" width="560" height="315" src="http://www.youtube.com/embed/' + writemessages[strno] + '?autoplay=1&controls=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>'
+	var str = '<iframe id="youtube" width="560" height="315" src="http://www.youtube.com/embed/' + writemessages[strno] + '?autoplay=1&controls=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>'
 	$('.graphics').removeClass('hidden');
 	$('.graphics').addClass('half_graphics');
 	$('.text').removeClass('all_text');

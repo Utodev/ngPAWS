@@ -2,6 +2,6 @@
 
 function ACCwhatox(flagno)
 {
-	whatoxfound = getReferredObject();
+	var whatoxfound = getReferredObject();
 	setFlag(flagno,whatoxfound);
 }

@@ -2,7 +2,7 @@
 
 function ACCpictureat(x,y,picno)
 {
-	filename = getResourceById(RESOURCE_TYPE_IMG, picno);
+	var filename = getResourceById(RESOURCE_TYPE_IMG, picno);
 	if (!filename) return;
 
 	var screenImage = $('.location_picture');
@@ -18,7 +18,7 @@ function ACCpictureat(x,y,picno)
 			var screenImageX = Math.floor((parseInt($('.graphics').width()) - screenImage.width())/2);;
 	    	var imageHeight    = theImage.height; 
 			// Calculate scale and x, Y position
-			scale =  screenImageHeight / imageHeight;
+			var scale =  screenImageHeight / imageHeight;
 			x = Math.floor(x * scale);
 			y = Math.floor(y * scale);
 
