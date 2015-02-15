@@ -258,6 +258,7 @@ var transcript = '';
 var graphicsON = true; 
 var soundsON = true; 
 var interruptDisabled = false;
+var showWarnings = true;
 
 
 // Block and anykey

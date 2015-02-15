@@ -213,7 +213,7 @@ function implementTag(tag)
 {
 	tagparams = tag.split('|');
 	for (var tagindex=0;tagindex<tagparams.length-1;tagindex++) tagparams[tagindex] = tagparams[tagindex].trim();
-	if (tagparams.length == 0) {writeText(STR_INVALID_TAG_SEQUENCE_EMPTY); return ''}
+	if (tagparams.length == 0) {writeWarning(STR_INVALID_TAG_SEQUENCE_EMPTY); return ''}
 
 	switch(tagparams[0].toUpperCase())
 	{
@@ -307,7 +307,7 @@ function processTags(text)
 	{
 		if (( text.indexOf('}') == -1 ) || ((text.indexOf('}') < text.indexOf('{'))))
 		{
-			writeText(STR_INVALID_TAG_SEQUENCE + text);
+			writeWarning(STR_INVALID_TAG_SEQUENCE + text);
 			break tagfilter;
 		}
 		pre = text.substring(0,text.indexOf('{'));
@@ -358,6 +358,11 @@ function writeText(text)
 	focusInput();
 }
 
+function writeWarning(text)
+{
+	if (showWarnings) writeText(text)
+}
+
 function addToTranscript(text)
 {
 	transcript = transcript + text;		
@@ -370,12 +375,12 @@ function writelnText(text)
 
 function writeMessage(mesno)
 {
-	if (messages[mesno]!=null) writeText(messages[mesno]); else writeText(STR_NEWLINE + STR_WRONG_MESSAGE + ' [' + mesno + ']');
+	if (messages[mesno]!=null) writeText(messages[mesno]); else writeWarning(STR_NEWLINE + STR_WRONG_MESSAGE + ' [' + mesno + ']');
 }
 
 function writeSysMessage(sysno)
 {
-		if (sysmessages[sysno]!=null) writeText(sysmessages[sysno]); else writeText(STR_NEWLINE + STR_WRONG_SYSMESS + ' [' + sysno + ']');
+		if (sysmessages[sysno]!=null) writeText(sysmessages[sysno]); else writeWarning(STR_NEWLINE + STR_WRONG_SYSMESS + ' [' + sysno + ']');
 		$(".text").scrollTop($(".text")[0].scrollHeight);
 }
 
@@ -403,7 +408,7 @@ function clearInputWindow()
 
 function writeLocation(locno)
 {
-	if (locations[locno]!=null) writeText(locations[locno] + STR_NEWLINE); else writeText(STR_NEWLINE + STR_WRONG_LOCATION + ' [' + locno + ']');
+	if (locations[locno]!=null) writeText(locations[locno] + STR_NEWLINE); else writeWarning(STR_NEWLINE + STR_WRONG_LOCATION + ' [' + locno + ']');
 }
 
 // Screen control functions
@@ -614,7 +619,7 @@ function setObjectHighAttributes(objno, attrs)
 function getObjectLocation(objno)
 {
 	if (objno > last_object_number) 
-		writeText(STR_INVALID_OBJECT + ' [' + objno + ']');
+		writeWarning(STR_INVALID_OBJECT + ' [' + objno + ']');
 	return objectsLocation[objno];
 }
 
