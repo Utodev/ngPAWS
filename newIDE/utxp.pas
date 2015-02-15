@@ -47,7 +47,7 @@ type TTXP = class
     constructor Create();
     procedure Free();
 
-    procedure LoadTXP(Filename: String);
+    function LoadTXP(Filename: String):boolean;
     procedure SaveTXP(Filename: String; WidthDebugInfo: Boolean = false);
     function AddProcess():boolean;
     function SetInterruptProcess(ProcessID: Byte):boolean;
@@ -93,7 +93,7 @@ begin
  for i:= 0 to 255 do if (Assigned(FProcesses[i])) then  FProcesses[i].Free();
 end;
 
-procedure TTXP.LoadTXP(Filename: String);
+function TTXP.LoadTXP(Filename: String):boolean;
 var FileContents: TStringList;  // Whole File
     CurrentBlock : TStringList; // The current block contents
     CurrentBlockName : String; // Current block name tag (i.e. DEF, CTL, VOC, PRO, OTX, etc.)
@@ -110,6 +110,7 @@ begin
   if (not FileExists(Filename)) then
   begin
     ShowMessage(S_FILE_NOT_FOUND);
+    Result := false;
     Exit;
   end;
   FileContents.LoadFromFile(Filename);
@@ -134,13 +135,13 @@ begin
               CurrentBlockHeader := CurrentLine;
               CurrentBlock.Text := '';
               IsBlockStart:=true;
-
          end
     end;
     if (not IsBlockStart) then CurrentBlock.Add(CurrentLine);
     ptr := ptr + 1;
   end;
   AddBlock(CurrentBlockName, CurrentBlock, CurrentBlockHeader);
+  Result := true;
 end;
 
 
@@ -327,4 +328,4 @@ begin
 end;
 
 end.
-
+

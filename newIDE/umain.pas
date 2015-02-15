@@ -601,15 +601,17 @@ end;
 procedure TfMain.OpenFile(Filename: String);
 begin
   TXP := TTXP.Create();
-  TXP.LoadTXP(Filename);
-  fMain.Caption:= 'ngPAWS - ' + ExtractFileName(FileName);
-  Config.AddRecentFile(FileName);
-  BuildRecentFilesMenu();
-  SetEditMode(true);
-  if  Config.OpenAllTabs then MOpenAllSections.Click() else
-   begin
-     PanelBackground.Caption := S_FILE_LOADED_WARNING;
-     PanelBackground.Font.Color:= clWhite;
+  if (TXP.LoadTXP(Filename)) then
+  begin
+       fMain.Caption:= 'ngPAWS - ' + ExtractFileName(FileName);
+       Config.AddRecentFile(FileName);
+       BuildRecentFilesMenu();
+       SetEditMode(true);
+       if  Config.OpenAllTabs then MOpenAllSections.Click() else
+       begin
+            PanelBackground.Caption := S_FILE_LOADED_WARNING;
+            PanelBackground.Font.Color:= clWhite;
+       end;
    end;
 end;
 
@@ -1230,4 +1232,4 @@ end;
 
 end.
 
-
+
