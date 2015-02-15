@@ -17,10 +17,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1180"/>
-        <CursorPos X="47" Y="1213"/>
+        <TopLine Value="824"/>
+        <CursorPos X="37" Y="867"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -53,10 +54,9 @@
         <Filename Value="uconfig.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UConfig"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="154"/>
+        <TopLine Value="153"/>
         <CursorPos X="24" Y="190"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
@@ -141,7 +141,7 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="23" HistoryIndex="22">
       <Position1>
         <Filename Value="umain.pas"/>
         <Caret Line="1228" Column="1" TopLine="1185"/>
@@ -222,6 +222,18 @@
         <Filename Value="uconfig.pas"/>
         <Caret Line="76" Column="80" TopLine="54"/>
       </Position20>
+      <Position21>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1213" Column="47" TopLine="1180"/>
+      </Position21>
+      <Position22>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="umain.pas"/>
+        <Caret Line="143" Column="34" TopLine="108"/>
+      </Position23>
     </JumpHistory>
   </ProjectSession>
   <Debugging>

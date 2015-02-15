@@ -5,7 +5,7 @@ unit UMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
+   {$IFDEF Windows}windows,{$ENDIF}Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
   ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
   ComCtrls, StdCtrls, Buttons, UConfig, UTXP,  UAbout, SynEditTypes,Clipbrd, DefaultTranslator;
 
@@ -81,6 +81,7 @@ type
     BNew: TSpeedButton;
     MainPopupMenu: TPopupMenu;
     PopupMenuCompilerOutput: TPopupMenu;
+    Timer: TTimer;
     Toolbar: TPanel;
     PanelBackground: TPanel;
     DataHighlighter: TSynAnySyn;
@@ -139,6 +140,7 @@ type
     procedure MUndoClick(Sender: TObject);
     procedure MVocabularyClick(Sender: TObject);
     procedure PageControlChange(Sender: TObject);
+    procedure PageControlChanging(Sender: TObject; var AllowChange: Boolean);
     procedure PanelBackgroundClick(Sender: TObject);
     procedure MProcessItemClick(Sender: TObject);
     procedure PMCondactHelpClick(Sender: TObject);
@@ -152,6 +154,7 @@ type
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
     procedure MRecentFilesClick(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
 
 
   private
@@ -253,6 +256,14 @@ end;
 procedure TfMain.MRecentFilesClick(Sender: TObject);
 begin
   OpenFile(TMenuItem(Sender).Caption);
+end;
+
+procedure TfMain.TimerTimer(Sender: TObject);
+begin
+ {$iFDEF Windows}
+ LockWindowUpdate(0);
+ Timer.Enabled:=false;
+ {$ENDIF}
 end;
 
 procedure TfMain.MainPopupMenuPopup(Sender: TObject);
@@ -837,6 +848,20 @@ begin
   TSynEdit(PageControl.ActivePage.Controls[0]).SetFocus();
 end;
 
+procedure TfMain.PageControlChanging(Sender: TObject; var AllowChange: Boolean);
+begin
+  {$IFDEF Windows}
+  if AllowChange then
+  begin
+    if PageControl.PageCount > 0 then
+    begin
+      LockWindowUpdate(PageControl.Handle);
+      Timer.Enabled := True;
+    end;
+  end;
+  {$ENDIF}
+end;
+
 procedure TfMain.OpenTab(Section: String; Content: TStringList; SetCursorToLine: integer = -1);
 var found : boolean;
     i : integer;
@@ -844,6 +869,7 @@ var found : boolean;
     TabSheet : TTabSheet;
 
 begin
+  PageControl.DoubleBuffered:=true;
   if not Assigned(TXP) then Exit();
   if not PageControl.Visible then PageControl.Visible:= true;
   if (Section = 'PRO 0') then Section:= 'RESP';
@@ -865,17 +891,18 @@ begin
    end;
  //Create new tab
  TabSheet := TTabSheet.Create(PageControl);
+ TabSheet.DoubleBuffered:=true;
  TabSheet.PageControl := PageControl;
  TabSheet.Color := $222827;
- TabSheet.BorderWidth:=5;
  TabSheet.Font.Color := clWhite;
  TabSheet.ShowHint:=false;
  TabSheet.Caption:=Section;
  TabSheet.BorderWidth:=0;
  SynEdit := TSynEdit.Create(TabSheet);
- SynEdit.Parent := TabSheet;
- SynEdit.BorderStyle:= bsNone;
  SynEdit.Align:=alClient;
+ SynEdit.DoubleBuffered:=true;
+ SynEdit.BorderStyle:= bsNone;
+ SynEdit.Parent := TabSheet;
  SynEdit.OnKeyPress := @SynEditKeyPress;
  SynEdit.OnKeyDown := @HelpResponse;
  SynEdit.Color:=$222827;
@@ -1232,4 +1259,4 @@ end;
 
 end.
 
-
+

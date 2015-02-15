@@ -9,9 +9,8 @@
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ngpaws"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="1" Y="26"/>
+        <CursorPos X="21" Y="8"/>
         <UsageCount Value="204"/>
       </Unit0>
       <Unit1>
@@ -21,13 +20,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="852"/>
-        <CursorPos X="24" Y="880"/>
+        <TopLine Value="260"/>
+        <CursorPos X="1" Y="261"/>
         <UsageCount Value="204"/>
         <Bookmarks Count="1">
-          <Item0 X="46" Y="643" ID="1"/>
+          <Item0 X="46" Y="652" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -39,58 +39,46 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uoptions"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="46" Y="9"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="urunshell.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="URunShell"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="68" Y="55"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="uconfig.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UConfig"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="133"/>
         <CursorPos X="27" Y="161"/>
         <UsageCount Value="202"/>
-        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="utxp.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UTXP"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
+        <CursorPos X="45" Y="10"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UGlobals"/>
-        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="50"/>
         <CursorPos X="1" Y="69"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="uabout.pas"/>
@@ -102,7 +90,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="164"/>
       </Unit7>
       <Unit8>
         <Filename Value="upuzzlewizard.pas"/>
@@ -111,13 +99,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UPuzzleWizard"/>
-        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="126"/>
         <CursorPos X="27" Y="132"/>
-        <UsageCount Value="163"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="164"/>
       </Unit8>
       <Unit9>
         <Filename Value="usearchreplace.pas"/>
@@ -129,7 +114,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="9" Y="42"/>
-        <UsageCount Value="147"/>
+        <UsageCount Value="148"/>
       </Unit9>
       <Unit10>
         <Filename Value="images\buttons\upuzzlewizard.pas"/>
@@ -237,123 +222,107 @@
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="25" HistoryIndex="24">
       <Position1>
-        <Filename Value="uconfig.pas"/>
-        <Caret Line="157" Column="86" TopLine="129"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="847" Column="35" TopLine="839"/>
       </Position1>
       <Position2>
         <Filename Value="umain.pas"/>
-        <Caret Line="332" Column="1" TopLine="321"/>
+        <Caret Line="854" Column="35" TopLine="841"/>
       </Position2>
       <Position3>
         <Filename Value="umain.pas"/>
-        <Caret Line="580" Column="11" TopLine="552"/>
+        <Caret Line="848" Column="10" TopLine="842"/>
       </Position3>
       <Position4>
         <Filename Value="umain.pas"/>
-        <Caret Line="606" Column="19" TopLine="578"/>
+        <Caret Line="10" Column="128" TopLine="1"/>
       </Position4>
       <Position5>
         <Filename Value="umain.pas"/>
-        <Caret Line="607" Column="23" TopLine="579"/>
+        <Caret Line="1024" Column="13" TopLine="1007"/>
       </Position5>
       <Position6>
         <Filename Value="umain.pas"/>
-        <Caret Line="164" Column="35" TopLine="148"/>
+        <Caret Line="1025" Column="13" TopLine="1007"/>
       </Position6>
       <Position7>
         <Filename Value="umain.pas"/>
-        <Caret Line="221" Column="41" TopLine="195"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position7>
       <Position8>
         <Filename Value="umain.pas"/>
-        <Caret Line="154" Column="32" TopLine="138"/>
+        <Caret Line="1024" Column="13" TopLine="996"/>
       </Position8>
       <Position9>
         <Filename Value="umain.pas"/>
-        <Caret Line="221" Column="41" TopLine="193"/>
+        <Caret Line="1025" Column="13" TopLine="997"/>
       </Position9>
       <Position10>
         <Filename Value="umain.pas"/>
-        <Caret Line="255" Column="11" TopLine="225"/>
+        <Caret Line="1026" Column="13" TopLine="998"/>
       </Position10>
       <Position11>
         <Filename Value="umain.pas"/>
-        <Caret Line="71" Column="14" TopLine="55"/>
+        <Caret Line="1027" Column="13" TopLine="999"/>
       </Position11>
       <Position12>
         <Filename Value="umain.pas"/>
-        <Caret Line="130" Column="24" TopLine="102"/>
+        <Caret Line="1028" Column="13" TopLine="1000"/>
       </Position12>
       <Position13>
         <Filename Value="umain.pas"/>
-        <Caret Line="159" Column="23" TopLine="131"/>
+        <Caret Line="1029" Column="13" TopLine="1001"/>
       </Position13>
       <Position14>
         <Filename Value="umain.pas"/>
-        <Caret Line="255" Column="11" TopLine="227"/>
+        <Caret Line="1030" Column="13" TopLine="1002"/>
       </Position14>
       <Position15>
         <Filename Value="umain.pas"/>
-        <Caret Line="447" Column="12" TopLine="419"/>
+        <Caret Line="1024" Column="3" TopLine="1007"/>
       </Position15>
       <Position16>
         <Filename Value="umain.pas"/>
-        <Caret Line="521" Column="85" TopLine="493"/>
+        <Caret Line="41" Column="1" TopLine="36"/>
       </Position16>
       <Position17>
         <Filename Value="umain.pas"/>
-        <Caret Line="578" Column="13" TopLine="550"/>
+        <Caret Line="1024" Column="13" TopLine="996"/>
       </Position17>
       <Position18>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="238" Column="33" TopLine="207"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1011" Column="42" TopLine="1008"/>
       </Position18>
       <Position19>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="50" Column="22" TopLine="35"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="16" Column="35" TopLine="1"/>
       </Position19>
       <Position20>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="96" Column="23" TopLine="83"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1256" Column="1" TopLine="1222"/>
       </Position20>
       <Position21>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="263" Column="3" TopLine="261"/>
       </Position21>
       <Position22>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="50" Column="14" TopLine="22"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="853" Column="42" TopLine="848"/>
       </Position22>
       <Position23>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="139" Column="1" TopLine="115"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="263" Column="18" TopLine="256"/>
       </Position23>
       <Position24>
         <Filename Value="umain.pas"/>
-        <Caret Line="615" Column="1" TopLine="584"/>
+        <Caret Line="831" Column="9" TopLine="826"/>
       </Position24>
       <Position25>
         <Filename Value="umain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Caret Line="890" Column="59" TopLine="871"/>
       </Position25>
-      <Position26>
-        <Filename Value="umain.pas"/>
-        <Caret Line="899" Column="28" TopLine="888"/>
-      </Position26>
-      <Position27>
-        <Filename Value="umain.pas"/>
-        <Caret Line="221" Column="24" TopLine="204"/>
-      </Position27>
-      <Position28>
-        <Filename Value="umain.pas"/>
-        <Caret Line="562" Column="24" TopLine="534"/>
-      </Position28>
-      <Position29>
-        <Filename Value="umain.pas"/>
-        <Caret Line="879" Column="25" TopLine="851"/>
-      </Position29>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
@@ -369,7 +338,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="umain.pas"/>
-        <Line Value="520"/>
+        <Line Value="529"/>
       </Item2>
     </BreakPoints>
     <Watches Count="8">

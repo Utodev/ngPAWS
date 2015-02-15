@@ -746,9 +746,11 @@ object fMain: TfMain
       Font.Quality = fqDraft
       MultiLine = True
       ParentFont = False
+      ParentShowHint = False
       TabOrder = 0
       Visible = False
       OnChange = PageControlChange
+      OnChanging = PageControlChanging
       Options = [nboMultiLine, nboKeyboardTabSwitch, nboShowAddTabButton]
     end
     object Toolbar: TPanel
@@ -4392,5 +4394,12 @@ object fMain: TfMain
       Caption = 'Copy All To Clipboard'
       OnClick = MCopyAllClick
     end
+  end
+  object Timer: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = TimerTimer
+    left = 696
+    top = 231
   end
 end
