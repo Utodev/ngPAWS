@@ -878,7 +878,7 @@ msgid ""
 "Some changes may have not been saved.\n"
 "Are you sure?\n"
 msgstr ""
-"Algunos cambios no se han guardad.\n"
+"Algunos cambios no se han guardado.\n"
 "¿Estás seguro?\n"
 
 #: uglobals.s_replace_interrupt_process
