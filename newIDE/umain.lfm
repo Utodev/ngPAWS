@@ -4254,7 +4254,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround
@@ -4279,7 +4279,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround
@@ -4304,7 +4304,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround
@@ -4401,5 +4401,17 @@ object fMain: TfMain
     OnTimer = TimerTimer
     left = 696
     top = 231
+  end
+  object SynCompletion: TSynCompletion
+    Position = 0
+    LinesInWindow = 3
+    SelectedColor = clMaroon
+    CaseSensitive = False
+    Width = 262
+    ShortCut = 16416
+    EndOfTokenChr = '()[].'
+    ExecCommandID = ecSynCompletionExecute
+    left = 56
+    top = 317
   end
 end

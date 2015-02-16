@@ -52,6 +52,7 @@ type TTXP = class
     function AddProcess():boolean;
     function SetInterruptProcess(ProcessID: Byte):boolean;
     procedure SetProcessCode(i: longint; Value: String);
+    function getIdentifierList():TStringList;
 
 end;
 
@@ -325,6 +326,35 @@ begin
    Result := true;
  end
  else Result := false;
+end;
+
+function TTXP.getIdentifierList():TStringList;
+var List, TempList : TStringList;
+    i : integer;
+    j : integer;
+begin
+ List := TStringList.Create();
+ List.Sorted:=true;
+ List.Duplicates:=dupIgnore;
+
+ TempList := TStringList.Create();
+ TempList.Duplicates:=dupIgnore;
+ TempList.Sorted:=true;
+
+ ExtractStrings([' '],[],PChar(DEF.Text),TempList);
+ for i:= 0 to TempList.Count-1 do
+  if (TempList.Strings[i]<>'') and (TempList.Strings[i][1] in ['a'..'z','A'..'Z','#']) then List.Add(TempList.Strings[i]);
+
+ TempList.Clear();
+ for j:=0 to FLastProcess do
+ begin
+  ExtractStrings([' '],[],PChar(Processes[j].Text),TempList);
+  for i:= 0 to TempList.Count-1 do
+    if (TempList.Strings[i]<>'') and (TempList.Strings[i][1] in ['a'..'z','A'..'Z']) then List.Add(TempList.Strings[i]);
+ end;
+
+ TempList.Free();;
+ Result := List;
 end;
 
 end.

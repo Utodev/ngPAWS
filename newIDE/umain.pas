@@ -5,9 +5,10 @@ unit UMain;
 interface
 
 uses
-   {$IFDEF Windows}windows,{$ENDIF}Classes, SysUtils, FileUtil, SynHighlighterAny, SynEdit,
-  ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus, ExtCtrls,
-  ComCtrls, StdCtrls, Buttons, UConfig, UTXP,  UAbout, SynEditTypes,Clipbrd, DefaultTranslator;
+   {$IFDEF Windows}windows,{$endif} Classes, SysUtils, FileUtil, SynHighlighterAny,
+   SynEdit, ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus,
+   ExtCtrls, ComCtrls, StdCtrls, Buttons, UConfig, UTXP, UAbout, SynEditTypes,
+   SynCompletion, Clipbrd, DefaultTranslator, types, LCLType;
 
 type
 
@@ -81,6 +82,7 @@ type
     BNew: TSpeedButton;
     MainPopupMenu: TPopupMenu;
     PopupMenuCompilerOutput: TPopupMenu;
+    SynCompletion: TSynCompletion;
     Timer: TTimer;
     Toolbar: TPanel;
     PanelBackground: TPanel;
@@ -159,6 +161,7 @@ type
 
   private
     procedure DoSearchReplace(SynEdit : TSynEdit; SearchText, ReplaceText: String; Options: TSynSearchOptions);
+    procedure UpdateAutoCompletionList();
     procedure OpenFile(Filename: String);
     procedure CheckPaths();
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
@@ -186,6 +189,8 @@ type
     EditMode : boolean;
     TXP : TTXP;
     LastSearchText : String;
+    AutoCompleteBaseList: TStringList;
+
   end;
 
 var
@@ -235,6 +240,11 @@ begin
   if FileExists('CodeHighLight.ini') then CodeHighlighter.LoadHighLighter('CodeHighLight.ini');
   if FileExists('DataHighLight.ini') then DataHighlighter.LoadHighLighter('DataHighLight.ini');
   if FileExists('VocHighLight.ini') then VOCHighlighter.LoadHighLighter('VocHighLight.ini');
+  AutoCompleteBaseList := TStringList.Create();
+  AutoCompleteBaseList.AddStrings(CodeHighlighter.Objects);
+  AutoCompleteBaseList.AddStrings(CodeHighlighter.KeyWords);
+  AutoCompleteBaseList.AddStrings(CodeHighlighter.Constants);
+  AutoCompleteBaseList.AddStrings(VocHighlighter.Objects);
   BuildRecentFilesMenu();
   CompileOutputListBox.Font.Size:=Config.EditorFontSize;
   LastSearchText:='';
@@ -258,6 +268,8 @@ begin
   OpenFile(TMenuItem(Sender).Caption);
 end;
 
+
+
 procedure TfMain.TimerTimer(Sender: TObject);
 begin
  {$iFDEF Windows}
@@ -272,6 +284,7 @@ var Section: String;
     MarkAsInterruptVisible: Boolean;
     CondactHelpVisible : Boolean;
     PuzzleWizardVisible : Boolean;
+
 begin
   MarkAsInterruptVisible:= true;
   CondactHelpVisible := true;
@@ -615,6 +628,7 @@ begin
   if (TXP.LoadTXP(Filename)) then
   begin
        fMain.Caption:= 'ngPAWS - ' + ExtractFileName(FileName);
+       UpdateAutoCompletionList();
        Config.AddRecentFile(FileName);
        BuildRecentFilesMenu();
        SetEditMode(true);
@@ -880,6 +894,8 @@ begin
     if (TSynEdit(PageControl.Pages[i].Controls[0]).Hint = Section) then
     begin
       PageControl.ActivePage := PageControl.Pages[i];
+      SynCompletion.Editor := TSynEdit(PageControl.ActivePage.Controls[0]);
+
       if (SetCursorToLine <> -1) then
       begin
             TSynEdit(PageControl.ActivePage.Controls[0]).CaretX := 0;
@@ -927,15 +943,25 @@ begin
  SynEdit.Gutter.Parts.Part[3].Visible:= false;
  SynEdit.LineHighlightColor.Background:= $333333;
 
- if (Copy(Section,1,3) = 'PRO') then SynEdit.Tag := StrToInt(Copy(Section,5,255));     // Por processes we also store the process number in the tag property of SynEdit component
-
- if (Section = 'VOC') then SynEdit.Highlighter := VocHighlighter else
- if (Section = 'CTL') then begin end else
- if (Copy(Section,1,3) = 'PRO') then SynEdit.Highlighter := CodeHighlighter else
- if (Section = 'RESP') then SynEdit.Highlighter := CodeHighlighter else
- SynEdit.Highlighter := DataHighlighter;
-
  SynEdit.Text:= Content.Text;
+
+ SynCompletion.Editor := SynEdit;
+
+  if (Copy(Section,1,3) = 'PRO') then SynEdit.Tag := StrToInt(Copy(Section,5,255));     // Por processes we also store the process number in the tag property of SynEdit component
+
+ if (Section = 'VOC') then
+   begin
+     SynEdit.Highlighter := VocHighlighter;
+   end else
+ if ((Copy(Section,1,3) = 'PRO') or (Section = 'RESP')) then
+  begin
+    SynEdit.Highlighter := CodeHighlighter;
+  end else
+  if (Section = 'CTL') then begin end else SynEdit.Highlighter := DataHighlighter;
+
+
+
+
  PageControl.ActivePage := PageControl.Pages[PageControl.PageCount-1];
  if (SetCursorToLine <> -1) then
  begin
@@ -1020,6 +1046,7 @@ begin
      TXP.SetProcessCode(ProcNum, TSynEdit(PageControl.Pages[i].Controls[0]).Lines.Text);
     end;
   end;
+  UpdateAutoCompletionList();
   TXP.SaveTXP(Filename, WithDebugInfo);
 end;
 
@@ -1257,6 +1284,18 @@ begin
   Result := true;
 end;
 
+procedure  TfMain.UpdateAutoCompletionList();
+var TempList : TStringList;
+    i : integer;
+    SynEdit: TSynEdit;
+begin
+ SynCompletion.ItemList.Clear();
+ SynCompletion.ItemList.Text :=  AutoCompleteBaseList.Text;
+ TempList := TXP.getIdentifierList();
+ SynCompletion.ItemList.AddStrings(TempList);
+ TempList.Free();
+end;
+
 end.
 
-
+

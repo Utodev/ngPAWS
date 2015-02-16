@@ -15,7 +15,6 @@ uses
 {$R *.res}
 
 begin
-  Application.Title:='ngpaws';
   RequireDerivedFormResource := True;
   Application.Initialize;
   Application.CreateForm(TfMain, fMain);
