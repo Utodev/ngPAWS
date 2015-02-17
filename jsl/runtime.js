@@ -252,6 +252,7 @@ function implementTag(tag)
 					   break;
 		case 'PROCESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   callProcess(tagparams[1]);
+					   return "";
 					   break;
 		case 'ACTION': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   return '<a href="javascript: void(0)" onclick="orderEnteredLoop(\'' + tagparams[1]+ '\')">' + tagparams[2] + '</a>';
@@ -1343,8 +1344,8 @@ function orderEnteredLoop(player_order)
 	previous_verb = EMPTY_WORD;
 	setFlag(FLAG_TIMEOUT_SETTINGS, bitclear(getFlag(FLAG_TIMEOUT_SETTINGS),7)); // Clears timeout bit
 	if (player_order == '') {writeSysMessage(SYSMESS_SORRY); ACCnewline(); return; };	
-	copyOrderToTextWindow(player_order);
 	player_order = h_playerOrder(player_order); //hook
+	copyOrderToTextWindow(player_order);
 	toParserBuffer(player_order);
 	do 
 	{
