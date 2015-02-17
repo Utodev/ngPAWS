@@ -488,7 +488,7 @@ msgstr "Vocabulario"
 
 #: tfpuzzlewizard.groupboxvoc.hint
 msgid "Fill in this box to determine which words will the player have to type for this puzzle to get triggered"
-msgstr "Rellene esta caja para determinar que palabras tendrá que escribir el jugador para solucionar el puzle"
+msgstr "Rellene esta caja para determinar que palabras tendrá que escribir el jugador para solucionar el puzle."
 
 #: tfpuzzlewizard.labelactionp1.caption
 msgid "LabelActionP1"
@@ -513,11 +513,11 @@ msgstr "Texto en caso de fallo"
 
 #: tfpuzzlewizard.labelinstrructions3.caption
 msgid "In case of success, please specify text output, and add any other actions that should be performed."
-msgstr "En caso de éxito, especifique que texto se escribirá, y que otras acciones deben ejecutarse (si hay alguna)"
+msgstr "En caso de éxito, especifique que se escribirá, y otras acciones a ejecutarse (si hay alguna)."
 
 #: tfpuzzlewizard.labelinstructions1.caption
 msgid "Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location"
-msgstr "Especifique qué debe teclear el jugador para solucionar el puzle, y si debe o no estar en una localidad concreta"
+msgstr "Especifique la órden del jugador, y la localidad (si ha de ser una concreta), para solucionar el puzzle."
 
 #: tfpuzzlewizard.labelinstructions2.caption
 msgid "If any additional conditions should be met for player success, add them here."
