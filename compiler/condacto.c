@@ -479,6 +479,7 @@ void LoadPluginCondacts ()
    while ((ent = readdir(dir)) != NULL)
    {
 		if (strstr(ent->d_name,".jsp")!=NULL)
+		if (strstr(ent->d_name,".jsp~")==NULL)
 		{
 			printf("Loading plugin %s\n",ent->d_name);
 			CargarDefinicionCondacto(ent->d_name, 0);
@@ -499,6 +500,7 @@ void LoadPluginCondacts ()
 	  while ((ent = readdir(dir)) != NULL)
 	   {
 			if (strstr(ent->d_name,".jsp")!=NULL)
+			if (strstr(ent->d_name,".jsp~")==NULL)
 			{
 				printf("Loading local plugin %s\n",ent->d_name);
 				CargarDefinicionCondacto(ent->d_name, 1);
