@@ -1,7 +1,7 @@
 object fPuzzleWizard: TfPuzzleWizard
-  Left = 503
+  Left = 502
   Height = 485
-  Top = 202
+  Top = 168
   Width = 640
   BorderStyle = bsDialog
   Caption = 'Puzzle Wizard'
@@ -21,8 +21,8 @@ object fPuzzleWizard: TfPuzzleWizard
     TabOrder = 0
     object TabSheetVocLoc: TTabSheet
       Caption = 'Vocabulary & Location'
-      ClientHeight = 424
-      ClientWidth = 634
+      ClientHeight = 426
+      ClientWidth = 636
       object GroupBoxVoc: TGroupBox
         Left = 8
         Height = 360
@@ -30,7 +30,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Top = 48
         Width = 385
         Caption = 'Vocabulary'
-        ClientHeight = 337
+        ClientHeight = 343
         ClientWidth = 381
         TabOrder = 0
         object EditPrep: TEdit
@@ -171,7 +171,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Top = 56
         Width = 209
         Caption = 'Location'
-        ClientHeight = 329
+        ClientHeight = 335
         ClientWidth = 205
         TabOrder = 1
         object CheckBoxLinkedToLocation: TCheckBox
@@ -222,8 +222,8 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetConditions: TTabSheet
       Caption = 'Conditions'
-      ClientHeight = 424
-      ClientWidth = 634
+      ClientHeight = 426
+      ClientWidth = 636
       OnShow = TabSheetConditionsShow
       object ListBoxConditions: TListBox
         Left = 392
@@ -232,7 +232,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Width = 224
         ItemHeight = 0
         PopupMenu = PopupMenuLists
-        ScrollWidth = 222
+        ScrollWidth = 220
         TabOrder = 0
         TopIndex = -1
       end
@@ -337,8 +337,8 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetActions: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 424
-      ClientWidth = 634
+      ClientHeight = 426
+      ClientWidth = 636
       object ComboBoxActionSelect: TComboBox
         Left = 16
         Height = 31
@@ -413,7 +413,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Width = 232
         ItemHeight = 0
         PopupMenu = PopupMenuLists
-        ScrollWidth = 230
+        ScrollWidth = 228
         TabOrder = 4
         TopIndex = -1
       end
@@ -423,7 +423,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Top = 304
         Width = 598
         Caption = 'On success'
-        ClientHeight = 82
+        ClientHeight = 88
         ClientWidth = 594
         TabOrder = 5
         object LabelTOS: TLabel
@@ -458,8 +458,8 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetCodeGen: TTabSheet
       Caption = 'Success and options'
-      ClientHeight = 424
-      ClientWidth = 634
+      ClientHeight = 426
+      ClientWidth = 636
       inline SynEditCodeGen: TSynEdit
         Left = 16
         Height = 344

@@ -25,7 +25,7 @@ type TTXP = class
     FLastProcess : integer;
 
     function GetProcess(i:longint) : TStringList;
-    procedure AddBlock(NameTag : String; Content: TStringList; Header: String);
+    function AddBlock(NameTag : String; Content: TStringList; Header: String):boolean;
 
 
    public
@@ -128,10 +128,15 @@ begin
     // Check if another block starts
     if (Length(CurrentLine)>3) and (CurrentLine[1] ='/') then
     begin
-        BlockNameCandidate := Copy(CurrentLine, 2, 3);
+        if (Pos(' ',CurrentLine)=0) then BlockNameCandidate := Copy(CurrentLine, 2, 3)
+                                    else BlockNameCandidate:= Copy(CurrentLine,2,Pos(' ',CurrentLine)-2);
          if AnsiMatchText(BlockNameCandidate, BlockNames) then
          begin
-              AddBlock(CurrentBlockName, CurrentBlock, CurrentBlockHeader);
+              if not AddBlock(CurrentBlockName, CurrentBlock, CurrentBlockHeader) then
+              begin
+                Result := false;
+                Exit();
+              end;
               CurrentBlockName := BlockNameCandidate;
               CurrentBlockHeader := CurrentLine;
               CurrentBlock.Text := '';
@@ -252,11 +257,13 @@ begin
 end;
 
 
-procedure TTXP.AddBlock(NameTag : String; Content: TStringList; Header: String);
+function TTXP.AddBlock(NameTag : String; Content: TStringList; Header: String):boolean;
 var StrAux : String;
     ProcNum :   integer;
     MarkAsInterrupt :Boolean;
 begin
+ Result := true;
+ NameTag:=AnsiUpperCase(NameTag);
  if (NameTag = 'DEF') then FDEF.Text := Content.Text else
  if (NameTag = 'CTL') then FCTL.Text := Content.Text else
  if (NameTag = 'VOC') then FVOC.Text := Content.Text else
@@ -289,7 +296,10 @@ begin
       FProcesses[ProcNum].Text := Content.Text;
       FLastProcess:=ProcNum;
  end
- else raise Exception.Create(S_INVALID_SECTION);
+ else begin
+       ShowMessage(S_INVALID_SECTION + ' : ' + NameTag);
+       Result := false;
+      end;
 end;
 
 procedure TTXP.SetProcessCode(i: longint; Value: String);
