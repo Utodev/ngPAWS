@@ -704,6 +704,10 @@ msgstr ""
 msgid "Please enter number or txtpaws label of a flag"
 msgstr ""
 
+#: uglobals.s_index_not_found
+msgid "index.html file not found."
+msgstr ""
+
 #: uglobals.s_invalid_format
 msgid "Not a valid TXP/SCE file"
 msgstr ""

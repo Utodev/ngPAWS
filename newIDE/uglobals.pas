@@ -47,6 +47,8 @@ resourcestring
 
   S_SEARCH_REPLACE_NOT_FOUND = ' not found.';
 
+  S_INDEX_NOT_FOUND = 'index.html file not found.';
+
   //UTXP Messages
   S_SECTION_DEFINITIONS = 'Definitions';
   S_SECTION_CONTROL = 'Control';

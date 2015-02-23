@@ -330,7 +330,8 @@ begin
   if (Compile()) then
   begin
    CompileOutputListBox.Visible:=false;
-   OpenBrowser(ExtractFilePath(TXP.FilePath) + 'index.html');
+   if (not FileExists(ExtractFilePath(TXP.FilePath) + 'index.html')) then ShowMessage(S_INDEX_NOT_FOUND)
+      else OpenBrowser(ExtractFilePath(TXP.FilePath) + 'index.html');
   end;
 end;
 
@@ -1314,4 +1315,4 @@ end;
 
 end.
 
-
+
