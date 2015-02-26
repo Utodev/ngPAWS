@@ -987,7 +987,7 @@ function toParserBuffer(player_order)  // Converts a player order in a list of s
 	 		{
 	 			if (foundWord[VOCABULARY_TYPE]==WORDTYPE_CONJUNCTION)
 	 			{
-	 			words[q] = ','; // Replace conjunctions with dots
+	 			words[q] = ','; // Replace conjunctions with commas
 		 		} 
 	 		}
 	 	}
