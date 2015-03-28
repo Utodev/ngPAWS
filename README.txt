@@ -1,4 +1,4 @@
-ngPAWS authoring system
+﻿ngPAWS authoring system
 =======================
 
 ngPAWS (pronunced n-g-paws) is an authoring system based on the Professional Adventure Writing System, thus the name ngPAWS stands for "next generation PAWS". 
@@ -24,7 +24,7 @@ Builds
 
 For precompiled builds go to our downloads page:
 
-https://github.com/Utodev/ngPAWS/wiki/Downloads
+http://www.ngpaws.com#Downloads
 
 
 Reporting bugs
