@@ -203,12 +203,36 @@ function getConnection(locno, dirno)
 
 function getObjectText(objno)
 {
-	return objects[objno];
+	console_log('OBJ:' + objno);
+	return filterText(objects[objno]);
 }
 
 
-// Output processing functions
+// Message text functions
+function getMessageText(mesno)
+{
+	return filterText(messages[mesno]);
+}
 
+function getSysMessageText(sysno)
+{
+	return filterText(sysmessages[sysno]);
+}
+
+function getWriteMessageText(writeno)
+{
+	return filterText(writemessages[writeno]);
+}
+
+// Location text functions
+function getLocationText(locno)
+{
+	return  filterText(locations[locno]);
+}
+
+
+
+// Output processing functions
 function implementTag(tag)
 {
 	tagparams = tag.split('|');
@@ -242,13 +266,13 @@ function implementTag(tag)
 					      if(objectsLocation[getFlag(tagparams[1])]) return objectsLocation[getFlag(tagparams[1])]; else return '';
 					      break;
 		case 'MESSAGE':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					   if(messages[getFlag(tagparams[1])]) return messages[getFlag(tagparams[1])]; else return '';
+					   if(messages[getFlag(tagparams[1])]) return getMessageText(getFlag(tagparams[1])); else return '';
 					   break;
 		case 'SYSMESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					   if(sysmessages[getFlag(tagparams[1])]) return sysmessages[getFlag(tagparams[1])]; else return '';
+					   if(sysmessages[getFlag(tagparams[1])]) return getSysMessageText(getFlag(tagparams[1])); else return '';
 					   break;
 		case 'LOCATION':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					   if(locations[getFlag(tagparams[1])]) return locations[getFlag(tagparams[1])]; else return '';
+					   if(locations[getFlag(tagparams[1])]) return getLocationText(getFlag(tagparams[1])); else return '';
 					   break;
 		case 'PROCESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   callProcess(tagparams[1]);
@@ -342,17 +366,17 @@ function filterText(text)
 
 	// PAWS sequences (only underscore)
 	objno = getFlag(FLAG_REFERRED_OBJECT);
-	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,getObjectText(objno).firstToLower()); else text = text.replace(/_/g,'');
+	if ((objno != EMPTY_OBJECT) && (objects[objno]))	text = text.replace(/_/g,objects[objno].firstToLower()); else text = text.replace(/_/g,'');
 	text = text.replace(/¬/g,' ');
 
 	return text;
 }
 
+
 // Text Output functions
 function writeText(text)
 {
 	text = h_writeText(text); // hook
-	text = filterText(text)
 	$('.text').append(text);
 	$(".text").scrollTop($(".text")[0].scrollHeight);
 	addToTranscript(text);
@@ -376,18 +400,18 @@ function writelnText(text)
 
 function writeMessage(mesno)
 {
-	if (messages[mesno]!=null) writeText(messages[mesno]); else writeWarning(STR_NEWLINE + STR_WRONG_MESSAGE + ' [' + mesno + ']');
+	if (messages[mesno]!=null) writeText(getMessageText(mesno)); else writeWarning(STR_NEWLINE + STR_WRONG_MESSAGE + ' [' + mesno + ']');
 }
 
 function writeSysMessage(sysno)
 {
-		if (sysmessages[sysno]!=null) writeText(sysmessages[sysno]); else writeWarning(STR_NEWLINE + STR_WRONG_SYSMESS + ' [' + sysno + ']');
+		if (sysmessages[sysno]!=null) writeText(getSysMessageText(sysno)); else writeWarning(STR_NEWLINE + STR_WRONG_SYSMESS + ' [' + sysno + ']');
 		$(".text").scrollTop($(".text")[0].scrollHeight);
 }
 
 function writeWriteMessage(writeno)
 {
-		writeText(writemessages[writeno]); 
+		writeText(getWriteMessageText(writeno)); 
 }
 
 function writeObject(objno)
@@ -409,7 +433,7 @@ function clearInputWindow()
 
 function writeLocation(locno)
 {
-	if (locations[locno]!=null) writeText(locations[locno] + STR_NEWLINE); else writeWarning(STR_NEWLINE + STR_WRONG_LOCATION + ' [' + locno + ']');
+	if (locations[locno]!=null) writeText(getLocationText(locno) + STR_NEWLINE); else writeWarning(STR_NEWLINE + STR_WRONG_LOCATION + ' [' + locno + ']');
 }
 
 // Screen control functions
@@ -1420,6 +1444,20 @@ function closeBlock()
 	if (describe_location_flag) descriptionLoop();
 }
 
+function setInputPlaceHolder()
+{
+	var prompt_msg = getFlag(FLAG_PROMPT);
+	if (!prompt_msg)
+	{
+		var random = Math.floor((Math.random()*100));
+		if (random<30) prompt_msg = SYSMESS_PROMPT0; else
+		if ((random>=30) && (random<60)) prompt_msg = SYSMESS_PROMPT1; else
+		if ((random>=60) && (random<90)) prompt_msg = SYSMESS_PROMPT2; else
+		if (random>=90) prompt_msg = SYSMESS_PROMPT3;
+	}
+	$('.prompt').attr('placeholder', getSysMessageText(prompt_msg));
+}
+
 // Exacution starts here, called by the html file on document.ready()
 function start()
 {
@@ -1428,11 +1466,13 @@ function start()
 	$('.text').addClass('half_text');
 	if (isBadIE()) alert(STR_BADIE)
 	loadPronounSufixes();	
+    setInputPlaceHolder();
 
 	// Assign keypress action for input box (detect enter key press)
 	$('.prompt').keypress(function(e) {  
     	if (e.which == 13) 
     	{ 
+    		setInputPlaceHolder();
     		player_order = $('.prompt').val();
     		if (player_order.charAt(0) == '#')
     		{
@@ -1532,3 +1572,9 @@ function start()
 
 }
 
+$('document').ready(
+	function ()
+	{
+		start();
+	}
+	);
