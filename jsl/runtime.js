@@ -1507,7 +1507,7 @@ function start()
      		return;
      	}
 
-     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for ANYKEY, accepts mouse click
+     	if ((anykey_return_function!=null) && (getkey_return_flag==null) && (!isQUIT))  // return for ANYKEY, accepts mouse click
      	{
      		waitKeyCallback();
      		e.preventDefault();
@@ -1520,6 +1520,35 @@ function start()
 	$(document).keydown(function(e) {
 
 		h_keydown(e); // hook
+
+
+		// if waiting for END response
+		if (isEND)
+		{
+			var endYESresponse = getSysMessageText(SYSMESS_YES);
+			if (!endYESresponse.length) endYESresponse = 'Y'; // Prevent problems with empy message
+			var endYESresponseCode = endYESresponse.charCodeAt(0);
+			if (endYESresponseCode == e.keyCode) location.reload(); else $('body').hide('slow');
+		}
+
+
+		// if waiting for QUIT response
+		if (isQUIT)
+		{
+			var endYESresponse = getSysMessageText(SYSMESS_YES);
+			if (!endYESresponse.length) endYESresponse = 'Y'; // Prevent problems with empy message
+			var endYESresponseCode = endYESresponse.charCodeAt(0);
+			isQUIT=false;
+			if (endYESresponseCode != e.keyCode) 
+			{
+			   anykey_return_function = null;
+			   $('.input').show();
+			   $('.input').focus();
+			   hideBlock();
+			   e.preventDefault();
+			}
+		}
+
 
 		// if keypress and block displayed, close it
      	if (unblock_process!=null)
@@ -1539,7 +1568,7 @@ function start()
       	}
 
 
-     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for anykey
+     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for anykey or quit (when response is NO)
      	{
      		waitKeyCallback();
      		e.preventDefault();

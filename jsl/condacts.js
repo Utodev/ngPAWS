@@ -228,25 +228,19 @@ function desc()
 }
 
 
-function CNDquit()
+function ACCquit()
 {
-	if (!confirm(sysmessages[SYSMESS_AREYOUSURE])) ACCdone(); else 
-	{
-		if (confirm(sysmessages[SYSMESS_PLAYAGAIN])) restart();
-		else 
-			{
-				disableInterrupt();
-				$('body').hide('slow');
-				sfxstopall();
-			}
-	}
+	isQUIT = true;
+	writeSysMessage(SYSMESS_AREYOUSURE);
+	$('.input').hide();
 }
 
 
 function ACCend()
 {
-		if (confirm(sysmessages[SYSMESS_PLAYAGAIN])) location.reload();
-		else $('body').hide('slow');
+	writeSysMessage(SYSMESS_PLAYAGAIN);
+	isEND = true;
+	$('.input').hide();
 }
 
 

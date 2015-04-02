@@ -266,6 +266,12 @@ var unblock_process = null;
 var anykey_return_function = null;
 var getkey_return_flag = null;
 
+// END
+var isEND = false;
+
+//QUIT
+var isQUIT = false;
+
 // Status flags
 var done_flag;
 var describe_location_flag;

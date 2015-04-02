@@ -83,7 +83,7 @@ TipoCondacto condactos_estandar[NUMCONDACTS] = {
   ,
   {"DESC", accion, nada, nada, nada, aDescribir}
   ,
-  {"QUIT", condicion, nada, nada, nada, aNada}
+  {"QUIT", waitkey, nada, nada, nada, aNada}
   ,
   {"END", accion, nada, nada, nada, aEnd}
   ,
