@@ -373,10 +373,15 @@ void CargarDefinicionCondacto(char *fichero, int isLocal)
 
 		switch (toupper(bloque[0])) 
 		{
-		case 65 : condactos[ultimo_condacto].tipo = accion;
+		case 65 : condactos[ultimo_condacto].tipo = accion;  //A
 				   break;
-		case 67 : condactos[ultimo_condacto].tipo = condicion;
+		case 67 : condactos[ultimo_condacto].tipo = condicion; //C
 				   break;
+		case 87 : condactos[ultimo_condacto].tipo = waitkey; //W
+				   break;
+		case 77 : condactos[ultimo_condacto].tipo = mixto; //M
+				   break;
+
 		default : error(errGeneral,3); 
 		}
 
