@@ -29,6 +29,8 @@ PROCESS_RESPONSE = 0;
 PROCESS_DESCRIPTION = 1;
 PROCESS_TURN = 2;
 
+DIV_TEXT_SCROLL_STEP = 40;
+
 
 // Aux
 SET_VALUE = 255; // Value assigned by SET condact

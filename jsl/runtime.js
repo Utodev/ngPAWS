@@ -378,7 +378,7 @@ function writeText(text)
 {
 	text = h_writeText(text); // hook
 	$('.text').append(text);
-	$(".text").scrollTop($(".text")[0].scrollHeight);
+	$('.text').scrollTop($('.text')[0].scrollHeight);
 	addToTranscript(text);
 	focusInput();
 }
@@ -1458,6 +1458,19 @@ function setInputPlaceHolder()
 	$('.prompt').attr('placeholder', getSysMessageText(prompt_msg));
 }
 
+
+function divTextScrollUp()
+{
+   	var currentPos = $('.text').scrollTop();
+	if (currentPos>=DIV_TEXT_SCROLL_STEP) $('.text').scrollTop(currentPos - DIV_TEXT_SCROLL_STEP);
+}
+
+function divTextScrollDown()
+{
+   	var currentPos = $('.text').scrollTop();
+   	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP);
+}
+
 // Exacution starts here, called by the html file on document.ready()
 function start()
 {
@@ -1520,6 +1533,7 @@ function start()
 	$(document).keydown(function(e) {
 
 		h_keydown(e); // hook
+
 
 
 		// if waiting for END response
@@ -1585,8 +1599,27 @@ function start()
      			return;
      		}
 
+     	// Scroll text window using PgUp/PgDown
+        if (e.keyCode==33)  // PgUp
+        {
+        	divTextScrollUp();
+        	e.preventDefault();
+        	 return;
+        }
+
+        if (e.keyCode==34)  // PgDown
+        {
+        	divTextScrollDown();
+        }
 
 	});
+
+
+    $(document).bind('mousewheel',function(e)
+    {
+  		if(e.originalEvent.wheelDelta /120 > 0) divTextScrollUp(); else divTextScrollDown();
+    });
+
 
 	initialize();
 	descriptionLoop();
