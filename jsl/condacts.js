@@ -230,17 +230,16 @@ function desc()
 
 function ACCquit()
 {
-	isQUIT = true;
+	inQUIT = true;
 	writeSysMessage(SYSMESS_AREYOUSURE);
-	$('.input').hide();
 }
 
 
 function ACCend()
 {
 	writeSysMessage(SYSMESS_PLAYAGAIN);
-	isEND = true;
-	$('.input').hide();
+	inEND = true;
+	$('.input').hide();  
 }
 
 
@@ -1185,20 +1184,20 @@ function ACCtranscript()
 {
 	$('#transcript_area').html(transcript);
 	$('.transcript_layer').show();
+	inTranscript = true;
 }
 
 function ACCanykey()
 {
 	writeSysMessage(SYSMESS_PRESSANYKEY);
+	inAnykey = true;
 }
 
 function ACCgetkey(flagno)
 {
 	getkey_return_flag = flagno;
+	inGetkey = true;
 }
-
-
-
 
 
 //////////////////

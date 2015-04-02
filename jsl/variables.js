@@ -254,7 +254,7 @@ var previous_verb = EMPTY_WORD;
 var previous_noun = EMPTY_WORD;
 var previous_adject = EMPTY_WORD;
 var pronoun_suffixes = [];
-var transcript = '';
+
 
 //Settings
 var graphicsON = true; 
@@ -262,17 +262,32 @@ var soundsON = true;
 var interruptDisabled = false;
 var showWarnings = true;
 
+// waitkey commands callback function
+var waitkey_callback_function = null;
 
-// Block and anykey
+
+// Transcript
+var inTranscript = false;
+var transcript = '';
+
+
+// Block
+var inBlock = false;
 var unblock_process = null;
-var anykey_return_function = null;
-var getkey_return_flag = null;
+
 
 // END
-var isEND = false;
+var inEND = false;
 
 //QUIT
-var isQUIT = false;
+var inQUIT = false;
+
+//ANYKEY
+var inAnykey = false;
+
+//GETKEY
+var inGetkey = false;
+var getkey_return_flag = null;
 
 // Status flags
 var done_flag;

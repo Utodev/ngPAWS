@@ -2,6 +2,7 @@
 
 function ACCsoftblock(procno)
 {
+   inBlock = true;
    disableInterrupt();
 
    $('.block_layer').css('display','none');

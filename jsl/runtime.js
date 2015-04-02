@@ -45,12 +45,11 @@ function runningLocal()
 
 
 
-// waitKey helper for ANYKEY and GETKEY
+// waitKey helper for all key-wait condacts
 
 function waitKey(callbackFunction)
 {
-	anykey_return_function = callbackFunction;
-	disableInterrupt();
+	waitkey_callback_function = callbackFunction;
    	$('.block_layer').css('display','none');
     $('.block_text').html('');
     $('.block_graphics').html('');
@@ -61,11 +60,10 @@ function waitKey(callbackFunction)
 
 function waitKeyCallback()
 {
- 			var callback = anykey_return_function;
-     		anykey_return_function = null;
-			hideBlock();    		
-     		callback();
-     		if (describe_location_flag) descriptionLoop();  		
+ 	var callback = waitkey_callback_function;
+ 	waitkey_callback_function = null;
+	callback();
+	if (describe_location_flag) descriptionLoop();  		
 }
 
 
@@ -1433,10 +1431,12 @@ function hideBlock()
     $('.input').show();  
     focusInput();
 }
+
 //called when the block layer is closed
 function closeBlock()
 {
-	if (!unblock_process) return;
+	if (!inBlock) return;
+	inBlock = false;
 	hideBlock();
     var proToCall = unblock_process;
 	unblock_process = null;
@@ -1513,15 +1513,17 @@ function start()
 
      // assign any click on block layer --> close it
      $(document).click( function(e) {
-     	if (unblock_process!=null)
+     	if (inBlock)
      	{
      		closeBlock();
      		e.preventDefault();
      		return;
      	}
 
-     	if ((anykey_return_function!=null) && (getkey_return_flag==null) && (!isQUIT))  // return for ANYKEY, accepts mouse click
+     	if (inAnykey)  // return for ANYKEY, accepts mouse click
      	{
+     		inAnykey = false;
+     		hideBlock();
      		waitKeyCallback();
      		e.preventDefault();
      		return;
@@ -1532,12 +1534,10 @@ function start()
 
 	$(document).keydown(function(e) {
 
-		h_keydown(e); // hook
-
-
+		if (!h_keydown(e)) return; // hook
 
 		// if waiting for END response
-		if (isEND)
+		if (inEND)
 		{
 			var endYESresponse = getSysMessageText(SYSMESS_YES);
 			var endNOresponse = getSysMessageText(SYSMESS_NO);
@@ -1553,7 +1553,7 @@ function start()
 
 
 		// if waiting for QUIT response
-		if (isQUIT)
+		if (inQUIT)
 		{
 			var endYESresponse = getSysMessageText(SYSMESS_YES);
 			var endNOresponse = getSysMessageText(SYSMESS_NO);
@@ -1564,56 +1564,57 @@ function start()
 
 			if (endNOresponseCode == e.keyCode) 
 			{
-	           isQUIT=false;
-			   anykey_return_function = null;
-			   $('.input').show();
-			   $('.input').focus();
+	           inQUIT=false;
+			   waitkey_callback_function = null;
 			   hideBlock();
 			   e.preventDefault();
 			}
 
 			if (endYESresponseCode == e.keyCode) 
 			{
-				isQUIT=false;
+				inQUIT=false;
 				waitKeyCallback();
      			e.preventDefault();
      			return;				
 			}
-
 		}
 
 
-		// if keypress and block displayed, close it
-     	if (unblock_process!=null)
-     		{
-     			closeBlock();
-     			e.preventDefault();
-     			return;
-     		}
-
-		if ((anykey_return_function!=null) && (getkey_return_flag!=null))  // return for getkey
+		if (inGetkey)  // return for getkey
      	{
      		setFlag(getkey_return_flag, e.keyCode);
      		getkey_return_flag = null;
+     		inGetkey = false;
+     		hideBlock();
      		waitKeyCallback();
      		e.preventDefault();
      		return;
       	}
 
 
-     	if ((anykey_return_function!=null) && (getkey_return_flag==null))  // return for anykey or quit (when response is NO)
+     	if (inAnykey)  // return for anykey
      	{
+     		inAnykey = false;
+     		hideBlock();
      		waitKeyCallback();
      		e.preventDefault();
      		return;
      	}
 
-     	
+		// if keypress and block displayed, close it
+     	if (inBlock)
+     		{
+     			closeBlock();
+     			e.preventDefault();
+     			return;
+     		}
+
 
      	// if ESC pressed and transcript layer visible, close it
-     	if (($('.transcript_layer').css('display')  !== 'none') &&  (e.keyCode == 27)  ) 
+     	if ((inTranscript) &&  (e.keyCode == 27)) 
      		{
      			$('.transcript_layer').hide();
+     			inTranscript = false;
      			e.preventDefault();
      			return;
      		}
@@ -1623,13 +1624,13 @@ function start()
         {
         	divTextScrollUp();
         	e.preventDefault();
-        	 return;
+        	return;
         }
-
         if (e.keyCode==34)  // PgDown
         {
         	divTextScrollDown();
         }
+
 
 	});
 

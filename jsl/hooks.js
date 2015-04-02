@@ -67,7 +67,9 @@ var h_code = function(str)
 
 
 // this function is called from the keydown evente handler used by block and other functions to emulate a pause or waiting for a keypress. It is designed to allow plugin condacts or
-// libraries to attend those key presses and react accordingly. 
+// libraries to attend those key presses and react accordingly. In case a hook function decides that the standard keydown functions should not be processed, the hook function should return false.
+// Also, any h_keydown replacement should probably do the same.
 var h_keydown = function (event)
 {
+	return true;
 }
