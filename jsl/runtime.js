@@ -1540,9 +1540,15 @@ function start()
 		if (isEND)
 		{
 			var endYESresponse = getSysMessageText(SYSMESS_YES);
+			var endNOresponse = getSysMessageText(SYSMESS_NO);
 			if (!endYESresponse.length) endYESresponse = 'Y'; // Prevent problems with empy message
+			if (!endNOresponse.length) endNOresponse = 'N'; 
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
-			if (endYESresponseCode == e.keyCode) location.reload(); else $('body').hide('slow');
+			var endNOresponseCode = endNOresponse.charCodeAt(0);
+
+			if (endYESresponseCode == e.keyCode) location.reload(); 
+			if (endNOresponseCode == e.keyCode)  $('body').hide('slow');
+			return;
 		}
 
 
@@ -1550,17 +1556,30 @@ function start()
 		if (isQUIT)
 		{
 			var endYESresponse = getSysMessageText(SYSMESS_YES);
+			var endNOresponse = getSysMessageText(SYSMESS_NO);
 			if (!endYESresponse.length) endYESresponse = 'Y'; // Prevent problems with empy message
+			if (!endNOresponse.length) endNOresponse = 'N'; 
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
-			isQUIT=false;
-			if (endYESresponseCode != e.keyCode) 
+			var endNOresponseCode = endNOresponse.charCodeAt(0);
+
+			if (endNOresponseCode == e.keyCode) 
 			{
+	           isQUIT=false;
 			   anykey_return_function = null;
 			   $('.input').show();
 			   $('.input').focus();
 			   hideBlock();
 			   e.preventDefault();
 			}
+
+			if (endYESresponseCode == e.keyCode) 
+			{
+				isQUIT=false;
+				waitKeyCallback();
+     			e.preventDefault();
+     			return;				
+			}
+
 		}
 
 
