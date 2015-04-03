@@ -115,7 +115,7 @@ TipoCondacto condactos_estandar[NUMCONDACTS] = {
   ,
   {"AUTOR", accion, nada, nada, nada, aCondicional}
   ,
-  {"PAUSE", accion, value, nada, nada, aNada}
+  {"PAUSE", waitkey, value, nada, nada, aNada}
   ,
   {"GOTO", accion, locno, nada, nada, aNada}
   ,
