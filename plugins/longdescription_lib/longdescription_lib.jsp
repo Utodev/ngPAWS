@@ -4,7 +4,7 @@ var objects_longdescription = [];
 
 var old_longdesc_h_code = h_code;
 
-var h_code = function(str) 
+h_code = function(str) 
 {
 	if (str=="RESPONSE_USER")
 	{
@@ -38,7 +38,7 @@ var h_code = function(str)
 
 var old_longdesc_h_init = h_init;
 
-var h_init = function()
+h_init = function()
 {
 	for (var i=0;i<objects.length;i++)
 	{

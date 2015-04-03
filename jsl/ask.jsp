@@ -21,22 +21,21 @@ function ACCask(writeno, writenoOptions, flagno)
 
 // hook replacement
 var old_ask_h_keydown  = h_keydown;
-
-var h_keydown  = function (e)
+h_keydown  = function (event)
 {
 	if (inAsk)
 	{
-		var keyCodeAsChar = String.fromCharCode(e.keyCode).toLowerCase();
+		var keyCodeAsChar = String.fromCharCode(event.keyCode).toLowerCase();
 		if (ask_responses.indexOf(keyCodeAsChar)!= -1)
 		{
 			setFlag(ask_flagno, ask_responses.indexOf(keyCodeAsChar));
 			inAsk = false;
 			waitKeyCallback();
-			e.preventDefault();
+			event.preventDefault();
             $('.input').show();
 		    $('.input').focus();
 		    hideBlock();
 		};
 		return false; // if we are in ASK condact, no keypress should be considered other than ASK response
-	} else return old_ask_h_keydown(e);
+	} else return old_ask_h_keydown(event);
 }

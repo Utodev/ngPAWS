@@ -12,7 +12,7 @@ var conv_current_menu = new Array();
 
 var old_nmpconv_h_saveGame = h_saveGame;
 
-var h_saveGame = function(savegame_object)
+h_saveGame = function(savegame_object)
 {
 	savegame_object.conv_active_sentences = conv_active_sentences.slice();
 	old_nmpconv_h_saveGame(savegame_object);
@@ -21,7 +21,7 @@ var h_saveGame = function(savegame_object)
 
 var old_nmpconv_h_restoreGame = h_restoreGame;
 
-var h_restoreGame = function(savegame_object)
+h_restoreGame = function(savegame_object)
 {
 	conv_active_sentences = savegame_object.conv_active_sentences.slice();
 	old_nmpconv_h_restoreGame(savegame_object);
@@ -29,7 +29,7 @@ var h_restoreGame = function(savegame_object)
 
 var old_nmpconv_h_keydown = h_keydown;
 
-var h_keydown = function (event)
+h_keydown = function (event)
 {
 	if (!conv_current_menu.length) return;
 	if (!conv_active_conversation_id == null) return;

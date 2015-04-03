@@ -50,14 +50,14 @@ var h_description_init =  function  ()
 // Hook into keypress to cancel video playing if ESC is pressed and video is skippable
 
 var old_video_h_keydown =  h_keydown;
-var h_keydown = function (e)
+h_keydown = function (event)
 {
- 	if ((e.keyCode == 27) && (typeof videoElement != 'undefined') && (!videoElement.ended) && (videoEscapable)) 
+ 	if ((event.keyCode == 27) && (typeof videoElement != 'undefined') && (!videoElement.ended) && (videoEscapable)) 
  	{
  		videoElement.pause(); 
  		return false;  // we've finished attending ESC press
  	}
- 	else return old_video_h_keydown(e);
+ 	else return old_video_h_keydown(event);
 }
 
 

@@ -9,7 +9,7 @@ var sets;
 
 var old_sets_h_saveGame = h_saveGame;
 
-var h_saveGame = function(savegame_object)
+h_saveGame = function(savegame_object)
 {
 	savegame_object.sets = sets.slice();
 	old_sets_h_saveGame(savegame_object);
@@ -18,7 +18,7 @@ var h_saveGame = function(savegame_object)
 
 var old_sets_h_restoreGame = h_restoreGame;
 
-var h_restoreGame = function(savegame_object)
+h_restoreGame = function(savegame_object)
 {
 	sets = savegame_object.sets.slice();
 	old_sets_h_restoreGame(savegame_object);
