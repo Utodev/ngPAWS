@@ -401,11 +401,13 @@ function ACCautor()
 function ACCpause(value)
 {
  if (value == 0) value = 256;
- value = Math.floor(value /50 * 1000);	
- var date = new Date();
- var curDate = null;
- do { curDate = new Date(); } 
- while(curDate-date < value);
+ pauseRemainingTime = Math.floor(value /50 * 1000);	
+ inPause = true;
+ $('.block_layer').css('display','none');
+ $('.block_text').html('');
+ $('.block_graphics').html('');
+ $('.block_layer').css('background','transparent');
+ $('.block_layer').css('display','block'); 
 } 
 
 function ACCgoto(locno)

@@ -1230,6 +1230,19 @@ function timer()
 		}
 	}	
 
+	// PAUSE condact control
+	if (inPause)
+	{
+		pauseRemainingTime = pauseRemainingTime - 40; // every tick = 40 milliseconds
+		console_log(pauseRemainingTime);
+		if (pauseRemainingTime<=0)
+		{
+			inPause = false;
+			hideBlock();
+			waitKeyCallback()
+		}
+	}
+
 	// Interrupt process control
 	if (!interruptDisabled)
 	if (interruptProcessExists)

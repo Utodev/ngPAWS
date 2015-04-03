@@ -265,6 +265,11 @@ var showWarnings = true;
 // waitkey commands callback function
 var waitkey_callback_function = null;
 
+//PAUSE
+var inPause=false;
+var pauseRemainingTime = 0;
+
+
 
 // Transcript
 var inTranscript = false;
