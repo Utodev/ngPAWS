@@ -1586,8 +1586,8 @@ function start()
 			if (endYESresponseCode == e.keyCode) 
 			{
 				inQUIT=false;
-				waitKeyCallback();
      			e.preventDefault();
+				waitKeyCallback();
      			return;				
 			}
 		}
@@ -1599,8 +1599,8 @@ function start()
      		getkey_return_flag = null;
      		inGetkey = false;
      		hideBlock();
-     		waitKeyCallback();
      		e.preventDefault();
+     		waitKeyCallback();
      		return;
       	}
 
@@ -1609,8 +1609,8 @@ function start()
      	{
      		inAnykey = false;
      		hideBlock();
-     		waitKeyCallback();
      		e.preventDefault();
+     		waitKeyCallback();
      		return;
      	}
 

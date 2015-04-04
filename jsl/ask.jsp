@@ -30,11 +30,11 @@ h_keydown  = function (event)
 		{
 			setFlag(ask_flagno, ask_responses.indexOf(keyCodeAsChar));
 			inAsk = false;
-			waitKeyCallback();
 			event.preventDefault();
             $('.input').show();
 		    $('.input').focus();
 		    hideBlock();
+			waitKeyCallback();
 		};
 		return false; // if we are in ASK condact, no keypress should be considered other than ASK response
 	} else return old_ask_h_keydown(event);
