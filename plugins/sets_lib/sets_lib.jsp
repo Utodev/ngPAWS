@@ -5,9 +5,11 @@
 
 MAX_SETS = 4;
 
-var sets;
+var sets =[];
 
 var old_sets_h_saveGame = h_saveGame;
+
+for (var i=0;i<MAX_SETS;i++) sets[i] = [];
 
 h_saveGame = function(savegame_object)
 {

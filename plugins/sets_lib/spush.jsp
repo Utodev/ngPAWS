@@ -3,7 +3,7 @@
 function ACCspush(setno, value)
 {
 	
-	if ((setno>MAX_SETS) || (setno<1)) return;
+	if ((setno>=MAX_SETS) || (setno<0)) return;
 	setno--;
 	if (sets[setno].indexOf(value)==-1) sets[setno].push(value);
 }
