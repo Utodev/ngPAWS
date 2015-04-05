@@ -164,3 +164,9 @@ a:hover {
 .textpic {
 margin: 25px;
 }
+
+/* input placeholder */
+::-webkit-input-placeholder { color:#888; font-size: 22px}
+::-moz-placeholder { color:#888; ; font-size: 22px}
+:-ms-input-placeholder { color:#888; ; font-size: 22px} 
+input:-moz-placeholder { color:#888; ; font-size: 22px}
