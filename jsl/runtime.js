@@ -201,7 +201,6 @@ function getConnection(locno, dirno)
 
 function getObjectText(objno)
 {
-	console_log('OBJ:' + objno);
 	return filterText(objects[objno]);
 }
 
