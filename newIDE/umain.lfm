@@ -4254,7 +4254,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround
@@ -4279,7 +4279,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround
@@ -4304,7 +4304,7 @@ object fMain: TfMain
     Comments = []
     DetectPreprocessor = False
     IdentifierAttri.FrameEdges = sfeAround
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     KeyAttri.FrameEdges = sfeAround
     ConstantAttri.FrameEdges = sfeAround
     ObjectAttri.FrameEdges = sfeAround

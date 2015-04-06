@@ -21,7 +21,12 @@ private
  FOpenAllTabs : Boolean;
  FLang : String;
  FRecentFiles: Array[0..9] of string;
+
  FEditorFontSize: integer;
+ FEditorBackgroundColor: Integer;
+ FEditorSelectLineColor : Integer;
+ FEditorFontName : String;
+
 public
  property CompilerPath : String read FCompilerPath write FCompilerPath;
  property PreprocessorPath : String read FPreprocessorPath write FPreprocessorPath;
@@ -35,7 +40,11 @@ public
  property OpenAllTabs : Boolean read  FOpenAllTabs write  FOpenAllTabs;
 
  property Lang: String read FLang write FLang;
+
  property EditorFontSize: integer read FEditorFontSize write FEditorFontSize;
+ property EditorBackgroundColor: Integer read FEditorBackgroundColor write FEditorBackgroundColor;
+ property EditorFontName : String read FEditorFontName write FEditorFontName;
+ property EditorSelectLineColor : Integer read FEditorSelectLineColor write FEditorSelectLineColor;
 
  procedure LoadConfig();
  procedure SaveConfig();
@@ -86,7 +95,15 @@ begin
   FSaveBeforeRun := IniFile.ReadBool('Options','SaveBeforeRun',true);
   FShowToolBar :=  IniFile.ReadBool('Options','ShowToolBar',true);
   FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
+
+  {$IFDEF WINDOWS}
+  FEditorFontName := IniFile.ReadString('Options','EditorFontName', 'Consolas');
+  {$ELSE}
+  FEditorFontName := IniFile.ReadString('Options','EditorFontName', 'Courier New');
+  {$ENDIF}
   FEditorFontSize :=  IniFile.ReadInteger('Options','EditorFontSize',13);
+  FEditorBackgroundColor:= IniFile.ReadInteger('Options','EditorBackgroundColor',$222827);
+  FEditorSelectLineColor:= IniFile.ReadInteger('Options','EditorSelectedLineColor',$333333);
 
 
   FLang :=  IniFile.ReadString('Lang','Lang','');
@@ -194,4 +211,4 @@ begin
 end;
 
 end.
-
+

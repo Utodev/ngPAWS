@@ -161,7 +161,6 @@ type
 
   private
     procedure DoSearchReplace(SynEdit : TSynEdit; SearchText, ReplaceText: String; Options: TSynSearchOptions);
-    procedure UpdateAutoCompletionList();
     procedure OpenFile(Filename: String);
     procedure CheckPaths();
     procedure HelpResponse(Sender: TObject; var Key: Word;  Shift: TShiftState);
@@ -638,7 +637,6 @@ begin
   if (TXP.LoadTXP(Filename)) then
   begin
        fMain.Caption:= 'ngPAWS - ' + ExtractFileName(FileName);
-       UpdateAutoCompletionList();
        Config.AddRecentFile(FileName);
        BuildRecentFilesMenu();
        SetEditMode(true);
@@ -919,7 +917,7 @@ begin
  TabSheet := TTabSheet.Create(PageControl);
  TabSheet.DoubleBuffered:=true;
  TabSheet.PageControl := PageControl;
- TabSheet.Color := $222827;
+ TabSheet.Color := Config.EditorBackgroundColor;
  TabSheet.Font.Color := clWhite;
  TabSheet.ShowHint:=false;
  TabSheet.Caption:=Section;
@@ -931,12 +929,8 @@ begin
  SynEdit.Parent := TabSheet;
  SynEdit.OnKeyPress := @SynEditKeyPress;
  SynEdit.OnKeyDown := @HelpResponse;
- SynEdit.Color:=$222827;
- {$ifdef Windows}
- SynEdit.Font.Name := 'Consolas';
- {$else}
- SynEdit.Font.Name := 'Courier New';
- {$endif}
+ SynEdit.Color:=Config.EditorBackgroundColor;
+ SynEdit.Font.Name := Config.EditorFontName;
  SynEdit.Font.Color := clWhite;
  SynEdit.ScrollBars := ssVertical;
  SynEdit.Font.Size := Config.EditorFontSize;
@@ -951,12 +945,12 @@ begin
  SynEdit.Gutter.Visible:=true;
 
  SynEdit.Gutter.Parts.Part[1].Visible := false;
- SynEdit.Gutter.Parts.Part[4].MarkupInfo.Background:= $222827;
+ SynEdit.Gutter.Parts.Part[4].MarkupInfo.Background:= Config.EditorBackgroundColor;
 
  SynEdit.Gutter.Parts.Part[0].Visible:= false;
  SynEdit.Gutter.Parts.Part[2].Visible:= false;
  SynEdit.Gutter.Parts.Part[3].Visible:= false;
- SynEdit.LineHighlightColor.Background:= $333333;
+ SynEdit.LineHighlightColor.Background:= Config.EditorSelectLineColor;
 
  SynEdit.Text:= Content.Text;
 
@@ -1301,17 +1295,6 @@ begin
   Result := true;
 end;
 
-procedure  TfMain.UpdateAutoCompletionList();
-var TempList : TStringList;
-    i : integer;
-    SynEdit: TSynEdit;
-begin
- SynCompletion.ItemList.Clear();
- SynCompletion.ItemList.Text :=  AutoCompleteBaseList.Text;
- TempList := TXP.getIdentifierList();
- SynCompletion.ItemList.AddStrings(TempList);
- TempList.Free();
-end;
 
 end.
 
