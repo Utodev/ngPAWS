@@ -3,6 +3,7 @@
 * {
 	font-family:  Verdana, Arial, Helvetica;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
 	min-height: 600px;
 	position: absolute;
 }
+
 
 a {
 	color: #CCCC77;
@@ -26,6 +28,13 @@ a:hover {
 	color: #FFFFFF;
 	text-decoration: underline;
 }
+
+
+/* input placeholder */
+::-webkit-input-placeholder { color:#777; }
+::-moz-placeholder { color:#777; } /* firefox 19+ */
+:-ms-input-placeholder { color:#777; } /* ie */
+input:-moz-placeholder { color:#777; }
 
 
 /* standard layer */
@@ -51,7 +60,7 @@ a:hover {
 .text {
 	background-color: black;
 	padding: 10px;
-	overflow: auto;
+	overflow: hidden;
 
 }
 
@@ -162,11 +171,9 @@ a:hover {
 }
 
 .textpic {
-margin: 25px;
+float:left
 }
 
-/* input placeholder */
-::-webkit-input-placeholder { color:#888; font-size: 22px}
-::-moz-placeholder { color:#888; ; font-size: 22px}
-:-ms-input-placeholder { color:#888; ; font-size: 22px} 
-input:-moz-placeholder { color:#888; ; font-size: 22px}
+.textpic {
+margin: 25px;
+}
