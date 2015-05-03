@@ -1,3 +1,4 @@
+ 
 
 /* vocabula.c */
 
