@@ -75,7 +75,7 @@ var h_keydown = function (event)
 }
 
 
-// this function is called every time a process is called just before running it, either by the internall loop of by the PROCESS condact, either by the internall loop of by the PROCESS condact
+// this function is called every time a process is called,  either by the internall loop of by the PROCESS condact, just before running it.
 var h_preProcess = function(procno)
 {
 

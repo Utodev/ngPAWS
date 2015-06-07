@@ -860,7 +860,7 @@ function sfxfadeout(channelno, value)
 	soundChannels[channelno].fadeOut(value, function() { sfxstop(channelno) });
 }
 
-// ** Process functions **
+// *** Process functions ***
 
 function callProcess(procno)
 {
