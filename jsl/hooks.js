@@ -73,3 +73,16 @@ var h_keydown = function (event)
 {
 	return true;
 }
+
+
+// this function is called every time a process is called just before running it, either by the internall loop of by the PROCESS condact
+var h_preProcess = function(procno)
+{
+
+}
+
+// this function is called every time a process is called just after the process exits (no matter which DONE status it has), either by the internall loop of by the PROCESS condact
+var h_postProcess= function (procno)
+{
+
+}

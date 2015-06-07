@@ -870,9 +870,10 @@ function callProcess(procno)
 	if (procno==0) in_response = true;
 	if (doall_flag && in_response) done_flag = false;
 	if (!in_response) done_flag = false;
+	h_preProcess(procno);
 	eval("pro" + prostr + "()");
+	h_postProcess(procno);
 	if (procno==0) in_response = false;
-	
 }
 
 // Bitwise functions
