@@ -8,7 +8,7 @@ made in the 90s, 2000, and 2010s.
 
 What makes ngPAWS different?
 ----------------------------
-What makes ngPAWS different is it does not generate an executable file, but a website. In fact, it generates javascript code that can be run in any modern browser. So text adventures (aka interactive fiction) made with ngPAWS can be run in any web server, or locally.
+What makes ngPAWS different is it does not generate an executable file, but a website that can be run in any modern browser. So text adventures (aka interactive fiction) made with ngPAWS can be run in any web server, or locally.
 
 
 Documentation
@@ -22,9 +22,11 @@ https://github.com/Utodev/ngPAWS/wiki
 Builds
 ------
 
-For precompiled builds go to our downloads page:
+For precompiled builds for Windows, Linux (x86 and arm) and OSX, go to our downloads page:
 
 http://www.ngpaws.com#Downloads
+
+Please notice the precompiled packages include also txtpaws by Baltasarq (https://github.com/Baltasarq/txtpaws), a very useful tool for ngPAWS programmers/authors.
 
 
 Reporting bugs
@@ -41,3 +43,4 @@ The compiler was developed first by Yokiyoki for his PAW clone "Paguaglús", it 
 it's released under the GPL license.
 
 The jsl libraries all can be used in your games, so they all use the more flexible MIT license. All of them are (C) Carlos Sánchez.
+
