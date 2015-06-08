@@ -27,7 +27,7 @@ String.prototype.firstToLower= function()
 	return  this.charAt(0).toLowerCase() + this.slice(1);	
 	return a;
 }
- 
+
 
 // Returns true if using Internet Explorer 9 or below, where some features are not supported
 function isBadIE () {
@@ -44,6 +44,42 @@ function runningLocal()
 }
 
 
+// Levenshtein function
+
+function getLevenshteinDistance (a, b)
+{
+  if(a.length == 0) return b.length; 
+  if(b.length == 0) return a.length; 
+ 
+  var matrix = [];
+ 
+  // increment along the first column of each row
+  var i;
+  for(i = 0; i <= b.length; i++){
+    matrix[i] = [i];
+  }
+ 
+  // increment each column in the first row
+  var j;
+  for(j = 0; j <= a.length; j++){
+    matrix[0][j] = j;
+  }
+ 
+  // Fill in the rest of the matrix
+  for(i = 1; i <= b.length; i++){
+    for(j = 1; j <= a.length; j++){
+      if(b.charAt(i-1) == a.charAt(j-1)){
+        matrix[i][j] = matrix[i-1][j-1];
+      } else {
+        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, // substitution
+                                Math.min(matrix[i][j-1] + 1, // insertion
+                                         matrix[i-1][j] + 1)); // deletion
+      }
+    }
+  }
+ 
+  return matrix[b.length][a.length];
+};
 
 // waitKey helper for all key-wait condacts
 
@@ -963,11 +999,31 @@ function loadPronounSufixes()
 }
 
 
-function findVocabulary(word)  // Pending: sort the vocabulary at the beginning so search may be binary at least
+function findVocabulary(word)  
 {
+	// Pending: in general this function is not very efficient. A solution where the vocabulary array is sorted by word so the first search can be binary search
+	//          and possible typos are precalculated, so the distance is a lookup table instead of a function, would be much more efficient. On the other hand,
+	//          the current solution is fast enough with a 1000+ words game that I don't consider improving this function to have high priority now.
+
+	// Search word in vocabulary
 	for (var j=0;j<vocabulary.length;j++)
 		if (vocabulary[j][VOCABULARY_WORD] == word)
 			 return vocabulary[j];
+
+	// Search words in vocabulary with a Levenshtein distance of 1
+	for (var k=0;k<vocabulary.length;k++)
+	{
+		var distance = getLevenshteinDistance(vocabulary[k][VOCABULARY_WORD], word);
+		if (distance <= 1) return vocabulary[k];
+	} 
+
+	// Search words in vocabulary with a Levenshtein distance of 2
+	for (var k=0;k<vocabulary.length;k++)
+	{
+		var distance = getLevenshteinDistance(vocabulary[k][VOCABULARY_WORD], word);
+		if (distance <= 2) return vocabulary[k];
+	} 
+
 	return null;
 }
 
