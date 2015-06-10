@@ -92,11 +92,6 @@ STR_RAMLOAD_ERROR= 'WARNING: Can\'t do RAMLOAD without RAMSAVE';
 STR_RUNTIME_VERSION  = 'ngPAWS runtime (C) 2014 Carlos Sanchez.  Released under {URL|http://www.opensource.org/licenses/MIT| MIT license}.\nBuzz sound libray (C) Jay Salvat. Released under the {URL|http://www.opensource.org/licenses/MIT| MIT license} \n jQuery (C) jQuery Foundation. Released under the {URL|https://jquery.org/license/| MIT license}.';
 STR_TRANSCRIPT = 'To copy the transcript to your clipboard, press Ctrl+C, then press Enter';
 
-STR_SAVE_LOCAL = 'Due to browser security restrictions, the game status can\'t be saved to your hard disk. Please copy the following long string as a code that will allow you to restore the game status.\n\nTo copy the string to your clipboard, press Ctrl+C, then press Enter:\n';
-STR_SAVE_STORAGE = 'Please enter savegame name. The name you choose will be requested to you in order to restore the game status.'
-STR_LOAD_STORAGE = 'Please enter savegame name you used when saving the game status.'
-STR_LOAD_LOCAL = 'Please enter the code you received for loading the game.'
-
 STR_INVALID_TAG_SEQUENCE = 'Invalid tag sequence: ';
 STR_INVALID_TAG_SEQUENCE_EMPTY = 'Invalid tag sequence.';
 STR_INVALID_TAG_SEQUENCE_BADPARAMS = 'Invalid tag sequence: bad parameters.';
@@ -227,9 +222,9 @@ SYSMESS_FILENOTFOUND = 54;
 SYSMESS_CORRUPTFILE = 55;
 SYSMESS_IOFAILURE = 56;
 SYSMESS_DIRECTORYFULL = 57;
-SYSMESS_DISKFULL = 58;
-SYSMESS_INVALIDFILENAME = 59;
-SYSMESS_FILENAME = 60;
+SYSMESS_LOADFILE = 58;
+SYSMESS_FILENOTFOUND = 59;
+SYSMESS_SAVEFILE = 60;
 SYSMESS_SORRY = 61;
 SYSMESS_NONSENSE_SENTENCE = 62;
 SYSMESS_NPCLISTSTART = 63;
