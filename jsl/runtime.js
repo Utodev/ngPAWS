@@ -1013,19 +1013,19 @@ function findVocabulary(word)
 	if (word.length <=4) return null; // Don't try to fix typo for words with less than 5 length
 
 	// Search words in vocabulary with a Levenshtein distance of 1
-	var distance2 = null;
+	var distance2_match = null;
 	for (var k=0;k<vocabulary.length;k++)
 	{
 		if ([WORDTYPE_VERB,WORDTYPE_NOUN,WORDTYPE_ADJECT,WORDTYPE_ADVERB].indexOf(vocabulary[k][VOCABULARY_TYPE])  != -1 )
 		{
 			var distance = getLevenshteinDistance(vocabulary[k][VOCABULARY_WORD], word);
-			if ((!distance2) && (distance==2)) distance2 = vocabulary[k]; // Save first word with distance=2, in case we don't find any word with distance 1
+			if ((!distance2_match) && (distance==2)) distance2_match = vocabulary[k]; // Save first word with distance=2, in case we don't find any word with distance 1
 			if (distance <= 1) return vocabulary[k];
 		}
 	} 
 
 	// If we found any word with distance 2, return it
-	if (distance2) return distance2;
+	if (distance2_match) return distance2_match;
 
 	// Word not found
 	return null;
