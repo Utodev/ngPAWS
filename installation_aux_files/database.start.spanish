@@ -867,13 +867,11 @@ Error de E/S. Fichero no grabado.
 Directorio lleno.
 
 /58
-Disco lleno.
-
+Introduce el nombre con el que grabaste la partida.
 /59
-Nombre de fichero no válido.
-
+No se encontró ninguna partida grabada con ese nombre. Confirme que el nombre es correcto y que realizó la partida en este mismo navegador.
 /60
-Nombre del fichero: 
+Introduce el nombre con el que grabar la partida. Necesitarás recordar ese nombre para poder recuperarla posteriormente.
 /61
 
 

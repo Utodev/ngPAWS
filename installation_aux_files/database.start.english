@@ -416,13 +416,11 @@ I/O error. File not saved.
 Directory full.
 
 /58
-Disk full.
-
+Please enter savegame name you used when saving the game status.
 /59
-Invalid file name.
-
+Invalid savegame name. Please check the name you entered is correct, and make sure you are trying to load the game from the same browser you saved it.
 /60
-File name: 
+Please enter savegame name. Remember to note down the name you choose, as it will be requested in order to restore the game status.
 /61
 
 
