@@ -1620,7 +1620,12 @@ function start()
 			var endNOresponseCode = endNOresponse.charCodeAt(0);
 
 			if (endYESresponseCode == e.keyCode) location.reload(); 
-			if (endNOresponseCode == e.keyCode)  $('body').hide('slow');
+			if (endNOresponseCode == e.keyCode)  
+			{
+				inEND = false;
+				sfxstopall();
+				$('body').hide('slow');
+			}
 			return;
 		}
 

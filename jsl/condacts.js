@@ -237,9 +237,10 @@ function ACCquit()
 
 function ACCend()
 {
-	writeSysMessage(SYSMESS_PLAYAGAIN);
+	$('.input').hide();
 	inEND = true;
-	$('.input').hide();  
+	writeSysMessage(SYSMESS_PLAYAGAIN);
+	done_flag = true;
 }
 
 
