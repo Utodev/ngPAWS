@@ -7,10 +7,10 @@ function ACCtextpic(picno, align)
 	var pre = '';
 	switch(align)
 	{
+		case 0: post='<br style="clear:left">';break;
 		case 1: style = 'float:left'; break;
 		case 2: style = 'float:right'; break;
-		case 3: post = '<br />';
-		case 4: pre='<center>';post='</center>';break;
+		case 3: pre='<center>';post='</center><br style="clear:left">';break;
 	}
 	filename = getResourceById(RESOURCE_TYPE_IMG, picno);
 	if (filename)
