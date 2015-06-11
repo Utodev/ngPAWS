@@ -900,6 +900,7 @@ function sfxfadeout(channelno, value)
 
 function callProcess(procno)
 {
+	if (inEND) return;
 	current_process = procno;
 	var prostr = procno.toString(); 
 	while (prostr.length < 3) prostr = "0" + prostr;
