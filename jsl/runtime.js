@@ -2,7 +2,7 @@
 
 
 // IMPORTANT: Please notice this file must be encoded with the same encoding the index.html file is, so the "normalize" function works properly.
-//            As currently the ngpwas compiler generates iso-8859-1, and the index.html is using iso-8859-1 also, this file must be using that encoding.
+//            As currently the ngpwas compiler generates utf-8, and the index.html is using utf-8 also, this file must be using that encoding.
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
