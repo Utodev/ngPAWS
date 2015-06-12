@@ -5,6 +5,7 @@
 Release/
 backup/
 lib/
+core.compiler/
 ide/
 ide_d2l/
 RAD/
