@@ -260,12 +260,31 @@ function ACCok()
 function ACCramsave()
 {
 	ramsave_value = getSaveGameObject();
-	ACCok();
+	var savegame_object = getSaveGameObject();	
+	savegame =   JSON.stringify(savegame_object);
+	localStorage.setItem('ngpaws_' + STR_RAMSAVE_FILENAME, savegame);
 }
 
 function ACCramload()
 {
-	if (!ramsave_value) {writeText (STR_RAMLOAD_ERROR); done_flag=true; return}
+	if (ramsave_value==null) 
+	{
+		var json_str = localStorage.getItem('ngpaws_' + STR_RAMSAVE_FILENAME);
+		if (json_str)
+		{
+			savegame_object = JSON.parse(json_str.trim());
+			restoreSaveGameObject(savegame_object);
+			ACCdesc();
+			focusInput();
+			return;
+		}
+		else
+		{
+			writeText (STR_RAMLOAD_ERROR); 
+			done_flag = true; 
+			return;
+		}
+	}
 	restoreSaveGameObject(ramsave_value);
 	ACCdesc();
 }

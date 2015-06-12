@@ -80,6 +80,7 @@ ATTR_STATIC  =21;
 // General messages & strings
 STR_NEWLINE = '<br />';
 STR_PROMPT = '> ';
+STR_RAMSAVE_FILENAME = 'RAMSAVE_SAVEGAME';
 
 
 
@@ -88,7 +89,7 @@ STR_WRONG_SYSMESS = 'WARNING: System message requested does not exist.';
 STR_WRONG_LOCATION = 'WARNING: Location requested does not exist.'; 
 STR_WRONG_MESSAGE = 'WARNING: Message requested does not exist.'; 
 STR_WRONG_PROCESS = 'WARNING: Process requested does not exist.' 
-STR_RAMLOAD_ERROR= 'WARNING: Can\'t do RAMLOAD without RAMSAVE'; 
+STR_RAMLOAD_ERROR= 'WARNING: You can\'t restore game as it has not yet been saved.'; 
 STR_RUNTIME_VERSION  = 'ngPAWS runtime (C) 2014 Carlos Sanchez.  Released under {URL|http://www.opensource.org/licenses/MIT| MIT license}.\nBuzz sound libray (C) Jay Salvat. Released under the {URL|http://www.opensource.org/licenses/MIT| MIT license} \n jQuery (C) jQuery Foundation. Released under the {URL|https://jquery.org/license/| MIT license}.';
 STR_TRANSCRIPT = 'To copy the transcript to your clipboard, press Ctrl+C, then press Enter';
 
