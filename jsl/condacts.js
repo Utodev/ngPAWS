@@ -262,14 +262,14 @@ function ACCramsave()
 	ramsave_value = getSaveGameObject();
 	var savegame_object = getSaveGameObject();	
 	savegame =   JSON.stringify(savegame_object);
-	localStorage.setItem('ngpaws_' + STR_RAMSAVE_FILENAME, savegame);
+	localStorage.setItem('ngpaws_savegame_' + STR_RAMSAVE_FILENAME, savegame);
 }
 
 function ACCramload()
 {
 	if (ramsave_value==null) 
 	{
-		var json_str = localStorage.getItem('ngpaws_' + STR_RAMSAVE_FILENAME);
+		var json_str = localStorage.getItem('ngpaws_savegame_' + STR_RAMSAVE_FILENAME);
 		if (json_str)
 		{
 			savegame_object = JSON.parse(json_str.trim());
@@ -294,7 +294,7 @@ function ACCsave()
 	var savegame_object = getSaveGameObject();	
 	savegame =   JSON.stringify(savegame_object);
 	filename = prompt(getSysMessageText(SYSMESS_SAVEFILE),'').toUpperCase();; 
-	localStorage.setItem('ngpaws_' + filename.toUpperCase(), savegame);
+	localStorage.setItem('ngpaws_savegame_' + filename.toUpperCase(), savegame);
 	ACCok();
 }
 
@@ -303,7 +303,7 @@ function ACCload()
 {
 	var json_str;
 	filename = prompt(getSysMessageText(SYSMESS_LOADFILE),'').toUpperCase();;
-	json_str = localStorage.getItem('ngpaws_' + filename.toUpperCase());
+	json_str = localStorage.getItem('ngpaws_savegame_' + filename.toUpperCase());
 	if (json_str)
 	{
 		savegame_object = JSON.parse(json_str.trim());
