@@ -604,7 +604,7 @@ function objectIsSupporter(objno)
 function objectIsAttr(objno, attrno)
 {
 	if (attrno > 63) return false;
-	attrs = getObjectLowAttributes(objno);
+	var attrs = getObjectLowAttributes(objno);
 	if (attrno > 31)
 	{
 		attrs = getObjectHighAttributes(objno);
