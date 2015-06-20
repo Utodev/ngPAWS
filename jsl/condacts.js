@@ -1138,11 +1138,11 @@ function ACCoset(objno, attrno)
 	if (attrno <= 31)
 	{
 		attrs = getObjectLowAttributes(objno);
-		attrs = bitset(attrs, attrno);
+		var attrs = bitset(attrs, attrno);
 		setObjectLowAttributes(objno, attrs);
 		return;
 	}
-	attrs = getObjectHighAttributes(objno);
+	var attrs = getObjectHighAttributes(objno);
 	attrno = attrno - 32;
 	attrs = bitset(attrs, attrno);
 	setObjectHighAttributes(objno, attrs);
@@ -1154,12 +1154,12 @@ function ACCoclear(objno, attrno)
 	if (attrno > 63) return;
 	if (attrno <= 31)
 	{
-		attrs = getObjectLowAttributes(objno);
+		var attrs = getObjectLowAttributes(objno);
 		attrs = bitclear(attrs, attrno);
 		setObjectLowAttributes(objno, attrs);
 		return;
 	}
-	attrs = getObjectHighAttributes(objno);
+	var attrs = getObjectHighAttributes(objno);
 	attrno = attrno - 32;
 	attrs = bitclear(attrs, attrno);
 	setObjectHighAttributes(objno, attrs);
