@@ -202,6 +202,9 @@ error (tipoError tipo, int nError)
 	case 25:
 	  printf ("S260: Semantic error: invalid object attributes definition.\n");
 	  break;
+	case 26:
+	  printf ("S270: Semantic error: invalid binary definition, bit 32 cannot be 1 to avoid parameter to be considered as indirection.\n");
+	  break;
 		}
     }
   /*Semantic error(); */

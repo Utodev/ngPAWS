@@ -93,9 +93,19 @@ checkArg (int *a1, tipoArg tipo)
     case value:
       if (simbolo == pNumero)
 	{
-	  *a1 = Val (lexema);
-	  /*if ((*a1 > 255) || (*a1 < 0))
-	    error (errSem, 15);*/
+		if (strlen(lexema) == 32)
+		{
+		
+		*a1 = 0;
+		if (lexema[31]=='1') error (errSem, 26); /* Es un binario, pero tiene a 1 el bit 32, que indica indireción */
+		for (i=0;i<32;i++)
+			switch (lexema[i]) {
+			 case '0': break;
+			 case '1': *a1|= (1<<i); break;
+			 default: error (errSem, 25); /* Da error porque a pesar de ser un numero no es un numero binario */
+			}
+
+		} else	*a1 = Val (lexema);
 	}
       casarLex (pNumero);
       break;
