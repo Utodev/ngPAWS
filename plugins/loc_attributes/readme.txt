@@ -21,6 +21,12 @@ Or you can use txtpaws ATTR feature:
 
 LINIT 10 ATTR laLargeRoom laDangerousPlace
 
+Also, you can use it "the hard way" using decimal numbers:
+
+LINIT 10 3 0
+
+Please notice that despite the condact being named LINIT (location initialize), it can be used as many times as you want in the same location, if that ever makes sense.
+
 
 IMPORTANT NOTE:
 
