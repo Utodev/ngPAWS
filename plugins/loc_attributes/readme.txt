@@ -10,7 +10,7 @@ Finally, as there is no way to define attributes in the game database, there is 
 
 LINIT locno low_attributes high_attributes
 
-You can use it the old way (to activate attributes 0 and 1):
+You can use it the old way (i.e. if locatyion has attributes 0 and 1 active):
 
 LINIT 10 11000000000000000000000000000000 00000000000000000000000000000000
 
@@ -30,4 +30,6 @@ Please notice that despite the condact being named LINIT (location initialize), 
 
 IMPORTANT NOTE:
 
-Please notice that due to a limitation in ngPAWS compiler, that uses last bit of each parameter to mark if it hgas indirection, location attributes 31 and 63 cannot be used (must allways be set to 0).
+Please notice that due to a limitation in ngPAWS compiler, that uses last bit of each parameter to mark if it has indirection, LINIT cannot use location attributes 31 and 63 cannot be used (must allways be set to 0).
+Once initialized, they can be used normally (and can be set with LSET), but using them is not recommended unless all the other 62 attributes have been used.
+
