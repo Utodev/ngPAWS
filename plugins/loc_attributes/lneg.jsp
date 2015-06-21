@@ -1,6 +1,6 @@
 //CND LNEG A 8 2 0 0
 
-function ACConeg(locno, attrno)
+function ACClneg(locno, attrno)
 {
 	if (attrno > 63) return;
 	if (attrno <= 31)

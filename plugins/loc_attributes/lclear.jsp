@@ -1,6 +1,6 @@
 //CND LCLEAR A 8 2 0 0
 
-function ACClclear(lcono, attrno)
+function ACClclear(locno, attrno)
 {
 	if (attrno > 63) return;
 	if (attrno <= 31)

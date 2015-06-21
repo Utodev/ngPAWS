@@ -1,6 +1,6 @@
 //CND LSET A 8 2 0 0
 
-function ACClset(lcono, attrno)
+function ACClset(locno, attrno)
 {
 	if (attrno > 63) return;
 	if (attrno <= 31)
