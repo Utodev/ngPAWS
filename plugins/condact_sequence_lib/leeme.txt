@@ -1,0 +1,33 @@
+Esta extensión permite ejecutar condactos cada vez que un determinado mensaje se escribe, mediante un nuevo tag de secuencia. Puede ser útil cuando se añade a:
+
+- Mensajes del sistema
+- Nombres de objetos
+- Descripciones de localidad
+
+Por ejemplo se puede hacer que un flag se incremente cada vez que se muestra un mensaje del sistema (p.ej. cada vez que se muestra  "Coges xxx.")
+
+
+La sintaxis es:
+
+{C:<condacto>|<parámetros>}
+
+Ej:
+
+{C:SET|100}
+{C:CREATE|8}
+{C:PLACE|40|23}
+
+Ten en cuenta:
+
+- Todos los condacto se ejecutan antes de que el mensaje se imprima, por lo que la posición de los tags en el mensaje no importa, salvo que haya más de uno, en cuyo caso 
+  se ejecutan en orden de aparición.
+- Solo se pueden usar condactos de acción, no condiciones (ni siquiera tiene sentido)
+- No hay control de sintaxis, asegúrate de que pones los parámetros correctos
+- No puedes usar condactos cuyos parámetros son una cadena (como WRITE o TITLE)
+- Si usas condactos cuyo parámetro es una palabra (como SYNONYM) debes especificar los valores numéricos, no las palabras (Ej, {C:SYNONYM|78|32})
+- No puedes usar identificadores de txtpaws para los tags de secuencia, como de costumbre.
+
+
+La idea original de esta librería proviene de una idea de edlobez, así que lo recuerdo aquí como agradecimiento.
+
+Licencia: Dominio público
