@@ -8,3 +8,5 @@ POP setno value  => Pops value from a stack (last in, first out)
 QPUSH setno value => Add value to a queue
 QPOP setno value  => Pops value from a queue (first in, first out)
 
+
+License: Public Domain 

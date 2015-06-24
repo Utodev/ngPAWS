@@ -6,3 +6,6 @@ SPUSH setno value => Add value to a set
 SPOP setno value  => Removes value from a set
 IN setno value => Condition, successful if value in set
 NOTIN setno value  => Condition, successful if value not in set
+
+
+License: Public Domain 

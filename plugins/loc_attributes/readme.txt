@@ -33,3 +33,5 @@ IMPORTANT NOTE:
 Please notice that due to a limitation in ngPAWS compiler, that uses last bit of each parameter to mark if it has indirection, LINIT cannot use location attributes 31 and 63 cannot be used (must allways be set to 0).
 Once initialized, they can be used normally (and can be set with LSET), but using them is not recommended unless all the other 62 attributes have been used.
 
+
+License: Public Domain
