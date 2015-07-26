@@ -1,0 +1,15 @@
+Esta extensión permite al autor usar atributos para los objetos de valor numérico
+
+Nuevos condactos:
+
+ATTRLET "string" objno value --> le da al atributo "string" del objeto objno el valor value
+ATTRGET "string" objno flagno --> copia el valor del atributo "string" del objeto objno en el flag flagno
+
+Ejemplo:
+
+ATTRLET "puntos_de_vida" 10 100
+ATTRGET " 10 fAux
+
+NOTA: Los atributos deben tener un nombre valido a nivel javascript, lo cual por simplificar significa que deben estar formados por caracteres a-z, A-Z, 0-9 y guión bajo, sin acentos y sin comenzar por un número.
+
+License: Public Domain 
