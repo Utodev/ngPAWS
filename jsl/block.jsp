@@ -6,8 +6,7 @@ function ACCblock(writeno, picno, procno)
    disableInterrupt();
    $('.block_layer').css('display','none');
    $('.block_layer').css('background-color',$('.text').css('background-color'));
-   var text = getWriteMessage(writeno);
-   text = h_writeText(text); // hook
+   var text = getWriteMessageText(writeno);
    $('.block_text').html(text);
    
 	var filename = getResourceById(RESOURCE_TYPE_IMG, picno);
