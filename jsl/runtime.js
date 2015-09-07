@@ -407,12 +407,14 @@ function filterText(text)
 
 
 // Text Output functions
-function writeText(text)
+function writeText(text, skipAutoComplete)
 {
+	if (typeof skipAutoComplete === 'undefined') skipAutoComplete = false;
 	text = h_writeText(text); // hook
 	$('.text').append(text);
 	$('.text').scrollTop($('.text')[0].scrollHeight);
 	addToTranscript(text);
+	if (!skipAutoComplete) addToAutoComplete(text);
 	focusInput();
 }
 
@@ -426,9 +428,10 @@ function addToTranscript(text)
 	transcript = transcript + text;		
 }
 
-function writelnText(text)
+function writelnText(text, skipAutoComplete)
 {
-	writeText(text + STR_NEWLINE);
+	if (typeof skipAutoComplete === 'undefined') skipAutoComplete = false;
+	writeText(text + STR_NEWLINE, skipAutoComplete);
 }
 
 function writeMessage(mesno)
@@ -488,8 +491,8 @@ function copyOrderToTextWindow(player_order)
 {
 	last_player_order = player_order;
 	clearInputWindow();
-	writeText(STR_PROMPT);
-	writelnText(player_order);
+	writeText(STR_PROMPT, false);
+	writelnText(player_order, false);  // false avoids what player writes being added to autocomplete options
 }
 
 
@@ -1013,6 +1016,8 @@ function findVocabulary(word)
 
 	if (word.length <=4) return null; // Don't try to fix typo for words with less than 5 length
 
+	if (bittest(getFlag(FLAG_PARSER_SETTINGS), 8)) return null; // If matching is disabled, we won't try to use levhenstein distance
+
 	// Search words in vocabulary with a Levenshtein distance of 1
 	var distance2_match = null;
 	for (var k=0;k<vocabulary.length;k++)
@@ -1025,8 +1030,8 @@ function findVocabulary(word)
 		}
 	} 
 
-	// If we found any word with distance 2, return it
-	if (distance2_match) return distance2_match;
+	// If we found any word with distance 2, return it, only if word was at least 7 characters long
+	if ((distance2_match) &&  (word.length >6)) return distance2_match;
 
 	// Word not found
 	return null;
@@ -1544,6 +1549,71 @@ function divTextScrollDown()
    	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP);
 }
 
+// Autocomplete functions
+
+function predictiveText(currentText)
+{
+	if (currentText == '') return currentText;
+	var wordToComplete;
+	var words = currentText.split(' ');
+	if (autocompleteStep!=0) wordToComplete = autocompleteBaseWord; else wordToComplete = words[words.length-1];
+	words[words.length-1] = completedWord(wordToComplete);
+	return words.join(' ');
+}
+
+
+function initAutoComplete()
+{
+	for (var j=0;j<vocabulary.length;j++)
+		if (vocabulary[j][VOCABULARY_TYPE] == WORDTYPE_VERB)
+			if (vocabulary[j][VOCABULARY_WORD].length >= 3)
+				autocomplete.push(vocabulary[j][VOCABULARY_WORD].toLowerCase());
+}
+
+function addToAutoComplete(sentence)
+{
+	var words = sentence.split(' ');
+	for (var i=0;i<words.length;i++)
+	{
+		var finalWord = '';
+		for (var j=0;j<words[i].length;j++)
+		{
+			var c = words[i][j].toLowerCase();
+			if ("abcdefghijklmnopqrstuvwxyzáéíóúàèìòùçäëïÖüâêîôû".indexOf(c) != -1) finalWord = finalWord + c;
+			else break;
+		}
+	
+		if (finalWord.length>=3) 
+		{
+			var index = autocomplete.indexOf(finalWord);
+			if (index!=-1) autocomplete.splice(index,1);
+			autocomplete.push(finalWord);
+		}
+	}
+}
+
+function completedWord(word)
+{
+	if (word=='') return '';
+   autocompleteBaseWord  =word;
+   var foundCount = 0;
+   for (var i = autocomplete.length-1;i>=0; i--)
+   {
+   	  if (autocomplete[i].length > word.length) 
+   	  	 if (autocomplete[i].indexOf(word)==0) 
+   	  	 	{
+   	  	 		foundCount++;
+   	  	 		if (foundCount>autocompleteStep)
+   	  	 		{
+   	  	 			autocompleteStep++;
+   	  	 			return autocomplete[i];
+   	  	 		}
+   	  	 	}
+   }
+   return word;
+}
+
+
 // Exacution starts here, called by the html file on document.ready()
 function start()
 {
@@ -1553,6 +1623,7 @@ function start()
 	if (isBadIE()) alert(STR_BADIE)
 	loadPronounSufixes();	
     setInputPlaceHolder();
+    initAutoComplete();
 
 	// Assign keypress action for input box (detect enter key press)
 	$('.prompt').keypress(function(e) {  
@@ -1574,6 +1645,20 @@ function start()
 	// Assign arrow up key press to recover last order
     $('.prompt').keyup( function(e) {
     	if (e.which  == 38) $('.prompt').val(last_player_order);
+    });
+
+
+    // Assign tab keydown to complete word
+    $('.prompt').keydown( function(e) {
+    	if (e.which == 9) 
+    		{
+    			$('.prompt').val(predictiveText($('.prompt').val()));
+    			e.preventDefault();
+    		} else 
+    		{
+		    	autocompleteStep = 0;
+    			autocompleteBaseWord = ''; // Any keypress other than tab resets the autocomplete feature
+    		}
     });
 
     //Detect resize to change flag 12

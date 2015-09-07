@@ -319,3 +319,7 @@ var soundLoopCount = [];
 //The last free object attribute
 var nextFreeAttr = 22;
 
+//Autocomplete array
+var autocomplete = new Array();
+var autocompleteStep = 0;
+var autocompleteBaseWord = '';
