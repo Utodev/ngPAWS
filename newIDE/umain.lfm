@@ -718,7 +718,7 @@ object fMain: TfMain
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.2.0'
   WindowState = wsMaximized
   object PanelBackground: TPanel
     Left = 0
@@ -4250,22 +4250,9 @@ object fMain: TfMain
   end
   object DataHighlighter: TSynAnySyn
     Enabled = False
-    CommentAttri.FrameEdges = sfeAround
     Comments = []
     DetectPreprocessor = False
-    IdentifierAttri.FrameEdges = sfeAround
     IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
-    KeyAttri.FrameEdges = sfeAround
-    ConstantAttri.FrameEdges = sfeAround
-    ObjectAttri.FrameEdges = sfeAround
-    EntityAttri.FrameEdges = sfeAround
-    VariableAttri.FrameEdges = sfeAround
-    DotAttri.FrameEdges = sfeAround
-    NumberAttri.FrameEdges = sfeAround
-    PreprocessorAttri.FrameEdges = sfeAround
-    SpaceAttri.FrameEdges = sfeAround
-    StringAttri.FrameEdges = sfeAround
-    SymbolAttri.FrameEdges = sfeAround
     Markup = False
     Entity = False
     DollarVariables = False
@@ -4275,22 +4262,9 @@ object fMain: TfMain
   end
   object VocHighlighter: TSynAnySyn
     Enabled = False
-    CommentAttri.FrameEdges = sfeAround
     Comments = []
     DetectPreprocessor = False
-    IdentifierAttri.FrameEdges = sfeAround
     IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
-    KeyAttri.FrameEdges = sfeAround
-    ConstantAttri.FrameEdges = sfeAround
-    ObjectAttri.FrameEdges = sfeAround
-    EntityAttri.FrameEdges = sfeAround
-    VariableAttri.FrameEdges = sfeAround
-    DotAttri.FrameEdges = sfeAround
-    NumberAttri.FrameEdges = sfeAround
-    PreprocessorAttri.FrameEdges = sfeAround
-    SpaceAttri.FrameEdges = sfeAround
-    StringAttri.FrameEdges = sfeAround
-    SymbolAttri.FrameEdges = sfeAround
     Markup = False
     Entity = False
     DollarVariables = False
@@ -4300,22 +4274,9 @@ object fMain: TfMain
   end
   object CodeHighlighter: TSynAnySyn
     Enabled = False
-    CommentAttri.FrameEdges = sfeAround
     Comments = []
     DetectPreprocessor = False
-    IdentifierAttri.FrameEdges = sfeAround
     IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
-    KeyAttri.FrameEdges = sfeAround
-    ConstantAttri.FrameEdges = sfeAround
-    ObjectAttri.FrameEdges = sfeAround
-    EntityAttri.FrameEdges = sfeAround
-    VariableAttri.FrameEdges = sfeAround
-    DotAttri.FrameEdges = sfeAround
-    NumberAttri.FrameEdges = sfeAround
-    PreprocessorAttri.FrameEdges = sfeAround
-    SpaceAttri.FrameEdges = sfeAround
-    StringAttri.FrameEdges = sfeAround
-    SymbolAttri.FrameEdges = sfeAround
     Markup = False
     Entity = False
     DollarVariables = False

@@ -8,7 +8,7 @@ object fPuzzleWizard: TfPuzzleWizard
   ClientHeight = 485
   ClientWidth = 640
   OnShow = FormShow
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '1.4.2.0'
   object PageControlWizard: TPageControl
     Left = 0
     Height = 430
@@ -21,21 +21,21 @@ object fPuzzleWizard: TfPuzzleWizard
     TabOrder = 0
     object TabSheetVocLoc: TTabSheet
       Caption = 'Vocabulary & Location'
-      ClientHeight = 426
-      ClientWidth = 636
+      ClientHeight = 422
+      ClientWidth = 632
       object GroupBoxVoc: TGroupBox
         Left = 8
-        Height = 360
+        Height = 352
         Hint = 'Fill in this box to determine which words will the player have to type for this puzzle to get triggered'
-        Top = 48
+        Top = 64
         Width = 385
         Caption = 'Vocabulary'
-        ClientHeight = 343
+        ClientHeight = 332
         ClientWidth = 381
         TabOrder = 0
         object EditPrep: TEdit
           Left = 217
-          Height = 25
+          Height = 23
           Top = 104
           Width = 143
           Enabled = False
@@ -45,7 +45,7 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 218
           Height = 21
           Top = 80
-          Width = 143
+          Width = 130
           Caption = 'Requires Preposition'
           OnChange = CheckBoxRequiresPrepositionChange
           TabOrder = 5
@@ -54,22 +54,22 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 217
           Height = 21
           Top = 8
-          Width = 109
+          Width = 100
           Caption = 'Requires Noun'
           OnChange = CheckBoxRequiresNounChange
           TabOrder = 1
         end
         object LabelVerb: TLabel
           Left = 24
-          Height = 17
+          Height = 15
           Top = 8
-          Width = 28
+          Width = 23
           Caption = 'Verb'
           ParentColor = False
         end
         object EditAdject1: TEdit
           Left = 24
-          Height = 25
+          Height = 23
           Top = 104
           Width = 136
           Enabled = False
@@ -77,7 +77,7 @@ object fPuzzleWizard: TfPuzzleWizard
         end
         object EditNoun: TEdit
           Left = 217
-          Height = 25
+          Height = 23
           Top = 32
           Width = 144
           Enabled = False
@@ -87,7 +87,7 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 24
           Height = 21
           Top = 80
-          Width = 129
+          Width = 119
           Caption = 'Requires Adjective'
           OnChange = CheckBoxRequiresAdject1Change
           TabOrder = 3
@@ -96,14 +96,14 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 24
           Height = 21
           Top = 152
-          Width = 119
+          Width = 108
           Caption = 'Requires Adverb'
           OnChange = CheckBoxRequiresAdverbChange
           TabOrder = 7
         end
         object EditAdverb: TEdit
           Left = 24
-          Height = 25
+          Height = 23
           Top = 176
           Width = 136
           Enabled = False
@@ -113,14 +113,14 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 24
           Height = 21
           Top = 224
-          Width = 140
+          Width = 128
           Caption = 'Requires Adjective 2'
           OnChange = CheckBoxRequiresAdject2Change
           TabOrder = 11
         end
         object EditNoun2: TEdit
           Left = 216
-          Height = 25
+          Height = 23
           Top = 176
           Width = 144
           Enabled = False
@@ -128,7 +128,7 @@ object fPuzzleWizard: TfPuzzleWizard
         end
         object EditAdject2: TEdit
           Left = 24
-          Height = 25
+          Height = 23
           Top = 248
           Width = 136
           Enabled = False
@@ -136,7 +136,7 @@ object fPuzzleWizard: TfPuzzleWizard
         end
         object EditVerb: TEdit
           Left = 24
-          Height = 25
+          Height = 23
           Top = 32
           Width = 136
           ParentShowHint = False
@@ -147,7 +147,7 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 217
           Height = 21
           Top = 152
-          Width = 120
+          Width = 109
           Caption = 'Requires Noun 2'
           OnChange = CheckBoxRequiresNoun2Change
           TabOrder = 9
@@ -156,8 +156,8 @@ object fPuzzleWizard: TfPuzzleWizard
           Left = 24
           Height = 21
           Hint = 'Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name'
-          Top = 312
-          Width = 254
+          Top = 304
+          Width = 232
           Caption = 'Include aditional words in failure entries'
           ParentShowHint = False
           ShowHint = True
@@ -168,24 +168,24 @@ object fPuzzleWizard: TfPuzzleWizard
         Left = 408
         Height = 352
         Hint = 'Fill in this box if this puzzle can only be solved in a given location'
-        Top = 56
+        Top = 64
         Width = 209
         Caption = 'Location'
-        ClientHeight = 335
+        ClientHeight = 332
         ClientWidth = 205
         TabOrder = 1
         object CheckBoxLinkedToLocation: TCheckBox
           Left = 16
           Height = 21
           Top = 8
-          Width = 175
+          Width = 161
           Caption = 'Puzzle is linked to location'
           OnChange = CheckBoxLinkedToLocationChange
           TabOrder = 0
         end
         object EditLocation: TEdit
           Left = 16
-          Height = 25
+          Height = 23
           Top = 32
           Width = 176
           Enabled = False
@@ -193,16 +193,16 @@ object fPuzzleWizard: TfPuzzleWizard
         end
         object LabelLocationTOF: TLabel
           Left = 16
-          Height = 17
+          Height = 15
           Hint = 'Response to player if he/she tries to perform this action in other location'
           Top = 80
-          Width = 83
+          Width = 74
           Caption = 'Text on failure'
           ParentColor = False
         end
         object EditLocationTOF: TEdit
           Left = 16
-          Height = 25
+          Height = 23
           Top = 104
           Width = 176
           Enabled = False
@@ -211,37 +211,38 @@ object fPuzzleWizard: TfPuzzleWizard
       end
       object LabelInstructions1: TLabel
         Left = 8
-        Height = 17
+        Height = 40
         Top = 16
-        Width = 603
+        Width = 607
+        AutoSize = False
         Caption = 'Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location'
         Font.Color = clHighlight
         ParentColor = False
         ParentFont = False
+        WordWrap = True
       end
     end
     object TabSheetConditions: TTabSheet
       Caption = 'Conditions'
-      ClientHeight = 426
-      ClientWidth = 636
+      ClientHeight = 422
+      ClientWidth = 632
       OnShow = TabSheetConditionsShow
       object ListBoxConditions: TListBox
         Left = 392
-        Height = 344
-        Top = 56
+        Height = 320
+        Top = 64
         Width = 224
         ItemHeight = 0
         PopupMenu = PopupMenuLists
         ScrollWidth = 220
         TabOrder = 0
-        TopIndex = -1
       end
       object ComboBoxConditionSelect: TComboBox
-        Left = 16
-        Height = 25
-        Top = 56
+        Left = 19
+        Height = 23
+        Top = 64
         Width = 256
-        ItemHeight = 0
+        ItemHeight = 15
         ItemIndex = 0
         Items.Strings = (
           'Choose a condition...'
@@ -252,10 +253,10 @@ object fPuzzleWizard: TfPuzzleWizard
         Text = 'Choose a condition...'
       end
       object ButtonAddCondition: TButton
-        Left = 288
+        Left = 291
         Height = 25
         Hint = 'Add Condition'
-        Top = 56
+        Top = 64
         Width = 75
         Caption = 'Add'
         OnClick = ButtonAddConditionClick
@@ -264,19 +265,19 @@ object fPuzzleWizard: TfPuzzleWizard
         TabOrder = 2
       end
       object LabelCondTOF: TLabel
-        Left = 19
-        Height = 17
-        Top = 92
-        Width = 83
+        Left = 27
+        Height = 15
+        Top = 104
+        Width = 74
         Caption = 'Text on failure'
         ParentColor = False
         Visible = False
       end
       object EditConditionTOF: TEdit
-        Left = 22
-        Height = 25
+        Left = 19
+        Height = 23
         Hint = 'Please specify response for player if this condition is not successful'
-        Top = 112
+        Top = 120
         Width = 336
         OnKeyPress = EditConditionKeyPress
         ParentShowHint = False
@@ -285,18 +286,18 @@ object fPuzzleWizard: TfPuzzleWizard
         Visible = False
       end
       object LabelCondP1: TLabel
-        Left = 26
-        Height = 17
-        Top = 147
-        Width = 76
+        Left = 27
+        Height = 15
+        Top = 160
+        Width = 70
         Caption = 'LabelCondP1'
         ParentColor = False
         Visible = False
       end
       object EditConditionP1: TEdit
-        Left = 23
-        Height = 25
-        Top = 168
+        Left = 19
+        Height = 23
+        Top = 176
         Width = 336
         OnKeyPress = EditConditionKeyPress
         ParentShowHint = False
@@ -305,18 +306,18 @@ object fPuzzleWizard: TfPuzzleWizard
         Visible = False
       end
       object LabelCondP2: TLabel
-        Left = 26
-        Height = 17
-        Top = 208
-        Width = 76
+        Left = 27
+        Height = 15
+        Top = 224
+        Width = 70
         Caption = 'LabelCondP2'
         ParentColor = False
         Visible = False
       end
       object EditConditionP2: TEdit
-        Left = 24
-        Height = 25
-        Top = 232
+        Left = 19
+        Height = 23
+        Top = 240
         Width = 336
         OnKeyPress = EditConditionKeyPress
         ParentShowHint = False
@@ -325,26 +326,28 @@ object fPuzzleWizard: TfPuzzleWizard
         Visible = False
       end
       object LabelInstructions2: TLabel
-        Left = 16
-        Height = 17
-        Top = 8
-        Width = 450
+        Left = 19
+        Height = 40
+        Top = 16
+        Width = 600
+        AutoSize = False
         Caption = 'If any additional conditions should be met for player success, add them here.'
         Font.Color = clHighlight
         ParentColor = False
         ParentFont = False
+        WordWrap = True
       end
     end
     object TabSheetActions: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 426
-      ClientWidth = 636
+      ClientHeight = 422
+      ClientWidth = 632
       object ComboBoxActionSelect: TComboBox
         Left = 16
-        Height = 31
-        Top = 72
+        Height = 23
+        Top = 64
         Width = 240
-        ItemHeight = 0
+        ItemHeight = 15
         ItemIndex = 0
         Items.Strings = (
           'Choose an action...'
@@ -358,7 +361,7 @@ object fPuzzleWizard: TfPuzzleWizard
         Left = 282
         Height = 25
         Hint = 'Add Action'
-        Top = 72
+        Top = 64
         Width = 75
         Caption = 'Add'
         OnClick = ButtonAddActionClick
@@ -368,17 +371,17 @@ object fPuzzleWizard: TfPuzzleWizard
       end
       object LabelActionP1: TLabel
         Left = 20
-        Height = 21
-        Top = 104
-        Width = 96
+        Height = 15
+        Top = 96
+        Width = 76
         Caption = 'LabelActionP1'
         ParentColor = False
         Visible = False
       end
       object EditActionP1: TEdit
-        Left = 18
-        Height = 31
-        Top = 125
+        Left = 16
+        Height = 23
+        Top = 112
         Width = 338
         OnKeyPress = EditActionKeyPress
         ParentShowHint = False
@@ -388,17 +391,17 @@ object fPuzzleWizard: TfPuzzleWizard
       end
       object LabelActionP2: TLabel
         Left = 20
-        Height = 21
-        Top = 165
-        Width = 96
+        Height = 15
+        Top = 160
+        Width = 76
         Caption = 'LabelActionP2'
         ParentColor = False
         Visible = False
       end
       object EditActionP2: TEdit
-        Left = 19
-        Height = 31
-        Top = 189
+        Left = 16
+        Height = 23
+        Top = 176
         Width = 338
         OnKeyPress = EditActionKeyPress
         ParentShowHint = False
@@ -409,34 +412,33 @@ object fPuzzleWizard: TfPuzzleWizard
       object ListBoxActions: TListBox
         Left = 384
         Height = 224
-        Top = 72
+        Top = 64
         Width = 232
         ItemHeight = 0
         PopupMenu = PopupMenuLists
         ScrollWidth = 228
         TabOrder = 4
-        TopIndex = -1
       end
       object GroupBox1: TGroupBox
-        Left = 18
+        Left = 16
         Height = 105
         Top = 304
         Width = 598
         Caption = 'On success'
-        ClientHeight = 88
+        ClientHeight = 85
         ClientWidth = 594
         TabOrder = 5
         object LabelTOS: TLabel
           Left = 8
-          Height = 21
+          Height = 15
           Top = 16
-          Width = 106
+          Width = 81
           Caption = 'Text on success'
           ParentColor = False
         end
         object EditTOS: TEdit
           Left = 8
-          Height = 31
+          Height = 23
           Hint = 'Enter text in case of success'
           Top = 48
           Width = 569
@@ -446,24 +448,26 @@ object fPuzzleWizard: TfPuzzleWizard
         end
       end
       object LabelInstrructions3: TLabel
-        Left = 20
-        Height = 21
-        Top = 23
-        Width = 647
-        Caption = 'In case of success, please specify text output, and add any other actions that should be performed.'
+        Left = 16
+        Height = 40
+        Top = 16
+        Width = 588
+        AutoSize = False
+        Caption = 'In case of success, please specify text output, and add any other actions that should be performed .'
         Font.Color = clHighlight
         ParentColor = False
         ParentFont = False
+        WordWrap = True
       end
     end
     object TabSheetCodeGen: TTabSheet
       Caption = 'Success and options'
-      ClientHeight = 426
-      ClientWidth = 636
+      ClientHeight = 422
+      ClientWidth = 632
       inline SynEditCodeGen: TSynEdit
         Left = 16
-        Height = 344
-        Top = 56
+        Height = 360
+        Top = 64
         Width = 600
         Color = 2238248
         Font.Height = -13
@@ -905,7 +909,6 @@ object fPuzzleWizard: TfPuzzleWizard
         MouseSelActions = <>
         VisibleSpecialChars = [vscSpace, vscTabAtLast]
         RightEdge = 10000
-        SelectedColor.FrameEdges = sfeAround
         SelectedColor.BackPriority = 50
         SelectedColor.ForePriority = 50
         SelectedColor.FramePriority = 50
@@ -913,23 +916,17 @@ object fPuzzleWizard: TfPuzzleWizard
         SelectedColor.ItalicPriority = 50
         SelectedColor.UnderlinePriority = 50
         SelectedColor.StrikeOutPriority = 50
-        IncrementColor.FrameEdges = sfeAround
-        HighlightAllColor.FrameEdges = sfeAround
         BracketHighlightStyle = sbhsBoth
         BracketMatchColor.Background = clNone
         BracketMatchColor.Foreground = clNone
-        BracketMatchColor.FrameEdges = sfeAround
         BracketMatchColor.Style = [fsBold]
         FoldedCodeColor.Background = clNone
         FoldedCodeColor.Foreground = clGray
         FoldedCodeColor.FrameColor = clGray
-        FoldedCodeColor.FrameEdges = sfeAround
         MouseLinkColor.Background = clNone
         MouseLinkColor.Foreground = clBlue
-        MouseLinkColor.FrameEdges = sfeAround
         LineHighlightColor.Background = clNone
         LineHighlightColor.Foreground = clNone
-        LineHighlightColor.FrameEdges = sfeAround
         OnChange = SynEditCodeGenChange
         inline SynLeftGutterPartList1: TSynGutterPartList
           object SynGutterMarks1: TSynGutterMarks
@@ -941,7 +938,6 @@ object fPuzzleWizard: TfPuzzleWizard
             MouseActions = <>
             MarkupInfo.Background = clBtnFace
             MarkupInfo.Foreground = clNone
-            MarkupInfo.FrameEdges = sfeAround
             DigitCount = 2
             ShowOnlyLineNumbersMultiplesOf = 1
             ZeroStart = False
@@ -958,13 +954,11 @@ object fPuzzleWizard: TfPuzzleWizard
             MouseActions = <>
             MarkupInfo.Background = clWhite
             MarkupInfo.Foreground = clGray
-            MarkupInfo.FrameEdges = sfeAround
           end
           object SynGutterCodeFolding1: TSynGutterCodeFolding
             MouseActions = <>
             MarkupInfo.Background = clNone
             MarkupInfo.Foreground = clGray
-            MarkupInfo.FrameEdges = sfeAround
             MouseActionsExpanded = <>
             MouseActionsCollapsed = <>
           end
@@ -972,13 +966,15 @@ object fPuzzleWizard: TfPuzzleWizard
       end
       object LabelInstructions4: TLabel
         Left = 16
-        Height = 17
+        Height = 40
         Top = 16
-        Width = 482
+        Width = 600
+        AutoSize = False
         Caption = 'Puzzle code has been generated, please click "Finish" to add it to your game code.'
         Font.Color = clHighlight
         ParentColor = False
         ParentFont = False
+        WordWrap = True
       end
     end
   end
@@ -1028,4 +1024,4 @@ object fPuzzleWizard: TfPuzzleWizard
       OnClick = PMMoveDownClick
     end
   end
-end
+end

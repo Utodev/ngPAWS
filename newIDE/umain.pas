@@ -8,7 +8,7 @@ uses
    {$IFDEF Windows}windows,{$endif} Classes, SysUtils, FileUtil, SynHighlighterAny,
    SynEdit, ExtendedNotebook, Forms, Controls, Graphics, Dialogs, Menus,
    ExtCtrls, ComCtrls, StdCtrls, Buttons, UConfig, UTXP, UAbout, SynEditTypes,
-   SynCompletion, Clipbrd, DefaultTranslator, types, LCLType;
+   SynCompletion, Clipbrd, LCLTranslator, types, LCLType;
 
 type
 

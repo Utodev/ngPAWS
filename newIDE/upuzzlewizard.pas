@@ -156,6 +156,7 @@ begin
      ButtonNext.Caption := S_NEXT_MESSAGE;
    end;
 
+   ButtonPrev.Visible:= PageControlWizard.ActivePageIndex<>0;
 
 
 end;
@@ -217,6 +218,7 @@ begin
     ButtonNext.ModalResult:= mrNone;
     ButtonNext.Caption := S_NEXT_MESSAGE;
   end;
+  ButtonPrev.Visible:= PageControlWizard.ActivePageIndex<>0;
 end;
 
 procedure TfPuzzleWizard.CheckBoxLinkedToLocationChange(Sender: TObject);
@@ -383,6 +385,7 @@ end;
 procedure TfPuzzleWizard.FormShow(Sender: TObject);
 begin
   PageControlWizard.ActivePageIndex:=0;
+  ButtonPrev.Visible := false;
   ButtonNext.ModalResult:= mrNone;
   ButtonNext.Caption := S_NEXT_MESSAGE;
   EditVerb.SetFocus();
