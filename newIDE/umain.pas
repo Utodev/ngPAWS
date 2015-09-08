@@ -375,13 +375,7 @@ begin
     CompileOutputListBox.Items.Text:=CompileOutputListBox.Items.Text + Output.Text;
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
     // Errors in compiler appear in last output line
-    if CheckError(CompileOutputListBox.Items[CompileOutputListBox.Items.count-1], False, ChangeFileExt(TXPTempFile, '.dbg')) then
-     begin
-       {$ifndef Windows}
-       UpdateAutoCompletionList();
-       {$endif}
-       Exit;
-     end;
+    if CheckError(CompileOutputListBox.Items[CompileOutputListBox.Items.count-1], False, ChangeFileExt(TXPTempFile, '.dbg')) then Exit;
 
     CompileOutputListBox.Items.Add(S_COMPILE_OK);
     CompileOutputListBox.Selected[CompileOutputListBox.Items.Count-1] := true;
@@ -389,9 +383,6 @@ begin
   finally
     if Config.DeleteTempFiles then DeleteTempFiles(TXP.FilePath);
   end;
-  {$ifndef Windows}
-  UpdateAutoCompletionList();
-  {$endif}
   Result := true;
 end;
 
@@ -1055,9 +1046,6 @@ begin
      TXP.SetProcessCode(ProcNum, TSynEdit(PageControl.Pages[i].Controls[0]).Lines.Text);
     end;
   end;
-  {$ifndef Windows}
-  UpdateAutoCompletionList();
-  {$endif}
   TXP.SaveTXP(Filename, WithDebugInfo);
 end;
 
