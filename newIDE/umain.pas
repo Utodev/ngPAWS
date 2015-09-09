@@ -706,13 +706,8 @@ begin
  if SelectedLine = '' then
  begin
    fPuzzleWizard.ClearPuzzle();
-   if (fPuzzleWizard.ShowModal() = mrOK) then
-   begin
-     fPuzzleWizard.SynEditCodeGen.SelectAll();
-     fPuzzleWizard.SynEditCodeGen.CopyToClipboard();
-     SynEdit.PasteFromClipboard();
-   end;
-  Exit
+   if (fPuzzleWizard.ShowModal() = mrOK) then SynEdit.InsertTextAtCaret(fPuzzleWizard.SynEditCodeGen.Text);
+   Exit
  end;
 
  Selection := '';
