@@ -219,7 +219,7 @@ procedure TfMain.BuildRecentFilesMenu();
 var i:integer;
     MenuItem : TMenuItem;
 begin
-  MRecentFiles.Clear();
+  for i := MRecentFiles.count -1 downto 0 do MRecentFiles.Delete(i);
 
   for i:= 0 to 9 do if Config.GetRecentFile(i)<> '' then
   begin

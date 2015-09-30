@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMain"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1027"/>
-        <CursorPos Y="1049"/>
+        <TopLine Value="176"/>
+        <CursorPos X="7" Y="222"/>
         <UsageCount Value="204"/>
         <Bookmarks Count="1">
           <Item0 X="46" Y="661" ID="1"/>
@@ -86,7 +86,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UAbout"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="200"/>
       </Unit7>
       <Unit8>
         <Filename Value="upuzzlewizard.pas"/>
@@ -96,9 +96,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UPuzzleWizard"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="194"/>
-        <CursorPos X="37" Y="203"/>
-        <UsageCount Value="199"/>
+        <TopLine Value="527"/>
+        <CursorPos X="8" Y="539"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit8>
@@ -111,7 +111,7 @@
         <UnitName Value="USearchReplace"/>
         <TopLine Value="37"/>
         <CursorPos X="9" Y="42"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="184"/>
       </Unit9>
       <Unit10>
         <Filename Value="images\buttons\upuzzlewizard.pas"/>
@@ -161,7 +161,7 @@
         <Filename Value="usaveload.pas"/>
         <UnitName Value="USaveLoad"/>
         <CursorPos X="47" Y="113"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit16>
       <Unit17>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
@@ -194,120 +194,123 @@
         <UsageCount Value="7"/>
       </Unit21>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="umain.pas"/>
+        <Filename Value="utxp.pas"/>
+        <Caret Line="51" Column="22" TopLine="28"/>
       </Position1>
       <Position2>
         <Filename Value="umain.pas"/>
-        <Caret Line="93" Column="10" TopLine="65"/>
+        <Caret Line="362" Column="20" TopLine="334"/>
       </Position2>
       <Position3>
         <Filename Value="umain.pas"/>
-        <Caret Line="239" Column="18" TopLine="213"/>
+        <Caret Line="1061" Column="40" TopLine="1020"/>
       </Position3>
       <Position4>
         <Filename Value="umain.pas"/>
-        <Caret Line="179" Column="24" TopLine="164"/>
+        <Caret Line="257" Column="34" TopLine="241"/>
       </Position4>
       <Position5>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="30" Column="38"/>
-      </Position5>
-      <Position6>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="63" Column="17" TopLine="33"/>
-      </Position6>
-      <Position7>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="122" Column="33" TopLine="81"/>
-      </Position7>
-      <Position8>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="133" Column="57" TopLine="92"/>
-      </Position8>
-      <Position9>
-        <Filename Value="utxp.pas"/>
-        <Caret Line="51" Column="22" TopLine="28"/>
-      </Position9>
-      <Position10>
-        <Filename Value="umain.pas"/>
-        <Caret Line="362" Column="20" TopLine="334"/>
-      </Position10>
-      <Position11>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1061" Column="40" TopLine="1020"/>
-      </Position11>
-      <Position12>
-        <Filename Value="umain.pas"/>
-        <Caret Line="257" Column="34" TopLine="241"/>
-      </Position12>
-      <Position13>
         <Filename Value="umain.pas"/>
         <Caret Line="255" Column="37" TopLine="220"/>
+      </Position5>
+      <Position6>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="132" Column="27" TopLine="126"/>
+      </Position6>
+      <Position7>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="159" Column="61" TopLine="135"/>
+      </Position7>
+      <Position8>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="385" Column="34" TopLine="372"/>
+      </Position8>
+      <Position9>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="387" Column="13" TopLine="372"/>
+      </Position9>
+      <Position10>
+        <Filename Value="upuzzlewizard.pas"/>
+      </Position10>
+      <Position11>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="387" Column="13" TopLine="363"/>
+      </Position11>
+      <Position12>
+        <Filename Value="upuzzlewizard.pas"/>
+      </Position12>
+      <Position13>
+        <Filename Value="upuzzlewizard.pas"/>
+        <Caret Line="20" Column="15"/>
       </Position13>
       <Position14>
         <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="132" Column="27" TopLine="126"/>
+        <Caret Line="76" Column="25" TopLine="53"/>
       </Position14>
       <Position15>
         <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="159" Column="61" TopLine="135"/>
+        <Caret Line="159" Column="62" TopLine="126"/>
       </Position15>
       <Position16>
         <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="385" Column="34" TopLine="372"/>
+        <Caret Line="229" TopLine="202"/>
       </Position16>
       <Position17>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="387" Column="13" TopLine="372"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="11" Column="41"/>
       </Position17>
       <Position18>
-        <Filename Value="upuzzlewizard.pas"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="275" Column="18" TopLine="251"/>
       </Position18>
       <Position19>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="387" Column="13" TopLine="363"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="379" Column="5" TopLine="358"/>
       </Position19>
       <Position20>
-        <Filename Value="upuzzlewizard.pas"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="386" TopLine="364"/>
       </Position20>
       <Position21>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="20" Column="15"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="871" Column="23" TopLine="847"/>
       </Position21>
       <Position22>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="76" Column="25" TopLine="53"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1049" TopLine="1027"/>
       </Position22>
       <Position23>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="159" Column="62" TopLine="126"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1152" Column="9" TopLine="1152"/>
       </Position23>
       <Position24>
-        <Filename Value="upuzzlewizard.pas"/>
-        <Caret Line="229" TopLine="202"/>
+        <Filename Value="umain.pas"/>
       </Position24>
       <Position25>
         <Filename Value="umain.pas"/>
-        <Caret Line="11" Column="41"/>
+        <Caret Line="709" Column="40" TopLine="685"/>
       </Position25>
       <Position26>
         <Filename Value="umain.pas"/>
-        <Caret Line="275" Column="18" TopLine="251"/>
+        <Caret Line="737" Column="42" TopLine="714"/>
       </Position26>
       <Position27>
         <Filename Value="umain.pas"/>
-        <Caret Line="379" Column="5" TopLine="358"/>
       </Position27>
       <Position28>
         <Filename Value="umain.pas"/>
-        <Caret Line="386" TopLine="364"/>
+        <Caret Line="710" Column="2" TopLine="691"/>
       </Position28>
       <Position29>
         <Filename Value="umain.pas"/>
-        <Caret Line="871" Column="23" TopLine="847"/>
+        <Caret Line="70" Column="12" TopLine="44"/>
       </Position29>
+      <Position30>
+        <Filename Value="umain.pas"/>
+        <Caret Line="158" Column="22" TopLine="113"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
