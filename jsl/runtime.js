@@ -86,12 +86,7 @@ function getLevenshteinDistance (a, b)
 function waitKey(callbackFunction)
 {
 	waitkey_callback_function = callbackFunction;
-   	$('.block_layer').css('display','none');
-    $('.block_text').html('');
-    $('.block_graphics').html('');
-    $('.block_layer').css('background','transparent');
-    $('.block_layer').css('display','block');
-    $('.input').hide();
+	showAnykeyLayer();
 }
 
 function waitKeyCallback()
@@ -343,6 +338,13 @@ function implementTag(tag)
 		case 'OREF': if (tagparams.length != 1) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
    			        if(objects[getFlag(FLAG_REFERRED_OBJECT)]) return getObjectFixArticles(getFlag(FLAG_REFERRED_OBJECT)); else return '';
 					break;
+		case 'TT':  
+		case 'TOOLTIP':
+					if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
+					var title = tagparams[1];
+					var text = tagparams[2];
+					return "<span title='"+title+"'>"+text+"</span>";
+					break;
 		case 'OPRO': if (tagparams.length != 1) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};  // returns the pronoun for a given object, used for english start database
 					 switch (getSimpleGender(getFlag(FLAG_REFERRED_OBJECT)))
 					 {
@@ -352,6 +354,7 @@ function implementTag(tag)
 					 	case "P" : return "them";  // plural returns them
 					 }
 					break;
+
 			default : return h_sequencetag(tagparams);
 	}
 }
@@ -491,8 +494,7 @@ function copyOrderToTextWindow(player_order)
 {
 	last_player_order = player_order;
 	clearInputWindow();
-	writeText(STR_PROMPT, false);
-	writelnText(player_order, false);  // false avoids what player writes being added to autocomplete options
+	writelnText(STR_PROMPT_START + player_order + STR_PROMPT_END, false);
 }
 
 
@@ -1303,7 +1305,7 @@ function timer()
 		if (pauseRemainingTime<=0)
 		{
 			inPause = false;
-			hideBlock();
+			hideAnykeyLayer();
 			waitKeyCallback()
 		}
 	}
@@ -1510,6 +1512,19 @@ function hideBlock()
     focusInput();
 }
 
+function hideAnykeyLayer()
+{
+	$('.anykey_layer').hide();
+    $('.input').show();  
+    focusInput();   
+}
+
+function showAnykeyLayer()
+{
+	$('.anykey_layer').show();
+    $('.input').hide();  
+}
+
 //called when the block layer is closed
 function closeBlock()
 {
@@ -1681,7 +1696,7 @@ function start()
      	if (inAnykey)  // return for ANYKEY, accepts mouse click
      	{
      		inAnykey = false;
-     		hideBlock();
+     		hideAnykeyLayer();
      		waitKeyCallback();
      		e.preventDefault();
      		return;
@@ -1689,7 +1704,7 @@ function start()
 
      });
      
-
+     
 	$(document).keydown(function(e) {
 
 		if (!h_keydown(e)) return; // hook
@@ -1729,7 +1744,7 @@ function start()
 			{
 	           inQUIT=false;
 			   waitkey_callback_function = null;
-			   hideBlock();
+			   hideAnykeyLayer();
 			   e.preventDefault();
 			}
 
@@ -1748,7 +1763,7 @@ function start()
      		setFlag(getkey_return_flag, e.keyCode);
      		getkey_return_flag = null;
      		inGetkey = false;
-     		hideBlock();
+     		hideAnykeyLayer();
      		e.preventDefault();
      		waitKeyCallback();
      		return;
@@ -1758,7 +1773,7 @@ function start()
      	if (inAnykey)  // return for anykey
      	{
      		inAnykey = false;
-     		hideBlock();
+     		hideAnykeyLayer();
      		e.preventDefault();
      		waitKeyCallback();
      		return;
