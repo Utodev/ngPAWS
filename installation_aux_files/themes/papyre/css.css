@@ -221,6 +221,8 @@ input:-moz-placeholder { color:#333; }
 	bottom:0;
 	right:0;
 	background-color: transparent;
+	display: none;
+	z-index:2000;
 }
 
 @media (max-width: 1024px) {

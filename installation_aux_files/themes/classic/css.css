@@ -214,6 +214,8 @@ input:-moz-placeholder { color:#777; }
 	bottom:0;
 	right:0;
 	background-color: transparent;
+	display: none;
+	z-index:2000;
 }
 
 
