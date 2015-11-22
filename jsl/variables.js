@@ -79,7 +79,8 @@ ATTR_STATIC  =21;
 
 // General messages & strings
 STR_NEWLINE = '<br />';
-STR_PROMPT = '> ';
+STR_PROMPT_START = '<span class="feedback">&gt; ';
+STR_PROMPT_END = '</span>';
 STR_RAMSAVE_FILENAME = 'RAMSAVE_SAVEGAME';
 
 
