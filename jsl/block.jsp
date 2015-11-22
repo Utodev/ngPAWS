@@ -5,7 +5,6 @@ function ACCblock(writeno, picno, procno)
    inBlock = true;
    disableInterrupt();
    $('.block_layer').css('display','none');
-   $('.block_layer').css('background-color',$('.text').css('background-color'));
    var text = getWriteMessageText(writeno);
    $('.block_text').html(text);
    
