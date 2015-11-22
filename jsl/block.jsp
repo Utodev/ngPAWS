@@ -4,7 +4,7 @@ function ACCblock(writeno, picno, procno)
 {
    inBlock = true;
    disableInterrupt();
-   $('.block_layer').css('display','none');
+   $('.block_layer').hide();
    var text = getWriteMessageText(writeno);
    $('.block_text').html(text);
    
@@ -15,6 +15,6 @@ function ACCblock(writeno, picno, procno)
 		$('.block_graphics').html(imgsrc);
 	}
     if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
-    $('.block_layer').css('display','block');
+    $('.block_layer').show();
 
 }
