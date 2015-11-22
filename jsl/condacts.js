@@ -424,11 +424,7 @@ function ACCpause(value)
  if (value == 0) value = 256;
  pauseRemainingTime = Math.floor(value /50 * 1000);	
  inPause = true;
- $('.block_layer').css('display','none');
- $('.block_text').html('');
- $('.block_graphics').html('');
- $('.block_layer').css('background','transparent');
- $('.block_layer').css('display','block'); 
+ showAnykeyLayer();
 } 
 
 function ACCgoto(locno)
