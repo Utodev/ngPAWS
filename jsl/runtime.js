@@ -492,9 +492,27 @@ function clearScreen()
 
 function copyOrderToTextWindow(player_order)
 {
-	last_player_order = player_order;
+
+	last_player_orders.push(player_order);
+	last_player_orders_pointer = 0;
 	clearInputWindow();
 	writelnText(STR_PROMPT_START + player_order + STR_PROMPT_END, false);
+}
+
+function get_prev_player_order()
+{
+	if (!last_player_orders.length) return '';
+	var last = last_player_orders[last_player_orders.length - 1 - last_player_orders_pointer];
+	if (last_player_orders_pointer < last_player_orders.length - 1) last_player_orders_pointer++;
+	return last;
+}
+
+function get_next_player_order()
+{
+	if (!last_player_orders.length) return '';
+	if (last_player_orders_pointer > 0) last_player_orders_pointer--;
+	return last_player_orders[last_player_orders.length - 1 - last_player_orders_pointer];
+
 }
 
 
@@ -1384,7 +1402,8 @@ function initializeInternalVars()
 	previous_verb = EMPTY_WORD;
 	previous_adject = EMPTY_WORD;
 	player_order_buffer = '';
-	last_player_order = '';
+	last_player_orders = [];
+	last_player_orders_pointer = 0;
 	graphicsON = true; 
 	soundsON = true; 
 	interruptDisabled = false;
@@ -1659,7 +1678,8 @@ function start()
 
 	// Assign arrow up key press to recover last order
     $('.prompt').keyup( function(e) {
-    	if (e.which  == 38) $('.prompt').val(last_player_order);
+    	if (e.which  == 38) $('.prompt').val(get_prev_player_order());
+    	if (e.which  == 40) $('.prompt').val(get_next_player_order());
     });
 
 

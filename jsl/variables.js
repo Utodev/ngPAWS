@@ -244,7 +244,8 @@ SYSMESS_YOUCANTTAKEOBJECTFROM = 69;
 
 
 // Parser vars
-var last_player_order = '';   // Store last player order, to be able to restore it when pressing arrow up
+var last_player_orders = [];   // Store last player orders, to be able to restore it when pressing arrow up
+var last_player_orders_pointer = 0;
 var parser_word_found;
 var player_order_buffer = '';
 var previous_verb = EMPTY_WORD;
