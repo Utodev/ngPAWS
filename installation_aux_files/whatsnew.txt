@@ -1,0 +1,169 @@
+﻿Beta 9 - November 2015
+=======================
+- Interpreter: plater can now access the whole history of commands using the arrow up/down keys.
+- Themes: added 5 different themes so writers can choose among them when creating a new game.
+- Runtime: tapping on the screen on mobile devices supporting webkit (like iOS Safari or Android browser) will generate a click, what allows player get through "press anykey" events. Won't work for other events that actually require a key pressed, like GETKEY condact.
+- Runtime: Block and anykey layers separated so there is no need to mess with css styles from runtime. Games using previous beta version will have to add <div class='anykey_layer' /></div> before the </body> tag in the game html file or ANYKEY/GETKEY and others won't work.
+- Runtime: now the player orders are copied in the output text using a specific "feedback" class, so its style can be changed.
+- Runtime: Added new sequence tag TOOLTIP (or TT) that allows a small tooltip to appear over a text when mouse is over it. i.e.: {TT|the lantern is on|lantern}
+- Runtime: Input box supports autocomplete now. It will use vocabulary verbs and text output as words to find one valid for autocompletion. Player can use tab key to complete words.
+- Runtime: Fixed bug in BLOCK condact.
+- Runtime: Automatic typo correction, so if someone types TAEK instead of TAKE it will be recognized as TAKE, whereas TAEK is not a vocabulary word as well.
+           The system supports a distance of two, meaning a word is matched to other if to get from word A to word B you need maximum two characters edit/delete/inserts. Of
+	       course words with a distance of 1 take precedence, and among those the one with lower vocabulary number is chosen. To avoid false matchings the system will not try to guess words if the player entered a 4 or less chars word, will only allow distance of 1 if player types words of 5 or 6 characters, and will allow distance of 2 for words longer than 6 chars. This feature can be disabled by setting bit 8 in flag 12.
+- Runtime: LOAD/SAVE now use sysmess 58 & 60 to show prompts for filename, instead of using internal strings in english that didn't fit well in spanish games.
+- Runtime: LOAD now executes DONE and not DESC after loading if the savegame requested was not found.
+- Runtime: END has been fixed, it was broken in Beta 8, sorry.
+- Runtime: TEXTPIC has been fixed, as the alignment options were not working well in some cases
+- Start Database: Modified sysmess 47 " and " so now it is " and¬", as ¬ symbol is considered a whitespace by ngPAWS and some text editor delete spaces at the end of lines, causing the message become " and" and making objects and exits listings look bad. Fixed also in the spanish start database (" y "==>" y¬").
+- Runtime: RAMSAVE now writes savegame into a global variable as usual, but  also to local storage. RAMLOAD will try to get data from global variable first, but if unavaliable, then tries to get it from local storage. That means if the game is reloaded by mistake (i.e. press F5 in browser), or just cause player dies and restarts, RAMSAVE contents are not lost. Also, RAMSAVE now does not execute an OK condact anymore, to allow silently saving the game status. All that together makes possible to create OOPS order.
+- Compiler: number values can be now described as inverse 32-bit binary values. Inverse means bit 0 is first, bit 31 is last. i.e: 11000000000000000000000000000000 equals 3.
+            Note: as ngPAWS uses bit 31 for values do mark indirection, bit 31 cannot have value 1, doing that will raise a compiler error. This feature has been built to allow libraries using data similar to objects attributes to be able to work with more comfortable parameter formats.
+
+
+Beta 8 - June 2015
+=======================
+
+- Plugins: Compiler allows now to create 'waitkey' type plugin condacts (as ANYKEY or GETKEY) that wait for a keypress to do something
+- Plugins: h_keydown hook has been modified in order to provide new functionality to those 'waitkey' condacts
+- Plugins: h_preProcess and h_postProcess hooks added (enable an option to do something just after or before running a process)
+- Runtime: added ASK plugin condact (a 'waitkey' type one)
+- Runtime: Text window can now be scrolled up/down using mouse wheel or PgUp/PgDown
+- Runtime: QUIT and END and now better supported, not using ugly javascript "confirm" anymore. 
+- Runtime: PAUSE condact changed to 'waitkey' type, even when no key is needed for it to finish it works in a very similar way. Also, the condact has been refactored and now does not block music, interrupt process, etc.
+- Runtime: Javascript code present in the index.html  file has been removed and added to the runtime.js file, so there is no javascript at all in the index file (apart of the files linked outside)
+- Runtime: Modified the way the texts are printed so the objects,  locations and sysmessage can make use of sequence tags in all cases
+- Runtime: Added support for "PROMPT" condact using HTML5 INPUT placeholder
+
+ 
+Beta 7 - March 2015
+=======================
+
+
+- Runtime: Added ISRESP and ISNOTRESP condacts
+- Runtime: added support to hide warnings and WARNINGS condact
+- Compiler: compiler is now freed from the 256 vocabulary words per type limit. Now limit is 2^32 per type. 255 is still the value for no-word though.
+- IDE: New IDE: ngPAWS Editor has been rebuilt using freepascal, so it's now 100% open source and it's also portable. Includes the following changes:
+  + The puzzle wizard has now a better integration with the editor, and allows editing puzzles previously created easily.
+  + The editor won't load all sections automatically, you decide which sections to open. If you prefer all them loaded automatically, there is an option to do it in the preferences section.
+- Runtime: Added ISDOALL, ISNOTDOALL, ISDONE, ISNOTDONE, ISMOV, ISNOTMOV and SPACE
+- Runtime: Added RESP and NORESP condacts to emulate the way the bit 7 of flag 58 works in original PAWS.
+- Compiler & Runtime: Fixed bug in DOALL condact, that prevented from using subprocesses during DOALL loop, and failed to properly jump to next entry in each iteration
+- Runtime: Fixed bug in SWAP condact, it was not working
+- Runtime: Fixed bug in LISTAT condact, that should not show sysmess 1 before listing the objects
+- Runtime: Fixed a bug in YOUTUBE condact, videos were not being shown
+- Runtime: Created the new video condact and library
+
+
+
+
+Beta 6 - January 2015
+=====================
+- Added new SYNONYM condact
+- Fixed bug in variables.js where NO_EXIT constant should be 255 and not 0. It was affecting SETEXIT and GETEXIT condacts.
+- Fixed bug in GRAPHIC condact
+- Removed references to extinct h_restart hook from queue/stack/sets plugins
+- Added support for local plugins (plugins usable for just one game)
+
+
+Beta 5 - October 2014
+=====================
+- Start database: several changes on the english start database
+- Runtime: Fixed AUTOG, that caused endless loop with some container objects.
+- Runtime: Added sysmess 68 and 69 to both english and spanish start database (for success and failure of taking items from supporters).
+- Runtime: Changed PUTIN condact so when second object has supporter attribute the new system message 68 is used instead of 44 on success, thus allowing proper message "You put xxx ON yyy" instead of "You put xxxx IN yyy". Same goes for sysmess 69 "you can't take xxx from yy"
+- Runtime: Fixed the article change function (the one that replaces "a" with "the" in some sentences, so it considers also "an" article)
+- Runtime: Fixed several typos in system messages constants where they were started by (SYSMES_ instead of SYSMESS_). None of them was affecting cause the typo was spreaded all over the code except for the one for SYSMESS_YOUREMOVEOBJECT that impeded removing clothes.
+- Runtime: Fixed a bug in trytoGet function that was not considering container weight when picking objects (it was considering only contents weight)
+- Runtime: Fixed a bug in LISTNPC condact that was showing comma separators only for last NPCs.
+- Runtime: Modified trytoGet function so the presence of a heavy non pickable object doesn't break doall loop
+
+
+Beta 4 - September 2014
+=======================
+
+- Start database: added first alpha version of english database
+- Start database: fixed two minor bugs in spanish database
+- Runtime: fixed bug in PLACE condact (it was not working)
+- Runtime: fixed bug in EXITS condact (locations with more than 3 exits were listed without commas)
+- Runtime: added aria support
+- Runtime: fixed issue with location 0 graphic (was not working as dark room picture as expected, now it works)
+- Compiler: some changes to make it compilable with minGW apart of Visual Studio. Now it is compilable with gcc also.
+- Runtime: fixed bug in MUL, DIV and MOD (they were not working)
+- IDE: added FADEOUT condact to syntax highlightning
+
+
+Beta 3 - June 2014
+==================
+
+New features
+------------
+
+- IDE: Edit box font size can be changed (context menu or F7/F8)
+
+- IDE: New IDE action buttons
+
+- IDE: Added button to access settings
+
+- IDE: Added new options: wordwrap, save before compile/run, hide toolbar, and preprocessor parameters
+
+- Runtime: added the new h_code hook, that allows plugin libraries to add their own responses to the start database.
+
+- Runtime: added the HOOK condact, that will work together with h_code hook for easy library including
+
+- Runtime: support for object context, now all items in a present supporter or container (whereas is either openable & open like an open box or just not openable like a cauldron)
+  are "present", so the implementation of condacts like PRESENT, ABSENT, GET and AUTOG have changed accordingly. In the end, what happens is you can get objects in present 
+  supporters/containers as if they were in the same room. As PRESENT condact has been changed, every entry in the start database that checked if object was "present" will also
+  react accordingly. This feature can be switched off by setting bit 7 of flag 12 (for backwards compatibility).
+
+- Runtime: Added support for sharp condacts (https://github.com/Utodev/ngPAWS/wiki/Sharp%20condacts)
+
+- Runtime: Added support for colon condacts (https://github.com/Utodev/ngPAWS/wiki/Colon%20condacts)
+
+- Runtime: Added support for code blocks (https://github.com/Utodev/ngPAWS/wiki/code%blocks)
+
+- Compiler: Now a file named as the input txp file, but with .spellcheck.txt extension will be generated by the compiler, allowing the writer to have all game texts in a single file in order to check them using any spellchecker.
+
+- Compiler: Modified the code generated by the compiler so the doall condition for every entry is shorter (so the javascript file size is smaller), modified also the runtime accordingly.
+
+- Compiler/runtime: Added support for ANYKEY and GETKEY condacts (basic support)
+
+
+Bug fixes
+---------
+
+- Start database: fixed a bug that forced a carriage return when examining a supporter object with nothing on it.
+
+- Samples: fixed the sample_hook_replacement library.
+
+- Runtime: fixed bug with container/suporter contents calculation that sometimes produced an endless loop.
+
+- Runtime: fixed a bug with restart() function, now to restart the game the systems just reloads the web page.
+
+- Runtime: now nouns belowe #50 are considered proper nouns and not considered to be replaced by pronouns (as in PAWS)
+
+- Runtime: fixed bug in AUTOR (when object found it tried to wear it instead of removing)
+
+- IDE: Fixed a bug with txtpaws integration (multimedia file were not found)
+
+- IDE: fixed a bug with properly calling txtpaws when multimedia resources were present
+
+- Compiler: fixed a bug that made multimedia files starting by n, t or other characters that are part of javascript escape sequences (\t, \n) to fail
+
+- Compiler: fixed problems with messages and system messages containing double quotes (now they are replaced by single quotes)
+
+- Runtime: saving game as string was limited by window.prompt length, that is browser dependant, so now runtimes always saves to localStorage (what has been tested in latest Chrome, IE and Firefox and works fine). In other words, no more long strings to remember savegame. Due to this change the Base64 class has been removed (not needed anymore)
+
+- Compiler/runtime: fixed RESTART condact.
+
+- Runtime : fixed a bug that sometimes made some music/sound enter an endless loop
+
+
+New plugin libraries/condacts (not in the package, but at github repository)
+----------------------------------------------------------------------------
+
+- Added longdescription_lib to github repository (this library implements a way to easily add long descriptions to objects that are shown when examined)
+
+- Added stack_queue_lib to github repository (this library implements stack and queue structures, together with PUSH/POP/QPUSH/QPOP condacts)
+
+- Added sets_lib to github repository (this library implements set structures, together with SPUSH/SPOP/IN/NOTIN condacts)
