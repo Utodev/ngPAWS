@@ -9,6 +9,7 @@
 //                                                         Auxiliary functions                                            //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 // General functions
 String.prototype.rights= function(n){
     if (n <= 0)
