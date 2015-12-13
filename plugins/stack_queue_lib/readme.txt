@@ -9,4 +9,4 @@ QPUSH setno value => Add value to a queue
 QPOP setno flagno => Pops value from a queue and stores it in the flag (first in, first out)
 
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT)
