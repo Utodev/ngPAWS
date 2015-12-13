@@ -40,7 +40,7 @@ https://github.com/Utodev/ngPAWS/issues
 License
 -------
 The compiler was developed first by Yokiyoki for his PAW clone "Paguaglús", it has been modified during the years by me (Carlos Sanchez) for the Superglus project and now I have adapted it to generate javascript instead of glulx assembler. It's (C) Yokiyoki and Carlos Sanchez and it's released under the the GPL v2 or later license.
-it's released under the GPL license.
+
 
 The IDE is developed by Carlos Sánchez, and it's released under the GPL v2 or later license.
 
