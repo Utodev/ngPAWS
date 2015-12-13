@@ -8,4 +8,4 @@ IN setno value => Condition, successful if value in set
 NOTIN setno value  => Condition, successful if value not in set
 
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT)
