@@ -30,4 +30,4 @@ Ten en cuenta:
 
 La idea original de esta librería proviene de una idea de edlobez, así que lo recuerdo aquí como agradecimiento.
 
-Licencia: Dominio público
+Licencia: MIT (https://opensource.org/licenses/MIT)

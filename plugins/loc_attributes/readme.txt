@@ -34,4 +34,4 @@ Please notice that due to a limitation in ngPAWS compiler, that uses last bit of
 Once initialized, they can be used normally (and can be set with LSET), but using them is not recommended unless all the other 62 attributes have been used.
 
 
-License: Public Domain
+License: MIT (https://opensource.org/licenses/MIT)

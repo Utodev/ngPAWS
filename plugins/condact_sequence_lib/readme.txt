@@ -30,4 +30,4 @@ Take in mind:
 
 Credits for this library goes to edlobez, whose ideas led me to think this library was a good thing to have.
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT)

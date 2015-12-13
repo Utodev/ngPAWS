@@ -34,4 +34,4 @@ Debido a una limitación del compilador de ngPAWS, el último bit de cada parámetr
 LINIT no se pueden usar los bits 31 y 63, o dicho de otro modo, siempre deben valer 0. Una vez hecha la inicialización, se pueden usar dichos bits normalmente, aunque no obstante
 recomendamos no usarlos salvo que ya hayamos usado los otros 62.
 
-Licencia: Dominio público
+Licencia: MIT (https://opensource.org/licenses/MIT)

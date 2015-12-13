@@ -12,4 +12,4 @@ ATTRGET " 10 fAux
 
 NOTA: Los atributos deben tener un nombre valido a nivel javascript, lo cual por simplificar significa que deben estar formados por caracteres a-z, A-Z, 0-9 y guión bajo, sin acentos y sin comenzar por un número.
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT)

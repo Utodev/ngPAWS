@@ -12,4 +12,4 @@ ATTRGET "hitpoints" 10 fAux
 
 NOTE: attribute names should be valid at javascript level, so basically they should contain only characters from a-z, A-Z, 0-9 and underscore, never starting with a number.
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT)
