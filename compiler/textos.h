@@ -28,6 +28,6 @@ extern int ultTextoWrite;
 
 void agregarTexto (tabla_mensajes *, int, char *);
 
-void dumpTexto (tabla_mensajes *);
 
-char * limpiarTexto(char *cad);
+
+

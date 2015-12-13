@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+#include "condacto.h"
 #include "lexico.h"
 #include "sintacti.h"
 #include "errores.h"

@@ -65,27 +65,5 @@ agregarTexto (tabla_mensajes *tabla, int numero, char *texto)
   tabla->mensajes[tabla->ocupado-1].mensaje = texto;
 }
 
-void
-dumpTexto (tabla_mensajes *tabla)
-{
-  int i;
-  for (i = 0; i < tabla->ocupado; i++)
-    /*if (tabla->mensajes[i] != NULL)*/
-      printf ("%d:\n%s\n", i, tabla->mensajes[i]);
-}
 
-char * limpiarTexto(char *cad)
-{
-unsigned int i;
-  for (i = 0; i < strlen(cad); i++)
-  {
-	  
-	  if (cad[i]=='\\') 
-	  {
-		  cad[i++]=' ';
-		  cad[i]=' ';
-	  }
-  }
-  return cad;
-}
 

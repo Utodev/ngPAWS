@@ -1,8 +1,11 @@
 
 #include "config.h"
 
-#define TRUE (1==1)
-#define FALSE (!(TRUE))
+
+#ifndef TRUE
+ #define TRUE (1==1)
+ #define FALSE (!(TRUE))
+#endif
 
 #ifdef WIN32
 

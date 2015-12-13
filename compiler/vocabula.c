@@ -143,8 +143,10 @@ PPalabra SiguientePalabra (PPalabra anterior)
   actual = lista.rootNode;
 
   if (anterior == NULL)		/* first one requested */
+   { 
     if (actual == NULL)  return NULL;
     else return &(actual->palabra);
+   }
 
   while ((actual != NULL) && (&(actual->palabra) != anterior))
     actual = actual->sig;

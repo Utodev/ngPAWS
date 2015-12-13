@@ -338,10 +338,10 @@ void VolcarProcesos ()
 		/* generar el codigo de entrada a la entrada verbo + nombre*/
 		fprintf (fichJS, "\t// %s %s\n\tp%03de%04d:\n\t{\n", verboDeLaEntrada, nombreDeLaEntrada,npro, nent );
 		fprintf (fichJS, " \t\tif (skipdoall('p%03de%04d')) break p%03de%04d;\n",   npro, nent, npro, nent);    		// generar codigo de saltarse la entrada hasta la que toque si es un bucle doall
-		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\tif (in_response)\n\t\t{\n",   npro, nent);   
+		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\tif (in_response)\n\t\t{\n");   
 	    if (laEntrada->verbo != -1) fprintf (fichJS, "\t\t\tif (!CNDverb(%d)) break p%03de%04d;\n",  laEntrada->verbo, npro, nent);
 	    if (laEntrada->nombre != -1) fprintf (fichJS, "\t\t\tif (!CNDnoun1(%d)) break p%03de%04d;\n", laEntrada->nombre, npro, nent);
-		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\t}\n",   npro, nent); 
+		if (laEntrada->verbo + laEntrada->nombre != -2) fprintf (fichJS, " \t\t}\n"); 
 		/* generar codigo de condactos */
 		
 		numblocks = 0;
@@ -404,10 +404,10 @@ void VolcarProcesos ()
 				fprintf (fichJS, "\t\tif (!CND%s(%s%s%s)) break p%03de%04d;\n",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
 				break;
 			case dot:
-				fprintf (fichJS, "\t\tif (CND%s(%s%s%s))\n ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				fprintf (fichJS, "\t\tif (CND%s(%s%s%s))\n ",  aMinusculas (elCondacto.nombre), p1,p2,p3);
 				break;
 			case colon:
-				fprintf (fichJS, "\t\twhile (CND%s(%s%s%s)) \n ",  aMinusculas (elCondacto.nombre), p1,p2,p3, npro, nent );
+				fprintf (fichJS, "\t\twhile (CND%s(%s%s%s)) \n ",  aMinusculas (elCondacto.nombre), p1,p2,p3 );
 				break;
 			case accion:
 				fprintf (fichJS, " \t\tACC%s(%s%s%s);\n", aMinusculas (elCondacto.nombre), p1, p2, p3);
@@ -460,11 +460,11 @@ void VolcarProcesos ()
 				case aDescribir:
 				case aEnd:
 				case aFinDeTabla:
-					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n", npro); else
+					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n"); else
 					fprintf (fichJS, "\t\tbreak pro%03d_restart;\n", npro); 
 				break;
 				case aCondicional:
-					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n", npro); else
+					if (numanykeyopen)fprintf (fichJS, "\t\treturn;\n"); else
 					fprintf (fichJS, "\t\tif (!success) break pro%03d_restart;\n", npro); 
 				break;
 				case aHook:

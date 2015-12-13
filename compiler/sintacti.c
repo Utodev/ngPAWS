@@ -3,6 +3,7 @@
 
 #include "config.h"
 
+#include "cfgvars.h"
 #include "lexico.h"
 #include "sintacti.h"
 #include "errores.h"

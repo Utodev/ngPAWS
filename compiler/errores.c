@@ -46,7 +46,7 @@ error (tipoError tipo, int nError)
 	  printf ("%s:%d:G040: General error: error while loading plugins.\n", nombre_archivo, lineaLeida);
 	  break;
 	default:
-	  printf ("%s:%d:G000: General error: generic error.\n");
+	  printf ("%s:%d:G000: General error: generic error.\n", nombre_archivo, lineaLeida);
 	}
       break;
     case errLexSint:
@@ -112,7 +112,7 @@ error (tipoError tipo, int nError)
       switch (nError)
 	{
 	case 0:
-	  printf ("V010: Vocabulary error: duplicated word.\n", lineaLeida);
+	  printf ("V010: Vocabulary error: duplicated word.\n");
 	  break;
 	}
       break;
@@ -157,14 +157,14 @@ error (tipoError tipo, int nError)
 	  break;
 	case 11:
 	  printf
-	    ("S120: Semantic error: invalid object number or invalid order.\n", lexema);
+	    ("S120: Semantic error: invalid object number or invalid order.\n");
 	  break;
 	case 12:
 		printf ("S130: Semantic error: \"%s\" is not a condact or cannot be used with # or : modifiers.\n", lexema);
 	  break;
 	case 13:
 	  printf
-	    ("S140: Semantic error: invalid process number or invalid order.\n", lexema);
+	    ("S140: Semantic error: invalid process number or invalid order.\n");
 	  break;
 	case 14:
 	  printf ("S150: Semantic error: \"%s\" is not a verb in the vocabulary.\n", lexema);
