@@ -6,4 +6,4 @@ Instructions:
 2) Change the location texts so they have two texts separated by a pipe character (|). For instance convert: "a chest" into "a chest|A heavy chest with a carved lion on it."
 
 
-License: Public Domain 
+License: MIT (https://opensource.org/licenses/MIT) 
