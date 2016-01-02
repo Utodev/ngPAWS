@@ -27,6 +27,11 @@ private
  FEditorSelectLineColor : Integer;
  FEditorFontName : String;
 
+ FVocHighlightFile : String;
+ FCodeHighlightFile : String;
+ FDataHighlightFile : String;
+
+
 public
  property CompilerPath : String read FCompilerPath write FCompilerPath;
  property PreprocessorPath : String read FPreprocessorPath write FPreprocessorPath;
@@ -46,6 +51,10 @@ public
  property EditorFontName : String read FEditorFontName write FEditorFontName;
  property EditorSelectLineColor : Integer read FEditorSelectLineColor write FEditorSelectLineColor;
 
+ property VocHighlightFile : String read FVocHighlightFile write FVocHighlightFile;
+ property CodeHighlightFile : String read FCodeHighlightFile write FCodeHighlightFile;
+ property DataHighlightFile : String read FDataHighlightFile write FDataHighlightFile;
+
  procedure LoadConfig();
  procedure SaveConfig();
 
@@ -55,6 +64,10 @@ public
  procedure AddRecentFile(Filename:String);
 
  function FullPath(Path:String):String;
+  function FullResourcesPath(Path:String):String;
+
+
+
 end;
 
 
@@ -83,7 +96,7 @@ begin
   {$ELSE}
   FPreprocessorPath := IniFile.ReadString('Paths','PreprocessorPath', FullPath('txtpaws'));
   FCompilerPath := IniFile.ReadString('Paths','CompilerPath', FullPath('ngpc'));
-  FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath',FullPath('database.start'));
+  FStartDatabasePath := IniFile.ReadString('Paths','StartDatabasePath',FullResourcesPath('database.start'));
   {$ENDIF}
 
 
@@ -107,6 +120,11 @@ begin
 
 
   FLang :=  IniFile.ReadString('Lang','Lang','');
+
+  FVocHighlightFile:= IniFile.ReadString('Highlight','VocHighLight', FullResourcesPath('VocHighLight.ini'));
+  FDataHighlightFile:= IniFile.ReadString('Highlight','DataHighLight', FullResourcesPath('DataHighLight.ini'));
+  FCodeHighlightFile:= IniFile.ReadString('Highlight','CodeHighLight', FullResourcesPath('CodeHighLight.ini'));
+
   IniFile.Free();
   LoadRecentFiles();
 end;
@@ -126,7 +144,7 @@ begin
 
   IniFile.WriteString('Paths','PreprocessorPath', FullPath(FPreprocessorPath));
   IniFile.WriteString('Paths','CompilerPath', FullPath(FCompilerPath));
-  IniFile.WriteString('Paths','StartDatabasePath', FullPath(FStartDatabasePath));
+  IniFile.WriteString('Paths','StartDatabasePath', FullResourcesPath(FStartDatabasePath));
 
   IniFile.WriteString('URLS','HelpBaseURL', FHelpBaseURL);
 
@@ -201,14 +219,30 @@ begin
   SaveRecentFiles();
 end;
 
+
+// Returns full path of compiler or preprocessor relative to ngpaws IDE, for windows it's not required so it returns the path as received
 function TConfig.FullPath(Path:String):String;
 begin
-  {$ifndef Windows}
+  {$ifdef Linux}
     if (Pos('/',Path)=0) then Path := ExtractFilePath(fpReadLink('/proc/self/exe')) + Path;
+  {$endif}
+  {$ifdef darwin}
+    if (Pos('/',Path)=0) then Path := ExtractFilePath(ParamStr(0)) + Path;
   {$endif}
   Result := Path;
 
 end;
+
+
+// Returns full path of resources relative to ngpaws IDE, for windows it's not required, for linux is same path than ngpaws IDE, for OSX is relative to path of IDE
+function TConfig.FullResourcesPath(Path:String):String;
+begin
+  {$ifdef darwin}
+    Path := ExtractFilePath(ParamStr(0)) + '../Resources/' + Path;
+  {$endif}
+  Result :=  Path;
+end;
+
 
 end.
 

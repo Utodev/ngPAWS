@@ -157,6 +157,7 @@ type
     procedure OpenBrowser(URL: String);
     procedure MRecentFilesClick(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
+    procedure SetOSXShortcuts();
 
 
   private
@@ -236,9 +237,11 @@ procedure TfMain.FormCreate(Sender: TObject);
 begin
   Config := TConfig.Create();
   Config.LoadConfig();
-  if FileExists('CodeHighLight.ini') then CodeHighlighter.LoadHighLighter('CodeHighLight.ini');
-  if FileExists('DataHighLight.ini') then DataHighlighter.LoadHighLighter('DataHighLight.ini');
-  if FileExists('VocHighLight.ini') then VOCHighlighter.LoadHighLighter('VocHighLight.ini');
+
+  if FileExists(Config.CodeHighlightFile) then CodeHighlighter.LoadHighLighter(Config.CodeHighlightFile);
+  if FileExists(Config.DataHighlightFile) then DataHighlighter.LoadHighLighter(Config.DataHighlightFile);
+  if FileExists(Config.VocHighlightFile) then VOCHighlighter.LoadHighLighter(Config.VocHighlightFile);
+
   AutoCompleteBaseList := TStringList.Create();
   AutoCompleteBaseList.AddStrings(CodeHighlighter.Objects);
   AutoCompleteBaseList.AddStrings(CodeHighlighter.KeyWords);
@@ -251,6 +254,9 @@ end;
 
 procedure TfMain.FormShow(Sender: TObject);
 begin
+  {$ifdef darwin}
+  SetOSXShortcuts();
+  {$endif}
   Toolbar.Visible:=Config.ShowToolBar;
   if Config.Lang<>'' then SetDefaultLang(Config.Lang);
   CheckPaths();
@@ -330,7 +336,7 @@ begin
   begin
    CompileOutputListBox.Visible:=false;
    if (not FileExists(ExtractFilePath(TXP.FilePath) + 'index.html')) then ShowMessage(S_INDEX_NOT_FOUND)
-      else OpenBrowser(ExtractFilePath(TXP.FilePath) + 'index.html');
+      else OpenBrowser({$ifdef darwin}'file://' + {$endif} ExtractFilePath(TXP.FilePath) + 'index.html');
   end;
 end;
 
@@ -574,6 +580,7 @@ end;
 procedure TfMain.BuildProcessMenu(TXP: TTXP);
 var Item : TMenuItem;
     i : integer;
+    altKey : integer;
 begin
   MProcesses.Clear();
   for i:= 0 to TXP.LastProcess do
@@ -584,7 +591,12 @@ begin
       Item.Name := 'MProcess'  + IntToStr(i);
       Item.Tag := i;
       Item.OnClick := @MProcessItemClick;
-      if (i<9) then Item.ShortCut := $8000 + 48 +i;
+      {$ifdef darwin}
+      altKey := $3000;
+      {$else}
+      altKey := $8000;
+      {$endif}
+      if (i<9) then Item.ShortCut := altKey+ 48 +i;
       if (i=0) then Item.ShortCut := $8000 + byte('R');
       MProcesses.Add(Item);
     end;
@@ -1013,6 +1025,7 @@ end;
 
 procedure TfMain.OpenBrowser(URL: String);
 begin
+
 if not OpenURL(URL) then ShowMessage(S_BROWSER_NOT_FOUND);
 end;
 
@@ -1278,6 +1291,40 @@ begin
   Result := true;
 end;
 
+// Sets OSX shorcuts by changing current ones by the same but $3000 less, what actually changes Ctrl Key with Windows/Apple/Cmd key
+// Plus some specific changes
+procedure TfMain.SetOSXShortcuts();
+begin
+ MCopy.ShortCut:= MCopy.ShortCut - $3000;
+ MCut.ShortCut:= MCut.ShortCut - $3000;
+ MPaste.ShortCut:= MPaste.ShortCut - $3000;
+ MUndo.ShortCut:= MUndo.ShortCut - $3000;
+ MRedo.ShortCut:= MRedo.ShortCut - $3000;
+ MFind.ShortCut:= MFind.ShortCut - $3000;
+ MReplace.ShortCut:= MReplace.ShortCut - $3000;
+ MSave.ShortCut:= MSave.ShortCut - $3000;
+ MQuit.ShortCut:= MQuit.ShortCut - $3000;
+ MOptions.ShortCut:=$1000 + VK_LCL_COMMA;  //cmd+,
+ PMCondactHelp.Shortcut := $1000 + VK_F1;  // cmd+F1
+ PMCondactHelp.ShortCutKey2 := $4000 + VK_F1; // Alt+F1
+
+ PMCopy.ShortCut:=PMCopy.ShortCut  - $3000;
+ PMCut.ShortCut:=PMCut.ShortCut  - $3000;
+ PMPaste.ShortCut:=PMPaste.ShortCut  - $3000;
+
+
+ // Data section, Alt to Ctrl
+ MDefinitions.ShortCut:= MDefinitions.ShortCut-$4000;
+ MVocabulary.ShortCut:= MVocabulary.ShortCut-$4000;
+ MLocations.ShortCut:= MLocations.ShortCut-$4000;
+ MConnections.ShortCut:= MConnections.ShortCut-$4000;
+ MObjectTexts.ShortCut:= MObjectTexts.ShortCut-$4000;
+ MObjectData.ShortCut:= MObjectData.ShortCut-$4000;
+ mSystemMessages.ShortCut:= mSystemMessages.ShortCut-$4000;
+ MMessages.ShortCut:= MMessages.ShortCut-$4000;
+
+
+end;
 
 end.
 

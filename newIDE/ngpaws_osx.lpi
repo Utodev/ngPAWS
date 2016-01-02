@@ -13,7 +13,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="..\..\Release\languages"/>
+      <OutDir Value="..\..\ReleaseOSX\languages"/>
     </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
@@ -25,7 +25,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\..\Release\ngpaws"/>
+            <Filename Value="..\..\Release\ngpaws_osx"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -64,7 +64,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\..\Release\ngpaws"/>
+            <Filename Value="..\..\ReleaseOSX\ngpaws"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -112,7 +112,7 @@
     </RequiredPackages>
     <Units Count="10">
       <Unit0>
-        <Filename Value="ngpaws.lpr"/>
+        <Filename Value="ngpaws_osx.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
@@ -180,7 +180,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="Release\ngpaws"/>
+      <Filename Value="..\..\Release\ngpaws_osx"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

@@ -28,9 +28,13 @@ var aProcess : TProcess;
     ngPAWSLIBPATH : String;
     isEscaped : Boolean;
 begin
-  {$IFNDEF Windows}
+  {$IFDEF Linux}
   ngPAWSLIBPATH := GetEnvironmentVariable('NGPAWS_LIBPATH');
   if (ngPAWSLIBPATH) = '' then ngPAWSLIBPATH:=ExtractFilePath(fpReadLink('/proc/self/exe'));
+  {$ENDIF}
+  {$IFDEF darwin}
+  ngPAWSLIBPATH := GetEnvironmentVariable('NGPAWS_LIBPATH');
+  if (ngPAWSLIBPATH) = '' then ngPAWSLIBPATH := ExtractFilePath(ParamStr(0)) + '../Resources/';
   {$ENDIF}
 
   aMemStream := TMemoryStream.Create();
@@ -76,4 +80,4 @@ begin
 end;
 
 end.
-
+
