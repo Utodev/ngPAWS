@@ -261,7 +261,7 @@ var interruptDisabled = false;
 var showWarnings = true;
 
 // waitkey commands callback function
-var waitkey_callback_function = null;
+var waitkey_callback_function = [];
 
 //PAUSE
 var inPause=false;

@@ -86,14 +86,13 @@ function getLevenshteinDistance (a, b)
 
 function waitKey(callbackFunction)
 {
-	waitkey_callback_function = callbackFunction;
+	waitkey_callback_function.push(callbackFunction);
 	showAnykeyLayer();
 }
 
 function waitKeyCallback()
 {
- 	var callback = waitkey_callback_function;
- 	waitkey_callback_function = null;
+ 	var callback = waitkey_callback_function.pop();
 	callback();
 	if (describe_location_flag) descriptionLoop();  		
 }
@@ -271,7 +270,7 @@ function implementTag(tag)
 	switch(tagparams[0].toUpperCase())
 	{
 		case 'URL': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					return '<a target="_blank" href="' + tagparams[1]+ '">' + tagparams[2] + '</a>';
+					return '<a target="newWindow" href="' + tagparams[1]+ '">' + tagparams[2] + '</a>'; // Note: _blank would get the underscore character replaced by current selected object so I prefer to use a different target name as most browsers will open a new window
 					break;
 		case 'CLASS': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					  return '<span class="' + tagparams[1]+ '">' + tagparams[2] + '</span>';
@@ -1767,7 +1766,7 @@ function start()
 			if (endNOresponseCode == e.keyCode) 
 			{
 	           inQUIT=false;
-			   waitkey_callback_function = null;
+			   waitkey_callback_function.pop();
 			   hideAnykeyLayer();
 			   e.preventDefault();
 			}
