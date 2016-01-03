@@ -168,7 +168,7 @@ function getObjectFixArticles(objno)
 	}
 	else
 	{
-		if ( (candidate!='un') && (candidate!='una') && (candidate!='unas') && (candidate!='unas') && (candidate!='alguna') && (candidate!='algunos') && (candidate!='algunas') && (candidate!='alguno')) return object_text;
+		if ( (candidate!='un') && (candidate!='una') && (candidate!='unos') && (candidate!='unas') && (candidate!='alguna') && (candidate!='algunos') && (candidate!='algunas') && (candidate!='algun')) return object_text;
 		var gender = getAdvancedGender(objno);
 		if (gender == 'F') return 'la ' + object_words.join(' ');
 		if (gender == 'M') return 'el ' + object_words.join(' ');
@@ -267,6 +267,9 @@ function implementTag(tag)
 	for (var tagindex=0;tagindex<tagparams.length-1;tagindex++) tagparams[tagindex] = tagparams[tagindex].trim();
 	if (tagparams.length == 0) {writeWarning(STR_INVALID_TAG_SEQUENCE_EMPTY); return ''}
 
+	var resolved_hook_value = h_sequencetag(tagparams);
+	if (resolved_hook_value!='') return resolved_hook_value;
+
 	switch(tagparams[0].toUpperCase())
 	{
 		case 'URL': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
@@ -355,7 +358,7 @@ function implementTag(tag)
 					 }
 					break;
 
-			default : return h_sequencetag(tagparams);
+		default : return '[[[' + STR_INVALID_TAG_SEQUENCE_BADTAG + ' : ' + tagparams[0] + ']]]';
 	}
 }
 
