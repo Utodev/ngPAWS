@@ -512,7 +512,9 @@ msgid "Text on failure"
 msgstr "Texto en caso de fallo"
 
 #: tfpuzzlewizard.labelinstrructions3.caption
-msgid "In case of success, please specify text output, and add any other actions that should be performed."
+#, fuzzy
+#| msgid "In case of success, please specify text output, and add any other actions that should be performed."
+msgid "In case of success, please specify text output, and add any other actions that should be performed ."
 msgstr "En caso de éxito, especifique que se escribirá, y otras acciones a ejecutarse (si hay alguna)."
 
 #: tfpuzzlewizard.labelinstructions1.caption
@@ -632,7 +634,7 @@ msgstr ""
 "El objeto <....> aparece en la localidad <....>\n"
 "El flag <....> es incrementado en  <....>\n"
 "El flag <....> es decrementado en <....>\n"
-"El valor del flag <....>es puesto a <....>\n"
+"El valor del flag <....> pasa a ser <....>\n"
 "Destruye la conexion en dirección <....>\n"
 "Crea o modifica la conexión en direccion <....> a la localidad <....>\n"
 
@@ -685,7 +687,7 @@ msgstr ""
 "El objeto <....> no está en la localidad <....>\n"
 "El valor del flag <....> es <....>\n"
 "El valor de flag <....> no es <....>\n"
-"El vloar del flag <....> es mayor que <....>\n"
+"El valor del flag <....> es mayor que <....>\n"
 "El valor del flag <....> es menor que <....>\n"
 
 #: uglobals.s_copyright

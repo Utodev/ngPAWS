@@ -512,7 +512,7 @@ msgid "Text on failure"
 msgstr ""
 
 #: tfpuzzlewizard.labelinstrructions3.caption
-msgid "In case of success, please specify text output, and add any other actions that should be performed."
+msgid "In case of success, please specify text output, and add any other actions that should be performed ."
 msgstr ""
 
 #: tfpuzzlewizard.labelinstructions1.caption
