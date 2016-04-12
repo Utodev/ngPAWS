@@ -865,7 +865,7 @@ end;
 
 procedure TfMain.PageControlChange(Sender: TObject);
 begin
-  TSynEdit(PageControl.ActivePage.Controls[0]).SetFocus();
+  //TSynEdit(PageControl.ActivePage.Controls[0]).SetFocus();
 end;
 
 procedure TfMain.PageControlChanging(Sender: TObject; var AllowChange: Boolean);

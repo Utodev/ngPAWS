@@ -6,7 +6,7 @@ object fMain: TfMain
   Align = alClient
   AlphaBlend = True
   Caption = 'ngPAWS'
-  ClientHeight = 600
+  ClientHeight = 580
   ClientWidth = 908
   Color = 2238503
   Icon.Data = {
@@ -718,16 +718,16 @@ object fMain: TfMain
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.4.2.0'
   WindowState = wsMaximized
   object PanelBackground: TPanel
     Left = 0
-    Height = 600
+    Height = 580
     Top = 0
     Width = 908
     Align = alClient
     Caption = 'ngPAWS Editor (C) 2015 Uto'
-    ClientHeight = 600
+    ClientHeight = 580
     ClientWidth = 908
     Font.Color = clSilver
     ParentFont = False
@@ -735,7 +735,7 @@ object fMain: TfMain
     OnClick = PanelBackgroundClick
     object PageControl: TPageControl
       Left = 1
-      Height = 378
+      Height = 358
       Top = 51
       Width = 906
       Align = alClient
@@ -4057,7 +4057,7 @@ object fMain: TfMain
       Left = 1
       Height = 170
       Hint = 'Compiler output'
-      Top = 429
+      Top = 409
       Width = 906
       Align = alBottom
       Color = 2238503
@@ -4251,7 +4251,7 @@ object fMain: TfMain
     Enabled = False
     Comments = []
     DetectPreprocessor = False
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     Markup = False
     Entity = False
     DollarVariables = False
@@ -4263,7 +4263,7 @@ object fMain: TfMain
     Enabled = False
     Comments = []
     DetectPreprocessor = False
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     Markup = False
     Entity = False
     DollarVariables = False
@@ -4275,7 +4275,7 @@ object fMain: TfMain
     Enabled = False
     Comments = []
     DetectPreprocessor = False
-    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃ'
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„’“™šœ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÂÃÅÆâ'
     Markup = False
     Entity = False
     DollarVariables = False
