@@ -14,10 +14,10 @@ object fPuzzleWizard: TfPuzzleWizard
     Height = 430
     Top = 0
     Width = 640
-    ActivePage = TabSheetActions
+    ActivePage = TabSheetVocLoc
     Align = alTop
     ShowTabs = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheetVocLoc: TTabSheet
       Caption = 'Vocabulary & Location'
@@ -59,13 +59,15 @@ object fPuzzleWizard: TfPuzzleWizard
           OnChange = CheckBoxRequiresNounChange
           TabOrder = 1
         end
-        object LabelVerb: TLabel
+        object LabelVerb: TStaticText
           Left = 24
           Height = 15
           Top = 8
-          Width = 23
+          Width = 120
           Caption = 'Verb'
+          Color = clDefault
           ParentColor = False
+          TabOrder = 14
         end
         object EditAdject1: TEdit
           Left = 24
@@ -191,14 +193,16 @@ object fPuzzleWizard: TfPuzzleWizard
           Enabled = False
           TabOrder = 1
         end
-        object LabelLocationTOF: TLabel
+        object LabelLocationTOF: TStaticText
           Left = 16
           Height = 15
           Hint = 'Response to player if he/she tries to perform this action in other location'
           Top = 80
-          Width = 74
+          Width = 162
           Caption = 'Text on failure'
+          Color = clDefault
           ParentColor = False
+          TabOrder = 3
         end
         object EditLocationTOF: TEdit
           Left = 16
@@ -209,17 +213,17 @@ object fPuzzleWizard: TfPuzzleWizard
           TabOrder = 2
         end
       end
-      object LabelInstructions1: TLabel
+      object LabelInstructions1: TStaticText
         Left = 8
         Height = 40
         Top = 16
         Width = 607
-        AutoSize = False
         Caption = 'Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location'
+        Color = clDefault
         Font.Color = clHighlight
-        ParentColor = False
         ParentFont = False
-        WordWrap = True
+        ParentColor = False
+        TabOrder = 2
       end
     end
     object TabSheetConditions: TTabSheet
@@ -264,13 +268,15 @@ object fPuzzleWizard: TfPuzzleWizard
         ShowHint = True
         TabOrder = 2
       end
-      object LabelCondTOF: TLabel
+      object LabelCondTOF: TStaticText
         Left = 27
         Height = 15
         Top = 104
-        Width = 74
+        Width = 259
         Caption = 'Text on failure'
+        Color = clDefault
         ParentColor = False
+        TabOrder = 6
         Visible = False
       end
       object EditConditionTOF: TEdit
@@ -285,13 +291,15 @@ object fPuzzleWizard: TfPuzzleWizard
         TabOrder = 3
         Visible = False
       end
-      object LabelCondP1: TLabel
+      object LabelCondP1: TStaticText
         Left = 27
         Height = 15
         Top = 160
-        Width = 70
+        Width = 253
         Caption = 'LabelCondP1'
+        Color = clDefault
         ParentColor = False
+        TabOrder = 7
         Visible = False
       end
       object EditConditionP1: TEdit
@@ -305,13 +313,15 @@ object fPuzzleWizard: TfPuzzleWizard
         TabOrder = 4
         Visible = False
       end
-      object LabelCondP2: TLabel
+      object LabelCondP2: TStaticText
         Left = 27
         Height = 15
         Top = 224
-        Width = 70
+        Width = 254
         Caption = 'LabelCondP2'
+        Color = clDefault
         ParentColor = False
+        TabOrder = 8
         Visible = False
       end
       object EditConditionP2: TEdit
@@ -325,17 +335,17 @@ object fPuzzleWizard: TfPuzzleWizard
         TabOrder = 5
         Visible = False
       end
-      object LabelInstructions2: TLabel
+      object LabelInstructions2: TStaticText
         Left = 19
         Height = 40
         Top = 16
         Width = 600
-        AutoSize = False
         Caption = 'If any additional conditions should be met for player success, add them here.'
+        Color = clDefault
         Font.Color = clHighlight
-        ParentColor = False
         ParentFont = False
-        WordWrap = True
+        ParentColor = False
+        TabOrder = 9
       end
     end
     object TabSheetActions: TTabSheet
@@ -369,13 +379,15 @@ object fPuzzleWizard: TfPuzzleWizard
         ShowHint = True
         TabOrder = 1
       end
-      object LabelActionP1: TLabel
+      object LabelActionP1: TStaticText
         Left = 20
         Height = 15
         Top = 96
-        Width = 76
+        Width = 268
         Caption = 'LabelActionP1'
+        Color = clDefault
         ParentColor = False
+        TabOrder = 6
         Visible = False
       end
       object EditActionP1: TEdit
@@ -389,13 +401,15 @@ object fPuzzleWizard: TfPuzzleWizard
         TabOrder = 2
         Visible = False
       end
-      object LabelActionP2: TLabel
+      object LabelActionP2: TStaticText
         Left = 20
         Height = 15
         Top = 160
-        Width = 76
+        Width = 268
         Caption = 'LabelActionP2'
+        Color = clDefault
         ParentColor = False
+        TabOrder = 7
         Visible = False
       end
       object EditActionP2: TEdit
@@ -428,13 +442,15 @@ object fPuzzleWizard: TfPuzzleWizard
         ClientHeight = 85
         ClientWidth = 594
         TabOrder = 5
-        object LabelTOS: TLabel
+        object LabelTOS: TStaticText
           Left = 8
           Height = 15
           Top = 16
-          Width = 81
+          Width = 264
           Caption = 'Text on success'
+          Color = clDefault
           ParentColor = False
+          TabOrder = 1
         end
         object EditTOS: TEdit
           Left = 8
@@ -447,17 +463,17 @@ object fPuzzleWizard: TfPuzzleWizard
           TabOrder = 0
         end
       end
-      object LabelInstrructions3: TLabel
+      object LabelInstrructions3: TStaticText
         Left = 16
         Height = 40
         Top = 16
         Width = 588
-        AutoSize = False
         Caption = 'In case of success, please specify text output, and add any other actions that should be performed .'
+        Color = clDefault
         Font.Color = clHighlight
-        ParentColor = False
         ParentFont = False
-        WordWrap = True
+        ParentColor = False
+        TabOrder = 8
       end
     end
     object TabSheetCodeGen: TTabSheet
@@ -964,17 +980,17 @@ object fPuzzleWizard: TfPuzzleWizard
           end
         end
       end
-      object LabelInstructions4: TLabel
+      object LabelInstructions4: TStaticText
         Left = 16
         Height = 40
         Top = 16
         Width = 600
-        AutoSize = False
         Caption = 'Puzzle code has been generated, please click "Finish" to add it to your game code.'
+        Color = clDefault
         Font.Color = clHighlight
-        ParentColor = False
         ParentFont = False
-        WordWrap = True
+        ParentColor = False
+        TabOrder = 1
       end
     end
   end
