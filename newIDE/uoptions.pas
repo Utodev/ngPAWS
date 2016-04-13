@@ -30,12 +30,12 @@ type
     EditStartDatabase: TEdit;
     GroupBoxCompilerOptions: TGroupBox;
     GroupBoxEditor: TGroupBox;
-    LabelPreprocessorParameters: TLabel;
-    LabelLang: TLabel;
-    LabelCompiler: TLabel;
-    LabelPreprocessor: TLabel;
-    LabelHelpURL: TLabel;
-    LabelStartDatabase: TLabel;
+    LabelPreprocessorParameters: TStaticText;
+    LabelLang: TStaticText;
+    LabelCompiler: TStaticText;
+    LabelPreprocessor: TStaticText;
+    LabelHelpURL: TStaticText;
+    LabelStartDatabase: TStaticText;
     OpenDialogOptions: TOpenDialog;
     procedure BBrowseCompilerClick(Sender: TObject);
     procedure BBrowsePreprocessorClick(Sender: TObject);
@@ -134,4 +134,4 @@ end;
 
 
 end.
-
+
