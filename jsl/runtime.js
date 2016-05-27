@@ -1444,7 +1444,7 @@ function initialize()
 function descriptionLoop()
 {
 	describe_location_flag = false;
-	clearTextWindow();
+	if (!getFlag(FLAG_MODE)) clearTextWindow();
 	if ((isDarkHere()) && (!lightObjectsPresent())) writeSysMessage(SYSMESS_ISDARK); else writeLocation(loc_here()); 
 	h_description_init();
 	playLocationMusic(loc_here());
