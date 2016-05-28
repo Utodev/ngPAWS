@@ -1,0 +1,37 @@
+Esta librería implementa atributos para las localidades, similares a los de los objetos. Además implementa varios condactos par manejarlos:
+
+- LCLEAR   -->  igual que OCLEAR
+- LSET     -->  igual que OSET
+- LNEG     -->  igual que ONEG
+- LZERO    -->  igual que OZERO
+- LNOTZERO -->  igual que oNOTZERO
+
+Finalmente, como no hay manera de definir los atributos en la descripción de la localidad, hay un condacto llamado LINIT que inicializa los mismos, que puede ser llamado por ejemplo en el proceso 1, en la típica entrada "AT 0":
+
+LINIT locno atirbutos_bajos atributos_altos
+
+La puedes usar al viejo estilo (por ejemplo para activar los atributos 0 y 1):
+
+LINIT 10 11000000000000000000000000000000 00000000000000000000000000000000
+
+O puedes usar la funcionalidad de txtpaws:
+
+#define const laLocalicadGrande 0
+#define const laSitioPeligroso 1
+
+LINIT 10 ATTR laLocalicadGrande laSitioPeligroso
+
+También puedes usarlo de la manera difícil, directamente usando números decimaleS:
+
+LINIT 10 3 0
+
+Notese que a pesar de que el comando se llama LINIT (location initialize), puede usar cuantas vees se desee sobre la misma localidad, si tiene sentido.
+
+
+NOTA IMPORTANTE:
+
+Debido a una limitación del compilador de ngPAWS, el último bit de cada parámetro de un condacto se usa para marcar que ese parámetro va con indirección. Es por ello que en 
+LINIT no se pueden usar los bits 31 y 63, o dicho de otro modo, siempre deben valer 0. Una vez hecha la inicialización, se pueden usar dichos bits normalmente, aunque no obstante
+recomendamos no usarlos salvo que ya hayamos usado los otros 62.
+
+Licencia: MIT (https://opensource.org/licenses/MIT)
