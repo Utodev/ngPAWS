@@ -12,7 +12,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="\home\csanchez\ngpaws\Release_linux\languages"/>
+      <OutDir Value="..\..\..\..\..\ngpaws\Release_linux\languages"/>
     </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
@@ -56,12 +56,6 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <MsgFileName Value=""/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Release">
@@ -72,7 +66,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="\home\csanchez\ngpaws\Release_linux\ngpaws"/>
+            <Filename Value="..\..\Release\Linux\ngpaws"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -96,12 +90,6 @@
               </Win32>
             </Options>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <MsgFileName Value=""/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
         </CompilerOptions>
       </Item3>
       <SharedMatrixOptions Count="1">
@@ -131,7 +119,6 @@
       <Unit0>
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ngpaws"/>
       </Unit0>
       <Unit1>
         <Filename Value="umain.pas"/>
@@ -147,7 +134,6 @@
         <ComponentName Value="fOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uoptions"/>
       </Unit2>
       <Unit3>
         <Filename Value="urunshell.pas"/>
@@ -213,12 +199,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="5">
@@ -239,4 +219,4 @@
       </Item5>
     </Exceptions>
   </Debugging>
-</CONFIG>
+</CONFIG>

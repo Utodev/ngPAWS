@@ -7,7 +7,6 @@
       <Unit0>
         <Filename Value="ngpaws.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ngpaws"/>
         <UsageCount Value="59"/>
       </Unit0>
       <Unit1>
@@ -19,8 +18,7 @@
         <UnitName Value="UMain"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1267"/>
+        <TopLine Value="1278"/>
         <CursorPos X="43" Y="1303"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
@@ -32,9 +30,7 @@
         <ComponentName Value="fOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="uoptions"/>
         <EditorIndex Value="1"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="90"/>
         <CursorPos X="26" Y="100"/>
         <UsageCount Value="59"/>
@@ -45,8 +41,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="URunShell"/>
         <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="77" Y="9"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
@@ -56,9 +50,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UConfig"/>
         <EditorIndex Value="4"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -66,7 +57,6 @@
         <Filename Value="utxp.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UTXP"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="220"/>
         <CursorPos X="60" Y="229"/>
         <UsageCount Value="59"/>
@@ -75,9 +65,8 @@
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UGlobals"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="115"/>
-        <CursorPos X="1" Y="157"/>
+        <CursorPos Y="157"/>
         <UsageCount Value="59"/>
       </Unit6>
       <Unit7>
@@ -96,10 +85,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UPuzzleWizard"/>
-        <EditorIndex Value="0"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -116,45 +101,31 @@
       <Unit10>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/lclclasses.pp"/>
         <UnitName Value="LCLClasses"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
         <CursorPos X="10" Y="26"/>
         <UsageCount Value="10"/>
       </Unit10>
       <Unit11>
         <Filename Value="/usr/share/fpcsrc/2.6.4/rtl/unix/sysunixh.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="2" Y="30"/>
         <UsageCount Value="8"/>
       </Unit11>
       <Unit12>
         <Filename Value="/usr/share/applications/gimp.desktop"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit12>
       <Unit13>
         <Filename Value="/usr/share/lazarus/1.2.6/packager/registration/fcllaz.pas"/>
-        <UnitName Value="fcllaz"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="10"/>
       </Unit13>
       <Unit14>
         <Filename Value="/usr/share/lazarus/1.2.6/lcl/interfaces/gtk3/gtk3defines.inc"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="2"/>
         <CursorPos X="2" Y="41"/>
         <UsageCount Value="10"/>
       </Unit14>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="0"/>
-    </General>
     <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="umain.pas"/>
@@ -162,7 +133,6 @@
       </Position1>
       <Position2>
         <Filename Value="umain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
       </Position2>
       <Position3>
         <Filename Value="umain.pas"/>
@@ -198,7 +168,6 @@
       </Position10>
       <Position11>
         <Filename Value="umain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
       </Position11>
       <Position12>
         <Filename Value="umain.pas"/>
@@ -238,7 +207,6 @@
       </Position20>
       <Position21>
         <Filename Value="umain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
       </Position21>
       <Position22>
         <Filename Value="umain.pas"/>
@@ -250,7 +218,6 @@
       </Position23>
       <Position24>
         <Filename Value="umain.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
       </Position24>
       <Position25>
         <Filename Value="umain.pas"/>
@@ -258,11 +225,11 @@
       </Position25>
       <Position26>
         <Filename Value="umain.pas"/>
-        <Caret Line="383" Column="1" TopLine="345"/>
+        <Caret Line="383" TopLine="345"/>
       </Position26>
       <Position27>
         <Filename Value="umain.pas"/>
-        <Caret Line="395" Column="1" TopLine="360"/>
+        <Caret Line="395" TopLine="360"/>
       </Position27>
       <Position28>
         <Filename Value="umain.pas"/>
@@ -270,7 +237,7 @@
       </Position28>
       <Position29>
         <Filename Value="umain.pas"/>
-        <Caret Line="1066" Column="1" TopLine="1027"/>
+        <Caret Line="1066" TopLine="1027"/>
       </Position29>
     </JumpHistory>
   </ProjectSession>
@@ -285,5 +252,4 @@
       </Item1>
     </BreakPoints>
   </Debugging>
-  <EditorMacros Count="0"/>
 </CONFIG>
