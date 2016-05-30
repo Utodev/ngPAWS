@@ -1,4 +1,12 @@
-﻿Beta 9 - November 2015
+﻿Beta 10 - 
+=======================
+
+- ANYKEY and other similar condacts that requiere a callback function can now be overlapping, as the callback function includes a stack now, instead of a single value.
+- MODE condact now works partially (0=delete text area on location description, any other value= do not delete text area)
+
+
+
+Beta 9 - November 2015
 =======================
 - Interpreter: plater can now access the whole history of commands using the arrow up/down keys.
 - Themes: added 5 different themes so writers can choose among them when creating a new game.
