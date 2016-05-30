@@ -1,0 +1,10 @@
+ESPAÑOL-INSTRUCCIONES SIMPLES
+=============================
+
+1) Una vez descomprimido el fichero de ngPAWS tendrás una carpeta con dos subcarpetas.
+2) En la carpeta "new_game_pack" edita la linea que empieza por ngpaws_path= para poner la ruta a los ejecutables que necesita ngPAWS (ngpc y txtpaws)
+3) Renombra el fichero database.start.spanish como code.txp
+4) Copia la subcarpeta "new_game_pack" en otro sitio cada vez que quieras hacer una aventura nueva
+5) Edita el fichero code.txp de la carpeta copiada (nunca de la carpeta new_game_pack) para crear tu aventura.
+6) Ejecuta ./compile.sh cada vez que quieras  generar una nueva versión de la aventura (compilar)
+7) Abre el index.html cada vez que compiles para ver la nueva versión de tu aventura
