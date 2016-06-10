@@ -979,7 +979,7 @@ function ACCtakeout(objno, locno)
 }
 function ACCnewtext()
 {
-	parser_order_buffer = '';
+	player_order_buffer = '';
 }
 
 function ACCability(maxObjectsCarried, maxWeightCarried)
