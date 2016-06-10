@@ -3,6 +3,7 @@
 
 - ANYKEY and other similar condacts that requiere a callback function can now be overlapping, as the callback function includes a stack now, instead of a single value.
 - MODE condact now works partially (0=delete text area on location description, any other value= do not delete text area)
+- Fixed a bug in NEWTEXT condact (it wasn't working at all)
 
 
 
