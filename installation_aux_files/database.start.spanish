@@ -4981,6 +4981,7 @@ _ _
 _  		 _
  AT 0
  BSET 12 5                      ; Spanish
+ BSET 12 0                      ; Soporta terminaciones pronominales
 _        _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
