@@ -1203,7 +1203,7 @@ function getLogicSentence()
 	{
 		original_word = currentword = words[i];
 		if (currentword.length>10) currentword = currentword.substring(0,MAX_WORD_LENGHT);
-		foundWord = findVocabulary(currentword, true);
+		foundWord = findVocabulary(currentword, false);
 		if (foundWord)
 		{
 			wordtype = foundWord[VOCABULARY_TYPE];
