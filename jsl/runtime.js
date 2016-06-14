@@ -1026,7 +1026,7 @@ function loadPronounSufixes()
 }
 
 
-function findVocabulary(word)  
+function findVocabulary(word, forceDisableLevenshtein)  
 {
 	// Pending: in general this function is not very efficient. A solution where the vocabulary array is sorted by word so the first search can be binary search
 	//          and possible typos are precalculated, so the distance is a lookup table instead of a function, would be much more efficient. On the other hand,
@@ -1036,6 +1036,8 @@ function findVocabulary(word)
 	for (var j=0;j<vocabulary.length;j++)
 		if (vocabulary[j][VOCABULARY_WORD] == word)
 			 return vocabulary[j];
+
+	if (forceDisableLevenshtein) return null;
 
 	if (word.length <=4) return null; // Don't try to fix typo for words with less than 5 length
 
@@ -1093,7 +1095,7 @@ function toParserBuffer(player_order)  // Converts a player order in a list of s
 	 	if  (words[q]!=',')
 	 	{
 	 		words[q] = words[q].trim();
-	 		foundWord = findVocabulary(words[q]);
+	 		foundWord = findVocabulary(words[q], false);
 	 		if (foundWord)
 	 		{
 	 			if (foundWord[VOCABULARY_TYPE]==WORDTYPE_CONJUNCTION)
@@ -1128,13 +1130,13 @@ function processPronounSufixes(words)
 	// This procedure will split pronominal sufixes into separated words, so COGELA will become COGE LA at the end, and work exactly as TAKE IT does.
 	// it's only for spanish so if lang is english then it makes no changes
 	if (getLang() == 'EN') return words;
-	verbFound = false;
+	var verbFound = false;
 	if (!bittest(getFlag(FLAG_PARSER_SETTINGS),0)) return words;  // If pronoun sufixes inactive, just do nothing
 	// First, we clear the word list from any match with pronouns, cause if we already have something that matches pronouns, probably is just concidence, like in COGE LA LLAVE
 	var filtered_words = [];
 	for (var q=0;q < words.length;q++)
 	{
-		foundWord = findVocabulary(words[q]);
+		foundWord = findVocabulary(words[q], false);
 		if (foundWord) 
 			{
 				if (foundWord[VOCABULARY_TYPE] != WORDTYPE_PRONOUN) filtered_words[filtered_words.length] = words[q];
@@ -1148,15 +1150,17 @@ function processPronounSufixes(words)
 	for (var k=0;k < words.length;k++)
 	{
 		words[k] = words[k].trim();
-		foundWord = findVocabulary(words[k]);
+		foundWord = findVocabulary(words[k], true); // true to disable Levenshtein distance applied
 		if (foundWord) if (foundWord[VOCABULARY_TYPE] == WORDTYPE_VERB) verbFound = true;  // If we found a verb, we don't look for pronoun sufixes, as they have to come together with verb
 		suffixFound = false;
 		pronunsufix_search:
 		for (var l=0;(l<pronoun_suffixes.length) && (!suffixFound) && (!verbFound);l++)
+		{
+
 			if (pronoun_suffixes[l] == words[k].rights(pronoun_suffixes[l].length))
 			{
 				var verb_part = words[k].substring(0,words[k].length - pronoun_suffixes[l].length);
-				var checkWord = findVocabulary(verb_part);
+				var checkWord = findVocabulary(verb_part, false);
 				if ((!checkWord)  || (checkWord[VOCABULARY_TYPE] != WORDTYPE_VERB))  // If the part before the supposed-to-be pronoun sufix is not a verb, then is not a pronoun sufix
 				{
 					new_words.push(words[k]);	
@@ -1167,6 +1171,7 @@ function processPronounSufixes(words)
 				suffixFound = true;
 				verbFound = true;
 			}
+		}
 		if (!suffixFound) new_words.push(words[k]);
 	}
 	return new_words;
@@ -1198,7 +1203,7 @@ function getLogicSentence()
 	{
 		original_word = currentword = words[i];
 		if (currentword.length>10) currentword = currentword.substring(0,MAX_WORD_LENGHT);
-		foundWord = findVocabulary(currentword);
+		foundWord = findVocabulary(currentword, true);
 		if (foundWord)
 		{
 			wordtype = foundWord[VOCABULARY_TYPE];
