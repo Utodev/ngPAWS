@@ -742,9 +742,8 @@ function ACClistat(locno, container_objno)   // objno is a container/suppoter nu
   var listingContainer = false;
   if (arguments.length > 1) listingContainer = true;
   var objscount =  getObjectCountAt(locno);
-  var concealed_objcount = getObjectCountAtWithAttr(locno, ATTR_CONCEALED);
-  var scenery_objcount = getObjectCountAtWithAttr(locno, ATTR_SCENERY);
-  objscount = objscount - concealed_objcount - scenery_objcount;
+  var concealed_or_scenery_objcount = getObjectCountAtWithAttr(locno, [ATTR_CONCEALED, ATTR_SCENERY]);  
+  objscount = objscount - concealed_or_scenery_objcount;
   if (!listingContainer) setFlag(FLAG_OBJECT_LIST_FORMAT, bitclear(getFlag(FLAG_OBJECT_LIST_FORMAT),7)); 
   if (!objscount) return;
   var continouslisting = bittest(getFlag(FLAG_OBJECT_LIST_FORMAT),6);
@@ -815,9 +814,9 @@ function ACClistobj()
 {
   var locno = loc_here();
   var objscount =  getObjectCountAt(locno);
-  var concealed_objcount = getObjectCountAtWithAttr(locno, ATTR_CONCEALED);
-  var scenery_objcount = getObjectCountAtWithAttr(locno, ATTR_SCENERY);
-  objscount = objscount - concealed_objcount - scenery_objcount;
+  var concealed_or_scenery_objcount = getObjectCountAtWithAttr(locno, [ATTR_CONCEALED, ATTR_SCENERY]);
+
+  objscount = objscount - concealed_or_scenery_objcount;
   if (objscount)
   {
 	  writeSysMessage(SYSMESS_YOUCANSEE);

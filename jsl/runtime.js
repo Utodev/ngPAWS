@@ -783,11 +783,13 @@ function getObjectCountAt(locno)
 }
 
 
-function getObjectCountAtWithAttr(locno, attrno) 
+function getObjectCountAtWithAttr(locno, attrnoArray) 
 {
 	var count = 0;
-	for (i=0;i<num_objects;i++)
-		if (   (getObjectLocation(i) == locno)  && (objectIsAttr(i, attrno))) count++;
+	for (var i=0;i<num_objects;i++)
+		if (getObjectLocation(i) == locno)  
+			for (var j=0;j<attrnoArray.length;j++)
+				if (objectIsAttr(i, attrnoArray[j])) count++;
 	return count;
 }
 
@@ -805,7 +807,7 @@ function getNPCCountAt(locno)
 
 function lightObjectsAt(locno) 
 {
-	return getObjectCountAtWithAttr(locno, ATTR_LIGHT) > 0;
+	return getObjectCountAtWithAttr(locno, [ATTR_LIGHT]) > 0;
 }
 
 
