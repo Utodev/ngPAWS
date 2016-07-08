@@ -1194,7 +1194,7 @@ function getLogicSentence()
 	initializeLSWords();
 	SL_found = false;
 
-	order = getSentencefromBuffer();
+	var order = getSentencefromBuffer();
 	setFlag(FLAG_PARSER_SETTINGS, bitclear(getFlag(FLAG_PARSER_SETTINGS),1)); // Initialize flag that says an unknown word was found in the sentence
 
 
