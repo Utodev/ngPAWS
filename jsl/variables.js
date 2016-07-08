@@ -248,6 +248,7 @@ var last_player_orders = [];   // Store last player orders, to be able to restor
 var last_player_orders_pointer = 0;
 var parser_word_found;
 var player_order_buffer = '';
+var player_order = ''; // Current player order
 var previous_verb = EMPTY_WORD;
 var previous_noun = EMPTY_WORD;
 var previous_adject = EMPTY_WORD;
