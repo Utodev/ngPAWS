@@ -42,11 +42,11 @@ h_init = function()
 {
 	for (var i=0;i<objects.length;i++)
 	{
-		var pipepos = objects[i].indexOf('|');
-		if (pipepos != -1)
+		var sharppos = objects[i].indexOf('#');
+		if (sharppos != -1)
 		{
-			objects_longdescription[i] = objects[i].substring(pipepos + 1);
-			objects[i] = objects[i].substring(0,pipepos);
+			objects_longdescription[i] = objects[i].substring(sharppos + 1);
+			objects[i] = objects[i].substring(0,sharppos);
 		}
 		else objects_longdescription[i] = '';
 	}
