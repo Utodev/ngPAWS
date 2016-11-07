@@ -26,7 +26,6 @@ String.prototype.rights= function(n){
 String.prototype.firstToLower= function()
 {
 	return  this.charAt(0).toLowerCase() + this.slice(1);	
-	return a;
 }
 
 
@@ -1450,23 +1449,27 @@ function initialize()
 
 function descriptionLoop()
 {
-	describe_location_flag = false;
-	if (!getFlag(FLAG_MODE)) clearTextWindow();
-	if ((isDarkHere()) && (!lightObjectsPresent())) writeSysMessage(SYSMESS_ISDARK); else writeLocation(loc_here()); 
-	h_description_init();
-	playLocationMusic(loc_here());
-	if (loc_here()) drawPicture(loc_here()); else hideGraphicsWindow(); // Don't show picture at location 0
-	ACCminus(FLAG_AUTODEC2,1);
-	if (isDarkHere()) ACCminus(FLAG_AUTODEC3,1);
-	if ((isDarkHere()) && (lightObjectsAt(loc_here())==0)) ACCminus(FLAG_AUTODEC4,1);
-	callProcess(PROCESS_DESCRIPTION);
-	h_description_post();
-	if (describe_location_flag) descriptionLoop();
-	describe_location_flag = false;
-	callProcess(PROCESS_TURN);
-	if (describe_location_flag) descriptionLoop();
-	describe_location_flag = false;
-	focusInput();
+	do
+	{
+		describe_location_flag = false;
+		if (!getFlag(FLAG_MODE)) clearTextWindow();
+		if ((isDarkHere()) && (!lightObjectsPresent())) writeSysMessage(SYSMESS_ISDARK); else writeLocation(loc_here()); 
+		h_description_init();
+		playLocationMusic(loc_here());
+		if (loc_here()) drawPicture(loc_here()); else hideGraphicsWindow(); // Don't show picture at location 0
+		ACCminus(FLAG_AUTODEC2,1);
+		if (isDarkHere()) ACCminus(FLAG_AUTODEC3,1);
+		if ((isDarkHere()) && (lightObjectsAt(loc_here())==0)) ACCminus(FLAG_AUTODEC4,1);
+		callProcess(PROCESS_DESCRIPTION);
+		h_description_post();
+		if (describe_location_flag) continue; // descriptionLoop() again without nesting
+		describe_location_flag = false;
+		callProcess(PROCESS_TURN);
+		if (describe_location_flag) continue; 
+		describe_location_flag = false;
+		focusInput();
+		break; // Dirty trick to make this happen just one, but many times if descriptioLoop() should be repeated
+	} while (true);
 
 }
 
