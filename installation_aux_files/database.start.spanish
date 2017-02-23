@@ -1,24 +1,24 @@
 ;#############################################################
-;############   ngPAWS - LIBRERIA DE INICIO 4.0  #############
-;############              18/04/2014            #############      
+;############   ngPAWS - LIBRERÍA DE INICIO 4.0  #############
+;############              23/02/2017            #############      
 ;#############################################################
 ;#                                                           #
-;#         ESTA LIBRERIA BASE ES DE DOMINIO PUBLICO          # 
-;#          Ha sido creada por Uto y Radin y, cedida         # 
-;#     de manera que podáis decidir que licencia aplicáis a  #
-;#             vuestra aventura sin restricciones            #
+;#         ESTA LIBRERÍA BASE ES DE DOMINIO PÚBLICO          # 
+;#          Ha sido creada por Uto y Radin, y cedida         # 
+;#     de manera que podáis decidir qué licencia aplicáis a  #
+;#             vuestra aventura sin restricciones.           #
 ;#############################################################
 
-; Ejemplo grafico de localidad
+; Ejemplo gráfico de localidad
 ;##define pic loc1.jpg 1
 
-; Ejemplo grafico suelto
+; Ejemplo gráfico suelto
 ;##define grf escena.jpg 1
 
-; Ejemplo musica de localidad
+; Ejemplo música de localidad
 ;##define msc loc1.ogg 1
 
-; Ejemplo sonido o musica suelto
+; Ejemplo sonido o música suelto
 ;##define snd sfx.aiff 2
 
 ; Ejemplo flag
@@ -116,7 +116,7 @@ SAL           13       verb
 EXIT          13       verb
 
 ;--Nombres--    <20 indica que pueden ser usados como verbos
-;               <50 indica que son nombres propios, no seran
+;               <50 indica que son nombres propios, no serán
 ;                   tenidos en cuenta por los pronombres.
 I             14       noun
 INVEN         14       noun
@@ -145,7 +145,7 @@ QUITASE       22       verb
 SACATE        22       verb
 SACARTE       22       verb
 SACARSE       22       verb
-SACASE       22       verb
+SACASE        22       verb
 DESVISTE      22       verb
 DESVESTIR     22       verb
 DESVESTIRSE   22       verb
@@ -167,7 +167,7 @@ GRABA         26       verb
 SALVAR        26       verb
 SALVA         26       verb
 GUARDAR       26       verb
-GUARDA       26       verb
+GUARDA        26       verb
 LOAD          27       verb
 CARGAR        27       verb
 CARGA         27       verb
@@ -680,21 +680,21 @@ AL            2        preposition
 DE            3        preposition
 DEL           3        preposition
 EN            4        preposition
-DENTRO        4        preposition
+DENTRO        4        preposition ;DENTRO es un adverbio. DENTRO DE es una locución preposicional
 DESDE         5        preposition
 HACIA         6        preposition
 TRAS          7        preposition
-DETRAS        7        preposition
+DETRAS        7        preposition ;DENTRÁS es un adverbio. DENTRÁS DE es una locución preposicional
 BAJO          8        preposition
 DEBAJO        8        preposition
 CON           9        preposition
 PARA          10       preposition
 POR           11       preposition
-EXCEPTO       12       preposition
-FUERA         13       preposition
-DELANTE       14       preposition
+EXCEPTO       12       preposition ;EXCEPTO es una conjunción
+FUERA         13       preposition ;FUERA es un adverbio
+DELANTE       14       preposition ;DELANTE es un adverbio. DELANTE DE es una locución preposicioonal
 ENTRE         15       preposition
-ENCIMA        16       preposition
+ENCIMA        16       preposition ;ENCIMA es un adverbio. ENCIMA DE es una locución preposional
 
 
 ;--Pronombres--
@@ -711,7 +711,7 @@ LES           2        pronoun
 
 ;--Conjunciones--
 Y             2        conjunction
-ENTONCES      2        conjunction
+ENTONCES      2        conjunction ; A efectos del sistema. ENTONCES es un adverbio
           
 
 /STX
@@ -723,13 +723,13 @@ Puedes ver:
 /2
 ¿Qué quieres hacer ahora?      
 /3
-¿Cual es tu siguiente orden?
+¿Cuál es tu siguiente orden?
 /4
-¿Que vas a hacer ahora?       
+¿Qué vas a hacer ahora?       
 /5
 Teclea tus órdenes
 /6
-¿Cómo? Por favor prueba con otras palabras.
+¿Cómo? Por favor, prueba con otras palabras.
 
 /7
 No puedes ir en esa dirección.
@@ -801,7 +801,7 @@ N
 Más...
 /33
 > 
-/34        ;Vacío, no usado
+/34        ;Vacío. No se usa
 /35
 El tiempo pasa...
 
@@ -861,7 +861,7 @@ Fichero no encontrado.
 Fichero corrupto.
 
 /56
-Error de E/S. Fichero no grabado.
+Error de lectura/escritura. Fichero no grabado.
 
 /57
 Directorio lleno.
@@ -869,14 +869,14 @@ Directorio lleno.
 /58
 Introduce el nombre con el que grabaste la partida.
 /59
-No se encontró ninguna partida grabada con ese nombre. Confirme que el nombre es correcto y que realizó la partida en este mismo navegador.
+No se encontró ninguna partida grabada con ese nombre. Confirma que el nombre es correcto y que realizaste dicha partida en este mismo navegador.
 /60
 Introduce el nombre con el que grabar la partida. Necesitarás recordar ese nombre para poder recuperarla posteriormente.
 /61
 
 
 /62
-¿Perdón? Por favor prueba con otras palabras.
+¿Perdón? Por favor, prueba con otras palabras.
 
 /63 
 Aquí 
@@ -890,7 +890,7 @@ dentro hay
 encima hay 
 /MTX
 /0
-La balsa está desierta!
+¡La balsa está desierta!
 
 
 /1000
@@ -929,7 +929,7 @@ una antorcha
 /LTX
 /0
 Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yellow|amarillo} comienza a 
-quemar tu piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
+quemarte la piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
 
 
 /CON
@@ -946,20 +946,20 @@ quemar tu piel mientras que una oscura aleta da vueltas en círculos en las clar
 /0    0        1        ANTORCHA      _           ATTR aLight aFemale
 
   
-; Importante: Recuerda que si creas un objeto contenedor  o soporte debes dejar sin usar la localidad de igual número
+; Importante: Recuerda que si creas un objeto contenedor o soporte, debes dejar sin usar la localidad de igual número
 
 /PRO 0
 
-; ################################## ACCIONES MÚLTIPLES ###################################
-; #                                                                                       #
-; #  Estas entradas usan un bucle DOALL y actúan sobre todos los objetos que encuentran,  #
-; #  por tanto deben estar aquí delante (antes de las respuestas del programador) ya que  #
-; #  en caso contrario no las tendría en cuenta.                                          #
-; #                                                                                       #
-; #########################################################################################
+; ################################## ACCIONES MÚLTIPLES ####################################
+; #                                                                                        #
+; #  Estas entradas usan un bucle «DOALL» y actúan sobre todos los objetos que encuentran, #
+; #  por tanto deben estar aquí delante (antes de las respuestas del programador) ya que   #
+; #  en caso contrario no las tendría en cuenta.                                           #
+; #                                                                                        #
+; ##########################################################################################
 
 _ _
- HOOK "RESPONSE_START" ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "RESPONSE_START" ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
 COGER TODO   ; COGER TODO DE --> SACAR TODO DE
  PREP DE
@@ -1005,7 +1005,7 @@ VACIAR _
  SYNONYM SACAR TODO
  LET 43 &&_voc_DE
 
-SACAR _    ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+SACAR _    ; Copiamos en el Flag 13 el número de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 13
 
 SACAR TODO
@@ -1064,18 +1064,18 @@ SACAR TODO
 
 
 
-; ** Convertir "ESCONDER ALGO EN ALGO" en "METER ALGO EN ALGO" 
+; ** Convertir «ESCONDER ALGO EN ALGO» en «METER ALGO EN ALGO»
 ESCONDER _
  NOTEQ 51 255
  PRESENT @51
  PREP EN
  WHATOX2 13
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  PRESENT @13
  SYNONYM METER _
  LET 43 &&_voc_DENTRO
 
-; ** Convertir "PONER ALGO EN..." en "METER ALGO EN..."
+; ** Convertir «PONER ALGO EN...» en «METER ALGO EN...»
 PONER _
  NOTEQ 51 255
  PRESENT @51
@@ -1083,12 +1083,12 @@ PONER _
  SYNONYM METER _
  
 
-METER _                        ; Copiamos en el Flag 13 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+METER _         	 ; Copiamos en el Flag 13 el número de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 13
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aContainer ; Es un contenedor
  ABSENT @13
  WRITELN "No ves eso por aquí."
@@ -1096,7 +1096,7 @@ METER TODO
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aSupporter ; Es una superficie
  ABSENT @13
  WRITELN "No ves eso por aquí."
@@ -1105,21 +1105,21 @@ METER TODO
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aContainer ; Es un contenedor
  CARRIED @13
  OBJAT 254 14
- EQ 14 1; no llevas nada en el inventario (sólo llevas el container)
+ EQ 14 1		 ; No llevas nada en el inventario (solo llevas el contenedor)
  WRITELN "No llevas nada."
  DONE
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
- ONOTZERO @13 aSupporter; es una superficie, poner todo
+ NOTEQ 13 255   	 ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es una superficie, poner todo
  CARRIED @13
  OBJAT 254 14  
- EQ 14 1; no llevas nada en el inventario (sólo llevas el container)
+ EQ 14 1		 ; No llevas nada en el inventario (solo llevas el contenedor)
  WRITELN "No llevas nada."
  DONE
 
@@ -1127,35 +1127,35 @@ METER TODO
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aContainer ; Es un contenedor
  ISAT @13 @38
  OBJAT 254 14
- ZERO 14  ;no llevas nada en el inventario
+ ZERO 14  		 ; No llevas nada en el inventario
  WRITELN "No llevas nada."
  DONE
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
- ONOTZERO @13 aSupporter ; es una superficie
+ NOTEQ 13 255   	 ; Es un objeto
+ ONOTZERO @13 aSupporter ; Es una superficie
  ISAT @13 @38
  OBJAT 254 14
- ZERO 14  ;no llevas nada en el inventario
+ ZERO 14  		 ; No llevas nada en el inventario
  WRITELN "No llevas nada"
  DONE
 
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aContainer ; Es un contenedor
  PRESENT @13
  DOALL CARRIED
 
 METER TODO
  PREP EN
- NOTEQ 13 255   ; Es un objeto
+ NOTEQ 13 255   	 ; Es un objeto
  ONOTZERO @13 aSupporter ; Es un superficie PONER TODO
  PRESENT @13
  DOALL CARRIED
@@ -1163,7 +1163,7 @@ METER TODO
 
 QUITAR TODO
  OBJAT 253 13
- ZERO 13  ; no llevas ningún objeto "puesto"
+ ZERO 13  		 ; No llevas ningún objeto «puesto»
  WRITELN "No llevas nada puesto."
  DONE
 
@@ -1172,7 +1172,7 @@ QUITAR        TODO
 
 PONER TODO
  OBJAT 254 13
- ZERO 13  ; no llevas nada en el inventario
+ ZERO 13  		 ; No llevas nada en el inventario
  WRITELN "No llevas nada para ponerte."
  DONE
 
@@ -1181,39 +1181,39 @@ PONER        TODO
 
 TIRAR TODO
  OBJAT 254 13
- ZERO 13    ; no llevas nada en el inventario
+ ZERO 13    		 ; No llevas nada en el inventario
  WRITELN "No llevas nada."
  DONE
  
 TIRAR TODO
- EQ 1 1    ; si sólo llevas una cosa la lanza
+ EQ 1 1    		 ; Si solo llevas una cosa, la lanza
  DOALL        CARRIED
  
 TIRAR TODO
- GT 1 1 ; llevas más de un objeto  y no puedes lanzarlos a la vez
+ GT 1 1 		 ; Llevas más de un objeto y no puedes lanzarlos a la vez
  WRITELN "¡No puedes tirarlo todo a la vez!"
  DONE
 
 _ TODO
- WRITELN "Por favor intenta especificar un poco más."
+ WRITELN "Por favor, intenta especificar un poco más."
  DONE
 
 
 
-; ################################### FRASES SINONIMAS ####################################
+; ################################### FRASES SINÓNIMAS ####################################
 ; #                                                                                       #
-; #   Estas entradas convierten unas entradas en otras distintas porque a veces segun     #
-; #   escribimos algo queremos realizar una acción u otra para el mismo verbo.            #
-; #   Deben ir aquí al principio, antes de las acciones modificadas por el programador.   #
+; #   Estas entradas se convierten en otras distintas porque a veces, según lo que        #
+; #   hayamos escrito, querremos realizar diferentes acciones para un mismo verbo.        #
+; #   Deben ir aquí, al principio, antes de las acciones modificadas por el programador.  #
 ; #                                                                                       #
 ; #   Ejemplos comunes de frases sinónimas son:                                           #
 ; #                                                                                       #
-; #   - NADAR como sinónimo de CAMINAR/IR en localidades "acuáticas"                      #
-; #   - ENCENDER TELEVISOR usado en el sentido de CONECTAR TELEVISOR                      #
-; #   - APAGAR LUZ usado en el sentido de DESCONECTAR                                     #
+; #   - NADAR como sinónimo de CAMINAR/IR, en localidades «acuáticas».                    #
+; #   - ENCENDER TELEVISOR usado en el sentido de CONECTAR TELEVISOR.                     #
+; #   - APAGAR LUZ usado en el sentido de DESCONECTAR.                                    #
 ; #                                                                                       #
-; #   Por defecto, en la librería base ENCENDER se usa en sentido de INCENDIAR,           #
-; #   y APAGAR como SOFOCAR/EXTINGUIR                                                     #
+; #   Por defecto, en la librería base, ENCENDER se usa en sentido de INCENDIAR,          #
+; #   y APAGAR como SOFOCAR/EXTINGUIR.                                                    #
 ; #                                                                                       #
 ; #########################################################################################
 
@@ -1236,7 +1236,7 @@ _    _
  SYNONYM SALIR _
  LET 43 255
 
-; ** Convertir MIRAR DENTRO en EXAMINAR DENTRO
+; ** Convertir «MIRAR DENTRO» en «EXAMINAR DENTRO»
 
 MIRAR _
  NOTEQ 34 255          
@@ -1244,7 +1244,7 @@ MIRAR _
  SYNONYM EXAMINAR _
  
 
-; ** Convertir MIRAR "ALGO" en EXAMINAR "ALGO"
+; ** Convertir «MIRAR ALGO» en «EXAMINAR ALGO»
 
 MIRAR _
  NOTEQ 34 255
@@ -1257,18 +1257,18 @@ MIRAR _
  
   
  
-; ** Convertir REGISTRAR en EXAMINAR DENTRO 
+; ** Convertir «REGISTRAR» en «EXAMINAR DENTRO»
 
 REGISTRAR _
  SYNONYM EXAMINAR _
  LET 43 &&_voc_DENTRO
 
-; ** Convertir ARRANCAR en TIRAR DE
+; ** Convertir «ARRANCAR» en «TIRAR DE»
 ARRANCAR _
  SYNONYM TIRAR _
  LET 43 &&_voc_DE
 
-; **  Convertir X "ALGO" en EXAMINAR "ALGO"
+; **  Convertir «X ALGO» en «EXAMINAR ALGO»
 X _
  EQ 34 255
  BNOTZERO 12 1
@@ -1278,7 +1278,7 @@ X _
  NOTEQ 34 255
  SYNONYM EXAMINAR _
  
-; ** Convertir CONSULTAR "A ALGUIEN" en PREGUNTAR "A ALGUIEN"
+; ** Convertir «CONSULTAR A ALGUIEN» en «PREGUNTAR A ALGUIEN»
 
 CONSULTAR _
  NOTEQ 34 255
@@ -1288,83 +1288,83 @@ CONSULTAR _
  
 
  
- ; ** Convertir "HACER ALGO CON OBJETO2 A OBJETO1" en "HACER ALGO A OBJETO1 CON OBJETO2"
+ ; ** Convertir «HACER ALGO CON OBJETO2 A OBJETO1» en «HACER ALGO A OBJETO1 CON OBJETO2»
 _  _
  PREP CON 
- BZERO 12 2 ; la prep estaba antes del primer nombre
+ BZERO 12 2 	; La prep estaba antes del primer nombre
  NOTEQ 34 255
  WHATOX 16
- NOTEQ 16 255; el primer nombre de la SL es un objeto
- NOTEQ 44 255; hay segundo nombre
+ NOTEQ 16 255	; El primer nombre de la SL es un objeto
+ NOTEQ 44 255	; Hay segundo nombre
  WHATOX2 15
- NOTEQ 15 255; el segundo nombre es de un objeto
+ NOTEQ 15 255	; El segundo nombre es de un objeto
  COPYFF 34 14
  COPYFF 44 34
- COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 14 44 	; Les damos la vuelta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 ; Les doy la vuelta a los adjetivos
- WHATO ; fuerzo actualización de flags 54-58
+ COPYFF 14 45 	; Les damos la vuelta a los adjetivos
+ WHATO 		; Forzamos la actualización de flags 54-58
 
 
-; ** Convertir "HACER ALGO A OBJETO2 CON OBJETO1" en "HACER ALGO CON OBJETO1 A OBJETO2"
+; ** Convertir «HACER ALGO A OBJETO2 CON OBJETO1» en «HACER ALGO CON OBJETO1 A OBJETO2»
 _  _
  PREP A 
- BZERO 12 2 ; la prep estaba antes del primer nombre
+ BZERO 12 2 	; La prep estaba antes del primer nombre
  NOTEQ 34 255
  WHATOX 16
- NOTEQ 16 255 ; el primer nombre de la SL es un objeto
- NOTEQ 44 255 ; hay segundo nombre
+ NOTEQ 16 255 	; El primer nombre de la SL es un objeto
+ NOTEQ 44 255 	; Hay segundo nombre
  WHATOX2 15
- NOTEQ 15 255 ; el segundo nombre es de un objeto
+ NOTEQ 15 255 	; El segundo nombre es de un objeto
  COPYFF 34 14
  COPYFF 44 34
- COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 14 44 	; Les damos la vuelta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 ; Les doy la vuelta a los adjetivos
- WHATO ; fuerzo actualización de flags 54-58
+ COPYFF 14 45 	; Les damos la vuelta a los adjetivos
+ WHATO 		; Forzamos la actualización de flags 54-58
 
 
-; ** Convertir "HACER ALGO EN OBJETO2(CONTENEDOR) OBJETO1" en "HACER ALGO OBJETO1 EN OBJETO2(CONTENEDOR)"
+; ** Convertir «HACER ALGO EN OBJETO2(CONTENEDOR) OBJETO1» en «HACER ALGO OBJETO1 EN OBJETO2(CONTENEDOR)»
 _  _   
  PREP EN 
- BZERO 12 2 ; la prep estaba antes del primer nombre
+ BZERO 12 2 	; La prep estaba antes del primer nombre
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer ; El primer objeto es un contenedor presente
- NOTEQ 44 255 ; hay segundo nombre
+ NOTEQ 44 255 	; Hay segundo nombre
  WHATOX2 15
- NOTEQ 15 255 ; el segundo nombre es de un objeto
+ NOTEQ 15 255 	; El segundo nombre es de un objeto
  COPYFF 34 14
  COPYFF 44 34
- COPYFF 14 44  ; Les doy la vuelta
+ COPYFF 14 44  ; Les damos la vuelta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 ; Les doy la vuelta a los adjetivos
- WHATO ; fuerzo actualización de flags 54-58
+ COPYFF 14 45 	; Les damos la vuelta a los adjetivos
+ WHATO 		; Forzamos la actualización de flags 54-58
 
 
-; ** Convertir "HACER ALGO DE OBJETO2(CONTENEDOR) OBJETO1" en "HACER ALGO OBJETO1 DE OBJETO2(CONTENEDOR)" 
+; ** Convertir «HACER ALGO DE OBJETO2(CONTENEDOR) OBJETO1» en «HACER ALGO OBJETO1 DE OBJETO2(CONTENEDOR)»
 _  _
  PREP DE 
- BZERO 12 2 ; la prep estaba antes del primer nombre
+ BZERO 12 2 	; La prep estaba antes del primer nombre
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer ; El primer objeto es un contenedor presente
- NOTEQ 44 255; hay segundo nombre
+ NOTEQ 44 255	; Hay segundo nombre
  WHATOX2 15
- NOTEQ 15 255; el segundo nombre es de un objeto
+ NOTEQ 15 255	; El segundo nombre es de un objeto
  COPYFF 34 14
  COPYFF 44 34
- COPYFF 14 44 ; Les doy la vuelta
+ COPYFF 14 44 	; Les damos la vuelta
  COPYFF 35 14
  COPYFF 45 35
- COPYFF 14 45 ; Les doy la vuelta a los adjetivos
- WHATO ; fuerzo actualización de flags 54-58
+ COPYFF 14 45 	; Les damos la vuelta a los adjetivos
+ WHATO 		; Forzamos la actualización de flags 54-58
 
 
-; ** Convertir "COGER DE" en "SACAR DE"
+; ** Convertir «COGER DE» en «SACAR DE»
 
 COGER _
   PREP DE
@@ -1372,7 +1372,7 @@ COGER _
   
 
 _ _
- HOOK "RESPONSE_USER"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "RESPONSE_USER"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
 ; ####################### RESPUESTAS MODIFICADAS POR EL PROGRAMADOR #######################
 ; #                                                                                       #
@@ -1386,7 +1386,7 @@ _ _
 
 
 
-;  ********************* [[[  Coloca aqui tus propias respuestas  ]]] *********************
+;  ********************* [[[  Coloca aquí tus propias respuestas  ]]] *********************
 
 
 
@@ -1396,12 +1396,12 @@ _ _
 ; ############################### RESPUESTAS POR DEFECTO ##################################
 ; #                                                                                       #
 ; #   Estas entradas devuelven las respuestas por defecto. Si no ponemos antes ninguna    #
-; #   entrada que lo evite, se llegará hasta aquí y se dará la respeusta por defecto.     #
+; #   entrada que lo evite, se llegará hasta aquí y se dará la respuesta por defecto.     #
 ; #                                                                                       #
 ; #########################################################################################
 
 _ _
- HOOK "RESPONSE_DEFAULT_START"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "RESPONSE_DEFAULT_START"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
 
 I        _        
@@ -1487,23 +1487,23 @@ TRANSCRIPCION _
 ;-----------------------------------------------
 
 
-COGER _    ; coger un objeto que está dentro de un contenedor
+COGER _    		 ; Coger un objeto que está dentro de un contenedor
  PREP DE
  WHATOX2 14
- NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
+ NOTEQ 14 255   	 ; Si el objeto referenciado por noun 2 es un objeto y...
  ONOTZERO @14 aContainer ; Es un contenedor
- SYNONYM SACAR _ ; convertimos "coger objeto de un contenedor" en "sacar objeto de un contenedor"
+ SYNONYM SACAR _ 	 ; convertimos «coger objeto de un contenedor» en «sacar objeto de un contenedor»
 
-COGER _                        ; Hay nombre desconocido en la frase
+COGER _                  ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes coger eso que dices."
  DONE
  
-COGER _                        ; No hay nombre en la frase
+COGER _                  ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres coger."
+ WRITELN "Por favor, especifica qué quieres coger."
  DONE 
 
 COGER _ 
@@ -1518,23 +1518,23 @@ COGER        _
 
 ;-----------------------------------------------
 
-DEJAR _    ; DEJAR un objeto dentro de un contenedor     #############
+DEJAR _    		 ; DEJAR un objeto dentro de un contenedor     #############
  PREP EN
  WHATOX2 14
- NOTEQ 14 255   ; Si el objeto referenciado por noun 2 es un objeto y...
+ NOTEQ 14 255   	 ; Si el objeto referenciado por noun 2 es un objeto y...
  ONOTZERO @14 aContainer ; Es un contenedor
- SYNONYM METER _; convertimos "dejar objeto en un contenedor" en "meter objeto en un contenedor"
+ SYNONYM METER _	 ; Convertimos «DEJAR objeto en un contenedor» en «METER objeto en un contenedor»
 
-DEJAR _                        ; Hay nombre desconocido en la frase
+DEJAR _                  ; Hay nombre desconocido en la frase
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes dejar eso que dices."
  DONE
  
-DEJAR _                        ; No hay nombre en la frase
+DEJAR _                  ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres dejar."
+ WRITELN "Por favor, especifica qué quieres dejar."
  DONE 
 
 DEJAR        _        
@@ -1542,13 +1542,13 @@ DEJAR        _
  DONE
 
 ;-----------------------------------------------
-SACAR _                ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+SACAR _                ; Copiamos en el Flag 15 el núumero de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
 SACAR _                ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres sacar."
+ WRITELN "Por favor, especifica qué quieres sacar."
  DONE
  
 SACAR _                ; Hay nombre desconocido en la frase
@@ -1563,14 +1563,14 @@ SACAR _                ; Hay nombre pero no es un objeto
  WRITELN "No puedes sacar eso."
  DONE
 
-SACAR _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
- BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+SACAR _                ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
+ BZERO 12 2            ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
  EQ 44 255
  BNOTZERO 12 1
  WRITELN "No puedes sacar eso."
  DONE
 
-SACAR _                ; Intentas sacar un objeto que llevamos puesto  
+SACAR _                ; Intentas sacar un objeto que llevas puesto  
  NOTEQ 51 255             
  WORN @51  
  ONOTZERO @51 aWear
@@ -1600,12 +1600,12 @@ SACAR _                ; SACAR un objeto de un noun2 que no es un objeto.
 SACAR _                ;
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
- SAME 51 15            ; No puede sacarse de si mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el sacar algo de si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta                                    
+ SAME 51 15            ; No puede sacarse de sí mismo
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el sacar algo de sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe, no obtendrá respuesta.
 
 
 
-SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
+SACAR _                ; SACAR un objeto de un contenedor que está presente pero cerrado
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer  ; Es un contenedor
  ONOTZERO @15 aOpenable
@@ -1615,7 +1615,7 @@ SACAR _                ; SACAR un objeto de un Container que está presente pero
  BREAK
  DONE
 
-SACAR _                ; SACAR un objeto de un Container que está presente pero cerrado
+SACAR _                ; SACAR un objeto de un contenedor que está presente pero cerrado
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer  ; Es un contenedor
  ONOTZERO @15 aLockable
@@ -1626,7 +1626,7 @@ SACAR _                ; SACAR un objeto de un Container que está presente pero
  DONE
 
 SACAR _
- NOTEQ 15 255   ; Es un objeto
+ NOTEQ 15 255   	; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  ABSENT @15
  WRITELN "No puedes sacar nada de ahí porque no está aquí."
@@ -1641,14 +1641,14 @@ SACAR _
  DONE
 
 
-SACAR _                ; SACAR un objeto de un Container que está presente
+SACAR _                ; SACAR un objeto de un contenedor que está presente
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aContainer  ; Es un contenedor
  PRESENT @15
  AUTOT @15
  DONE
 
-SACAR _                ; SACAR un objeto de un Supporter que está presente
+SACAR _                ; SACAR un objeto de una superficie que está presente
  NOTEQ 15 255          ; El noun2 es un objeto
  ONOTZERO @15 aSupporter
  PRESENT @15
@@ -1657,7 +1657,7 @@ SACAR _                ; SACAR un objeto de un Supporter que está presente
 
 
 SACAR _
- NOTEQ 15 255   ; Es un objeto
+ NOTEQ 15 255   	; Es un objeto
  WRITELN "No puedes sacar cosas de ahí."
  DONE
 
@@ -1665,13 +1665,13 @@ SACAR _
 
 ;-----------------------------------------------
 
-METER _                ; Copiamos en el Flag 15 el numero de objeto referenciado por noun2 (o 255 si no lo hay)
+METER _                ; Copiamos en el Flag 15 el número de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
 METER _                ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres meter."
+ WRITELN "Por favor, especifica qué quieres meter."
  DONE
  
 METER _                ; Hay nombre desconocido en la frase
@@ -1686,8 +1686,8 @@ METER _                ; Hay nombre pero no es un objeto
  WRITELN "No puedes meter eso."
  DONE
 
-METER _                        ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
- BZERO 12 2                    ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
+METER _                ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...                  
+ BZERO 12 2            ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
  EQ 44 255
  BNOTZERO 12 1
  WRITELN "No puedes meter eso."
@@ -1733,15 +1733,15 @@ METER _                ; METER un objeto del inventario a un noun2 que no es un 
 METER _
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
- SAME 51 15            ; No puede meterse en si mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el meter algo en si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta
+ SAME 51 15            ; No puede meterse en sí mismo
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
 
 
 METER _
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aSupporter ; es un contenedor
- SAME 51 15            ; No puede meterse en si mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que en general el meter algo en si mismo solo puede ocurrir en un DOALL, si alguien lo escribe no obtendra respuesta
+ SAME 51 15            ; No puede meterse en sí mismo
+ DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
 
 
 METER _                ; METER un objeto del inventario a un objeto presente pero que no es un Container ni supporter
@@ -1775,7 +1775,7 @@ METER _                ; METER un objeto del inventario a un Supporter pero que 
  WRITELN "No puedes meter {OREF} ahí porque no llevas eso."
  DONE
 
-METER _                ; METER un objeto presente a un Container que está presente pero cerrado
+METER _                ; METER un objeto presente a un contenedor que está presente pero cerrado
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
@@ -1788,7 +1788,7 @@ METER _                ; METER un objeto presente a un Container que está prese
  BREAK
  DONE
 
-METER _                ; METER un objeto presente a un Container que está presente pero cerrado con llave
+METER _                ; METER un objeto presente a un contenedor que está presente pero cerrado con llave
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
@@ -1802,7 +1802,7 @@ METER _                ; METER un objeto presente a un Container que está prese
  DONE
 
 
-METER _                ; METER un objeto presente a un Container que está presente
+METER _                ; METER un objeto presente a un contenedor que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
@@ -1812,7 +1812,7 @@ METER _                ; METER un objeto presente a un Container que está prese
  AUTOP @15
  DONE
 
-METER _                ; METER un objeto presente a un Supporter que está presente
+METER _                ; METER un objeto presente a una superficie que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
@@ -1835,7 +1835,7 @@ QUITAR _                        ; Hay nombre desconocido en la frase
 QUITAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres quitarte."
+ WRITELN "Por favor, especifica qué quieres quitarte."
  DONE 
  
 QUITAR        _        
@@ -1853,7 +1853,7 @@ PONER _                        ; Hay nombre desconocido en la frase
 PONER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres ponerte."
+ WRITELN "Por favor, especifica qué quieres ponerte."
  
 PONER        _        
  AUTOW 
@@ -1872,7 +1872,7 @@ TIRAR _                        ; No hay nombre en la frase
  PREP DE
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica de qué quieres tirar."
+ WRITELN "Por favor, especifica de qué quieres tirar."
  DONE
  
 TIRAR _
@@ -1916,18 +1916,18 @@ TIRAR _                        ; Es un objeto ausente
 
 ;-----------------------------------------------
 
-MIRAR       _          ; Hay nombre desconocido en la frase y la preposición DENTRO (EN) está presente
+MIRAR       _          ; Hay nombre desconocido en la frase y la «preposición» DENTRO (EN) está presente
  PREP DENTRO                       
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes examinar dentro de eso que dices.."
  DONE
 
-MIRAR       _          ; No hay nombre en la frase y la preposición DENTRO (EN) está presente
+MIRAR       _          ; No hay nombre en la frase y la «preposición» DENTRO (EN) está presente
  PREP DENTRO                       
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dentro de qué quieres examinar."
+ WRITELN "Por favor, especifica dentro de qué quieres examinar."
  DONE
 
 MIRAR       _          ; Hay nombre en la frase y es una dirección (o punto cardinal)
@@ -1958,7 +1958,7 @@ ESCONDER _                        ; Hay nombre desconocido en la frase
 ESCONDER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres esconder."
+ WRITELN "Por favor, especifica qué quieres esconder."
  DONE
 
 ESCONDER _
@@ -2031,7 +2031,7 @@ EMPUJAR _                        ; Hay nombre desconocido en la frase
 EMPUJAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres empujar."
+ WRITELN "Por favor, especifica qué quieres empujar."
  DONE
  
 EMPUJAR _
@@ -2069,7 +2069,7 @@ EMPUJAR _
 
 
  
-EMPUJAR _                        ; Hay nombre pero no es un objeto
+EMPUJAR _                 ; Hay nombre pero no es un objeto
  NOTEQ 34 255
  EQ 51 255
  WRITELN "No ves mucho sentido a empujar eso."
@@ -2099,7 +2099,7 @@ MOVER _                        ; Hay nombre desconocido en la frase
 MOVER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres mover."
+ WRITELN "Por favor, especifica qué quieres mover."
  DONE
  
 MOVER _
@@ -2148,7 +2148,7 @@ GIRAR _                        ; Hay nombre desconocido en la frase
 GIRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres girar."
+ WRITELN "Por favor, especifica qué quieres girar."
  DONE
 
 GIRAR _
@@ -2212,7 +2212,7 @@ LANZAR _                        ; Hay nombre desconocido en la frase
 LANZAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres lanzar."
+ WRITELN "Por favor, especifica qué quieres lanzar."
  DONE
 
 LANZAR _   						; Es un NPC
@@ -2298,7 +2298,7 @@ COMER _                        ; Hay nombre desconocido en la frase
 COMER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres comer."
+ WRITELN "Por favor, especifica qué quieres comer."
  DONE
  
 COMER _
@@ -2366,7 +2366,7 @@ BEBER _                        ; Hay nombre desconocido en la frase
 BEBER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres beber."
+ WRITELN "Por favor, especifica qué quieres beber."
  DONE
  
 BEBER _
@@ -2431,7 +2431,7 @@ ESCUPIR _                        ; Hay nombre desconocido en la frase
 ESCUPIR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué quieres escupir."
+ WRITELN "Por favor, especifica a qué quieres escupir."
  DONE
  
 ESCUPIR _
@@ -2480,7 +2480,7 @@ TOCAR _                        ; Hay nombre desconocido en la frase
 TOCAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres tocar."
+ WRITELN "Por favor, especifica qué quieres tocar."
  DONE
  
 TOCAR _
@@ -2529,7 +2529,7 @@ OLER _                        ; Hay nombre desconocido en la frase
 OLER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres oler."
+ WRITELN "Por favor, especifica qué quieres oler."
  DONE
  
 OLER _
@@ -2601,7 +2601,7 @@ AGITAR _                        ; Hay nombre desconocido en la frase
 AGITAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres agitar."
+ WRITELN "Por favor, especifica qué quieres agitar."
  DONE
  
 AGITAR _
@@ -2650,7 +2650,7 @@ BALANCEATE _                        ; Hay nombre desconocido en la frase
 BALANCEATE _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dónde quieres balancearte."
+ WRITELN "Por favor, especifica dónde quieres balancearte."
  DONE
  
 BALANCEATE _
@@ -2752,7 +2752,7 @@ ATACAR _                        ; Hay nombre desconocido en la frase
 ATACAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres atacar."
+ WRITELN "Por favor, especifica a qué o a quién quieres atacar."
  DONE
  
 ATACAR _
@@ -2801,7 +2801,7 @@ GOLPEAR _                        ; Hay nombre desconocido en la frase
 GOLPEAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres golpear."
+ WRITELN "Por favor, especifica a qué o a quién quieres golpear."
  DONE
  
 GOLPEAR _
@@ -2842,24 +2842,24 @@ GOLPEAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 USAR        _
- WRITELN "USAR es demasiado genérico, por favor se más concreto. Por ejemplo, si quieres barrer el suelo utiliza BARRER SUELO, no USAR ESCOBA."
+ WRITELN "USAR es demasiado genérico, Por favor, sé más concreto. Por ejemplo, si quieres barrer el suelo utiliza BARRER SUELO, no USAR ESCOBA."
  DONE
 
 ;-----------------------------------------------
 
 
-EX _                        ; Hay nombre desconocido en la frase y la preposición DENTRO (EN) está presente
+EX _                        ; Hay nombre desconocido en la frase y la «preposición» DENTRO (EN) está presente
  PREP DENTRO
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes examinar dentro de eso que dices."  
  DONE
 
-EX _                        ; No hay nombre en la frase y la preposición DENTRO (EN) está presente
+EX _                        ; No hay nombre en la frase y la «preposición» DENTRO (EN) está presente
  PREP DENTRO                       
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dentro de qué quieres examinar."
+ WRITELN "Por favor, especifica dentro de qué quieres examinar."
  DONE
 
 EX _                        ; Hay nombre desconocido en la frase
@@ -2871,10 +2871,10 @@ EX _                        ; Hay nombre desconocido en la frase
 EX _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué o a quién quieres examinar."
+ WRITELN "Por favor, especifica qué o a quién quieres examinar."
  DONE
 
-EX        _           ; hay nombre, y es propio, y la preposición DENTRO (EN) esta presente
+EX        _           ; hay nombre, y es propio, y la «preposición» DENTRO (EN) esta presente
  PREP DENTRO
  NOTEQ 51 255
  ONOTZERO @51 aNPC ; Es un NPC
@@ -2905,7 +2905,7 @@ EX _
  WRITELN "No está aquí."
  DONE
 
-EX _    ; Hay nombre pero no es un objeto, prep DENTRO presente
+EX _    ; Hay nombre pero no es un objeto, «prep.» DENTRO presente
  PREP DENTRO
  NOTEQ 34 255
  EQ 51 255
@@ -2930,7 +2930,7 @@ EX _                        ; Es un objeto presente y contenedor, transaparente 
  WRITELN "."
  DONE
 
-EX _                        ; Es un objeto presente y contenedor, no abrible
+EX _                        ; Es un objeto presente y contenedor, que no se puede abrir
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
@@ -2943,7 +2943,7 @@ EX _                        ; Es un objeto presente y contenedor, no abrible
  DONE
 
 
-EX _                        ; Es un objeto presente y contenedor, abrible y abierto con cosas dentro
+EX _                        ; Es un objeto presente y contenedor, que se puede abrir y está abierto con cosas dentro
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
@@ -2956,7 +2956,7 @@ EX _                        ; Es un objeto presente y contenedor, abrible y abie
  WRITELN "."
  DONE
 
-EX _                        ; Es un objeto presente y contenedor, abrible y cerrado
+EX _                        ; Es un objeto presente y contenedor, que se puede abrir y cerrado
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aContainer
@@ -3012,7 +3012,7 @@ LIMPIAR _                        ; Hay nombre desconocido en la frase
 LIMPIAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres limpiar."
+ WRITELN "Por favor, especifica qué quieres limpiar."
  DONE
  
 LIMPIAR _
@@ -3061,7 +3061,7 @@ RASCAR _                        ; Hay nombre desconocido en la frase
 RASCAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres rascar."
+ WRITELN "Por favor, especifica qué quieres rascar."
  DONE
  
 RASCAR _
@@ -3110,7 +3110,7 @@ QUEMAR _                        ; Hay nombre desconocido en la frase
 QUEMAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres quemar."
+ WRITELN "Por favor, especifica qué quieres quemar."
  DONE
 
 QUEMAR _
@@ -3157,7 +3157,7 @@ APAGAR _                        ; Hay nombre desconocido en la frase
 APAGAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres apagar."
+ WRITELN "Por favor, especifica qué quieres apagar."
  DONE
  
 APAGAR _                        ; Hay nombre pero no es un objeto
@@ -3190,7 +3190,7 @@ CORTAR _                        ; Hay nombre desconocido en la frase
 CORTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres cortar."
+ WRITELN "Por favor, especifica qué quieres cortar."
  DONE
  
 CORTAR _ 
@@ -3245,7 +3245,7 @@ ATAR _                        ; Hay nombre desconocido en la frase
 ATAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres atar."
+ WRITELN "Por favor, especifica qué quieres atar."
  DONE
  
 ATAR _ 
@@ -3292,7 +3292,7 @@ DESATAR _                        ; Hay nombre desconocido en la frase
 DESATAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desatar."
+ WRITELN "Por favor, especifica qué quieres desatar."
  DONE
  
 DESATAR _ 
@@ -3339,7 +3339,7 @@ LLENAR _                        ; Hay nombre desconocido en la frase
 LLENAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres llenar."
+ WRITELN "Por favor, especifica qué quieres llenar."
  DONE
  
 LLENAR _                        ; Hay nombre pero no es un objeto
@@ -3392,7 +3392,7 @@ RETORCER _                        ; Hay nombre desconocido en la frase
 RETORCER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres retorcer."
+ WRITELN "Por favor, especifica qué quieres retorcer."
  DONE
 
 RETORCER _ 
@@ -3439,7 +3439,7 @@ APRETAR _                        ; Hay nombre desconocido en la frase
 APRETAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres apretar."
+ WRITELN "Por favor, especifica qué quieres apretar."
  DONE
 
 APRETAR _ 
@@ -3486,7 +3486,7 @@ BESAR _                        ; Hay nombre desconocido en la frase
 BESAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres besar."
+ WRITELN "Por favor, especifica a qué o a quién quieres besar."
  DONE
  
 BESAR _
@@ -3535,7 +3535,7 @@ ABRAZAR _                        ; Hay nombre desconocido en la frase
 ABRAZAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres abrazar."
+ WRITELN "Por favor, especifica a qué o a quién quieres abrazar."
  DONE
  
 ABRAZAR _
@@ -3584,7 +3584,7 @@ CONECTAR _                        ; Hay nombre desconocido en la frase
 CONECTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres conectar."
+ WRITELN "Por favor, especifica qué quieres conectar."
  DONE
  
 CONECTAR _                        ; Hay nombre pero no es un objeto
@@ -3635,7 +3635,7 @@ DESCONECTAR _                        ; No hay nombre en la frase
 DESCONECTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desconectar."
+ WRITELN "Por favor, especifica qué quieres desconectar."
  DONE
  
 DESCONECTAR _                        ; Hay nombre pero no es un objeto
@@ -3687,7 +3687,7 @@ ABRIR _                        ; Hay nombre desconocido en la frase
 ABRIR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres abrir."
+ WRITELN "Por favor, especifica qué quieres abrir."
  DONE
  
 ABRIR _                        ; Hay nombre pero no es un objeto
@@ -3700,7 +3700,7 @@ ABRIR _                        ; Hay nombre pero no es un objeto
 ABRIR _                           
  NOTEQ 51 255
  PRESENT @51
- ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpenable  ; Se puede abrir
  OZERO @51 aOpen         ; Cerrado
  OZERO @51 aLocked       ; No cerrado con llave
  OSET @51 aOpen
@@ -3710,7 +3710,7 @@ ABRIR _
 ABRIR _                           
  NOTEQ 51 255
  PRESENT @51
- ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpenable  ; Se puede abrir
  OZERO @51 aOpen         ; Cerrado
  ONOTZERO @51 aLocked    ; Cerrado con llave
  WRITELN "Está cerrado con llave."
@@ -3719,7 +3719,7 @@ ABRIR _
 ABRIR _                           
  NOTEQ 51 255
  PRESENT @51
- ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpenable  ; Se puede abrir
  ONOTZERO @51 aOpen      ; Abierto
  WRITELN "Ya lo está."
  DONE
@@ -3727,7 +3727,7 @@ ABRIR _
 ABRIR _                           
  NOTEQ 51 255
  PRESENT @51
- ONOTZERO @51 aOpenable  ; Abrible
+ ONOTZERO @51 aOpenable  ; Se puede abrir
  ONOTZERO @51 aOpen      ; Abierto
  WRITELN "Ya lo está."
  DONE
@@ -3758,7 +3758,7 @@ CERRAR _                        ; Hay nombre desconocido en la frase
 CERRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres cerrar."
+ WRITELN "Por favor, especifica qué quieres cerrar."
  DONE
  
 CERRAR _                        ; Hay nombre pero no es un objeto
@@ -3809,7 +3809,7 @@ LEER _                        ; No hay nombre en la frase
 LEER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres leer."
+ WRITELN "Por favor, especifica qué quieres leer."
  DONE
  
 LEER _                        ; Hay nombre pero no es un objeto
@@ -3842,7 +3842,7 @@ CHUPAR _                        ; Hay nombre desconocido en la frase
 CHUPAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres chupar."
+ WRITELN "Por favor, especifica qué quieres chupar."
  DONE
 
 CHUPAR _ 
@@ -3897,7 +3897,7 @@ ROMPER _                        ; Hay nombre desconocido en la frase
 ROMPER _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres romper."
+ WRITELN "Por favor, especifica qué quieres romper."
  DONE
  
 ROMPER _
@@ -3946,7 +3946,7 @@ COMPRAR _                        ; Hay nombre desconocido en la frase
 COMPRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres comprar."
+ WRITELN "Por favor, especifica qué quieres comprar."
  DONE
  
 COMPRAR _
@@ -3995,7 +3995,7 @@ DOBLAR _                        ; Hay nombre desconocido en la frase
 DOBLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres doblar."
+ WRITELN "Por favor, especifica qué quieres doblar."
  DONE
  
 DOBLAR _
@@ -4044,7 +4044,7 @@ DESDOBLAR _                        ; Hay nombre desconocido en la frase
 DESDOBLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres desdoblar."
+ WRITELN "Por favor, especifica qué quieres desdoblar."
  DONE
  
 DESDOBLAR _
@@ -4113,10 +4113,10 @@ DAR _                  ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  COPYFF 14 44
  COPYFF 35 14          ; Les damos la vuelta al adjetivo de Noun1 y al adjetivo de Noun2
  COPYFF 45 35
- COPYFF 14 45          ; forzamos al parser a que actualice los flags del objeto referenciado
+ COPYFF 14 45          ; forzamos al párser a que actualice los flags del objeto referenciado
  WHATO
 
-DAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
+DAR _                  ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
  PREP A                ; Tiene que dar este mensaje porque lo que queríamos que  fuera el Noun1 no es nada del vocabulario
  BZERO 12 2
  EQ 44 255
@@ -4127,7 +4127,7 @@ DAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocup
 DAR _              ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres dar."
+ WRITELN "Por favor, especifica qué quieres dar."
  DONE
  
 DAR _              ; Hay nombre desconocido en la frase
@@ -4163,7 +4163,7 @@ DAR _              ; DAR un objeto del inventario y no especificar a quién
  WRITELN "¿A quién quieres dar eso?"
  DONE
 
-DAR _              ; DAR un objeto del inventario y no especificar a quién (encuantra una palabra que no está en el vocabulario)
+DAR _              ; DAR un objeto del inventario y no especificar a quién (encuentra una palabra que no está en el vocabulario)
  NOTEQ 51 255             
  CARRIED @51 
  EQ 44 255
@@ -4180,7 +4180,7 @@ DAR _              ; DAR un objeto del inventario a un noun2 que no es un objeto
  WRITELN "No puedes darle {OREF} a eso."                         
  DONE 
 
-DAR _              ; DAR un objeto del inventario a un objeto presente pero que no es un NPC
+DAR _                  ; DAR un objeto del inventario a un objeto presente pero que no es un NPC
  NOTEQ 51 255
  CARRIED @51
  NOTEQ 44 255
@@ -4201,7 +4201,7 @@ DAR _              ; DAR un objeto del inventario a un NPC pero que no está pre
  WRITELN "No le puedes dar {OREF} porque no está aquí."
  DONE
 
-DAR _              ; DAR un objeto presente a un NPC que está presente
+DAR _                  ; DAR un objeto presente a un NPC que está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255
@@ -4224,7 +4224,7 @@ MOSTRAR _              ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  COPYFF 14 44
  COPYFF 35 14          ; Les damos la vuelta al adjetivo de Noun1 y al adjetivo de Noun2
  COPYFF 45 35
- COPYFF 14 45          ; forzamos al parser a que actualice los flags del objeto referenciado
+ COPYFF 14 45          ; forzamos al párser a que actualice los flags del objeto referenciado
  WHATO
 
 MOSTRAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
@@ -4238,7 +4238,7 @@ MOSTRAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a 
 MOSTRAR _              ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres mostrar."
+ WRITELN "Por favor, especifica qué quieres mostrar."
  DONE
  
 MOSTRAR _              ; Hay nombre desconocido en la frase
@@ -4335,7 +4335,7 @@ SOPLAR _                        ; Hay nombre desconocido en la frase
 SOPLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué quieres soplar."
+ WRITELN "Por favor, especifica a qué quieres soplar."
  DONE
 
 SOPLAR _
@@ -4428,7 +4428,7 @@ LEVANTAR _                        ; Hay nombre desconocido en la frase
 LEVANTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres levantar."
+ WRITELN "Por favor, especifica qué quieres levantar."
  DONE 
 
 LEVANTAR _
@@ -4483,7 +4483,7 @@ ARRASTRAR _                        ; Hay nombre desconocido en la frase
 ARRASTRAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres arrastrar."
+ WRITELN "Por favor, especifica qué quieres arrastrar."
  DONE
  
 ARRASTRAR _
@@ -4532,13 +4532,13 @@ VACIAR _                        ; Hay nombre desconocido en la frase
 VACIAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres vaciar."
+ WRITELN "Por favor, especifica qué quieres vaciar."
  DONE 
  
 VACIAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC 
+ ONOTZERO @51 aNPC 		; Es un NPC 
  PRESENT @51
  WRITELN "No es lo más apropiado."  
  DONE
@@ -4546,7 +4546,7 @@ VACIAR _
 VACIAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
@@ -4581,13 +4581,13 @@ LLAMAR _                        ; Hay nombre desconocido en la frase
 LLAMAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a qué o a quién quieres llamar."
+ WRITELN "Por favor, especifica a qué o a quién quieres llamar."
  DONE 
  
 LLAMAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		; Es un NPC
  PRESENT @51
  WRITELN "No hay respuesta..."                                       
  DONE
@@ -4595,7 +4595,7 @@ LLAMAR _
 LLAMAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
@@ -4629,7 +4629,7 @@ PREGUNTAR _                        ; Hay nombre desconocido en la frase
 PREGUNTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a quién quieres preguntar."
+ WRITELN "Por favor, especifica a quién quieres preguntar."
  DONE
  
 PREGUNTAR _
@@ -4677,7 +4677,7 @@ CONSULTAR _                        ; Hay nombre desconocido en la frase
 CONSULTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres consultar."
+ WRITELN "Por favor, especifica qué quieres consultar."
  DONE
  
 CONSULTAR _                        ; Hay nombre pero no es un objeto
@@ -4709,7 +4709,7 @@ INSULTAR _                        ; Hay nombre desconocido en la frase
 INSULTAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica a quién quieres insultar."
+ WRITELN "Por favor, especifica a quién quieres insultar."
  DONE 
  
 INSULTAR _
@@ -4758,13 +4758,13 @@ UNIR _                        ; Hay nombre desconocido en la frase
 UNIR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres unir."
+ WRITELN "Por favor, especifica qué quieres unir."
  DONE 
   
 UNIR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 	      ; Es un NPC
  PRESENT @51
  WRITELN "No crees que le guste demasiado."
  DONE
@@ -4772,7 +4772,7 @@ UNIR _
 UNIR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 	      ; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
@@ -4783,13 +4783,13 @@ UNIR _                        ; Hay nombre pero no es un objeto
  WRITELN "No ves mucho sentido a unir eso."
  DONE
 
-UNIR _                ; Es un objeto presente
+UNIR _                	      ; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No parece que se consiga nada uniendo {OREF}."
  DONE
 
-UNIR _                ; Es un objeto ausente
+UNIR _                	      ; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
  WRITELN "Para unir {OREF} tendría que estar aquí."
@@ -4807,13 +4807,13 @@ SEPARAR _                        ; Hay nombre desconocido en la frase
 SEPARAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica qué quieres separar."
+ WRITELN "Por favor, especifica qué quieres separar."
  DONE 
   
 SEPARAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		 ; Es un NPC
  PRESENT @51
  WRITELN "No crees que le guste demasiado."
  DONE
@@ -4821,7 +4821,7 @@ SEPARAR _
 SEPARAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		 ; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
@@ -4832,16 +4832,16 @@ SEPARAR _                        ; Hay nombre pero no es un objeto
  WRITELN "No ves mucho sentido a separar eso."
  DONE
 
-SEPARAR _                ; Es un objeto presente
+SEPARAR _                	; Es un objeto presente
  NOTEQ 51 255
  PRESENT @51
  WRITELN "No parece que se consiga nada separando {OREF}."
  DONE
 
-SEPARAR _                ; Es un objeto ausente
+SEPARAR _                	; Es un objeto ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "Para separar {OREF} tendría que estar aquí."
+ WRITELN "Para separar {OREF}, tendría que estar aquí."
  DONE
 
 ;-----------------------------------------------
@@ -4856,13 +4856,13 @@ HABLAR _                        ; Hay nombre desconocido en la frase
 HABLAR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica con quién quieres hablar."
+ WRITELN "Por favor, especifica con quién quieres hablar."
  DONE 
  
 HABLAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		; Es un NPC
  PRESENT @51
  WRITELN "No parece interesarse por tu charla."
  DONE
@@ -4870,7 +4870,7 @@ HABLAR _
 HABLAR _
  NOTEQ 34 255
  NOTEQ 51 255
- ONOTZERO @51 aNPC ; Es un NPC
+ ONOTZERO @51 aNPC 		; Es un NPC
  ABSENT @51
  WRITELN "No está aquí."
  DONE
@@ -4905,7 +4905,7 @@ IR _                        ; Hay nombre desconocido en la frase
 IR _                        ; No hay nombre en la frase
  EQ 34 255
  BZERO 12 1
- WRITELN "Por favor especifica dónde quieres ir."
+ WRITELN "Por favor, especifica dónde quieres ir."
  DONE 
  
 IR _
@@ -4942,7 +4942,7 @@ IR _                        ; Es un objeto ausente
  WRITELN "No ves eso que dices."
  DONE               
 
-;########## RUTINA DE 'NO PUEDES IR EN ESA DIRECCION' EXTENDIDA ####################
+;########## RUTINA DE «NO PUEDES IR EN ESA DIRECCIÓN» EXTENDIDA ####################
  
 _               _     LT 33 14
                       MOVE 38
@@ -4959,7 +4959,7 @@ _               _     LT 33 14
                       DONE
  
 _ _
- HOOK "RESPONSE_DEFAULT_END"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "RESPONSE_DEFAULT_END"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
  
 
@@ -4967,21 +4967,20 @@ _ _
 
 ; ################################### PROCESO 1 ####################################
 ; #                                                                                #
-; #  El proceso 1 es ejecutado por ngPAWS tras la descripción de localidad.     #
+; #  ngPAWS ejecuta el proceso 1 tras la descripción de localidad.                 #
 ; #                                                                                #
-; #  Se usa principalmente para poner entradas que añadirán información            #
-; #  extra a la descripción de la localidad actual. Por ejemplo, detalles sobre    #     
-; #  puertas abiertas, PSI presentes, etc                                          #
+; #  Se usa principalmente para poner entradas que añadirán información adicional  #
+; #  a la descripción de la localidad actual. Por ejemplo, detalles sobre          #     
+; #  puertas abiertas, PSI presentes, etc.                                         #
 ; #                                                                                #
 ; ##################################################################################
 
 _ _
- HOOK "PRO1"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "PRO1"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
 _  		 _
  AT 0
  BSET 12 5                      ; Spanish
- BSET 12 0                      ; Soporta terminaciones pronominales
 _        _        
  ISLIGHT
  LISTOBJ                        ;Lista los objetos
@@ -4995,14 +4994,13 @@ _        _
 
 ; ################################### PROCESO 2 ####################################
 ; #                                                                                #
-; #  El proceso 2 es ejecutado por ngPAWS cada turno.                              #
+; #  ngPAWS ejecuta el proceso 2 cada turno.                                       #
 ; #                                                                                #
 ; #  Se usa principalmente para implementar movimientos y acciones de PSIs,        #
 ; #  eventos no controlados por el jugador como por ejemplo puentes que se hunden, #     
-; #  puertas que se abren, etc                                                     #
+; #  puertas que se abren, etc.                                                    #
 ; #                                                                                #
 ; ##################################################################################
 _ _
- HOOK "PRO2"  ; Back call a el sistema de hooks, por defecto no hace nada pero algunas librerías plugin podrían hacer que hiciera algo. No borrar.
+ HOOK "PRO2"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
-
