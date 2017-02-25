@@ -10,6 +10,12 @@ What makes ngPAWS different?
 ----------------------------
 What makes ngPAWS different is it does not generate an executable file, but a website that can be run in any modern browser. So text adventures (aka interactive fiction) made with ngPAWS can be run in any web server, or locally.
 
+Demo
+----
+
+Please check a full though short story in the following URL:
+
+http://www.ngpaws.com/demos/mcarras/
 
 Documentation
 -------------
