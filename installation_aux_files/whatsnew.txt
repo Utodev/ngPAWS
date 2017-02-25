@@ -1,4 +1,4 @@
-﻿Beta 10 - November 2016
+﻿Beta 10 - February 2017
 =======================
 
 - ANYKEY and other similar condacts that requiere a callback function can now be overlapping, as the callback function includes a stack now, instead of a single value.
