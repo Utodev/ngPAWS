@@ -1,12 +1,12 @@
 object fMain: TfMain
-  Left = 821
+  Left = 340
   Height = 600
-  Top = 311
+  Top = 198
   Width = 908
   Align = alClient
   AlphaBlend = True
   Caption = 'ngPAWS'
-  ClientHeight = 577
+  ClientHeight = 576
   ClientWidth = 908
   Color = 2238503
   Icon.Data = {
@@ -718,16 +718,16 @@ object fMain: TfMain
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '1.6.0.4'
   WindowState = wsMaximized
   object PanelBackground: TPanel
     Left = 0
-    Height = 577
+    Height = 576
     Top = 0
     Width = 908
     Align = alClient
     Caption = 'ngPAWS Editor (C) 2015 Uto'
-    ClientHeight = 577
+    ClientHeight = 576
     ClientWidth = 908
     Font.Color = clSilver
     ParentFont = False
@@ -735,7 +735,7 @@ object fMain: TfMain
     OnClick = PanelBackgroundClick
     object PageControl: TPageControl
       Left = 1
-      Height = 355
+      Height = 354
       Top = 51
       Width = 906
       Align = alClient
@@ -4057,7 +4057,7 @@ object fMain: TfMain
       Left = 1
       Height = 170
       Hint = 'Compiler output'
-      Top = 406
+      Top = 405
       Width = 906
       Align = alBottom
       Color = 2238503
@@ -4197,15 +4197,15 @@ object fMain: TfMain
           ShortCut = 32842
           OnClick = MObjectDataClick
         end
-        object mSystemMessages: TMenuItem
-          Caption = '&System messages'
-          ShortCut = 32851
-          OnClick = mSystemMessagesClick
-        end
         object MMessages: TMenuItem
           Caption = '&Messages'
           ShortCut = 32845
           OnClick = MMessagesClick
+        end
+        object mSystemMessages: TMenuItem
+          Caption = '&System messages'
+          ShortCut = 32851
+          OnClick = mSystemMessagesClick
         end
       end
       object MProcesses: TMenuItem
@@ -4370,6 +4370,7 @@ object fMain: TfMain
     SelectedColor = clMaroon
     CaseSensitive = False
     Width = 262
+    AutoUseSingleIdent = True
     ShortCut = 16416
     EndOfTokenChr = '()[].'
     ExecCommandID = ecSynCompletionExecute
