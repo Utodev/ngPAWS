@@ -1,15 +1,16 @@
-﻿Beta 10 - February 2017
-=======================
+﻿Beta 10 - March 2017
+====================
 
 - ANYKEY and other similar condacts that requiere a callback function can now be overlapping, as the callback function includes a stack now, instead of a single value.
 - MODE condact partially works now: value 0 means text window is cleared when a new location is described, any other value means the text remains unaltered.
 - Nested PROCESS CALLs are now interrupted if DESC happens.
 - PICTUREAT condact rebuilt, it was very buggy.
-- Fixed bug with object that had aConcealed and aScenery attributes at the same time
-- Fixed bug in NEWTEXT condact
-- Several changes for IDE accesibility
+- Fixed bug with object that had aConcealed and aScenery attributes at the same time.
+- Fixed bug in NEWTEXT condact.
+- Several changes for IDE accesibility.
 - Now tapping on touch screen while waiting for a key in ANYKEY will react as key pressed.
-- Added several css themes
+- Added several css themes.
+- Fixed some typos and changed some comments in spanish start database. Thanks to @cybersheep.
 
 
 
