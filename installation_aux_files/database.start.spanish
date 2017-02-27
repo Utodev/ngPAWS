@@ -511,7 +511,7 @@ EXAMINARTE    85       verb
 VACIAR        86       verb
 VACIA         86       verb
 VERTER        86       verb
-VERTIR        86       verb  ; Término erróneo, pero ampliamente extendido
+VERTIR        86       verb  ; Término erróneo pero ampliamente extendido
 VIERTE        86       verb
 DESPIERTA     87       verb
 DESPERTAR     87       verb
@@ -738,7 +738,7 @@ No puedes ir en esa dirección.
 ¿Perdón?
 
 /9
-Llevas:     
+Llevas: 
 /10
  (puesto/a)
 /11
@@ -959,7 +959,7 @@ quemarte la piel mientras que una oscura aleta da vueltas en círculos en las cl
 ; ##########################################################################################
 
 _ _
- HOOK "RESPONSE_START" ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "RESPONSE_START" ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
 COGER TODO   ; COGER TODO DE --> SACAR TODO DE
  PREP DE
@@ -1020,7 +1020,7 @@ SACAR TODO
 SACAR TODO
  PREP DE
  NOTEQ 13 255   ; Es un objeto
- ONOTZERO @13 aSupporter ; Es un supporter
+ ONOTZERO @13 aSupporter ; Es una superficie
  ABSENT @13
  WRITELN "No ves eso por aquí."
  DONE
@@ -1039,7 +1039,7 @@ SACAR TODO
 SACAR TODO
  PREP DE
  NOTEQ 13 255   ; Es un objeto
- ONOTZERO @13 aSupporter ; Es un supporter
+ ONOTZERO @13 aSupporter ; Es una superficie
  PRESENT @13
  OBJAT @13 14
  ZERO 14
@@ -1058,7 +1058,7 @@ SACAR TODO
 SACAR TODO
  PREP DE
  NOTEQ 13 255   ; Es un objeto
- ONOTZERO @13 aSupporter ; Es un supporter
+ ONOTZERO @13 aSupporter ; Es una superficie
  PRESENT @13
  DOALL @13
 
@@ -1372,7 +1372,7 @@ COGER _
   
 
 _ _
- HOOK "RESPONSE_USER"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "RESPONSE_USER"  ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
 ; ####################### RESPUESTAS MODIFICADAS POR EL PROGRAMADOR #######################
 ; #                                                                                       #
@@ -1401,7 +1401,7 @@ _ _
 ; #########################################################################################
 
 _ _
- HOOK "RESPONSE_DEFAULT_START"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "RESPONSE_DEFAULT_START"  ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
 
 I        _        
@@ -1494,7 +1494,7 @@ COGER _    		 ; Coger un objeto que está dentro de un contenedor
  ONOTZERO @14 aContainer ; Es un contenedor
  SYNONYM SACAR _ 	 ; convertimos «coger objeto de un contenedor» en «sacar objeto de un contenedor»
 
-COGER _                  ; Hay nombre desconocido en la frase
+COGER _                  ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes coger eso que dices."
@@ -1525,7 +1525,7 @@ DEJAR _    		 ; DEJAR un objeto dentro de un contenedor     #############
  ONOTZERO @14 aContainer ; Es un contenedor
  SYNONYM METER _	 ; Convertimos «DEJAR objeto en un contenedor» en «METER objeto en un contenedor»
 
-DEJAR _                  ; Hay nombre desconocido en la frase
+DEJAR _                  ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes dejar eso que dices."
@@ -1542,7 +1542,7 @@ DEJAR        _
  DONE
 
 ;-----------------------------------------------
-SACAR _                ; Copiamos en el Flag 15 el núumero de objeto referenciado por noun2 (o 255 si no lo hay)
+SACAR _                ; Copiamos en el Flag 15 el número de objeto referenciado por noun2 (o 255 si no lo hay)
  WHATOX2 15
 
 SACAR _                ; No hay nombre en la frase
@@ -1551,7 +1551,7 @@ SACAR _                ; No hay nombre en la frase
  WRITELN "Por favor, especifica qué quieres sacar."
  DONE
  
-SACAR _                ; Hay nombre desconocido en la frase
+SACAR _                ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes sacar eso que dices."
@@ -1601,7 +1601,7 @@ SACAR _                ;
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  SAME 51 15            ; No puede sacarse de sí mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el sacar algo de sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe, no obtendrá respuesta.
+ DONE                  ; Esto es poco ortodoxo pero se entiende que, en general, el sacar algo de sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe, no obtendrá respuesta.
 
 
 
@@ -1674,7 +1674,7 @@ METER _                ; No hay nombre en la frase
  WRITELN "Por favor, especifica qué quieres meter."
  DONE
  
-METER _                ; Hay nombre desconocido en la frase
+METER _                ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes meter eso que dices."
@@ -1734,14 +1734,14 @@ METER _
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aContainer ; Es un contenedor
  SAME 51 15            ; No puede meterse en sí mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
+ DONE                  ; Esto es poco ortodoxo pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
 
 
 METER _
  NOTEQ 15 255          ; Es un objeto
  ONOTZERO @15 aSupporter ; es un contenedor
  SAME 51 15            ; No puede meterse en sí mismo
- DONE                  ; Esto es poco ortodoxo, pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
+ DONE                  ; Esto es poco ortodoxo pero se entiende que, en general, el meter algo en sí mismo solo puede ocurrir en un DOALL. Si alguien lo escribe no obtendrá respuesta.
 
 
 METER _                ; METER un objeto del inventario a un objeto presente pero que no es un Container ni supporter
@@ -1765,7 +1765,7 @@ METER _                ; METER un objeto del inventario a un Container pero que 
  WRITELN "No puedes meter {OREF} ahí porque no llevas eso."
  DONE
 
-METER _                ; METER un objeto del inventario a un Supporter pero que no está presente
+METER _                ; METER un objeto del inventario a una superficie pero que no está presente
  NOTEQ 51 255
  CARRIED @51    
  NOTEQ 44 255 
@@ -1826,7 +1826,7 @@ METER _                ; METER un objeto presente a una superficie que está pre
 
 ;-----------------------------------------------
 
-QUITAR _                        ; Hay nombre desconocido en la frase
+QUITAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No te puedes quitar eso que dices."
@@ -1844,7 +1844,7 @@ QUITAR        _
 
 ;-----------------------------------------------
 
-PONER _                        ; Hay nombre desconocido en la frase
+PONER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No te puedes poner eso que dices."
@@ -1861,7 +1861,7 @@ PONER        _
 
 ;------------------------------------------------------------
 
-TIRAR _                        ; Hay nombre desconocido en la frase
+TIRAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  PREP DE
  EQ 34 255
  BNOTZERO 12 1
@@ -1916,7 +1916,7 @@ TIRAR _                        ; Es un objeto ausente
 
 ;-----------------------------------------------
 
-MIRAR       _          ; Hay nombre desconocido en la frase y la «preposición» DENTRO (EN) está presente
+MIRAR       _          ; Posiblemente en la frase hay un nombre no incluido en el vocabulario y la «preposición» DENTRO (EN) está presente
  PREP DENTRO                       
  EQ 34 255
  BNOTZERO 12 1
@@ -1935,7 +1935,7 @@ MIRAR       _          ; Hay nombre en la frase y es una dirección (o punto car
  WRITELN "No ves nada interesante hacia allí."
  DONE
  
-MIRAR       _          ; Hay nombre desconocido en la frase
+MIRAR       _          ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes mirar eso que dices."
@@ -1949,7 +1949,7 @@ MIRAR       _          ; No hay nombre en la frase
 ;-----------------------------------------------
 
 
-ESCONDER _                        ; Hay nombre desconocido en la frase
+ESCONDER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes esconder eso que dices."
@@ -2022,7 +2022,7 @@ ESCONDETE _
 ;-----------------------------------------------
 
 
-EMPUJAR _                        ; Hay nombre desconocido en la frase
+EMPUJAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes empujar eso que dices."
@@ -2090,7 +2090,7 @@ EMPUJAR _                ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-MOVER _                        ; Hay nombre desconocido en la frase
+MOVER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes mover eso que dices."
@@ -2139,7 +2139,7 @@ MOVER _                ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-GIRAR _                        ; Hay nombre desconocido en la frase
+GIRAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes girar eso que dices."
@@ -2203,7 +2203,7 @@ GIRAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-LANZAR _                        ; Hay nombre desconocido en la frase
+LANZAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes lanzar eso que dices."
@@ -2283,13 +2283,13 @@ ESCUCHAR _
 
 ESCUCHAR _                        
  EQ 34 255
- WRITELN "Prestas atención a ver si oyes algo más, pero no escuchas nada en especial."
+ WRITELN "Prestas atención a ver si oyes algo más pero no escuchas nada en especial."
  DONE
  
 ;-----------------------------------------------
 
 
-COMER _                        ; Hay nombre desconocido en la frase
+COMER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes comer eso que dices."
@@ -2357,7 +2357,7 @@ COMER _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-BEBER _                        ; Hay nombre desconocido en la frase
+BEBER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes beber eso que dices."
@@ -2422,7 +2422,7 @@ MEAR _
 ;-----------------------------------------------
 
 
-ESCUPIR _                        ; Hay nombre desconocido en la frase
+ESCUPIR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes escupir a eso que dices."
@@ -2471,7 +2471,7 @@ ESCUPIR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-TOCAR _                        ; Hay nombre desconocido en la frase
+TOCAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes tocar eso que dices."
@@ -2520,7 +2520,7 @@ TOCAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-OLER _                        ; Hay nombre desconocido en la frase
+OLER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes oler eso que dices."
@@ -2592,7 +2592,7 @@ OLER _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-AGITAR _                        ; Hay nombre desconocido en la frase
+AGITAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes agitar eso que dices."
@@ -2641,7 +2641,7 @@ AGITAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-BALANCEATE _                        ; Hay nombre desconocido en la frase
+BALANCEATE _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes balancearte en eso que dices."
@@ -2743,7 +2743,7 @@ BAILAR _
 ;-----------------------------------------------
 
 
-ATACAR _                        ; Hay nombre desconocido en la frase
+ATACAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes atacar a eso que dices."
@@ -2792,7 +2792,7 @@ ATACAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-GOLPEAR _                        ; Hay nombre desconocido en la frase
+GOLPEAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes golpear a eso que dices."
@@ -2842,13 +2842,13 @@ GOLPEAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 USAR        _
- WRITELN "USAR es demasiado genérico, Por favor, sé más concreto. Por ejemplo, si quieres barrer el suelo utiliza BARRER SUELO, no USAR ESCOBA."
+ WRITELN "USAR es demasiado genérico. Por favor, sé más concreto. Por ejemplo, si quieres barrer el suelo utiliza BARRER SUELO, no USAR ESCOBA."
  DONE
 
 ;-----------------------------------------------
 
 
-EX _                        ; Hay nombre desconocido en la frase y la «preposición» DENTRO (EN) está presente
+EX _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario y la «preposición» DENTRO (EN) está presente
  PREP DENTRO
  EQ 34 255
  BNOTZERO 12 1
@@ -2862,7 +2862,7 @@ EX _                        ; No hay nombre en la frase y la «preposición» DE
  WRITELN "Por favor, especifica dentro de qué quieres examinar."
  DONE
 
-EX _                        ; Hay nombre desconocido en la frase
+EX _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes examinar eso que dices."  
@@ -3003,7 +3003,7 @@ EX _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-LIMPIAR _                        ; Hay nombre desconocido en la frase
+LIMPIAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes limpiar eso que dices."   
@@ -3052,7 +3052,7 @@ LIMPIAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-RASCAR _                        ; Hay nombre desconocido en la frase
+RASCAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes rascar eso que dices."   
@@ -3101,7 +3101,7 @@ RASCAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-QUEMAR _                        ; Hay nombre desconocido en la frase
+QUEMAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes quemar eso que dices."
@@ -3148,7 +3148,7 @@ QUEMAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-APAGAR _                        ; Hay nombre desconocido en la frase
+APAGAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes apagar eso que dices."
@@ -3181,7 +3181,7 @@ APAGAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-CORTAR _                        ; Hay nombre desconocido en la frase
+CORTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes cortar eso que dices."
@@ -3236,7 +3236,7 @@ CORTAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-ATAR _                        ; Hay nombre desconocido en la frase
+ATAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes atar eso que dices."
@@ -3283,7 +3283,7 @@ ATAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-DESATAR _                        ; Hay nombre desconocido en la frase
+DESATAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes desatar eso que dices."
@@ -3330,7 +3330,7 @@ DESATAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-LLENAR _                        ; Hay nombre desconocido en la frase
+LLENAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes llenar eso que dices."
@@ -3383,7 +3383,7 @@ TREPAR _
 ;-----------------------------------------------
 
 
-RETORCER _                        ; Hay nombre desconocido en la frase
+RETORCER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes retorcer eso que dices."
@@ -3430,7 +3430,7 @@ RETORCER _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-APRETAR _                        ; Hay nombre desconocido en la frase
+APRETAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes apretar eso que dices."
@@ -3477,7 +3477,7 @@ APRETAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-BESAR _                        ; Hay nombre desconocido en la frase
+BESAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes besar eso que dices."
@@ -3526,7 +3526,7 @@ BESAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-ABRAZAR _                        ; Hay nombre desconocido en la frase
+ABRAZAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes abrazar eso que dices."
@@ -3575,7 +3575,7 @@ ABRAZAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-CONECTAR _                        ; Hay nombre desconocido en la frase
+CONECTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes conectar eso que dices."
@@ -3678,7 +3678,7 @@ DESCONECTAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-ABRIR _                        ; Hay nombre desconocido en la frase
+ABRIR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes abrir eso que dices."
@@ -3750,7 +3750,7 @@ ABRIR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-CERRAR _                        ; Hay nombre desconocido en la frase
+CERRAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  WRITELN "No puedes cerrar eso que dices."
  DONE
@@ -3833,7 +3833,7 @@ LEER _                        ; Es un objeto ausente
 ;----------------------------------------------
 
 
-CHUPAR _                        ; Hay nombre desconocido en la frase
+CHUPAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes chupar eso que dices."
@@ -3888,7 +3888,7 @@ CHUPAR _                        ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-ROMPER _                        ; Hay nombre desconocido en la frase
+ROMPER _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes romper eso que dices."
@@ -3937,7 +3937,7 @@ ROMPER _                        ; Es un objeto ausente
  ;-----------------------------------------------
 
 
-COMPRAR _                        ; Hay nombre desconocido en la frase
+COMPRAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes comprar eso que dices."
@@ -3986,7 +3986,7 @@ COMPRAR _                        ; Es un objeto ausente
 ;------------------------------------------------------------
 
 
-DOBLAR _                        ; Hay nombre desconocido en la frase
+DOBLAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes doblar eso que dices."
@@ -4035,7 +4035,7 @@ DOBLAR _                        ; Es un objeto ausente
 ;------------------------------------------------------------
 
 
-DESDOBLAR _                        ; Hay nombre desconocido en la frase
+DESDOBLAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes desdoblar eso que dices."
@@ -4113,7 +4113,7 @@ DAR _                  ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  COPYFF 14 44
  COPYFF 35 14          ; Les damos la vuelta al adjetivo de Noun1 y al adjetivo de Noun2
  COPYFF 45 35
- COPYFF 14 45          ; forzamos al párser a que actualice los flags del objeto referenciado
+ COPYFF 14 45          ; forzamos al «parser» a que actualice los flags del objeto referenciado
  WHATO
 
 DAR _                  ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
@@ -4130,7 +4130,7 @@ DAR _              ; No hay nombre en la frase
  WRITELN "Por favor, especifica qué quieres dar."
  DONE
  
-DAR _              ; Hay nombre desconocido en la frase
+DAR _              ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes dar eso que dices."
@@ -4224,7 +4224,7 @@ MOSTRAR _              ; Cuando el pronombre lleva un NPC y hay Noun2, los inter
  COPYFF 14 44
  COPYFF 35 14          ; Les damos la vuelta al adjetivo de Noun1 y al adjetivo de Noun2
  COPYFF 45 35
- COPYFF 14 45          ; forzamos al párser a que actualice los flags del objeto referenciado
+ COPYFF 14 45          ; forzamos al «parser» a que actualice los flags del objeto referenciado
  WHATO
 
 MOSTRAR _              ; No hay Noun1 entendible en la frase, y el Noun2 pasa a ocupar su lugar en la frase...
@@ -4241,7 +4241,7 @@ MOSTRAR _              ; No hay nombre en la frase
  WRITELN "Por favor, especifica qué quieres mostrar."
  DONE
  
-MOSTRAR _              ; Hay nombre desconocido en la frase
+MOSTRAR _              ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes mostrar eso que dices."
@@ -4326,7 +4326,7 @@ MOSTRAR _              ; MOSTAR un objeto presente a un NPC que está presente
 ;------------------------------------------------------------
 
 
-SOPLAR _                        ; Hay nombre desconocido en la frase
+SOPLAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes soplar eso que dices."
@@ -4419,7 +4419,7 @@ DESPERTAR _
 ;-----------------------------------------------
 
 
-LEVANTAR _                        ; Hay nombre desconocido en la frase
+LEVANTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes levantar eso que dices."
@@ -4474,7 +4474,7 @@ LEVANTAR _                ; Es un objeto ausente
 
 ;-----------------------------------------------
 
-ARRASTRAR _                        ; Hay nombre desconocido en la frase
+ARRASTRAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes arrastrar eso que dices."
@@ -4523,7 +4523,7 @@ ARRASTRAR _                ; Es un objeto ausente
 ;------------------------------------------------------------
 
 
-VACIAR _                        ; Hay nombre desconocido en la frase
+VACIAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes vaciar eso que dices."
@@ -4572,7 +4572,7 @@ VACIAR _                        ; Es un objeto ausente
 ;------------------------------------------------------------
 
  
-LLAMAR _                        ; Hay nombre desconocido en la frase
+LLAMAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes llamar a eso que dices."
@@ -4620,7 +4620,7 @@ LLAMAR _                        ; Es un objeto ausente
 
  ;------------------------------------------------------------
  
-PREGUNTAR _                        ; Hay nombre desconocido en la frase
+PREGUNTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes preguntar a eso que dices."
@@ -4668,7 +4668,7 @@ PREGUNTAR _                        ; Es un objeto ausente
 
 ;----------------------------------------------- 
  
-CONSULTAR _                        ; Hay nombre desconocido en la frase
+CONSULTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes consultar eso que dices."
@@ -4700,7 +4700,7 @@ CONSULTAR _                        ; Es un objeto ausente
 
 ;-----------------------------------------------
 
-INSULTAR _                        ; Hay nombre desconocido en la frase
+INSULTAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes insultar a eso que dices."
@@ -4749,7 +4749,7 @@ INSULTAR _                        ; Es un objeto ausente
 ;------------------------------------------------------------
 
 
-UNIR _                        ; Hay nombre desconocido en la frase
+UNIR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes unir eso que dices."
@@ -4798,7 +4798,7 @@ UNIR _                	      ; Es un objeto ausente
 ;-----------------------------------------------
 
 
-SEPARAR _                        ; Hay nombre desconocido en la frase
+SEPARAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes separar eso que dices."
@@ -4847,7 +4847,7 @@ SEPARAR _                	; Es un objeto ausente
 ;-----------------------------------------------
 
 
-HABLAR _                        ; Hay nombre desconocido en la frase
+HABLAR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes hablar con eso que dices."
@@ -4896,7 +4896,7 @@ HABLAR _                        ; Es un objeto ausente
 ;------------------------------------------------------------
 
 
-IR _                        ; Hay nombre desconocido en la frase
+IR _                        ; Posiblemente en la frase hay un nombre no incluido en el vocabulario
  EQ 34 255
  BNOTZERO 12 1
  WRITELN "No puedes ir ahí donde dices."
@@ -4959,7 +4959,7 @@ _               _     LT 33 14
                       DONE
  
 _ _
- HOOK "RESPONSE_DEFAULT_END"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "RESPONSE_DEFAULT_END"  ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
  
 
@@ -4976,7 +4976,7 @@ _ _
 ; ##################################################################################
 
 _ _
- HOOK "PRO1"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "PRO1"  ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
 
 _  		 _
  AT 0
@@ -5002,5 +5002,5 @@ _        _
 ; #                                                                                #
 ; ##################################################################################
 _ _
- HOOK "PRO2"  ; Back call a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
+ HOOK "PRO2"  ; «Back call» a el sistema de hooks. Por defecto no hace nada pero algunas librerías plugin podrían necesitarlo. No borrar.
  
