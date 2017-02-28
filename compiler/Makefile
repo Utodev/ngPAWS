@@ -21,3 +21,8 @@ clean:
 
 .c.o:
 	$(CC) $(OPTIONS) -c $?
+
+
+win32:
+	ngpc
+	OPTIONS = -O2 -m32 -static-libgcc -static-libstdc++
