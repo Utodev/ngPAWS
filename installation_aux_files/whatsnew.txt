@@ -10,7 +10,7 @@
 - Several changes for IDE accesibility.
 - Now tapping on touch screen while waiting for a key in ANYKEY will react as key pressed.
 - Added several css themes.
-- Fixed some typos and changed some comments in spanish start database. Thanks to @cybersheep.
+- Fixed some typos and changed some comments in spanish start database. Thanks to @cibersheep.
 
 
 
