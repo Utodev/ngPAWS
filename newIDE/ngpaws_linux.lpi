@@ -185,7 +185,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="\home\csanchez\ngpaws\Release_linux\ngpaws"/>
+      <Filename Value="ngpaws"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
