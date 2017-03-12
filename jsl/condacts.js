@@ -1178,7 +1178,7 @@ function CNDisnotlight()
 
 function ACCversion()
 {
-	writeText(STR_RUNTIME_VERSION);
+	writeText(filterText(STR_RUNTIME_VERSION));
 }
 
 
