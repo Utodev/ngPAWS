@@ -201,6 +201,10 @@ checkArg (int *a1, tipoArg tipo)
 	{
 	  if (!strcmp (lexema, "WORN"))
 	    *a1 = 253;
+	  else if (!strcmp (lexema, "NON_CREATED"))
+	    *a1 = 252;
+	  else if (!strcmp (lexema, "NOT_CREATED"))
+	    *a1 = 252;
 	  else if (!strcmp (lexema, "CARRIED"))
 	    *a1 = 254;
 	  else if (!strcmp (lexema, "HERE"))
@@ -582,6 +586,10 @@ anLugar (TipoObjeto * obj)
     {
       if (!strcmp (lexema, "WORN"))
 	obj->lugar = 253;
+      else if (!strcmp (lexema, "NON_CREATED"))
+	obj->lugar = 252;
+      else if (!strcmp (lexema, "NOT_CREATED"))
+	obj->lugar = 252;
       else if (!strcmp (lexema, "CARRIED"))
 	obj->lugar = 254;
       else
