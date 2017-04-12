@@ -22,4 +22,5 @@ clean:
 .c.o:
 	$(CC) $(OPTIONS) -c $?
 
-
+win32: ngpc
+	$(CC) -o ngpc $(OBJS) $(LIBS)
