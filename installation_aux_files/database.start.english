@@ -95,11 +95,12 @@ I             14       noun
 INVEN         14       noun
 INVENTORY     14       noun
 ALL           20       noun
-YOURSELF	  49       noun
+YOURSELF	    49       noun
 MYSELF        49       noun
 SELF          49       noun
 TORCH         50       noun
-
+GAME          51       noun
+GAMES         51       noun
 
 
 ;--Verbos--
@@ -126,12 +127,12 @@ HELP          34       verb
 ROTATE        35       verb
 TURN          35       verb
 SHOW          36       verb
-LISTEN		  37	   verb
+LISTEN        37	   verb
 HEAR          37	   verb
 EAT           38       verb
 SWALLOW       38       verb
 INGEST        38       verb
-CHEW		  38	   verb	
+CHEW	    38	   verb	
 DRINK         39       verb
 TOUCH         40       verb
 PAT           40       verb
@@ -146,7 +147,7 @@ JUMP          45       verb
 ATTACK        46       verb
 KILL          46       verb
 FIGHT         46       verb
-PUNCH		  46       verb
+PUNCH	    46       verb
 HIT           46       verb	
 KICK          47       verb
 PEE           47       verb
@@ -154,7 +155,7 @@ PULL          48       verb
 DRAG          48       verb
 SHAKE         49       verb
 MOVE          49       verb
-BURP		  50	   verb
+BURP	    50	   verb
 DIG           51       verb
 CUT           52       verb
 LOCK          53       verb
@@ -219,7 +220,8 @@ BLOW          95       verb
 UNTIE         96       verb
 SPIT          97       verb
 SWITCH        98       verb
-SUICIDE	      99       verb
+SUICIDE	    99       verb
+LIST          100      verb
 
 ;--Adjectives--
 SMALL         2        adjective
@@ -939,6 +941,12 @@ _ _
 
 
 ; ------------------ SYSTEM ACTIONS --------------------
+_ GAMES
+ LET 33 _voc_LIST
+ 
+LIST GAMES
+ LISTSAVEDGAMES
+ DONE
 
 HELP _
  HELP

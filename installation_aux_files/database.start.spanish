@@ -123,6 +123,8 @@ INVEN         14       noun
 INVENTARIO    14       noun
 TODO          20       noun
 ANTORCHA      50       noun
+PARTIDA       51       noun
+PARTIDAS      51       noun
 
 
 ;--Verbos--
@@ -648,7 +650,8 @@ SALUDAR       113      verb
 SALUDA        113      verb
 LEVANTAR      114      verb
 LEVANTA       114      verb
-
+ENUMERAR      115      verb
+ENUMERA       115      verb
 
 ;--Adjetivos--
 PEQUEÑO       2        adjective
@@ -4086,6 +4089,15 @@ DESDOBLAR _                        ; Es un objeto ausente
 SALIDAS _
  EXITS @38 1000
  NEWLINE
+ DONE
+
+;------------------------------------------------------------
+
+_ PARTIDAS
+ LET 		33 _voc_ENUMERAR
+
+ENUMERAR PARTIDAS
+ LISTSAVEDGAMES
  DONE
 
 ;------------------------------------------------------------
