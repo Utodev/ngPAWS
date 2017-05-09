@@ -1,0 +1,9 @@
+Este plugin añade un nuevo condacto que muestra una lista de las partidas guardadas en la sesión del navegador.
+
+Ejemplo:
+
+ PARTIDAS _
+  LISTSAVEDGAMES
+  DONE
+
+Licencia: MIT (https://opensource.org/licenses/MIT)
