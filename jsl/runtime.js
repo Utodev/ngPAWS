@@ -1077,7 +1077,7 @@ function normalize(player_order)
 		if (pos!=-1) output = output + "aeiou".charAt(pos % 5); else 
 		{
 			ch = player_order.charAt(i);
-			if ((ch=='.') || (ch==',') || (ch==';') || (ch=='"') || (ch=='\'')) output = output + ' , '; else output = output + player_order.charAt(i); 
+				if ((ch=='.') || (ch==',') || (ch==';') || (ch=='"') || (ch=='\'') || (ch=='«') || (ch=='»')) output = output + ' , '; else output = output + player_order.charAt(i);
 		}
 
 	}
