@@ -336,7 +336,7 @@ function implementTag(tag)
 					   return "";
 					   break;
 		case 'ACTION': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					   return '<a href="javascript: void(0)" onclick="orderEnteredLoop(\'' + tagparams[1]+ '\')">' + tagparams[2] + '</a>';
+					   return '<a href="type: ' + tagparams[1] + '" onclick="orderEnteredLoop(\'' + tagparams[1]+ '\');return false;">' + tagparams[2] + '</a>';
 					   break;
 		case 'RESTART': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					    return '<a href="javascript: void(0)" onclick="restart()">' + tagparams[1] + '</a>';
