@@ -1621,13 +1621,13 @@ function setInputPlaceHolder()
 function divTextScrollUp()
 {
    	var currentPos = $('.text').scrollTop();
-	if (currentPos>=DIV_TEXT_SCROLL_STEP) $('.text').scrollTop(currentPos - DIV_TEXT_SCROLL_STEP);
+	if (currentPos>=DIV_TEXT_SCROLL_STEP) $('.text').scrollTop(currentPos - DIV_TEXT_SCROLL_STEP); else $('.text').scrollTop(0);
 }
 
 function divTextScrollDown()
 {
    	var currentPos = $('.text').scrollTop();
-   	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP);
+   	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP); else $('.text').scrollTop($('.text')[0].scrollHeight);
 }
 
 // Autocomplete functions
@@ -1895,9 +1895,9 @@ function start()
 	});
 
 
-    $(document).bind('mousewheel',function(e)
+    $(document).bind('wheel mousewheel',function(e)
     {
-  		if(e.originalEvent.wheelDelta /120 > 0) divTextScrollUp(); else divTextScrollDown();
+  		if((e.originalEvent.wheelDelta||-e.originalEvent.deltaY) > 0) divTextScrollUp(); else divTextScrollDown();
     });
 
 
