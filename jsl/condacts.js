@@ -334,7 +334,7 @@ function ACCscore()
 {
 	var score = getFlag(FLAG_SCORE);
 	writeSysMessage(SYSMESS_SCORE_START);
-	writeTex(score + '');
+	writeText(score + '');
 	writeSysMessage(SYSMESS_SCORE_END);
 }
 
