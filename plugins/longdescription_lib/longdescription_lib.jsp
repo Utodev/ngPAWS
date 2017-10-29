@@ -47,7 +47,7 @@ h_init = function()
 		if (sharppos != -1)
 		{
 			objects_longdescription[i] = objects[i].substring(sharppos + 1);
-			objects[i] = objects[i].substring(0,sharppos);
+			objects[i] = '{TOOLTIP|' + objects_longdescription[i] + '|' + objects[i].substring(0,sharppos) + '}';
 		}
 		else objects_longdescription[i] = '';
 	}
