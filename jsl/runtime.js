@@ -1850,8 +1850,20 @@ function start()
         if (e.keyCode==34)  // PgDown
         {
         	divTextScrollDown();
+        	return;
         }
 
+	// focus the input if the user is likely to expect it
+	// (but not if they're e.g. ctrl+c'ing some text)
+	switch ( e.keyCode )
+	{
+		case 8: // backspace
+		case 9: // tab
+		case 13: // enter
+			break;
+		default:
+			if ( !e.ctrlKey && !e.altKey ) focusInput();
+	}
 
 	});
 
