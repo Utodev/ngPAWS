@@ -2,19 +2,20 @@
 
 var objects_longdescription = [];
 
+var examine_longdescription = 30;
+
 var old_longdesc_h_code = h_code;
 
 h_code = function(str) 
 {
 	if (str=="RESPONSE_USER")
 	{
-		if (getFlag(33)==30) // Examinar
+		if (getFlag(33)==examine_longdescription) // Examinar
 			if (getFlag(51)!=EMPTY_OBJECT)  // Es un objeto
 				if (objects_longdescription[getFlag(51)]!='') // Tiene descrpción larga
 					if (CNDpresent(getFlag(51))) // Está presente
 					{
-						console_log('A');
-						writeText(objects_longdescription[getFlag(51)]); 	
+						writeText(filterText(objects_longdescription[getFlag(51)])); 	
 						var viewContents = false;
 						// Time to list contents if...
 						// It's a supporter
