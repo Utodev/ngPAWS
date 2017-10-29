@@ -343,7 +343,7 @@ function implementTag(tag)
 		case 'TT':  
 		case 'TOOLTIP':
 					if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					var title = tagparams[1];
+					var title = $('<span>'+tagparams[1]+'</span>').text().replace(/'/g,"&apos;").replace(/\n/g, "&#10;");
 					var text = tagparams[2];
 					return "<span title='"+title+"'>"+text+"</span>";
 					break;
