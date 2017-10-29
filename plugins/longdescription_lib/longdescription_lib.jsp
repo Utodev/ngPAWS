@@ -49,11 +49,7 @@ h_init = function()
 		{
 <<<<<<< HEAD
 			objects_longdescription[i] = objects[i].substring(sharppos + 1);
-			objects[i] = objects[i].substring(0,sharppos);
-=======
-			objects_longdescription[i] = match[2];
-			objects[i] = '{TOOLTIP|' + match[2] + '|' + match[1] + '}';
->>>>>>> c2fab3c... Make the "long description" plugin handle descriptions with &#NN;s
+			objects[i] = '{TOOLTIP|' + objects_longdescription[i] + '|' + objects[i].substring(0,sharppos) + '}';
 		}
 		else objects_longdescription[i] = '';
 	}
