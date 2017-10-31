@@ -370,6 +370,7 @@ function ACCautog()
 			if (objno != EMPTY_OBJECT) { ACCget(objno); return; };
 		}
 	}
+	success = false;
 	writeSysMessage(SYSMESS_CANTSEETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -384,6 +385,7 @@ function ACCautod()
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };  
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOUDONTHAVETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -398,6 +400,7 @@ function ACCautow()
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOUDONTHAVETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -412,6 +415,7 @@ function ACCautor()
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOURENOTWEARINGTHAT);
 	ACCnewtext();
 	ACCdone();
@@ -1035,6 +1039,7 @@ function ACCautop(locno)
 			return; 
 		};
 
+	success = false;
 	writeSysMessage(SYSMESS_CANTDOTHAT);
 	ACCnewtext();
 	ACCdone();
@@ -1064,6 +1069,7 @@ function ACCautot(locno)
 			return; 
 		};
 
+	success = false;
 	writeSysMessage(SYSMESS_CANTDOTHAT);
 	ACCnewtext();
 	ACCdone();
