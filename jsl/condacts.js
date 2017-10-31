@@ -553,13 +553,6 @@ function ACCdrop(objno)
 	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
-		case LOCATION_WORN:  
-			writeSysMessage(SYSMESS_YOUAREALREADYWEARINGTHAT);
-			ACCnewtext();
-			ACCdone();
-			return;
-			break;
-
 		case loc_here():  
 			writeSysMessage(SYSMESS_YOUDONTHAVEOBJECT);
 			ACCnewtext();
@@ -568,6 +561,7 @@ function ACCdrop(objno)
 			break;
 
 
+		case LOCATION_WORN:
 		case LOCATION_CARRIED:  
 			setObjectLocation(objno, loc_here());
 			writeSysMessage(SYSMESS_YOUDROPOBJECT);
