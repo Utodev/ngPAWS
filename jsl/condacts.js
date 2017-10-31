@@ -488,7 +488,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 		doall_flag = false;
 		return;
 	}
-	var weight = getLocationObjectsWeight(objno);
+	var weight = 0;
 	weight += getObjectWeight(objno);
 	weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
 	weight +=  getLocationObjectsWeight(LOCATION_WORN);
