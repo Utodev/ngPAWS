@@ -344,7 +344,7 @@ function ACCcls()
 	clearScreen();
 }
 
-function dropall()
+function ACCdropall()
 {
 	// Done in two different loops cause PAW did it like that, just a question of retro compatibility
 	var i;
