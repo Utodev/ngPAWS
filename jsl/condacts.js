@@ -892,6 +892,7 @@ function ACCdoall(locno)
 function ACCprompt(value)  // deprecated
 {
 	setFlag(FLAG_PROMPT, value);
+	setInputPlaceHolder();
 }
 
 
