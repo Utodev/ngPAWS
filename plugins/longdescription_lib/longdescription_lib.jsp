@@ -47,9 +47,8 @@ h_init = function()
 		var match = objects[i].match(test);
 		if (match)
 		{
-<<<<<<< HEAD
-			objects_longdescription[i] = objects[i].substring(sharppos + 1);
-			objects[i] = '{TOOLTIP|' + objects_longdescription[i] + '|' + objects[i].substring(0,sharppos) + '}';
+			objects_longdescription[i] = match[2];
+			objects[i] = '{TOOLTIP|' + match[2] + '|' + match[1] + '}';
 		}
 		else objects_longdescription[i] = '';
 	}
