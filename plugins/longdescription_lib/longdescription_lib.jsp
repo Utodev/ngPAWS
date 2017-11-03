@@ -41,13 +41,14 @@ var old_longdesc_h_init = h_init;
 
 h_init = function()
 {
+	var test = /^((?:&[^;]*;|[^&])*)#([^]*)/;
 	for (var i=0;i<objects.length;i++)
 	{
-		var sharppos = objects[i].indexOf('#');
-		if (sharppos != -1)
+		var match = objects[i].match(test);
+		if (match)
 		{
-			objects_longdescription[i] = objects[i].substring(sharppos + 1);
-			objects[i] = '{TOOLTIP|' + objects_longdescription[i] + '|' + objects[i].substring(0,sharppos) + '}';
+			objects_longdescription[i] = match[2];
+			objects[i] = '{TOOLTIP|' + match[2] + '|' + match[1] + '}';
 		}
 		else objects_longdescription[i] = '';
 	}
