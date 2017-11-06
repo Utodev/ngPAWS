@@ -1020,7 +1020,7 @@ function ACCputo(locno)
 
 function ACCnotdone()
 {
-	done_flag = true;
+	done_flag = false;
 }
 
 function ACCautop(locno)
