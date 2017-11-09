@@ -92,7 +92,7 @@ function waitKey(callbackFunction)
 function waitKeyCallback()
 {
  	var callback = waitkey_callback_function.pop();
-	callback();
+	if ( callback ) callback();
 	if (describe_location_flag) descriptionLoop();  		
 }
 
@@ -1345,10 +1345,6 @@ function timer()
 		setFlag(FLAG_PARSER_SETTINGS, bitclear(getFlag(FLAG_PARSER_SETTINGS), 4));  // Set bit at flag that marks that a window resize happened 
 	}
 
-	// Set timer again
-	setTimeout(function (){
-	     	timer();
-     },TIMER_MILLISECONDS);
 }
 
 // Initialize and finalize functions
@@ -1862,9 +1858,7 @@ function start()
 	h_post();  //hook
 
     // Start interrupt process
-    setTimeout(function (){
-    	timer();
-    },TIMER_MILLISECONDS);
+    setInterval( timer, TIMER_MILLISECONDS );
 
 }
 
