@@ -1614,7 +1614,7 @@ function setInputPlaceHolder()
 		if ((random>=60) && (random<90)) prompt_msg = SYSMESS_PROMPT2; else
 		if (random>=90) prompt_msg = SYSMESS_PROMPT3;
 	}
-	$('.prompt').attr('placeholder', getSysMessageText(prompt_msg));
+	$('.prompt').attr('placeholder', $('<div>'+getSysMessageText(prompt_msg).replace(/(?:<br>)*$/,'').replace( /<br>/g, ', ' )+'</div>').text());
 }
 
 
