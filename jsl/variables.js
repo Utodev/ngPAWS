@@ -298,6 +298,7 @@ var done_flag;
 var describe_location_flag;
 var in_response;
 var success;
+var worn_items_have_weight = false;
 
 // doall control
 var doall_flag;

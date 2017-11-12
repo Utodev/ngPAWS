@@ -758,7 +758,7 @@ function getLocationObjectsWeight(locno)
 		if (getObjectLocation(i) == locno) 
 		{
 			objweight = objectsWeight[i];
-			weight += objweight;
+			if ( locno != LOCATION_WORN || worn_items_have_weight ) weight += objweight;
 			if (objweight > 0)
 			{
 				if (  (objectIsContainer(i)) || (objectIsSupporter(i)) )
