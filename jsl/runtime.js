@@ -381,6 +381,11 @@ function processTags(text)
 		{
 			if (text.charAt(pointer) == '{') openbracketcont++;
 			if (text.charAt(pointer) == '}') openbracketcont--;
+			if ( text.length <= pointer )
+			{
+				writeWarning(STR_INVALID_TAG_SEQUENCE + text);
+				break tagfilter;
+			}
 			innerTag = innerTag + text.charAt(pointer);
 			pointer++;
 		}
