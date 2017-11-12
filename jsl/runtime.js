@@ -251,6 +251,31 @@ function getWriteMessageText(writeno)
 	return filterText(writemessages[writeno]);
 }
 
+function getExitsText(locno,mesno)
+{
+  if ( locno === undefined ) return ''; // game hasn't fully initialised yet
+  if ((getFlag(FLAG_LIGHT) == 0) || ((getFlag(FLAG_LIGHT) != 0) && lightObjectsPresent()))
+  {
+  		var exitcount = 0;
+  		for (i=0;i<NUM_CONNECTION_VERBS;i++) if (getConnection(locno, i) != -1) exitcount++;
+      if (exitcount)
+      {
+    		var message = getMessageText(mesno);
+    		var exitcountprogress = 0;
+    		for (i=0;i<NUM_CONNECTION_VERBS;i++) if (getConnection(locno, i) != -1)
+    		{ 
+    			exitcountprogress++;
+    			message += getMessageText(mesno + 2 + i);
+    			if (exitcountprogress == exitcount) message += getSysMessageText(SYSMESS_LISTEND);
+    			if (exitcountprogress == exitcount-1) message += getSysMessageText(SYSMESS_LISTLASTSEPARATOR);
+    			if (exitcountprogress <= exitcount-2) message += getSysMessageText(SYSMESS_LISTSEPARATOR);
+  		  }
+  		  return message;
+      } else return getMessageText(mesno + 1);
+  } else return getMessageText(mesno + 1);
+}
+
+
 // Location text functions
 function getLocationText(locno)
 {
@@ -303,6 +328,8 @@ function implementTag(tag)
 					   break;
 		case 'LOCATION':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(locations[getFlag(tagparams[1])]) return getLocationText(getFlag(tagparams[1])); else return '';
+		case 'EXITS':if (tagparams.length != 3 ) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
+					   return getExitsText(/^@\d+/.test(tagparams[1]) ? getFlag(tagparams[1].substr(1)) : tagparams[1],parseInt(tagparams[2],10));
 					   break;
 		case 'PROCESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   callProcess(tagparams[1]);
