@@ -1726,6 +1726,14 @@ function start()
 
      // assign any click on block layer --> close it
      $(document).click( function(e) {
+
+	// if waiting for END response
+	if (inEND)
+	{
+		restart();
+		return;
+	}
+
      	if (inBlock)
      	{
      		closeBlock();
@@ -1762,12 +1770,18 @@ function start()
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
 			var endNOresponseCode = endNOresponse.charCodeAt(0);
 
-			if (endYESresponseCode == e.keyCode) location.reload(); 
-			if (endNOresponseCode == e.keyCode)  
+			switch ( e.keyCode )
 			{
-				inEND = false;
-				sfxstopall();
-				$('body').hide('slow');
+				case endYESresponseCode:
+				case 13: // return
+				case 32: // space
+					location.reload();
+					break;
+				case endNOresponseCode:
+					inEND = false;
+					sfxstopall();
+					$('body').hide('slow');
+					break;
 			}
 			return;
 		}
@@ -1783,20 +1797,21 @@ function start()
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
 			var endNOresponseCode = endNOresponse.charCodeAt(0);
 
-			if (endNOresponseCode == e.keyCode) 
+			switch ( e.keyCode )
 			{
-	           inQUIT=false;
-			   waitkey_callback_function.pop();
-			   hideAnykeyLayer();
-			   e.preventDefault();
-			}
-
-			if (endYESresponseCode == e.keyCode) 
-			{
-				inQUIT=false;
-     			e.preventDefault();
-				waitKeyCallback();
-     			return;				
+				case endYESresponseCode:
+				case 13: // return
+				case 32: // space
+					inQUIT=false;
+					e.preventDefault();
+					waitKeyCallback();
+					return;
+				case endNOresponseCode:
+					inQUIT=false;
+					waitkey_callback_function.pop();
+					hideAnykeyLayer();
+					e.preventDefault();
+					break;
 			}
 		}
 
