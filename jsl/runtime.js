@@ -516,8 +516,8 @@ function get_prev_player_order()
 
 function get_next_player_order()
 {
-	if (!last_player_orders.length) return '';
-	if (last_player_orders_pointer > 0) last_player_orders_pointer--;
+	if (!last_player_orders.length || last_player_orders_pointer == 0) return '';
+	last_player_orders_pointer--;
 	return last_player_orders[last_player_orders.length - 1 - last_player_orders_pointer];
 
 }
