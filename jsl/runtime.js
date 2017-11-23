@@ -1839,6 +1839,19 @@ function start()
      		return;
       	}
 
+     	// Scroll text window using PgUp/PgDown
+        if (e.keyCode==33)  // PgUp
+        {
+        	divTextScrollUp();
+        	e.preventDefault();
+        	return;
+        }
+        if (e.keyCode==34)  // PgDown
+        {
+        	divTextScrollDown();
+        	return;
+        }
+
 
      	if (inAnykey)  // return for anykey
      	{
@@ -1866,19 +1879,6 @@ function start()
      			e.preventDefault();
      			return;
      		}
-
-     	// Scroll text window using PgUp/PgDown
-        if (e.keyCode==33)  // PgUp
-        {
-        	divTextScrollUp();
-        	e.preventDefault();
-        	return;
-        }
-        if (e.keyCode==34)  // PgDown
-        {
-        	divTextScrollDown();
-        	return;
-        }
 
 	// focus the input if the user is likely to expect it
 	// (but not if they're e.g. ctrl+c'ing some text)
