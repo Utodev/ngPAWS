@@ -1815,6 +1815,24 @@ function start()
 			}
 		}
 
+		// ignore uninteresting keys
+		switch ( e.keyCode )
+		{
+			case 9:  // tab   \ keys used during
+			case 13: // enter / keyboard navigation
+			case 16: // shift
+			case 17: // ctrl
+			case 18: // alt
+			case 20: // caps lock
+			case 91: // left Windows key
+			case 92: // left Windows key
+			case 93: // left Windows key
+			case 225: // right alt
+				// do not focus the input - the user was probably doing something else
+				// (e.g. alt-tab'ing to another window)
+				return;
+		}
+
 
 		if (inGetkey)  // return for getkey
      	{
