@@ -985,6 +985,9 @@ function getSaveGameObject()
 	savegame_object.objectsAttrLO = objectsAttrLO.slice();
 	savegame_object.objectsAttrHI = objectsAttrHI.slice();
 	savegame_object.connections = connections.slice();
+	savegame_object.last_player_orders = last_player_orders.slice();
+	savegame_object.last_player_orders_pointer = last_player_orders_pointer;
+	savegame_object.transcript = transcript;
 	savegame_object = h_saveGame(savegame_object);
 	return savegame_object;
 }
@@ -998,6 +1001,9 @@ function restoreSaveGameObject(savegame_object)
 	objectsAttrLO = savegame_object.objectsAttrLO.slice();
 	objectsAttrHI = savegame_object.objectsAttrHI.slice();
 	connections = savegame_object.connections.slice();
+	last_player_orders = savegame_object.last_player_orders.slice();
+	last_player_orders_pointer = savegame_object.last_player_orders_pointer;
+	transcript = savegame_object.transcript;
 	h_restoreGame(savegame_object);
 }
 
