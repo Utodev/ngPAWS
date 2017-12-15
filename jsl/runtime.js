@@ -92,7 +92,7 @@ function waitKey(callbackFunction)
 function waitKeyCallback()
 {
  	var callback = waitkey_callback_function.pop();
-	callback();
+	if ( callback ) callback();
 	if (describe_location_flag) descriptionLoop();  		
 }
 
@@ -343,7 +343,7 @@ function implementTag(tag)
 		case 'TT':  
 		case 'TOOLTIP':
 					if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					var title = tagparams[1];
+					var title = $('<span>'+tagparams[1]+'</span>').text().replace(/'/g,"&apos;").replace(/\n/g, "&#10;");
 					var text = tagparams[2];
 					return "<span title='"+title+"'>"+text+"</span>";
 					break;
@@ -381,6 +381,11 @@ function processTags(text)
 		{
 			if (text.charAt(pointer) == '{') openbracketcont++;
 			if (text.charAt(pointer) == '}') openbracketcont--;
+			if ( text.length <= pointer )
+			{
+				writeWarning(STR_INVALID_TAG_SEQUENCE + text);
+				break tagfilter;
+			}
 			innerTag = innerTag + text.charAt(pointer);
 			pointer++;
 		}
@@ -980,6 +985,9 @@ function getSaveGameObject()
 	savegame_object.objectsAttrLO = objectsAttrLO.slice();
 	savegame_object.objectsAttrHI = objectsAttrHI.slice();
 	savegame_object.connections = connections.slice();
+	savegame_object.last_player_orders = last_player_orders.slice();
+	savegame_object.last_player_orders_pointer = last_player_orders_pointer;
+	savegame_object.transcript = transcript;
 	savegame_object = h_saveGame(savegame_object);
 	return savegame_object;
 }
@@ -993,6 +1001,9 @@ function restoreSaveGameObject(savegame_object)
 	objectsAttrLO = savegame_object.objectsAttrLO.slice();
 	objectsAttrHI = savegame_object.objectsAttrHI.slice();
 	connections = savegame_object.connections.slice();
+	last_player_orders = savegame_object.last_player_orders.slice();
+	last_player_orders_pointer = savegame_object.last_player_orders_pointer;
+	transcript = savegame_object.transcript;
 	h_restoreGame(savegame_object);
 }
 
@@ -1345,10 +1356,6 @@ function timer()
 		setFlag(FLAG_PARSER_SETTINGS, bitclear(getFlag(FLAG_PARSER_SETTINGS), 4));  // Set bit at flag that marks that a window resize happened 
 	}
 
-	// Set timer again
-	setTimeout(function (){
-	     	timer();
-     },TIMER_MILLISECONDS);
 }
 
 // Initialize and finalize functions
@@ -1843,8 +1850,20 @@ function start()
         if (e.keyCode==34)  // PgDown
         {
         	divTextScrollDown();
+        	return;
         }
 
+	// focus the input if the user is likely to expect it
+	// (but not if they're e.g. ctrl+c'ing some text)
+	switch ( e.keyCode )
+	{
+		case 8: // backspace
+		case 9: // tab
+		case 13: // enter
+			break;
+		default:
+			if ( !e.ctrlKey && !e.altKey ) focusInput();
+	}
 
 	});
 
@@ -1862,9 +1881,7 @@ function start()
 	h_post();  //hook
 
     // Start interrupt process
-    setTimeout(function (){
-    	timer();
-    },TIMER_MILLISECONDS);
+    setInterval( timer, TIMER_MILLISECONDS );
 
 }
 
