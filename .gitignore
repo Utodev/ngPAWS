@@ -225,3 +225,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+#############
+## Binaries
+#############
+/compiler/ngpc
