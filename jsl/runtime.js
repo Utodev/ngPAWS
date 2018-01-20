@@ -251,6 +251,31 @@ function getWriteMessageText(writeno)
 	return filterText(writemessages[writeno]);
 }
 
+function getExitsText(locno,mesno)
+{
+  if ( locno === undefined ) return ''; // game hasn't fully initialised yet
+  if ((getFlag(FLAG_LIGHT) == 0) || ((getFlag(FLAG_LIGHT) != 0) && lightObjectsPresent()))
+  {
+  		var exitcount = 0;
+  		for (i=0;i<NUM_CONNECTION_VERBS;i++) if (getConnection(locno, i) != -1) exitcount++;
+      if (exitcount)
+      {
+    		var message = getMessageText(mesno);
+    		var exitcountprogress = 0;
+    		for (i=0;i<NUM_CONNECTION_VERBS;i++) if (getConnection(locno, i) != -1)
+    		{ 
+    			exitcountprogress++;
+    			message += getMessageText(mesno + 2 + i);
+    			if (exitcountprogress == exitcount) message += getSysMessageText(SYSMESS_LISTEND);
+    			if (exitcountprogress == exitcount-1) message += getSysMessageText(SYSMESS_LISTLASTSEPARATOR);
+    			if (exitcountprogress <= exitcount-2) message += getSysMessageText(SYSMESS_LISTSEPARATOR);
+  		  }
+  		  return message;
+      } else return getMessageText(mesno + 1);
+  } else return getMessageText(mesno + 1);
+}
+
+
 // Location text functions
 function getLocationText(locno)
 {
@@ -303,13 +328,15 @@ function implementTag(tag)
 					   break;
 		case 'LOCATION':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   if(locations[getFlag(tagparams[1])]) return getLocationText(getFlag(tagparams[1])); else return '';
+		case 'EXITS':if (tagparams.length != 3 ) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
+					   return getExitsText(/^@\d+/.test(tagparams[1]) ? getFlag(tagparams[1].substr(1)) : tagparams[1],parseInt(tagparams[2],10));
 					   break;
 		case 'PROCESS':if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					   callProcess(tagparams[1]);
 					   return "";
 					   break;
 		case 'ACTION': if (tagparams.length != 3) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
-					   return '<a href="javascript: void(0)" onclick="orderEnteredLoop(\'' + tagparams[1]+ '\')">' + tagparams[2] + '</a>';
+					   return '<a href="type: ' + tagparams[1] + '" onclick="orderEnteredLoop(\'' + tagparams[1]+ '\');return false;">' + tagparams[2] + '</a>';
 					   break;
 		case 'RESTART': if (tagparams.length != 2) {return '[[[' + STR_INVALID_TAG_SEQUENCE_BADPARAMS + ']]]'};
 					    return '<a href="javascript: void(0)" onclick="restart()">' + tagparams[1] + '</a>';
@@ -516,8 +543,8 @@ function get_prev_player_order()
 
 function get_next_player_order()
 {
-	if (!last_player_orders.length) return '';
-	if (last_player_orders_pointer > 0) last_player_orders_pointer--;
+	if (!last_player_orders.length || last_player_orders_pointer == 0) return '';
+	last_player_orders_pointer--;
 	return last_player_orders[last_player_orders.length - 1 - last_player_orders_pointer];
 
 }
@@ -758,7 +785,7 @@ function getLocationObjectsWeight(locno)
 		if (getObjectLocation(i) == locno) 
 		{
 			objweight = objectsWeight[i];
-			weight += objweight;
+			if ( locno != LOCATION_WORN || worn_items_have_weight ) weight += objweight;
 			if (objweight > 0)
 			{
 				if (  (objectIsContainer(i)) || (objectIsSupporter(i)) )
@@ -1587,20 +1614,20 @@ function setInputPlaceHolder()
 		if ((random>=60) && (random<90)) prompt_msg = SYSMESS_PROMPT2; else
 		if (random>=90) prompt_msg = SYSMESS_PROMPT3;
 	}
-	$('.prompt').attr('placeholder', getSysMessageText(prompt_msg));
+	$('.prompt').attr('placeholder', $('<div>'+getSysMessageText(prompt_msg).replace(/(?:<br>)*$/,'').replace( /<br>/g, ', ' )+'</div>').text());
 }
 
 
 function divTextScrollUp()
 {
    	var currentPos = $('.text').scrollTop();
-	if (currentPos>=DIV_TEXT_SCROLL_STEP) $('.text').scrollTop(currentPos - DIV_TEXT_SCROLL_STEP);
+	if (currentPos>=DIV_TEXT_SCROLL_STEP) $('.text').scrollTop(currentPos - DIV_TEXT_SCROLL_STEP); else $('.text').scrollTop(0);
 }
 
 function divTextScrollDown()
 {
    	var currentPos = $('.text').scrollTop();
-   	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP);
+   	if (currentPos <= ($('.text')[0].scrollHeight - DIV_TEXT_SCROLL_STEP)) $('.text').scrollTop(currentPos + DIV_TEXT_SCROLL_STEP); else $('.text').scrollTop($('.text')[0].scrollHeight);
 }
 
 // Autocomplete functions
@@ -1726,6 +1753,14 @@ function start()
 
      // assign any click on block layer --> close it
      $(document).click( function(e) {
+
+	// if waiting for END response
+	if (inEND)
+	{
+		restart();
+		return;
+	}
+
      	if (inBlock)
      	{
      		closeBlock();
@@ -1762,12 +1797,18 @@ function start()
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
 			var endNOresponseCode = endNOresponse.charCodeAt(0);
 
-			if (endYESresponseCode == e.keyCode) location.reload(); 
-			if (endNOresponseCode == e.keyCode)  
+			switch ( e.keyCode )
 			{
-				inEND = false;
-				sfxstopall();
-				$('body').hide('slow');
+				case endYESresponseCode:
+				case 13: // return
+				case 32: // space
+					location.reload();
+					break;
+				case endNOresponseCode:
+					inEND = false;
+					sfxstopall();
+					$('body').hide('slow');
+					break;
 			}
 			return;
 		}
@@ -1783,21 +1824,40 @@ function start()
 			var endYESresponseCode = endYESresponse.charCodeAt(0);
 			var endNOresponseCode = endNOresponse.charCodeAt(0);
 
-			if (endNOresponseCode == e.keyCode) 
+			switch ( e.keyCode )
 			{
-	           inQUIT=false;
-			   waitkey_callback_function.pop();
-			   hideAnykeyLayer();
-			   e.preventDefault();
+				case endYESresponseCode:
+				case 13: // return
+				case 32: // space
+					inQUIT=false;
+					e.preventDefault();
+					waitKeyCallback();
+					return;
+				case endNOresponseCode:
+					inQUIT=false;
+					waitkey_callback_function.pop();
+					hideAnykeyLayer();
+					e.preventDefault();
+					break;
 			}
+		}
 
-			if (endYESresponseCode == e.keyCode) 
-			{
-				inQUIT=false;
-     			e.preventDefault();
-				waitKeyCallback();
-     			return;				
-			}
+		// ignore uninteresting keys
+		switch ( e.keyCode )
+		{
+			case 9:  // tab   \ keys used during
+			case 13: // enter / keyboard navigation
+			case 16: // shift
+			case 17: // ctrl
+			case 18: // alt
+			case 20: // caps lock
+			case 91: // left Windows key
+			case 92: // left Windows key
+			case 93: // left Windows key
+			case 225: // right alt
+				// do not focus the input - the user was probably doing something else
+				// (e.g. alt-tab'ing to another window)
+				return;
 		}
 
 
@@ -1811,6 +1871,19 @@ function start()
      		waitKeyCallback();
      		return;
       	}
+
+     	// Scroll text window using PgUp/PgDown
+        if (e.keyCode==33)  // PgUp
+        {
+        	divTextScrollUp();
+        	e.preventDefault();
+        	return;
+        }
+        if (e.keyCode==34)  // PgDown
+        {
+        	divTextScrollDown();
+        	return;
+        }
 
 
      	if (inAnykey)  // return for anykey
@@ -1840,19 +1913,6 @@ function start()
      			return;
      		}
 
-     	// Scroll text window using PgUp/PgDown
-        if (e.keyCode==33)  // PgUp
-        {
-        	divTextScrollUp();
-        	e.preventDefault();
-        	return;
-        }
-        if (e.keyCode==34)  // PgDown
-        {
-        	divTextScrollDown();
-        	return;
-        }
-
 	// focus the input if the user is likely to expect it
 	// (but not if they're e.g. ctrl+c'ing some text)
 	switch ( e.keyCode )
@@ -1868,9 +1928,9 @@ function start()
 	});
 
 
-    $(document).bind('mousewheel',function(e)
+    $(document).bind('wheel mousewheel',function(e)
     {
-  		if(e.originalEvent.wheelDelta /120 > 0) divTextScrollUp(); else divTextScrollDown();
+  		if((e.originalEvent.wheelDelta||-e.originalEvent.deltaY) > 0) divTextScrollUp(); else divTextScrollDown();
     });
 
 

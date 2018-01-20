@@ -8,67 +8,67 @@
 
 
 // CONSTANTS 
-VOCABULARY_ID = 0;
-VOCABULARY_WORD = 1;
-VOCABULARY_TYPE = 2;
+var VOCABULARY_ID = 0;
+var VOCABULARY_WORD = 1;
+var VOCABULARY_TYPE = 2;
 
-WORDTYPE_VERB = 0;
-WORDTYPE_NOUN = 1
-WORDTYPE_ADJECT = 2;
-WORDTYPE_ADVERB = 3;
-WORDTYPE_PRONOUN = 4;
-WORDTYPE_CONJUNCTION = 5;
-WORDTYPE_PREPOSITION = 6;
+var WORDTYPE_VERB = 0;
+var WORDTYPE_NOUN = 1
+var WORDTYPE_ADJECT = 2;
+var WORDTYPE_ADVERB = 3;
+var WORDTYPE_PRONOUN = 4;
+var WORDTYPE_CONJUNCTION = 5;
+var WORDTYPE_PREPOSITION = 6;
 
-TIMER_MILLISECONDS  = 40;
+var TIMER_MILLISECONDS  = 40;
 
-RESOURCE_TYPE_IMG = 1;
-RESOURCE_TYPE_SND = 2;
+var RESOURCE_TYPE_IMG = 1;
+var RESOURCE_TYPE_SND = 2;
 
-PROCESS_RESPONSE = 0;
-PROCESS_DESCRIPTION = 1;
-PROCESS_TURN = 2;
+var PROCESS_RESPONSE = 0;
+var PROCESS_DESCRIPTION = 1;
+var PROCESS_TURN = 2;
 
-DIV_TEXT_SCROLL_STEP = 40;
+var DIV_TEXT_SCROLL_STEP = 40;
 
 
 // Aux
-SET_VALUE = 255; // Value assigned by SET condact
-EMPTY_WORD = 255; // Value for word types when no match is found (as for  sentences without adjective or name)
-MAX_WORD_LENGHT = 10;  // Number of characters considered per word
-FLAG_COUNT = 256;  // Number of flags
-NUM_CONNECTION_VERBS = 14; // Number of verbs used as connection, from 0 to N - 1
-NUM_CONVERTIBLE_NOUNS = 20;
-NUM_PROPER_NOUNS = 50; // Number of proper nouns, can't be used as pronoun reference
-EMPTY_OBJECT = 255; // To remark there is no object when the action requires a objno parameter
-NO_EXIT = 255;  // If an exit does not exist, its value is this value
-MAX_CHANNELS = 17; // Number of SFX channels
-RESOURCES_DIR='dat/';
+var SET_VALUE = 255; // Value assigned by SET condact
+var EMPTY_WORD = 255; // Value for word types when no match is found (as for  sentences without adjective or name)
+var MAX_WORD_LENGHT = 10;  // Number of characters considered per word
+var FLAG_COUNT = 256;  // Number of flags
+var NUM_CONNECTION_VERBS = 14; // Number of verbs used as connection, from 0 to N - 1
+var NUM_CONVERTIBLE_NOUNS = 20;
+var NUM_PROPER_NOUNS = 50; // Number of proper nouns, can't be used as pronoun reference
+var EMPTY_OBJECT = 255; // To remark there is no object when the action requires a objno parameter
+var NO_EXIT = 255;  // If an exit does not exist, its value is this value
+var MAX_CHANNELS = 17; // Number of SFX channels
+var RESOURCES_DIR='dat/';
 
 
 //Attributes
-ATTR_LIGHT=0;			// Object produces light
-ATTR_WEARABLE=1;		// Object is wearable
-ATTR_CONTAINER=2;       // Object is a container
-ATTR_NPC=3;             // Object is actually an NPC
-ATTR_CONCEALED = 4; /// Present but not visible
-ATTR_EDIBLE = 5;   /// Can be eaten
-ATTR_DRINKABLE=6;
-ATTR_ENTERABLE = 7;
-ATTR_FEMALE = 8;
-ATTR_LOCKABLE = 9;
-ATTR_LOCKED = 10;
-ATTR_MALE = 11;
-ATTR_NEUTER=12;
-ATTR_OPENABLE =13;
-ATTR_OPEN=14;
-ATTR_PLURALNAME = 15;
-ATTR_TRANSPARENT=16;
-ATTR_SCENERY=17;
-ATTR_SUPPORTER = 18;
-ATTR_SWITCHABLE=19;
-ATTR_ON  =20;
-ATTR_STATIC  =21;
+var ATTR_LIGHT=0;			// Object produces light
+var ATTR_WEARABLE=1;		// Object is wearable
+var ATTR_CONTAINER=2;       // Object is a container
+var ATTR_NPC=3;             // Object is actually an NPC
+var ATTR_CONCEALED = 4; /// Present but not visible
+var ATTR_EDIBLE = 5;   /// Can be eaten
+var ATTR_DRINKABLE=6;
+var ATTR_ENTERABLE = 7;
+var ATTR_FEMALE = 8;
+var ATTR_LOCKABLE = 9;
+var ATTR_LOCKED = 10;
+var ATTR_MALE = 11;
+var ATTR_NEUTER=12;
+var ATTR_OPENABLE =13;
+var ATTR_OPEN=14;
+var ATTR_PLURALNAME = 15;
+var ATTR_TRANSPARENT=16;
+var ATTR_SCENERY=17;
+var ATTR_SUPPORTER = 18;
+var ATTR_SWITCHABLE=19;
+var ATTR_ON  =20;
+var ATTR_STATIC  =21;
 
 
 
@@ -78,28 +78,28 @@ ATTR_STATIC  =21;
 
 
 // General messages & strings
-STR_NEWLINE = '<br />';
-STR_PROMPT_START = '<span class="feedback">&gt; ';
-STR_PROMPT_END = '</span>';
-STR_RAMSAVE_FILENAME = 'RAMSAVE_SAVEGAME';
+var STR_NEWLINE = '<br />';
+var STR_PROMPT_START = '<span class="feedback">&gt; ';
+var STR_PROMPT_END = '</span>';
+var STR_RAMSAVE_FILENAME = 'RAMSAVE_SAVEGAME';
 
 
 
 // Runtime error messages
-STR_WRONG_SYSMESS = 'WARNING: System message requested does not exist.'; 
-STR_WRONG_LOCATION = 'WARNING: Location requested does not exist.'; 
-STR_WRONG_MESSAGE = 'WARNING: Message requested does not exist.'; 
-STR_WRONG_PROCESS = 'WARNING: Process requested does not exist.' 
-STR_RAMLOAD_ERROR= 'WARNING: You can\'t restore game as it has not yet been saved.'; 
-STR_RUNTIME_VERSION  = 'ngPAWS runtime (C) 2014 Carlos Sanchez.  Released under {URL|http://www.opensource.org/licenses/MIT| MIT license}.\nBuzz sound libray (C) Jay Salvat. Released under the {URL|http://www.opensource.org/licenses/MIT| MIT license} \n jQuery (C) jQuery Foundation. Released under the {URL|https://jquery.org/license/| MIT license}.';
-STR_TRANSCRIPT = 'To copy the transcript to your clipboard, press Ctrl+C, then press Enter';
+var STR_WRONG_SYSMESS = 'WARNING: System message requested does not exist.'; 
+var STR_WRONG_LOCATION = 'WARNING: Location requested does not exist.'; 
+var STR_WRONG_MESSAGE = 'WARNING: Message requested does not exist.'; 
+var STR_WRONG_PROCESS = 'WARNING: Process requested does not exist.' 
+var STR_RAMLOAD_ERROR= 'WARNING: You can\'t restore game as it has not yet been saved.'; 
+var STR_RUNTIME_VERSION  = 'ngPAWS runtime (C) 2014 Carlos Sanchez.  Released under {URL|http://www.opensource.org/licenses/MIT| MIT license}.\nBuzz sound libray (C) Jay Salvat. Released under the {URL|http://www.opensource.org/licenses/MIT| MIT license} \n jQuery (C) jQuery Foundation. Released under the {URL|https://jquery.org/license/| MIT license}.';
+var STR_TRANSCRIPT = 'To copy the transcript to your clipboard, press Ctrl+C, then press Enter';
 
-STR_INVALID_TAG_SEQUENCE = 'Invalid tag sequence: ';
-STR_INVALID_TAG_SEQUENCE_EMPTY = 'Invalid tag sequence.';
-STR_INVALID_TAG_SEQUENCE_BADPARAMS = 'Invalid tag sequence: bad parameters.';
-STR_INVALID_TAG_SEQUENCE_BADTAG = 'Invalid tag sequence: unknown tag.';
-STR_BADIE = 'You are using a very old version of Internet Explorer. Some features of this product won\'t be avaliable, and other may not work properly. For a better experience please upgrade your browser or install some other one like Firefox, Chrome or Opera.\n\nIt\'s up to you to continue but be warned your experience may be affected.';
-STR_INVALID_OBJECT = 'WARNING: Trying to access object that does not exist'
+var STR_INVALID_TAG_SEQUENCE = 'Invalid tag sequence: ';
+var STR_INVALID_TAG_SEQUENCE_EMPTY = 'Invalid tag sequence.';
+var STR_INVALID_TAG_SEQUENCE_BADPARAMS = 'Invalid tag sequence: bad parameters.';
+var STR_INVALID_TAG_SEQUENCE_BADTAG = 'Invalid tag sequence: unknown tag.';
+var STR_BADIE = 'You are using a very old version of Internet Explorer. Some features of this product won\'t be avaliable, and other may not work properly. For a better experience please upgrade your browser or install some other one like Firefox, Chrome or Opera.\n\nIt\'s up to you to continue but be warned your experience may be affected.';
+var STR_INVALID_OBJECT = 'WARNING: Trying to access object that does not exist'
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,59 +107,59 @@ STR_INVALID_OBJECT = 'WARNING: Trying to access object that does not exist'
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-FLAG_LIGHT = 0;
-FLAG_OBJECTS_CARRIED_COUNT = 1;
-FLAG_AUTODEC2 = 2; 
-FLAG_AUTODEC3 = 3;
-FLAG_AUTODEC4 = 4;
-FLAG_AUTODEC5 = 5;
-FLAG_AUTODEC6 = 6;
-FLAG_AUTODEC7 = 7;
-FLAG_AUTODEC8 = 8;
-FLAG_AUTODEC9 = 9;
-FLAG_AUTODEC10 = 10;
-FLAG_ESCAPE = 11;
-FLAG_PARSER_SETTINGS = 12;
-FLAG_PICTURE_SETTINGS = 29
-FLAG_SCORE = 30;
-FLAG_TURNS_LOW = 31;
-FLAG_TURNS_HIGH = 32;
-FLAG_VERB = 33;
-FLAG_NOUN1 =34;
-FLAG_ADJECT1 = 35;
-FLAG_ADVERB = 36;
-FLAG_MAXOBJECTS_CARRIED = 37;
-FLAG_LOCATION = 38;
-FLAG_TOPLINE = 39;   // deprecated
-FLAG_MODE = 40;  // deprecated
-FLAG_PROTECT = 41;   // deprecated
-FLAG_PROMPT = 42; 
-FLAG_PREP = 43;
-FLAG_NOUN2 = 44;
-FLAG_ADJECT2 = 45;
-FLAG_PRONOUN = 46;
-FLAG_PRONOUN_ADJECT = 47;
-FLAG_TIMEOUT_LENGTH = 48;
-FLAG_TIMEOUT_SETTINGS = 49; 
-FLAG_DOALL_LOC = 50;
-FLAG_REFERRED_OBJECT = 51;
-FLAG_MAXWEIGHT_CARRIED = 52;
-FLAG_OBJECT_LIST_FORMAT = 53;
-FLAG_REFERRED_OBJECT_LOCATION = 54;
-FLAG_REFERRED_OBJECT_WEIGHT = 55;
-FLAG_REFERRED_OBJECT_LOW_ATTRIBUTES = 56;
-FLAG_REFERRED_OBJECT_HIGH_ATTRIBUTES = 57;
-FLAG_EXPANSION1 = 58;
-FLAG_EXPANSION2 = 59;
+var FLAG_LIGHT = 0;
+var FLAG_OBJECTS_CARRIED_COUNT = 1;
+var FLAG_AUTODEC2 = 2; 
+var FLAG_AUTODEC3 = 3;
+var FLAG_AUTODEC4 = 4;
+var FLAG_AUTODEC5 = 5;
+var FLAG_AUTODEC6 = 6;
+var FLAG_AUTODEC7 = 7;
+var FLAG_AUTODEC8 = 8;
+var FLAG_AUTODEC9 = 9;
+var FLAG_AUTODEC10 = 10;
+var FLAG_ESCAPE = 11;
+var FLAG_PARSER_SETTINGS = 12;
+var FLAG_PICTURE_SETTINGS = 29
+var FLAG_SCORE = 30;
+var FLAG_TURNS_LOW = 31;
+var FLAG_TURNS_HIGH = 32;
+var FLAG_VERB = 33;
+var FLAG_NOUN1 =34;
+var FLAG_ADJECT1 = 35;
+var FLAG_ADVERB = 36;
+var FLAG_MAXOBJECTS_CARRIED = 37;
+var FLAG_LOCATION = 38;
+var FLAG_TOPLINE = 39;   // deprecated
+var FLAG_MODE = 40;  // deprecated
+var FLAG_PROTECT = 41;   // deprecated
+var FLAG_PROMPT = 42; 
+var FLAG_PREP = 43;
+var FLAG_NOUN2 = 44;
+var FLAG_ADJECT2 = 45;
+var FLAG_PRONOUN = 46;
+var FLAG_PRONOUN_ADJECT = 47;
+var FLAG_TIMEOUT_LENGTH = 48;
+var FLAG_TIMEOUT_SETTINGS = 49; 
+var FLAG_DOALL_LOC = 50;
+var FLAG_REFERRED_OBJECT = 51;
+var FLAG_MAXWEIGHT_CARRIED = 52;
+var FLAG_OBJECT_LIST_FORMAT = 53;
+var FLAG_REFERRED_OBJECT_LOCATION = 54;
+var FLAG_REFERRED_OBJECT_WEIGHT = 55;
+var FLAG_REFERRED_OBJECT_LOW_ATTRIBUTES = 56;
+var FLAG_REFERRED_OBJECT_HIGH_ATTRIBUTES = 57;
+var FLAG_EXPANSION1 = 58;
+var FLAG_EXPANSION2 = 59;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////// SPECIAL LOCATIONS ///////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-LOCATION_WORN = 253;
-LOCATION_CARRIED = 254;
-LOCATION_NONCREATED = 252;
-LOCATION_HERE = 255;
+var LOCATION_WORN = 253;
+var LOCATION_CARRIED = 254;
+var LOCATION_NONCREATED = 252;
+var LOCATION_HERE = 255;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////  SYSTEM MESSAGES  ///////////////////////////////////////////////////////////////////////////////////
@@ -167,75 +167,75 @@ LOCATION_HERE = 255;
 
 
 
-SYSMESS_ISDARK = 0;
-SYSMESS_YOUCANSEE = 1;
-SYSMESS_PROMPT0 = 2;
-SYSMESS_PROMPT1 = 3;
-SYSMESS_PROMPT2 = 4
-SYSMESS_PROMPT3= 5;
-SYSMESS_IDONTUNDERSTAND = 6;
-SYSMESS_WRONGDIRECTION = 7
-SYSMESS_CANTDOTHAT = 8;
-SYSMESS_YOUARECARRYING = 9;
-SYSMESS_WORN = 10;
-SYSMESS_CARRYING_NOTHING = 11;
-SYSMESS_AREYOUSURE = 12;
-SYSMESS_PLAYAGAIN = 13;
-SYSMESS_FAREWELL = 14;
-SYSMESS_OK = 15;
-SYSMESS_PRESSANYKEY = 16;
-SYSMESS_TURNS_START = 17;
-SYSMESS_TURNS_CONTINUE = 18;
-SYSMESS_TURNS_PLURAL = 19;
-SYSMESS_TURNS_END = 20;
-SYSMESS_SCORE_START= 21;
-SYSMESS_SCORE_END =22;
-SYSMESS_YOURENOTWEARINGTHAT = 23;
-SYSMESS_YOUAREALREADYWEARINGTHAT = 24;
-SYSMESS_YOUALREADYHAVEOBJECT = 25;
-SYSMESS_CANTSEETHAT = 26;
-SYSMESS_CANTCARRYANYMORE = 27;
-SYSMESS_YOUDONTHAVETHAT = 28;
-SYSMESS_YOUAREALREADYWAERINGOBJECT = 29;
-SYSMESS_YES = 30;
-SYSMESS_NO = 31;
-SYSMESS_MORE = 32;
-SYSMESS_CARET = 33;
-SYSMESS_TIMEOUT=35;
-SYSMESS_YOUTAKEOBJECT = 36;
-SYSMESS_YOUWEAROBJECT = 37;
-SYSMESS_YOUREMOVEOBJECT = 38;
-SYSMESS_YOUDROPOBJECT = 39;
-SYSMESS_YOUCANTWEAROBJECT = 40;
-SYSMESS_YOUCANTREMOVEOBJECT = 41;
-SYSMESS_CANTREMOVE_TOOMANYOBJECTS = 42;
-SYSMESS_WEIGHSTOOMUCH = 43;
-SYSMESS_YOUPUTOBJECTIN = 44;
-SYSMESS_YOUCANTTAKEOBJECTOUTOF = 45;
-SYSMESS_LISTSEPARATOR = 46;
-SYSMESS_LISTLASTSEPARATOR = 47;
-SYSMESS_LISTEND = 48;
-SYSMESS_YOUDONTHAVEOBJECT = 49;
-SYSMESS_YOUARENOTWEARINGOBJECT = 50;
-SYSMESS_PUTINTAKEOUTTERMINATION = 51;
-SYSMESS_THATISNOTIN = 52;
-SYSMESS_EMPTYOBJECTLIST = 53;
-SYSMESS_FILENOTFOUND = 54;
-SYSMESS_CORRUPTFILE = 55;
-SYSMESS_IOFAILURE = 56;
-SYSMESS_DIRECTORYFULL = 57;
-SYSMESS_LOADFILE = 58;
-SYSMESS_FILENOTFOUND = 59;
-SYSMESS_SAVEFILE = 60;
-SYSMESS_SORRY = 61;
-SYSMESS_NONSENSE_SENTENCE = 62;
-SYSMESS_NPCLISTSTART = 63;
-SYSMESS_NPCLISTCONTINUE = 64;
-SYSMESS_NPCLISTCONTINUE_PLURAL = 65;
-SYSMESS_INSIDE_YOUCANSEE = 66;
-SYSMESS_OVER_YOUCANSEE = 67;
-SYSMESS_YOUPUTOBJECTON = 68;
-SYSMESS_YOUCANTTAKEOBJECTFROM = 69;
+var SYSMESS_ISDARK = 0;
+var SYSMESS_YOUCANSEE = 1;
+var SYSMESS_PROMPT0 = 2;
+var SYSMESS_PROMPT1 = 3;
+var SYSMESS_PROMPT2 = 4
+var SYSMESS_PROMPT3= 5;
+var SYSMESS_IDONTUNDERSTAND = 6;
+var SYSMESS_WRONGDIRECTION = 7
+var SYSMESS_CANTDOTHAT = 8;
+var SYSMESS_YOUARECARRYING = 9;
+var SYSMESS_WORN = 10;
+var SYSMESS_CARRYING_NOTHING = 11;
+var SYSMESS_AREYOUSURE = 12;
+var SYSMESS_PLAYAGAIN = 13;
+var SYSMESS_FAREWELL = 14;
+var SYSMESS_OK = 15;
+var SYSMESS_PRESSANYKEY = 16;
+var SYSMESS_TURNS_START = 17;
+var SYSMESS_TURNS_CONTINUE = 18;
+var SYSMESS_TURNS_PLURAL = 19;
+var SYSMESS_TURNS_END = 20;
+var SYSMESS_SCORE_START= 21;
+var SYSMESS_SCORE_END =22;
+var SYSMESS_YOURENOTWEARINGTHAT = 23;
+var SYSMESS_YOUAREALREADYWEARINGTHAT = 24;
+var SYSMESS_YOUALREADYHAVEOBJECT = 25;
+var SYSMESS_CANTSEETHAT = 26;
+var SYSMESS_CANTCARRYANYMORE = 27;
+var SYSMESS_YOUDONTHAVETHAT = 28;
+var SYSMESS_YOUAREALREADYWAERINGOBJECT = 29;
+var SYSMESS_YES = 30;
+var SYSMESS_NO = 31;
+var SYSMESS_MORE = 32;
+var SYSMESS_CARET = 33;
+var SYSMESS_TIMEOUT=35;
+var SYSMESS_YOUTAKEOBJECT = 36;
+var SYSMESS_YOUWEAROBJECT = 37;
+var SYSMESS_YOUREMOVEOBJECT = 38;
+var SYSMESS_YOUDROPOBJECT = 39;
+var SYSMESS_YOUCANTWEAROBJECT = 40;
+var SYSMESS_YOUCANTREMOVEOBJECT = 41;
+var SYSMESS_CANTREMOVE_TOOMANYOBJECTS = 42;
+var SYSMESS_WEIGHSTOOMUCH = 43;
+var SYSMESS_YOUPUTOBJECTIN = 44;
+var SYSMESS_YOUCANTTAKEOBJECTOUTOF = 45;
+var SYSMESS_LISTSEPARATOR = 46;
+var SYSMESS_LISTLASTSEPARATOR = 47;
+var SYSMESS_LISTEND = 48;
+var SYSMESS_YOUDONTHAVEOBJECT = 49;
+var SYSMESS_YOUARENOTWEARINGOBJECT = 50;
+var SYSMESS_PUTINTAKEOUTTERMINATION = 51;
+var SYSMESS_THATISNOTIN = 52;
+var SYSMESS_EMPTYOBJECTLIST = 53;
+var SYSMESS_FILENOTFOUND = 54;
+var SYSMESS_CORRUPTFILE = 55;
+var SYSMESS_IOFAILURE = 56;
+var SYSMESS_DIRECTORYFULL = 57;
+var SYSMESS_LOADFILE = 58;
+var SYSMESS_FILENOTFOUND = 59;
+var SYSMESS_SAVEFILE = 60;
+var SYSMESS_SORRY = 61;
+var SYSMESS_NONSENSE_SENTENCE = 62;
+var SYSMESS_NPCLISTSTART = 63;
+var SYSMESS_NPCLISTCONTINUE = 64;
+var SYSMESS_NPCLISTCONTINUE_PLURAL = 65;
+var SYSMESS_INSIDE_YOUCANSEE = 66;
+var SYSMESS_OVER_YOUCANSEE = 67;
+var SYSMESS_YOUPUTOBJECTON = 68;
+var SYSMESS_YOUCANTTAKEOBJECTFROM = 69;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,6 +298,7 @@ var done_flag;
 var describe_location_flag;
 var in_response;
 var success;
+var worn_items_have_weight = false;
 
 // doall control
 var doall_flag;
