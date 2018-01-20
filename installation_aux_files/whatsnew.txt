@@ -1,4 +1,13 @@
-﻿Beta 10 - March 2017
+﻿
+- Now the long description plugin generates tooltips
+- Several changes to improve interface handling (scroll, uninteresting keys, easier restart of game, etc.)
+- New {EXITS} sequence tag
+- Bubble on {ACTION} sequence tag is now more user friendly
+
+
+
+
+Beta 10 - March 2017
 ====================
 
 - ANYKEY and other similar condacts that requiere a callback function can now be overlapping, as the callback function includes a stack now, instead of a single value.
