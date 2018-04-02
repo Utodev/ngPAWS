@@ -293,8 +293,8 @@ function ACCsave()
 {
 	var savegame_object = getSaveGameObject();	
 	savegame =   JSON.stringify(savegame_object);
-	filename = prompt(getSysMessageText(SYSMESS_SAVEFILE),'').toUpperCase();; 
-	localStorage.setItem('ngpaws_savegame_' + filename.toUpperCase(), savegame);
+	filename = prompt(getSysMessageText(SYSMESS_SAVEFILE),'');
+	if ( filename !== null ) localStorage.setItem('ngpaws_savegame_' + filename.toUpperCase(), savegame);
 	ACCok();
 }
 
@@ -302,8 +302,8 @@ function ACCsave()
 function ACCload() 	
 {
 	var json_str;
-	filename = prompt(getSysMessageText(SYSMESS_LOADFILE),'').toUpperCase();;
-	json_str = localStorage.getItem('ngpaws_savegame_' + filename.toUpperCase());
+	filename = prompt(getSysMessageText(SYSMESS_LOADFILE),'');
+	if ( filename !== null ) json_str = localStorage.getItem('ngpaws_savegame_' + filename.toUpperCase());
 	if (json_str)
 	{
 		savegame_object = JSON.parse(json_str.trim());
@@ -334,7 +334,7 @@ function ACCscore()
 {
 	var score = getFlag(FLAG_SCORE);
 	writeSysMessage(SYSMESS_SCORE_START);
-	writeTex(score + '');
+	writeText(score + '');
 	writeSysMessage(SYSMESS_SCORE_END);
 }
 
@@ -344,7 +344,7 @@ function ACCcls()
 	clearScreen();
 }
 
-function dropall()
+function ACCdropall()
 {
 	// Done in two different loops cause PAW did it like that, just a question of retro compatibility
 	var i;
@@ -370,6 +370,7 @@ function ACCautog()
 			if (objno != EMPTY_OBJECT) { ACCget(objno); return; };
 		}
 	}
+	success = false;
 	writeSysMessage(SYSMESS_CANTSEETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -384,6 +385,7 @@ function ACCautod()
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };  
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCdrop(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOUDONTHAVETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -398,6 +400,7 @@ function ACCautow()
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCwear(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOUDONTHAVETHAT);
 	ACCnewtext();
 	ACCdone();
@@ -412,6 +415,7 @@ function ACCautor()
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
 	objno =findMatchingObject(loc_here());
 	if (objno != EMPTY_OBJECT) { ACCremove(objno); return; };
+	success = false;
 	writeSysMessage(SYSMESS_YOURENOTWEARINGTHAT);
 	ACCnewtext();
 	ACCdone();
@@ -488,7 +492,7 @@ function trytoGet(objno)  // auxiliaty function for ACCget
 		doall_flag = false;
 		return;
 	}
-	var weight = getLocationObjectsWeight(objno);
+	var weight = 0;
 	weight += getObjectWeight(objno);
 	weight +=  getLocationObjectsWeight(LOCATION_CARRIED);
 	weight +=  getLocationObjectsWeight(LOCATION_WORN);
@@ -888,6 +892,7 @@ function ACCdoall(locno)
 function ACCprompt(value)  // deprecated
 {
 	setFlag(FLAG_PROMPT, value);
+	setInputPlaceHolder();
 }
 
 
@@ -1015,7 +1020,7 @@ function ACCputo(locno)
 
 function ACCnotdone()
 {
-	done_flag = true;
+	done_flag = false;
 }
 
 function ACCautop(locno)
@@ -1035,6 +1040,7 @@ function ACCautop(locno)
 			return; 
 		};
 
+	success = false;
 	writeSysMessage(SYSMESS_CANTDOTHAT);
 	ACCnewtext();
 	ACCdone();
@@ -1064,6 +1070,7 @@ function ACCautot(locno)
 			return; 
 		};
 
+	success = false;
 	writeSysMessage(SYSMESS_CANTDOTHAT);
 	ACCnewtext();
 	ACCdone();

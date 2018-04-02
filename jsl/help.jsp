@@ -43,6 +43,11 @@ function EnglishHelp()
 	writeText(STR_NEWLINE);
 	writeText('PUT KEY ON TABLE. TAKE KEY FROM TABLE');
 	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('¿CÓMO SAVE/RESTORE MY GAME?');
+	writeText(STR_NEWLINE);
+	writeText('Use SAVE/LOAD commands.');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+
 }
 
 function SpanishHelp()
@@ -82,5 +87,9 @@ function SpanishHelp()
 	writeText('¿CÓMO PONGO ALGO SOBRE ALGO? ¿COMO LO QUITO?');
 	writeText(STR_NEWLINE);
 	writeText('PONER LLAVE EN MESA. COGER LLAVE DE MESA');
+	writeText(STR_NEWLINE + STR_NEWLINE);
+	writeText('¿CÓMO GRABO Y CARGO LA PARTIDA?');
+	writeText(STR_NEWLINE);
+	writeText('Usa las órdenes SAVE y LOAD, o CARGAR Y GRABAR.');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 }

@@ -10,6 +10,8 @@ ide/
 ide_d2l/
 RAD/
 jsl/plugin.js
+newIDE/ngpaws.lps
+newIDE/ngpaws.res
 *.pydevproject
 .project
 .metadata
@@ -225,3 +227,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+#############
+## Binaries
+#############
+/compiler/ngpc
