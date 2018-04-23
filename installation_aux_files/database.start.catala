@@ -83,12 +83,10 @@ SE		8	noun
 SUD-EST	 	8	noun
 SO		9	noun
 SUD-OEST	9	noun
-DALT	 	10	noun
-;ADALT		10	noun
-D		10	noun
-BAIX	 	11	noun
-;ABAIX		11	noun
-B		11	noun
+AMUNT	 	10	noun
+AM		10	noun
+AVALL	 	11	noun
+AV		11	noun
 PUJAR		10	verb
 PUJA'T		10	verb
 PUJA	 	10	verb
@@ -1687,7 +1685,7 @@ FICAR _		 	 ; FICAR un objecte de l'inventari a un contenidor però que no és p
  WRITELN "No pots ficar-hi {OREF} perquè no ho duus."
  DONE
 
-FICAR _		 	 ; FICAR un objecte de l'inventari dins una superfície però que no és present
+FICAR _		 	 ; FICAR un objecte de l'inventari dins un contenidor però que no és present
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255 
@@ -1734,7 +1732,7 @@ FICAR _		 	 ; FICAR un objecte present dins un contenidor present
  AUTOP @15
  DONE
 
-FICAR _		 	; FICAR un objecte present dins una superfície present ; COMPROVAR dins o sobre?
+FICAR _		 	; FICAR un objecte present dins un superfície present ; COMPROVAR dins o sobre?
  NOTEQ 51 255
  CARRIED @51	
  NOTEQ 44 255
@@ -2896,7 +2894,7 @@ EX _			; És un objecte present i contenidor, que es pot tancar amb clau i bloca
  WRITELN "Examines {OREF} però no hi veus res especial. Si ho desbloques podràs veure el seu contingut."
  DONE
 
-EX _			; És un objecte presente i una superfície amb qualcom damunt
+EX _			; És un objecte presente i una superfície amb quelcom damunt
  NOTEQ 51 255
  PRESENT @51
  ONOTZERO @51 aSupporter
