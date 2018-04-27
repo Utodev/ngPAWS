@@ -651,7 +651,7 @@ Perdó?
 /9
 Duus:	
 /10
- (puesto/a)
+ (posat/da)
 /11
 cap objecte.
 
@@ -807,13 +807,13 @@ damunt hi ha
 
 /MTX 	; ** Missatges del sistema **
 /0
-¡La balsa está desierta!
+La balsa és deserta!
 
 
 /1000
-Salidas visibles: 
+Sortides visibles: 
 /1001
-No hay salidas visibles.
+No hi ha cap sortida visible.
 /1002
 /1003
 /1004
@@ -849,7 +849,7 @@ una antorxa
 
 /LTX 	; ** Texte de les localitats **
 /0
-Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yellow|amarillo} comienza a quemarte la piel mientras que una oscura aleta da vueltas en círculos en las claras aguas {PAPER|blue|{INK|white|azules}}.
+Ets a una petita balsa surant al mar obert. El brillant sol {INK|yellow|groc} comença a cremar-te la pell mentre que una obscura aleta dóna voltes en cercles a les clares aigües {PAPER|blue|{INK|white|blaves}}.
 
 
 /CON 	; ** Connexions entre localitats **
@@ -859,7 +859,7 @@ Estás en una pequeña balsa flotando en mar abierto. El brillante sol {INK|yell
 
 
 /OBJ 	; ** Objectes i les seves propietas **
-;obj	loc	 peso	 nombre	adjetivo	atributo
+;obj	loc	pes	nom	adjectiu	atribut
 ;num	ini		
 
 /0	0	1	ANTORXA	_		ATTR aLight aFemale
@@ -1314,7 +1314,7 @@ _ _
 
 
 
-; #################################### RESPUESTAS POR DEFECTO ###################################
+; ##################################### RESPOSTES PER DEFECTE ###################################
 ; #												#
 ; #	Aquestes entrades donen les respuestes per defecte. Si no en posam abans cap entrada	#
 ; #	que ho eviti, s'arribarà fins aquí i es donarà la resposta per defecte.			#
@@ -3851,7 +3851,7 @@ TRENCAR _		; És un objecte presente
 TRENCAR _		; És un objecte ausente
  NOTEQ 51 255
  ABSENT @51
- WRITELN "No hi veus cap {OREF} por aquí; en qualsevol cas, trencar això no és la solució."
+ WRITELN "No hi veus cap {OREF} per aquí; en qualsevol cas, trencar això no és la solució."
  DONE
 
  ;-----------------------------------------------
@@ -4333,7 +4333,7 @@ DESPERTAR _
  DONE
 
 DESPERTAR _
- WRITELN "Et pessigues la galta pensant que et despertaràs però... no estás somint... o sí?"
+ WRITELN "Et pessigues la galta pensant que et despertaràs però... no estàs somiant... o sí?"
  DONE
 
 ;-----------------------------------------------
@@ -4847,7 +4847,7 @@ ANAR _
 ANAR _			; S'ha trobat un nom però no és un objecte
  NOTEQ 34 255
  EQ 51 255
- WRITELN "No hi veus sentit a ir hacia eso."
+ WRITELN "No hi veus sentit cap a això."
  DONE
 
 ANAR _			; És un objecte presente
