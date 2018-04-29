@@ -1,0 +1,4927 @@
+;############################################################
+;############	ngPAWS - LLIBRERIA D'INICI 4.0	#############
+;############		27/02/2017		#############	
+;############################################################
+;#							    #
+;#	AQUESTA LLIBRERIA BASE ÉS DE DOMINI PÚBLIC	    #
+;#	 Ha estat creada per l'Uto i el Radin, i cedida	    #
+;#    de manera que podeu decidir quina llicència aplicau   #
+;#	 a les vostres aventures sense restriccions.	    #
+;#							    #
+;############################################################
+
+; Exemple de gràfic de localitat
+;##define pic loc1.jpg 1
+
+; Exemple de gràfic recurs
+;##define grf escena.jpg 1
+
+; Exemple de música de localitat
+;##define msc loc1.ogg 1
+
+; Exemple de so o música recurs
+;##define snd sfx.aiff 2
+
+; Exemple de marcador (flag)
+;##define flg fDracMort 100
+
+; Exemple de constant
+;##define const ORO_INICIAL 50
+
+; Exemple d'objecte
+;##define obj oLlave 3
+
+; Exemple de localitat
+;##define loc lPuente 12
+
+; Definicions per defecte d'atributs d'objecte
+#define const aLight = 0
+#define const aWear = 1
+#define const aContainer = 2
+#define const aNPC	=3
+#define const aConcealed = 4
+#define const aEdible = 5
+#define const aDrinkable = 6
+#define const aEnterable = 7
+#define const aFemale = 8
+#define const aLockable = 9
+#define const aLocked = 10
+#define const aMale = 11
+#define const aNeuter = 12
+#define const aOpenable = 13
+#define const aOpen = 14
+#define const aPluralName = 15
+#define const aTransparent = 16
+#define const aScenery = 17
+#define const aSupporter = 18
+#define const aSwitchable = 19
+#define const aOn = 20
+#define const aStatic = 21
+
+
+/CTL 	; -- Ha d'estar buit --
+
+/VOC 	; -- Vocabulari --
+
+	; -- Moviments, verbs i noms < 14 --
+
+N		2	noun
+NORD	 	2	noun
+S		3	noun
+SUD		3	noun
+E		4	noun
+EST		4	noun
+L'EST		4	noun
+O		5	noun
+OEST	 	5	noun
+L'OEST		5	noun
+NE		6	noun
+NORD-EST	6	noun
+NO		7	noun
+NORD-OEST	7	noun
+SE		8	noun
+SUD-EST	 	8	noun
+SO		9	noun
+SUD-OEST	9	noun
+AMUNT	 	10	noun
+AM		10	noun
+AVALL	 	11	noun
+AV		11	noun
+PUJAR		10	verb
+PUJA'T		10	verb
+PUJA	 	10	verb
+PUJAR-SE	10	verb
+BAIXAR		11	verb
+BAIXA		11	verb
+BAIXA'T	 	11	verb
+BAIXAR-SE	11	verb
+ENTRAR		12	verb
+SORTIR		13	verb
+ENTRA		12	verb
+FICA-T'HI	12	verb	
+SURT	 	13	verb
+
+	; -- Noms --	< 20 indica que es poden fer servir com a verbs
+	;		< 50 indica que són noms propis, no comptaran
+	;		 pels pronoms.
+IN		14	noun
+INVEN		14	noun
+INVENTARI	14	noun
+TOT		20	noun
+ANTORXA	50	noun
+
+
+	; -- Verbs --
+AGAFAR		20	verb
+AGAFA		20	verb
+AGAFA-HO	20	verb
+DEIXAR		21	verb
+DEIXA		21	verb
+DEIXA-HO	21	verb
+AMOLLAR		21	verb
+AMOLLA		21	verb
+LLEVAR		22	verb
+LLEVA		22	verb
+LLEVA'T	 	22	verb
+LLEVA-T'HO	22	verb
+LLEVAR-S'H	22	verb
+TREURE-S'H	22	verb
+TREU-T'HO 	22	verb
+DESVESTI'T	22	verb
+DESVESTIR	22	verb
+DESPULLA'T	22	verb
+SEURE		23	verb
+SEU-TE		23	verb
+SEU		23	verb
+MIRAR		24	verb	
+MIRA	 	24	verb
+ACABA	 	25	verb
+ACABAR	 	25	verb
+FI		25	verb
+DESAR	 	26	verb
+DESA		26	verb
+GUARDA		26	verb
+CARREGAR	27	verb
+CARREGA		27	verb
+RAMSAVE	 	28	verb
+DESARAM		28	verb
+RAMLOAD	 	29	verb
+CARREGARA	29	verb ; CARREGA RAM
+EXAMINAR	30	verb
+EXAMINA		30	verb
+EX		30	Verb
+INSPECCION	30	verb ; INSPECCIONA
+OBSERVAR	30	verb
+OBSERVA	 	30	verb
+DIR		31	verb
+DIGUES		31	verb
+XERRAR		31	verb
+XERRA		31	verb
+PARLAR		31	verb
+PARLA		31	verb
+RESPONDRE	31	verb
+RESPON		31	verb
+LLENÇA		32	verb
+LLENÇAR		32	verb
+LLENÇA'T	32	verb
+LLENÇAR-SE	32	verb
+LLANÇA		32	verb
+LLANÇAR		32	verb
+LLANÇA'T	32	verb
+LLANÇAR-SE	32	verb
+EMPENYER	33	verb
+EMPENY		33	verb
+AJUDA		34	verb
+AJUT		34	verb
+GIRAR		35	verb
+GIRA	 	35	verb
+VOLTAR		35	verb
+VOLTA		35	verb
+MOSTRAR	 	36	verb
+MOSTRAR-SE	36	verb
+MOSTRA	 	36	verb
+ENSENYAR	36	verb
+ENSENYA		36	verb
+ESCOLTAR	37	verb
+ESCOLTA		37	verb
+SENTIR		37	verb
+MENJAR		38	verb
+MENJA		38	verb
+MENJA'T		38	verb
+MENJAR-TE	38	verb
+MENJAR-SE	38	verb
+EMPASSAR	38	verb
+EMPASSA'T	38	verb
+TRAGAR		38	verb
+TRAGA'T		38	verb
+ENGOLIR		38	verb
+ENGOLEIX	38	verb
+INGERIR		38	verb
+MASTEGA	 	38	verb
+ROSEGAR		38	verb
+ROSEGA		38	verb
+BEURE		39	verb
+BEU		39	verb
+BEU-TE		39	verb
+TOCAR		40	verb
+TOCA		40	verb
+ACARICIAR	40	verb
+ACARICIA	40	verb
+ACARONAR	40	verb
+ACARONA		40	verb
+PALPA		40	verb
+PALPAR		40	verb
+SORTIDES	41	verb
+X		41	verb
+OLORAR	 	42	verb
+OLORA		42	verb
+TAFANEJAR	42	verb
+TAFANEJA	42	verb
+XAFARDEJAR	42	verb
+XAFARDEJA	42	verb
+ESPERAR	 	43	verb
+ESPERA		43	verb
+Z		43	verb
+CANTAR		44	verb
+CANTA		44	verb
+SALTAR		45	verb
+SALTA		45	verb
+BOTAR		45	verb
+BOTA		45	verb
+BOTA'T		45	verb
+BOTAR-SE	45	verb
+BOTA-T'HO	45	verb
+ATACA		46	verb
+ATACAR		46	verb
+AGREDIR	 	46	verb
+AGREDEIX	46	verb
+MATAR		46	verb
+MATA	 	46	verb
+ASSASSINAR	46	verb
+ASSASSINA	46	verb
+ESCANYAR	46	verb
+ESCANYA		46	verb
+ESTRANGULA	46	verb
+POTEJA		46	verb
+POTEJAR		46	verb
+TREPITJA	46	verb
+TREPITJAR	46	verb
+TORTURA	 	46	verb
+TORTURAR	46	verb
+LLUITAR		46	verb
+LLUITA		46	verb
+ORINAR		47	verb
+ORINA		47	verb
+ORINA'T		47	verb
+ORINAR-SE	47	verb
+PIXAR		47	verb
+PIXA		47	verb
+PIXA'T		47	verb
+PIXAR-SE	47	verb
+DEFECAR	 	47	verb
+DEFECA		47	verb
+DEFECA'T	47	verb
+DEFECAR-SE	47	verb
+CAGAR		47	verb
+CAGA	 	47	verb
+CAGA'T		47	verb
+CAGAR-SE	47	verb
+ROTAR		47	verb
+ROTA		47	verb
+VOMITAR	 	47	verb
+VOMITA		47	verb
+ROLLAR		47	verb
+ESCOPIR		48	verb
+ESCUP		48	verb
+AGITAR		49	verb
+AGITA		49	verb
+SACSEJAR	49	verb
+SACSEJA		49	verb
+BALANÇAR	50	verb
+BALANCEJAR	50	verb
+BALANCEJA'T	50	verb
+ENGRONSAR	50	verb
+GRONXAR		50	verb
+GRONXA'T	50	verb
+GRONXA		50	verb
+EXCAVAR	 	51	verb
+EXCAVA		51	verb
+CAVAR		51	verb
+CAVA	 	51	verb
+DESENTERRA	51	verb
+ENTERRAR	51	verb
+ENTERRA		51	verb
+TALLAR		52	verb
+TALLA		52	verb
+ESTRIPAR	52	verb
+ESTRIPA		52	verb
+AIXECAR		53	verb
+AIXECA'T	53	verb
+AIXECAR-SE	53	verb
+AIXECA		53	verb
+FERMAR		54	verb
+FERMA		54	verb
+ENLLAÇAR	54	verb
+ENLLAÇA		54	verb
+NUA		54	verb
+NUAR		54	verb
+OMPLIR		55	verb
+OMPL		55	verb
+OMPLE		55	verb
+FARCIR		55	verb
+FARCEIX		55	verb
+NEDAR		56	verb
+NEDA		56	verb
+ENFILAR		57	verb
+ENFILA'T	57	verb
+ENFILAR-SE	57	verb
+ESCALAR		57	verb
+ESCALA		57	verb
+RETORÇAR	58	verb
+RETORCER	58	verb
+RETORÇA		58	verb
+TORÇAR		58	verb
+TORÇA		58	verb
+TORÇ		58	verb
+PREGAR		59	verb
+PREGA		59	verb
+ORAR	 	59	verb
+ORA		59	verb
+PENSAR		60	verb
+PENSA		60	verb
+DORMIR		61	verb
+DORM		61	verb
+DORMIR-SE	61	verb
+DORMI'T		61	verb
+DESCANSA	61	verb
+DESCANSAR	61	verb
+RONCAR		61	verb
+RONCA		61	verb
+ESTIRAR-SE	61	verb
+ESTIRA'T	61	verb
+JEURE	 	61	verb
+JEU		61	verb
+BESAR		62	verb
+BESA	 	62	verb
+PETO		62	verb
+PETONEJAR	62	verb
+PETONEJA	62	verb
+XUCLAR		63	verb
+XUCLA		63	verb
+LLEPAR		63	verb
+LLEPA		63	verb
+PROVAR		63	verb
+PROVA		63	verb
+PALADEJAR	63	verb
+PALADEJA	63	verb
+ASSABORIR	63	verb
+ASSABOREIX	63	verb
+OBRIR		64	verb
+OBRE	 	64	verb
+TANCAR		65	verb
+TANCA		65	verb
+CREMAR		66	verb
+CREMA		66	verb
+ENCENDRE	66	verb
+INCENDIAR	66	verb
+INCENDIA	66	verb
+APAGAR		67	verb
+APAGA		67	verb
+EXTINGIR	67	verb
+EXTINGEIX	67	verb
+SUFOCAR	 	67	verb
+SUFOCA		67	verb
+TRANSCRIU	68	verb
+TRANSCRIPC	68	verb
+TRANSCRIUR	68	verb
+TRENCAR		69	verb
+TRENCA		69	verb
+PARTIR		69	verb
+PARTEIX		69	verb
+FRACTURAR	69	verb
+FRACTURA	69	verb
+DESTRUEIX	69	verb
+DESTRUIR	69	verb
+VERSIO		70	verb	
+POSAR		71	verb
+POSA		71	verb
+POSA'T		71	verb
+POSAR-SE	71	verb
+VESTEIX		71	verb
+VESTIR-SE	71	verb
+VESTI'T		71	verb
+COPEJAR	 	72	verb
+COPEJA		72	verb
+DONAR		73	verb
+DONA		73	verb
+DONA-LI	 	73	verb
+DONA-HO		73	verb
+OFEREIX		73	verb
+OFEREIX-LI	73	verb
+REGALA		73	verb
+REGALAR	 	73	verb
+REGALAR-SE	73	verb
+FICAR		74	verb
+FICA		74	verb
+POSA-HO		74	verb
+INTRODUEIX	74	verb
+INTRODUIR	74	verb
+INSEREIX	74	verb
+INSERIR		74	verb
+TREU		75	verb
+TREU-HO		75	verb
+TREURE		75	verb
+EXTREU		75	verb
+EXTREURE	75	verb
+TRUCA		76	verb
+TRUCAR		76	verb
+CRIDA		77	verb
+CRIDAR		77	verb
+XISCLAR		77	verb
+XISCLA		77	verb
+ESCORCOLLA	78	verb
+RECERCA		78	verb
+RECERCAR	78	verb
+ARRENCAR	79	verb
+ARRENCA	 	79	verb
+ARRABASSAR	79	verb
+ARRABASSA 	79	verb
+TIRAR		79	verb
+TIRA		79	verb
+USAR	 	80	verb
+USA		80	verb
+UTILITZAR	80	verb
+UTILITZA	80	verb
+MATA'T		81	verb
+MATAR-SE	81	verb
+SUICIDA'T	81	verb
+SUICIDAR-S	81	verb
+XYZZY		82	verb
+ARROSSEGAR	83	verb
+ARROSSEGA	83	verb
+REGISTRA'T	84	verb
+MIRA'T		85	verb
+MIRAR-SE	85	verb
+EXAMINA'T	85	verb
+BUIDAR		86	verb
+BUIDA		86	verb
+ABOCAR		86	verb
+ABOCA		86	verb
+DESPERTA	87	verb
+DESPERTAR	87	verb
+DESPERTA'T	87	verb
+ESPABILAR	87	verb
+ESPABILA'T	87	verb
+ESPABILA	87	verb
+RENTA'T		88	verb
+RENTAR-SE	88	verb
+NETEJA'T	88	verb
+NETEJAR-SE	88	verb
+INSULTAR	89	verb
+INSULTA		89	verb
+ANAR		90	verb
+VES		90	verb
+PREN	 	90	verb
+CAMINA		90	verb
+CAMINAR	 	90	verb
+CORR	 	90	verb
+CORRER		90	verb
+FUGIR		90	verb
+FUIG	 	90	verb
+DIRIGI'T	90	verb
+DIRIGIR-SE	90	verb
+AMAGA'T		91	verb
+AMAGAR		91	verb
+AMAGAR-SE	91	verb
+OCULTAR		92	verb
+OCULTA-HO	92	verb
+PLORAR		93	verb
+PLORA		93	verb
+PLORINYAR	93	verb
+PLORIQUEJA	93	verb
+RECORDAR	94	verb
+RECORDA		94	verb
+BUFA		95	verb
+BUFAR		95	verb
+DOBLEGA		96	verb
+DOBLEGAR	96	verb
+DESDOBLEGA	97	verb
+DESFERMAR	98	verb
+DESFERMA	98	verb
+UNIR		99	verb 
+UNEIX		99	verb
+JUNTAR		99	verb 
+JUNTA		99	verb
+ACOSTAR		99	verb
+ACOSTA		99	verb
+APROPAR		99	verb
+APROPA		99	verb
+APROXIMAR	99	verb
+APROXIMA	99	verb
+REUNEIX		99	verb
+REUNIR		99	verb
+SEPARA		100	verb
+SEPARAR	 	100	verb
+NETEJAR 	101	verb
+NETEJA		101	verb
+RENTAR		101	verb
+RENTA	 	101	verb
+PULEIX	 	101	verb
+PULIR		101	verb
+FREGAR		101	verb
+FREGA		101	verb
+RASCAR		102	verb
+RASCA		102	verb
+GRATAR		102	verb
+GRATA		102	verb
+CONNECTA 	103	verb
+CONNECTAR	103	verb
+ACTIVA		103	verb
+ACTIVAR		103	verb
+DESCONNECT	104	verb
+DESACTIVA	104	verb
+DESACTIVAR	104	verb
+AFERRA		105	verb
+AFERRAR		105	verb
+ABRAÇAR		105	verb
+ABRAÇA		105	verb
+COMPRAR		106	verb
+COMPRA		106	verb
+COMPRA'T	106	verb
+COMPRAR-SE	106	verb
+ADQUIRIR	106	verb
+ADQUIREIX	106	verb
+CONSULTAR	107	verb
+CONSULTA	107	verb
+PREGUNTAR	108	verb
+PREGUNTA	108	verb
+DEMANAR		108	verb
+DEMANA		108	verb
+LLEGEIX		109	verb
+LLEGIR		109	verb
+LLEGIR-SE	109	verb
+LLEGI'T		109	verb
+MOURE		110	verb
+MOU		110	verb
+DESPLAÇAR	110	verb
+DESPLAÇA	110	verb
+ESTRENYER	111	verb
+ESTRENY 	111	verb
+PRESSIONAR	111	verb
+PRESSIONA 	111	verb
+BALLAR		112	verb
+BALLA		112	verb
+DANSAR		112	verb
+DANSA		112	verb
+SALUDAR	 	113	verb
+SALUDA		113	verb
+ESTIRAR		114	verb
+ESTIRA		114	verb
+
+
+	; -- Adjectius --
+PETIT	2	adjective
+PETITA	2	adjective
+GRAN	3	adjective
+VELL	4	adjective
+VELLAA	4	adjective
+NOU	5	adjective
+NOVA	5	adjective
+DUR	6	adjective
+DURA	6	adjective
+SUAU	7	adjective
+LLARG	9	adjective
+LLARGA	9	adjective
+
+
+	; -- Adverbis --
+RAPIDAMENT	2	adverb
+LENTAMENT	3	adverb
+SILENCIOSA	4	adverb
+SOROLLOSAM	5	adverb
+CUROSAMENT	6	adverb
+SUAUMENT	6	adverb
+
+	; -- Preposicions --
+A		2	preposition
+DE		3	preposition
+DEL		3	preposition
+DINS		4	preposition
+DEDINS		4	preposition
+DINTRE		4	preposition
+DESDE		5	preposition ; DES DE
+CAPA		6	preposition ; CAP A
+RERE		7	preposition
+DARRERE		7	preposition
+SOTA		8	preposition
+AMB		9	preposition
+PERA		10	preposition ; PER A
+PER		11	preposition
+EXCEPTE		12	preposition 
+FORA		13	preposition 
+DAVANT		14	preposition 
+ENTRE		15	preposition
+SOBRE		16	preposition
+DAMUNT		16	preposition
+
+	; -- Pronoms --		COMPROVA-HO
+-LO		2	pronoun
+'LS		2	pronoun
+-LI		2	pronoun
+-SE'L		2	pronoun
+-LOS-HO		2	pronoun
+-L'HO		2	pronoun
+-LA		2	pronoun
+-LES		2	pronoun
+-LA-HI		2	pronoun
+-LES-HI		2	pronoun
+-LIS		2	pronoun
+-LES-HO		2	pronoun
+-HO		2	pronoun
+-S'HO		2	pronoun
+
+	; -- Conjuncions --
+I		2	conjunction
+DESPRÉS		2	conjunction ; A efectes del sistema. DESPRÉS és un adverbi
+	 
+
+/STX
+/0
+No pots veure res, és molt fosc.
+
+/1
+Pots veure: 
+/2
+Què vols fer ara?	
+/3
+Quina és la següent ordre?
+/4
+Què faràs ara?
+/5
+Escriu les teves ordres
+/6
+Com? Prova-ho amb altres paraules.
+
+/7
+No pots anar en aquesta direcció.
+
+/8
+Perdó?
+
+/9
+Duus:	
+/10
+ (posat/da)
+/11
+cap objecte.
+
+/12
+Segur? 
+
+/13
+Jugues un altre cop? 
+
+/14
+Arreveure...
+/15
+Molt bé.
+
+/16
+Prem una tecla per a continuar.
+
+/17
+Has jugat 
+/18
+ torn
+/19
+s
+/20
+.
+
+/21
+La teva puntuació és del 
+/22
+%.
+
+/23
+No ho duus posat això.
+
+/24
+No pots, ja ho duus posat.
+
+/25
+Ja tens {OREF}.
+
+/26
+No ho veus per aquí.
+
+/27
+No pots dur més coses.
+
+/28
+No ho tens.
+
+/29
+Però si ja dus posat {OREF}.
+
+/30	
+S
+/31	
+N
+/32
+Més...
+/33
+> 
+/34	;Vacío. No se usa
+/35
+El temps passa...
+
+/36
+Agafes {OREF}.
+
+/37
+Te poses {OREF}.
+
+/38
+Te lleves {OREF}.
+
+/39
+Deixes {OREF}.
+
+/40
+No pots posar-te {OREF}.
+
+/41
+No pots llevar-te {OREF}.
+
+/42
+No pots llevar-te {OREF}. Duus massa coses a les mans!
+
+/43
+Malauradament {OREF} és massa feixuc.
+
+/44
+Poses {OREF} dins 
+/45
+Em temo que {OREF} no és dins 
+/46
+, 
+/47
+ i¬
+/48
+.
+
+/49
+No tens {OREF}.
+
+/50
+No duus posat {OREF}.
+
+/51
+.
+
+/52
+Això no és dins
+ 
+/53
+cap objecte
+
+/54
+No es troba el fitxer.
+
+/55
+El fitxer s'ha fet malbé.
+
+/56
+Error de lectura/escriptura. No s'ha desat el fitxer.
+
+/57
+Directori ple.
+
+/58
+Introdueix el nom amb el que vares desar la partida.
+
+/59
+No s'ha trobat cap partida desada aquest nom. Confirma que el nom és correcte i que vares jugar la partida a aquest mateix navegador.
+
+/60
+Introdueix el nome amb el que desar la partida. Ho hauràs de recordar per poder recuperar-la posteriorment.
+
+/61
+
+
+/62
+Perdó? Prova-ho amb unes altres paraules.
+
+/63 
+Aquí 
+/64
+és 
+/65
+són 
+/66
+dins hi ha 
+/67
+damunt hi ha 
+
+
+/MTX 	; ** Missatges del sistema **
+/0
+La balsa és deserta!
+
+
+/1000
+Sortides visibles: 
+/1001
+No hi ha cap sortida visible.
+/1002
+/1003
+/1004
+al {ACTION|nord|nord}
+/1005
+al {ACTION|sud|sud}
+/1006
+al {ACTION|est|est}
+/1007
+al {ACTION|oest|oest}
+/1008
+al {ACTION|nord-est|nord-est}
+/1009
+al {ACTION|nord-oest|nord-oest}
+/1010
+al {ACTION|sud-est|sud-est}
+/1011
+al {ACTION|sud-oest|sud-oest}
+/1012
+{ACTION|dalt|dalt}
+/1013
+{ACTION|baix|baix}
+/1014
+{ACTION|dins|dins}
+/1015
+{ACTION|fora|fora}
+
+
+/OTX 	; ** Texte dels objectes **
+/0
+una antorxa
+
+
+/LTX 	; ** Texte de les localitats **
+/0
+Ets a una petita balsa surant al mar obert. El brillant sol {INK|yellow|groc} comença a cremar-te la pell mentre que una obscura aleta dóna voltes en cercles a les clares aigües {PAPER|blue|{INK|white|blaves}}.
+
+
+/CON 	; ** Connexions entre localitats **
+; Exemple
+; N	4
+; E	2
+
+
+/OBJ 	; ** Objectes i les seves propietas **
+;obj	loc	pes	nom	adjectiu	atribut
+;num	ini		
+
+/0	0	1	ANTORXA	_		ATTR aLight aFemale
+
+	
+; IMPORTANT: Recorda que si crees un objecte «contenidor» o de «superfície», has de deixar sense utilitzar la localitat del mateix número
+
+
+/PRO 0
+
+; ##################################### ACCIONS MÚLTIPLES #######################################
+; #										 		#
+; #	Aquestes entrades usen un bucle «DOALL» i actuen amb tots els objectes que es troben, 	#
+; #	per tant, han de ser aquí dalt (abans de les respuestes del o la programadora) ja que	#
+; #	en cas contrari no es tendríen en compte.					 	#
+; #										 		#
+; ###############################################################################################
+
+_ _
+ HOOK "RESPONSE_START" ; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+
+ 
+AGAFA-HO TOT	; AGAFA-HO TOT DE --> TREURE TOT DE 	; COMPROVAR
+ PREP DE
+ SYNONYM TREURE _
+ 
+
+POSA-HO TOT	; POSAR --> FICAR
+ PREP DINS
+ SYNONYM FICAR _
+
+
+AGAFA-HO TOT
+ ISNOTLIGHT	; No hi ha llum
+ WRITELN "No veus res."
+ DONE
+
+AGAFA-HO TOT
+ OBJAT @38 13
+ ZERO 13	; No hi ha cap objecte a la localitat
+ WRITELN "No hi ha res aquí."
+ DONE
+
+AGAFA-HO TOT	
+ DOALL	HERE
+
+DEIXA-HO TOT
+ OBJAT 254 13
+ ZERO 13	; No duus res a l'inventari
+ WRITELN "No duus res."
+ DONE
+
+DEIXA-HO TOT
+ DOALL	CARRIED
+
+; ** Converteix «Buidar xxxx» en «TREURE-HO TOT DE xxxx»
+BUIDAR _				
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ COPYFF 34 44 
+ COPYFF 35 45
+ SYNONYM TREU-HO TOT
+ LET 43 &&_voc_DE
+
+TREURE _	; Es copia al marcador 13 el número d'objectes referenciats per «noun2» (o 255 si no n'hi ha cap)
+ WHATOX2 13
+
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ ABSENT @13
+ WRITELN "No ho veus això per aquí."
+ DONE
+
+
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aSupporter ; És una superfície
+ ABSENT @13
+ WRITELN "No ho veus això per aquí."
+ DONE
+
+
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ PRESENT @13
+ OBJAT @13 14
+ ZERO 14
+ WRITELN "No hi ha res aquí."
+ DONE
+
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aSupporter ; És una superfície
+ PRESENT @13
+ OBJAT @13 14
+ ZERO 14
+ WRITELN "No hi ha res aquí."
+ DONE
+
+
+ 
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ PRESENT @13
+ DOALL @13
+
+TREU-HO TOT
+ PREP DE
+ NOTEQ 13 255	; És un objecte
+ ONOTZERO @13 aSupporter ; És una superfície
+ PRESENT @13
+ DOALL @13
+
+
+
+; ** Converteix «AMAGAR QUELCOM DINS QUELCOM» en «FICAR QUELCOM DINS QUELCOM»
+AMAGAR _
+ NOTEQ 51 255
+ PRESENT @51
+ PREP DINS
+ WHATOX2 13
+ NOTEQ 13 255		 ; És un objecte
+ PRESENT @13
+ SYNONYM FICAR _
+ LET 43 &&_voc_DINS
+
+; ** Converteix «POSAR QUELCOM DINS...» en «FICAR QUELCOM DINS...»
+POSAR _
+ NOTEQ 51 255
+ PRESENT @51
+ PREP DINS
+ SYNONYM FICAR _
+ 
+
+FICAR _		 ; Es copia al marcador 13 el número d'objectes referenciats per «noun2» (o 255 si no n'hi ha cap)
+ WHATOX2 13
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ ABSENT @13
+ WRITELN "No veus això per aquí."
+ DONE
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aSupporter ; Es una superficie
+ ABSENT @13
+ WRITELN "No veus això per aquí."
+ DONE
+
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ CARRIED @13
+ OBJAT 254 14
+ EQ 14 1		 ; No duus res a l'inventari (només el contenidor)
+ WRITELN "No duus res."
+ DONE
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aSupporter ; És una superfície, ficar-ho tot
+ CARRIED @13
+ OBJAT 254 14	
+ EQ 14 1		 ; No duus res a l'inventari (solo llevas el contenedor)
+ WRITELN "No duus res."
+ DONE
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14		 ; No duus res a l'inventari
+ WRITELN "No duus res."
+ DONE
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aSupporter ; Es una superficie
+ ISAT @13 @38
+ OBJAT 254 14
+ ZERO 14		 ; No duus res a l'inventari
+ WRITELN "No duus res"
+ DONE
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aContainer ; És un contenidor
+ PRESENT @13
+ DOALL CARRIED
+
+FICAR TOT
+ PREP DINS
+ NOTEQ 13 255		 ; És un objecte
+ ONOTZERO @13 aSupporter ; És una superfície ; COMPROVAR: PONER TODO o FICAR TOT
+ PRESENT @13
+ DOALL CARRIED
+
+
+LLEVAR TOT		; Hauria de ser LLEVAR-T'HO TOT ; COMPROVAR
+ OBJAT 253 13
+ ZERO 13		; No duus cap objecte «posat»
+ WRITELN "No duus res posat."
+ DONE
+
+LLEVAR TOT
+ DOALL WORN
+
+POSAR TOT		; POSAR-T'HO TOT ; COMPROVAR
+ OBJAT 254 13
+ ZERO 13		; No duus res a l'inventari
+ WRITELN "No duus res per posar-te."
+ DONE
+
+POSAR TOT
+ DOALL	CARRIED
+
+LLENÇAR TOT		; LLENÇAR-HO TOT ; COMPROVAR
+ OBJAT 254 13
+ ZERO 13		; No duus res a l'inventari
+ WRITELN "No duus res."
+ DONE
+ 
+LLENÇAR TOT
+ EQ 1 1			; Si només duus una cosa, llença-la
+ DOALL	CARRIED
+ 
+LLENÇAR TOT
+ GT 1 1 		; Duus més d'un objecte i no pots lleçar-los a la vegada
+ WRITELN "No pots llençar-ho tot a la vegada!"
+ DONE
+
+_ TOT
+ WRITELN "Prova a especificar un poc més."
+ DONE
+
+
+
+; ######################################### FRASES SINÒNIMES ####################################
+; #												#
+; #	Aquestes entrades es converteixen en unes altres distintes perquè de vegades, segons	#
+; #	el que haguem escrit, voldrem realitzar diferents accions per a un mateix verb.		#
+; #	Han d'anar aquí, al principi, abans de les acciones modificades pel o la programadora.	#
+; #												#
+; #	Uns exemples comuns de frases sinònimes són:						#
+; #												#
+; #	- NEDAR com a sinònim de CAMINAR/ANAR, a localitats «aquàtiques».			#
+; #	- ENCENDRE TELEVISOR utilitzat en el sentit de CONNECTAR TELEVISOR.			#
+; #	- APAGAR LLUM utilitzat en el sentit de DESCONNECTAR.					#
+; #												#
+; #	Per defecte, a la llibreria base, ENCENDRE es fa servir en el sentit d'INCENDIAR,	#
+; #	i APAGAR com SUFOCAR/EXTINGIR.								#
+; #												#
+; ###############################################################################################
+
+
+
+ANAR	_
+ LT 34 14
+ COPYFF 34 33
+ 
+_	_
+ PREP DINS
+ EQ 33 255
+ EQ 34 255
+ SYNONYM ENTRAR _
+ LET 43 255
+
+_	_
+ PREP FORA
+ EQ 33 255
+ EQ 34 255
+ SYNONYM SORTIR _
+ LET 43 255
+
+; ** Converteix «MIRAR DINS» en «EXAMINAR DINS»
+
+MIRAR _
+ NOTEQ 34 255	 
+ PREP DINS
+ SYNONYM EXAMINAR _
+ 
+
+; ** Converteix «MIRAR QUELCOM» en «EXAMINAR QUELCOM»
+
+MIRAR _
+ NOTEQ 34 255
+ SYNONYM EXAMINAR _
+ 
+ 
+MIRAR _
+ BNOTZERO 12 1 
+ SYNONYM EXAMINAR _
+ 
+	
+ 
+; ** Converteix «ESCORCOLLAR» en «EXAMINAR DINS»
+
+ESCORCOLLA _
+ SYNONYM EXAMINAR _
+ LET 43 &&_voc_DINS
+
+; ** Converteix «ARRENCAR» en «TIRAR DE»
+ARRENCAR _
+ SYNONYM TIRAR _
+ LET 43 &&_voc_DE
+
+; **	Convertir «X QUELCOM» en «EXAMINAR QUELCOM»
+X _
+ EQ 34 255
+ BNOTZERO 12 1
+ SYNONYM EXAMINAR _
+
+X _
+ NOTEQ 34 255
+ SYNONYM EXAMINAR _
+ 
+; ** Converteix «CONSULTAR A QUALCÚ» en «PREGUNTAR A QUALCÚ»
+
+CONSULTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC ; És un personatge no jugador (NPC)
+ SYNONYM PREGUNTAR _
+ 
+
+ 
+ ; ** Converteix «FER QUELCOM AMB OBJECTE2 A OBJECTE1» en «FER QUELCOM A OBJECTE1 AMB OBJECTE2»
+_	_
+ PREP AMB 
+ BZERO 12 2 	; La «preposició» és abans del primer nom
+ NOTEQ 34 255
+ WHATOX 16
+ NOTEQ 16 255	; El primer nom de la SL és un objecte
+ NOTEQ 44 255	; Hi ha un segon nom
+ WHATOX2 15
+ NOTEQ 15 255	; El segon nom és d'un objecte
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 	; Els hi donam la volta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 	; Els hi donam la volta als adjetiuos
+ WHATO 		; Forçam l'actualització dels marcadors 54-58
+
+
+; ** Converteix «FER QUELCOM A OBJECTE2 AMB OBJECTE1» en «FER QUELCOM AMB OBJECTE1 A OBJECTE2»
+_	_
+ PREP A 
+ BZERO 12 2 	; La «preposició» és abans del primer nom
+ NOTEQ 34 255
+ WHATOX 16
+ NOTEQ 16 255 	; El primer nom de la SL és un objecte
+ NOTEQ 44 255 	; Hi ha un segon nom
+ WHATOX2 15
+ NOTEQ 15 255 	; El segon nom és d'un objecte
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 	; Els hi donam la volta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ WHATO 		; Forçam l'actualització dels marcadors 54-58
+
+
+; ** Converteix «FER QUELCOM DINS OBJECTE2 (CONTENIDOR) OBJECTE1» en «FER QUELCOM OBJECTE1 DINS OBJECTE2 (CONTENIDOR)»
+_	_	
+ PREP DINS 
+ BZERO 12 2 	; La «preposició» és abans del primer nom
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer ; El primer objecte és un contenidor present
+ NOTEQ 44 255 	; Hi ha un segon nom
+ WHATOX2 15
+ NOTEQ 15 255 	; El segon nom és d'un objecte
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44	; Els hi donam la volta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ WHATO 		; Forçam l'actualització dels marcadors 54-58
+
+
+; ** Converteix «FER QUELCOM DE OBJECTE2 (CONTENIDOR) OBJECTE1» en «FER QUELCOM OBJECTE1 DE OBJECTE2 (CONTENIDOR)»
+; COMPROVAR
+_	_
+ PREP DE 
+ BZERO 12 2 	; La «preposició» és abans del primer nom
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer ; El primer objecte és un contenidor present
+ NOTEQ 44 255	; Hi ha un segon nom
+ WHATOX2 15
+ NOTEQ 15 255	; El segon nom és d'un objecte
+ COPYFF 34 14
+ COPYFF 44 34
+ COPYFF 14 44 	; Els hi donam la volta
+ COPYFF 35 14
+ COPYFF 45 35
+ COPYFF 14 45 	; Els hi donam la volta a los adjetivos
+ WHATO 		; Forçam l'actualització dels marcadors 54-58
+
+
+; ** Converteix «AGAFAR DE» en «TREURE DE»
+
+AGAFAR _
+ PREP DE
+ SYNONYM TREURE _
+	
+
+_ _
+ HOOK "RESPONSE_USER"	; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+
+
+
+; ########################## RESPOSTES MODIFICADES PEL O LA PROGRAMADORA ########################
+; #												#
+; #	Aquí pots afegir les teves pròpies respostes. Es col·loquen a aquest punt perquè així	#
+; #	són darrere las frases sinònimes i devant de les respostes per defecte.			#
+; #												#
+; ###############################################################################################
+
+
+
+
+
+
+; ********************* [[[ Col·loca aquí les teves pròpies respostes ]]] *********************
+
+
+
+
+
+
+; ##################################### RESPOSTES PER DEFECTE ###################################
+; #												#
+; #	Aquestes entrades donen les respuestes per defecte. Si no en posam abans cap entrada	#
+; #	que ho eviti, s'arribarà fins aquí i es donarà la resposta per defecte.			#
+; #												#
+; ###############################################################################################
+
+_ _
+ HOOK "RESPONSE_DEFAULT_START"	; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+
+
+IN	 _	
+ INVEN
+
+; -------------------------
+
+ENTRAR _		 ; Entrar dins un objecte
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEnterable
+ GOTO @51 
+ DESC
+
+;-----------------------------------------------
+
+SEURE _
+ WRITELN "Ara mteix no en tens ganes."
+ DONE
+ 
+;-----------------------------------------------
+
+AIXECAR-SE _
+ WRITELN "Estàs bé així."
+ DONE
+ 
+;-----------------------------------------------
+
+MIRA'T _
+ WRITELN "Et mires de dalt a baix però no veus res especial."
+ DONE
+
+;-----------------------------------------------
+
+ESCORCOLLA'T _	; REGÍSTRATE
+ WRITELN "No trobes res destacable."
+ DONE
+
+;-----------------------------------------------
+
+SUICIDA'T _
+ WRITELN "Aquesta no és la solució..."
+ DONE
+
+;-----------------------------------------------
+
+RENTA'T _
+ WRITELN "Ara mateix no et ve de gust..."
+ DONE
+
+;-----------------------------------------------
+
+XYZZY _
+ WRITELN "Has jugat a massa aventures conversacionals..."
+ DONE
+
+;-----------------------------------------------
+
+FI		_	
+ QUIT
+ TURNS
+ END
+
+DESAR		_	
+ SAVE
+
+CARREGAR	_	
+ LOAD
+
+RAMSAVE	_	
+ RAMSAVE
+ DESC
+
+RAMLOAD	_	
+ RAMLOAD	 255
+ ANYKEY
+ DESC
+		 
+TRANSCRIPCIO _
+ TRANSCRIPT 1
+ DONE
+ 
+;-----------------------------------------------
+
+
+AGAFAR _		 ; Agafar un objecte que és dins d'un contenidor
+ PREP DE
+ WHATOX2 14
+ NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objectr i...
+ ONOTZERO @14 aContainer ; és un contenidor
+ SYNONYM TREURE _ 	 ; convertim «agafar objecte d'un contenidor» en «treure objecte d'un contenidor»
+
+AGAFAR _		 ; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots agafar això que dius."
+ DONE
+ 
+AGAFAR _		 ; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols agafar."
+ DONE 
+
+AGAFAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ WRITELN "Millor no agafes {OREF}, està bé on és."
+ DONE
+
+AGAFAR	_	
+ AUTOG
+ DONE
+
+;-----------------------------------------------
+
+DEIXAR _		 ; DEIXAR un objecte dins d'un contenidor
+ PREP DINS
+ WHATOX2 14
+ NOTEQ 14 255		 ; Si l'objecte referenciat per «noun2» és un objecte i...
+ ONOTZERO @14 aContainer ; és un contenidor
+ SYNONYM FICAR _	 ; convertim «DEIXAR objecte dins un contenidor» en «FICAR objecte dins un contenidor»
+
+DEIXAR _		 ; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots dejar això que dius."
+ DONE
+ 
+DEIXAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols deixar."
+ DONE 
+
+DEIXAR	_	
+ AUTOD
+ DONE
+
+;-----------------------------------------------
+TREURE _		 ; Copiam al marcador 15 el número d'objectes referenciat per «noun2» (o 255 si no n'hi ha)
+ WHATOX2 15
+
+TREURE _		 ; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols treure."
+ DONE
+ 
+TREURE _		 ; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots treure això que dius."
+ DONE
+
+TREURE _		 ; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No pots sacar eso."
+ DONE
+
+TREURE _		 ; No s'ha trobat cap «noun1» conegut a la frase, i el «noun2» pren el seu lloc a la frase...		
+ BZERO 12 2		 ; S'ha de donar aquest missatge perquè el que volíem que fos el «noun1» no és al vocabulari
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots treure-ho això."
+ DONE
+
+TREURE _		 ; Proves de treure un objecte que duus posat
+ NOTEQ 51 255		
+ WORN @51	
+ ONOTZERO @51 aWear
+ WRITELN "No pots treure {OREF} d'enlloc, en tot cas t'ho pots llevar perquè ho duus posat..."
+ DONE
+
+TREURE _		 ; TREURE un objecte però no s'especifica d'on
+ NOTEQ 51 255		
+ EQ 44 255
+ BZERO 12 1
+ WRITELN "D'on ho vols treure això?"
+ DONE
+
+TREURE _		 ; TREURE un objecte però no s'especifica d'on (la palabra trobada no és al vocabulari)
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots treure {OREF} d'això."
+ DONE
+
+TREURE _		 ; TREURE un objecte d'un «noun2» que no és un objecte.
+ EQ 15 255		 ; El segon nom no és un objecte
+ WRITELN "D'on dius que vols treure {OREF}?"
+ DONE 
+
+TREURE _
+ NOTEQ 15 255		 ; És un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ SAME 51 15		 ; No es pot treure de sí mateix
+ DONE			 ; Això és poc ortodox, però s'entén que, en general, treure quelcom de sí mateix només ocurrirà dins un DOALL. Si qualcú ho escriu, no obtendrà resposta.
+
+
+
+TREURE _		 ; TREURE un objecte d'un contenidor que hi és però tancat
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ ONOTZERO @15 aOpenable
+ OZERO @15 aOpen
+ PRESENT @15
+ WRITELN "Abans has d'obrir {OBJECT|15}."
+ BREAK
+ DONE
+
+TREURE _		 ; TREURE un objecte d'un contenidor que hi és però tancat amb clau
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ ONOTZERO @15 aLockable
+ OZERO @15 aLocked
+ PRESENT @15
+ WRITELN "Abans desbloca {OBJECT|15}."
+ BREAK
+ DONE
+
+TREURE _
+ NOTEQ 15 255		 ; És un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ ABSENT @15
+ WRITELN "No pots treure-hi res perquè no és aquí."
+ DONE
+
+
+TREURE _
+ NOTEQ 15 255		 ; És un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ ABSENT @15
+ WRITELN "No pots agafar-hi res perquò no és aquí."
+ DONE
+
+
+TREURE _		 ; TREURE un objecte d'un contenidor que és present
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ PRESENT @15
+ AUTOT @15
+ DONE
+
+TREURE _		 ; TREURE un objecte d'una superfície que és present
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aSupporter
+ PRESENT @15
+ AUTOT @15
+ DONE
+
+
+TREURE _
+ NOTEQ 15 255		; És un objecte
+ WRITELN "No pots treure-hi res."
+ DONE
+
+
+
+;-----------------------------------------------
+
+FICAR _		 	; Copiam al marcador 15 el número d'objecte referenciat per «noun2» (o 255 si n'hi ha cap)
+ WHATOX2 15
+
+FICAR _		 	; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols ficar."
+ DONE
+ 
+FICAR _		 	; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots ficar-hi això que dius."
+ DONE
+
+FICAR _		 	; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No pots ficar-hi això."
+ DONE
+
+FICAR _		 	; No s'ha trobat «noun1» reconegut a la frase, i el «noun2» passa a ocupar-ne el seu lloc a la frase...		
+ BZERO 12 2		; S'ha de donar aquest missatge perquè el que volíem que fos el «noun1» no és al vocabulari
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots ficar-hi això."
+ DONE
+
+FICAR _		 	; Provar de ficar un objecte que duim posat
+ NOTEQ 51 255		
+ WORN @51	
+ ONOTZERO @51 aWear
+ WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer..."
+ DONE
+
+FICAR _		 	; FICAR un objecte que no duim
+ NOTEQ 51 255
+ NOTCARR @51
+ WRITELN "No duus {OREF}."
+ DONE
+
+FICAR _		 	; FICAR un objecte de l'inventari i no especificar on
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BZERO 12 1
+ WRITELN "On ho ho vols ficar?"
+ DONE
+
+FICAR _		 	; FICAR un objecte de l'inventari i no especificar on (troba una paraula que no és al vocabulari)
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No li pots ficar {OREF} a això."
+ DONE
+
+FICAR _		 	; FICAR un objecte de l'inventari a un «noun2» que no és un objecte.
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ EQ 15 255		; El segon nom no és un objecte
+ WRITELN "On dius que ho vols ficar {OREF}?"			 
+ DONE 
+
+FICAR _
+ NOTEQ 15 255	 	 ; És un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ SAME 51 15		 ; No es pot ficar dins sí mateix
+ DONE			 ; Això és poc ortodox, però s'entén que, en general, ficar quelcom dins sí mateix només ocurrirà dins un DOALL. Si qualcú ho escriu, no obtendrà resposta.
+
+FICAR _
+ NOTEQ 15 255	 	 ; És un objecte
+ ONOTZERO @15 aSupporter ; És un contenidor
+ SAME 51 15		 ; No es pot ficar dins sí mateix
+ DONE			 ; Això és poc ortodox, però s'entén que, en general, ficar quelcom dins sí mateix només ocurrirà dins un DOALL. Si qualcú ho escriu, no obtendrà resposta.
+
+
+FICAR _		 	 ; FICAR un objecte de l'inventari dins un objecte present però que no és ni un contenidor ni una superfície
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ NOTEQ 15 255	 	; El «noun2» és un objecte
+ OZERO @15 aContainer	; però no és un contenidor
+ OZERO @15 aSupporter	; ni una superfície
+ PRESENT @15
+ WRITELN "No pots ficar-hi res dins d'això..."			 
+ DONE					 
+
+FICAR _		 	 ; FICAR un objecte de l'inventari a un contenidor però que no és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255 
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; i és un contenidor
+ ABSENT @15		 ; però no hi és
+ WRITELN "No pots ficar-hi {OREF} perquè no ho duus."
+ DONE
+
+FICAR _		 	 ; FICAR un objecte de l'inventari dins un contenidor però que no és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255 
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aSupporter	
+ ABSENT @15		 ; però no hi és
+ WRITELN "No pots ficar-hi {OREF} perquè no ho duus."
+ DONE
+
+FICAR _		 	 ; FICAR un objecte present dins un contenidor que és present però tancat
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ PRESENT @15
+ ONOTZERO @15 aOpenable
+ OZERO @15 aOpen
+ WRITELN "Abans obre {OBJECT|15}."
+ BREAK
+ DONE
+
+FICAR _		 	 ; FICAR un objecte present dins un contenidor que és present però tancat amb clau
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ PRESENT @15
+ ONOTZERO @15 aLockable
+ OZERO @15 aLocked
+ WRITELN "Abans desbloca {OBJECT|15}"
+ BREAK
+ DONE
+
+
+FICAR _		 	 ; FICAR un objecte present dins un contenidor present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ NOTEQ 15 255	 	 ; El «noun2» és un objecte
+ ONOTZERO @15 aContainer ; És un contenidor
+ PRESENT @15
+ AUTOP @15
+ DONE
+
+FICAR _		 	; FICAR un objecte present dins un superfície present ; COMPROVAR dins o sobre?
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ NOTEQ 15 255	 	; El «noun2» és un objecte
+ ONOTZERO @15 aSupporter
+ PRESENT @15
+ AUTOP @15
+ DONE
+
+
+
+;-----------------------------------------------
+
+LLEVAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No te pots llevar això que dius."
+ DONE
+ 
+LLEVAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols llevar-te."
+ DONE 
+ 
+LLEVAR	_	
+ AUTOR 
+ DONE
+
+;-----------------------------------------------
+
+POSAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No te pots posar això que dius."
+ DONE
+ 
+POSAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols posar-te."
+ 
+POSAR	_	
+ AUTOW 
+ DONE
+
+;------------------------------------------------------------
+
+ESTIRAR _		; S'ha trobat un nom desconegut a la frase
+ PREP DE
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots estirar d'això que dius."
+ DONE
+
+ESTIRAR _		; No hi ha cap nom a la frase
+ PREP DE
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica de què vols estirar."
+ DONE
+ 
+ESTIRAR _
+ PREP DE
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No seria apropiat."
+ DONE
+ 
+ESTIRAR _
+ PREP DE
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+ESTIRAR _		; S'ha trobat un nom però no és un objecte
+ PREP DE
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus massa sentit a estirar d'això."
+ DONE
+
+ESTIRAR _		; És un objecte present
+ PREP DE
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que s'aconsegueixi res estirant de {OREF}."
+ DONE
+
+ESTIRAR _		; És un objecte que no hi és
+ PREP DE
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per estirar-ne, {OREF} hauria que ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+MIRAR	 _	 	; S'ha trobat un nom desconegut a la frase i la «preposició» DINS és present
+ PREP DINS			
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots examinar dins d'això que dius.."
+ DONE
+
+MIRAR	 _	 	; No hi ha cap nom a la frase i la «preposició» DINS és present
+ PREP DINS			
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica dins de què vols examinar."
+ DONE
+
+MIRAR	 _	 	; S'ha trobat un nom a la frase i és una direcció (o un punt cardinal)
+ LT 34 12
+ WRITELN "No veus res interessant cap allà."
+ DONE
+ 
+MIRAR	 _	 	; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots mirar això que dius."
+ DONE
+			
+MIRAR	 _	 	; No hi ha cap nom a la frase
+ EQ 34 255	
+ DESC
+
+
+;-----------------------------------------------
+
+
+AMAGAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots amagar això que dius."
+ DONE
+
+AMAGAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols amagar."
+ DONE
+
+AMAGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Trobes que no aconseguiràs que passi desapercebut."
+ DONE
+
+AMAGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+AMAGAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No creus que això serveixi de res..."
+ DONE
+
+AMAGAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Amagant {OREF} no arreglaràs res."
+ DONE
+
+AMAGAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+PLORAR _			
+ WRITELN "La autocompassió no condueix a res."
+ DONE
+ 
+;-----------------------------------------------
+ 
+RECORDAR _
+ WRITELN "No recordes res que te pugui ser útil."
+ DONE 
+
+;-----------------------------------------------
+ 
+SALUDAR _
+ WRITELN "No hi ha cap resposta ni una."
+ DONE
+ 
+ ;-----------------------------------------------
+
+AMAGA'T _
+ WRITELN "Aquesta és una opció molt covard."
+ DONE
+
+;-----------------------------------------------
+
+
+EMPENYER _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots empènyer això que dius."
+ DONE
+	
+EMPENYER _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols empènyer."
+ DONE
+ 
+EMPENYER _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+EMPENYER _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No es mou."
+ DONE
+
+
+EMPENYER _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+EMPENYER _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ ABSENT @51
+ WRITELN "No ho veus per aquí."
+ DONE
+
+
+ 
+EMPENYER _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus massa sentit a empènyer d'això."
+ DONE
+
+EMPENYER _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que serveixi de res empènyer {OREF}."
+ DONE
+
+EMPENYER _		 ; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per empènyer {OREF} hauria de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+MOURE _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots moure-ho això."
+ DONE
+	
+MOURE _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols moure."
+ DONE
+ 
+MOURE _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi massa."
+ DONE
+
+MOURE _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+MOURE _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No li veus massa sentit a moure això."
+ DONE
+
+MOURE _		 	; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que serveixi de res moure {OREF}."
+ DONE
+
+MOURE _		 	; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per moure {OREF} hauria de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+VOLTAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots voltar-ho això."
+ DONE
+
+VOLTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols voltar."
+ DONE
+
+VOLTAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No seria adient."
+ DONE
+
+VOLTAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No hi veus cap utilitat a voltar això."
+ DONE
+
+
+
+VOLTAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+
+VOLTAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ ABSENT @51
+ WRITELN "Això no ho veus per aquí."
+ DONE
+ 
+VOLTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus molt de sentit a voltar això."
+ DONE
+
+VOLTAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No hi veus massa sentit a voltar {OREF}."
+ DONE
+
+VOLTAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per voltar {OREF} ha de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+LLENÇAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots llençar-ho això."
+ DONE
+
+LLENÇAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols llençar."
+ DONE
+
+LLENÇAR _		; És un personatge no jugador (NPC)
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 
+ PRESENT @51
+ WRITELN "La violència no és la solució."
+ DONE
+
+LLENÇAR _		; És esceneri
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No pots llençar-ho això."
+ DONE
+
+
+LLENÇAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+
+LLENÇAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic 
+ ABSENT @51
+ WRITELN "Això no ho veus per aquí."
+ DONE
+
+ 
+LLENÇAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No, no hi veus sentit a llençar-ho això."
+ DONE
+
+LLENÇAR _		; És un objecte que es duus
+ NOTEQ 51 255
+ CARRIED @51
+ WRITELN "Llences {OREF}."
+ PLACE @51 @38
+ DONE
+
+LLENÇAR _		; És un objecte que no duus
+ NOTEQ 51 255
+ NOTCARR @51
+ WRITELN "Malauradament no duus {OREF}."
+ DONE
+
+;-----------------------------------------------
+
+ESCOLTAR _			
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No sembla que digui res."
+ DONE
+
+ESCOLTAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+ESCOLTAR _			
+ EQ 34 255
+ WRITELN "Pares atenció, provant de sentir res més però no escoltes res especial."
+ DONE
+ 
+;-----------------------------------------------
+
+
+MENJAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots menjar-te això que dius."
+ DONE
+
+MENJAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols menjar."
+ DONE
+ 
+MENJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que es deixi. En qualsevol cas no és molt apropiat."
+ DONE
+
+MENJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No és molt bona idea que t'ho mengis això."
+ DONE
+
+
+MENJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+MENJAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No vols menjar-t'ho això."
+ DONE
+
+MENJAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aEdible
+ WRITELN "No hi veus massa sentit a menjar-te {OREF}."
+ DONE
+
+MENJAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "Et menges {OREF}."
+ DESTROY @51
+ DONE
+
+
+MENJAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per menjar-te {OREF} hauria de ser aquí." 
+ DONE
+
+;-----------------------------------------------
+
+
+BEURE _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots beure-ho això que dius."
+ DONE
+
+BEURE _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols beure."
+ DONE
+ 
+BEURE _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Estàs perdent el nord."
+ DONE
+
+BEURE _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+BEURE _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No vols beure't això."
+ DONE
+
+BEURE _			; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aDrinkable
+ WRITELN "No hi veus massa sentit a beure {OREF}."	
+ DONE
+
+BEURE _			; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aDrinkable
+ WRITELN "Et beus {OREF}."	
+ DESTROY @51
+ DONE
+
+
+BEURE _			; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per beure {OREF} hauria de ser aquí."				
+ DONE
+ 
+;-----------------------------------------------
+
+PIXAR _
+ WRITELN "No tens ganes."
+ DONE
+
+;-----------------------------------------------
+
+
+ESCOPIR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots escopir a això que dius."
+ DONE
+
+ESCOPIR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què vols escopir."
+ DONE
+ 
+ESCOPIR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Això seria de molt mala educació."
+ DONE
+
+ESCOPIR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+ESCOPIR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a escopir a això."
+ DONE
+
+ESCOPIR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols escopir a {OREF}."
+ DONE
+
+ESCOPIR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+TOCAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots tocar-ho això que dius."
+ DONE
+
+TOCAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols tocar."
+ DONE
+ 
+TOCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No es deixa."
+ DONE
+
+TOCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+TOCAR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a tocar això."
+ DONE
+
+TOCAR _			; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols tocar {OREF}."
+ DONE
+
+TOCAR _			; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+OLORAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots olorar-ho això que dius."
+ DONE
+
+OLORAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols olorar."
+ DONE
+ 
+OLORAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "És de mala educació."
+ DONE
+
+OLORAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+OLORAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a olorar-ho això."
+ DONE
+
+OLORAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "La veritat és que {OREF} fa molt bona olor."
+ DONE
+
+OLORAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aDrinkable
+ WRITELN "La veritat és que {OREF} fa molt bona olor."
+ DONE
+
+
+OLORAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols olorar {OREF}."
+ DONE
+
+OLORAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aEdible
+ WRITELN "La veritat és que {OREF} fa molt bona olor."
+ DONE
+
+
+OLORAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+SACSEJAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pot sacsejar-ho això que dius."
+ DONE
+
+SACSEJAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols sacsejar."
+ DONE
+ 
+SACSEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+SACSEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+SACSEJAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a sacsejar-ho això."
+ DONE
+
+SACSEJAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols sacsejar {OREF}."
+ DONE
+
+SACSEJAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+BALANCEJA'T _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No t'hi pots balancejar aquí."
+ DONE
+
+BALANCEJA'T _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica on vols balancejar-te."
+ DONE
+ 
+BALANCEJA'T _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC	 ; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi massa."
+ DONE
+
+BALANCEJA'T _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+BALANCEJA'T _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No és adient per a balancejar-s'hi."
+ DONE
+
+BALANCEJA'T _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Creus que {OREF} no és adient per a balancejar-s'hi."
+ DONE
+
+BALANCEJA'T _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+ 
+;-----------------------------------------------
+
+ESPERAR _
+ SYSMESS 35
+ DONE
+ 
+;-----------------------------------------------
+
+DORMIR _
+ WRITELN "No tens son."
+ DONE
+ 
+;-----------------------------------------------
+
+SALTAR _
+ WRITELN "Saltes, sense aconseguir res."
+ DONE
+
+;-----------------------------------------------
+
+PREGAR _
+ WRITELN "Pregues tot el que saps."
+ DONE
+
+;-----------------------------------------------
+
+CAVAR _
+ WRITELN "No vols cavar aquí."
+ DONE
+
+;-----------------------------------------------
+
+PENSAR _
+ WRITELN "Pensar sempre és bo."
+ DONE
+;-----------------------------------------------
+
+DESCANSAR _
+ WRITELN "No sents cansament."
+ DONE
+
+;-----------------------------------------------
+
+CANTAR _
+ WRITELN "Cantes fatal."
+ DONE
+
+;-----------------------------------------------
+
+BALLAR _
+ WRITELN "La veritat és que ballar no se't dóna gaire bé..."
+ DONE
+
+;-----------------------------------------------
+
+
+ATACAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots atacar a això que dius."
+ DONE
+ 
+ATACAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què o a qui vols atacar."
+ DONE
+ 
+ATACAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és bona."
+ DONE
+
+ATACAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+ATACAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "La violència no és la solució."
+ DONE
+
+ATACAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Atacar {OREF} no solucionarà res."
+ DONE
+
+ATACAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus {OREF} per aquí, en qualsevol cas la violència no és la solució."
+ DONE
+
+;-----------------------------------------------
+
+
+COPEJAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots copejar-ho això que dius."
+ DONE
+
+COPEJAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què o a qui vols golpear."
+ DONE
+ 
+COPEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és bona."
+ DONE
+
+COPEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+COPEJAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "La violència no és la solució."
+ DONE
+
+COPEJAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Copejar {OREF} no solucionarà res."
+ DONE
+
+COPEJAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí, en qualsevol cas la violència no és la solució."
+ DONE
+
+
+;-----------------------------------------------
+
+USAR	_
+ WRITELN "USAR és massa genèric. Sigues més concret. Per exemple, si vols escombrar enterra utilitza ESCOMBRAR LA CASA, no USAR ESCOMBRA."
+ DONE
+
+;-----------------------------------------------
+
+
+EX _			; S'ha trobat un nom desconegut a la frase i la «preposició» DINS
+ PREP DINS
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots examinar dins d'això que dius."	
+ DONE
+
+EX _			; No hi ha cap nom a la frase però si la «preposició» DINS
+ PREP DINS			
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica dins de què vols examinar."
+ DONE
+
+EX _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots examinar això que dius."	
+ DONE
+
+EX _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què o a qui vols examinar."
+ DONE
+
+EX	_		; S'ha trobat un nombre propi, i la «preposició» DINS
+ PREP DINS
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Quines idees..."
+ DONE
+
+EX _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+EX _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "És de mala educació."
+ DONE
+
+EX _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+EX _			; S'ha trobat un nom però no és un objecte. La «preposició» DINS és present
+ PREP DINS
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a examinar dins d'això."	
+ DONE
+
+EX _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a examinar-ho això."
+ DONE
+
+EX _			; És un objecte presente y contenedor, transaparente con cosas dentro
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aTransparent
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "Examines {OREF} però no veus res especial "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+EX _			; És un objecte present i un contenidor, que no es pot obrir
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ OZERO @51 aOpenable
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "Examines {OREF} però no hi veus res especial "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+
+EX _			; És un objecte present i contenidor, que es pot obrir i està obert amb coses a dins
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "Examines {OREF} però no hi veus res especial"
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+EX _			; És un objecte present i contenidor, que es pot obrir i és tancat
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITELN "Examines {OREF} però no hi veus res especial. Si ho obres podràs veure el seu contingut."
+ DONE
+
+EX _			; És un objecte present i contenidor, que es pot tancar amb clau i blocar
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer
+ ONOTZERO @51 aLockable
+ OZERO @51 aLocked
+ WRITELN "Examines {OREF} però no hi veus res especial. Si ho desbloques podràs veure el seu contingut."
+ DONE
+
+EX _			; És un objecte presente i una superfície amb quelcom damunt
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSupporter
+ OBJAT @51 13
+ NOTZERO 13
+ WRITE "Examines {OREF} però no hi veus res especial "
+ LISTCONTENTS @51
+ WRITELN "."
+ DONE
+
+
+
+
+EX _			; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Examines {OREF} però no hi veus res especial."
+ DONE
+
+EX _			; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."	
+ DONE
+
+;-----------------------------------------------
+
+
+NETEJAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots netejar-això que dius."	
+ DONE
+
+NETEJAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols fer net."
+ DONE
+ 
+NETEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No es deixa."
+ DONE
+
+NETEJAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+NETEJAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a fer-ho net això."
+ DONE
+
+NETEJAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Fas net {OREF}. No hi ha cap efecte."
+ DONE
+
+NETEJAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+GRATAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots gratar-ho això que dius."	
+ DONE
+
+GRATAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols gratar."
+ DONE
+ 
+GRATAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No es deixa."
+ DONE
+
+GRATAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+GRATAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No vols gratar-ho això."
+ DONE
+
+GRATAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Grates {OREF}. No hi ha cap efecte."
+ DONE
+
+GRATAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF}_ per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+CREMAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots cremar-ho això que dius."
+ DONE
+
+CREMAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols cremar."
+ DONE
+
+CREMAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La barbàrie no solucionarà els teus problemes."
+ DONE
+
+CREMAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+CREMAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a cremar-ho això."
+ DONE
+
+CREMAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Cremar {OREF} no és la solució."
+ DONE
+
+CREMAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+APAGAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots apagar-ho això que dius."
+ DONE
+
+APAGAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols apagar."
+ DONE
+ 
+APAGAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a apagar-ho això."
+ DONE
+
+APAGAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols apagar {OREF}."
+ DONE
+
+APAGAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+TALLAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots tallar-ho això que dius."
+ DONE
+
+TALLAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols tallar."
+ DONE
+ 
+TALLAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és la solució."
+ DONE
+
+TALLAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aStatic
+ PRESENT @51
+ WRITELN "No creus que tallar això sigui de molta utilitat."
+ DONE
+
+
+TALLAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+TALLAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a tallar-ho això."
+ DONE
+
+TALLAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No hi veus massa sentit a tallar {OREF}."
+ DONE
+
+TALLAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+FERMAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots fermar això que dius."
+ DONE
+
+FERMAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols fermar."
+ DONE
+ 
+FERMAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Creus que no es deixarà."
+ DONE
+
+FERMAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+FERMAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a fermar-ho això."
+ DONE
+
+FERMAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols fermar {OREF}."
+ DONE
+
+FERMAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+DESFERMAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots desfermar això que dius."
+ DONE
+
+DESFERMAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols desfermar."
+ DONE
+ 
+DESFERMAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC ; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Desfermar-lo?."		; COMPROVAR gènere
+ DONE
+
+DESFERMAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+DESFERMAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a desfermar-ho això."
+ DONE
+
+DESFERMAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Desfermar {OREF}?, per a què?"
+ DONE
+
+DESFERMAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+OMPLIR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots omplir això que dius."
+ DONE
+
+OMPLIR _		;No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols omplir."
+ DONE
+ 
+OMPLIR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a omplir-ho això."
+ DONE
+
+OMPLIR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aContainer; És un contenidor
+ WRITELN "No vols omplir {OREF}."
+ DONE
+
+OMPLIR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ OZERO @51 aContainer	; No és un contenidor
+ WRITELN "No pots omplir {OREF}."
+ DONE
+
+OMPLIR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;------------------------------------------------------
+
+NEDAR _
+ WRITELN "Millor no."
+ DONE
+ 
+;-------------------------------------------------------
+
+ENFILAR-SE _
+ WRITELN "No tens ganes d'enfilar-t'hi."
+ DONE
+
+;-----------------------------------------------
+
+
+RETORÇAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots retorçar això que dius."
+ DONE
+
+RETORÇAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols retorçar."
+ DONE
+
+RETORÇAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és la solució."
+ DONE
+
+RETORÇAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+RETORÇAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a retorçar-ho això."
+ DONE
+
+RETORÇAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols retorçar {OREF}."
+ DONE
+
+RETORÇAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+ESTRENYER _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots estrènyer això que dius."
+ DONE
+
+ESTRENYER _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols estrènyer."
+ DONE
+
+ESTRENYER _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és la solució."
+ DONE
+
+ESTRENYER _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+ESTRENYER _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a estrènyer-ho això."
+ DONE
+
+ESTRENYER _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols estrènyer {OREF}."
+ DONE
+
+ESTRENYER _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+BESAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots besar això que dius."
+ DONE
+
+BESAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què o a qui vols besar."
+ DONE
+ 
+BESAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No es deixa."
+ DONE
+
+BESAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+BESAR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No vols besar-ho."
+ DONE
+
+BESAR _			; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols besar {OREF}."
+ DONE
+
+BESAR _			; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+ABRAÇAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots abraçar això que dius."
+ DONE
+
+ABRAÇAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què o a qui vols abraçar."
+ DONE
+ 
+ABRAÇAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Ni es deixa, ni creus que sigui molt adient."
+ DONE
+
+ABRAÇAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+ABRAÇAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No vols abraçar-ho això."
+ DONE
+
+ABRAÇAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols abraçar {OREF}."
+ DONE
+
+ABRAÇAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+CONNECTAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots connectar això que dius."
+ DONE
+
+CONNECTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols connectar."
+ DONE
+ 
+CONNECTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus cap manera de connectar-ho això."
+ DONE
+
+CONNECTAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ OZERO @51 aOn
+ OSET @51 aOn
+ WRITELN "Actives {OREF}."
+ DONE
+
+CONNECTAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ ONOTZERO @51 aOn
+ WRITELN "Ja hi està."
+ DONE
+
+
+CONNECTAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No hi veus cap manera d'activar {OREF}."
+ DONE
+
+CONNECTAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+DESCONNECTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots desconnectar-ho això que dius."
+ DONE
+
+DESCONNECTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols desconnectar."
+ DONE
+ 
+DESCONNECTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a desconnectar-ho això."
+ DONE
+
+DESCONNECTAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ ONOTZERO @51 aOn
+ OCLEAR @51 aOn
+ WRITELN "Desactives {OREF}."
+ DONE
+
+
+DESCONNECTAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aSwitchable
+ OZERO @51 aOn
+ WRITELN "Ja ho està."
+ DONE
+
+
+DESCONNECTAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No pots desconnectar {OREF}."
+ DONE
+
+DESCONNECTAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+OBRIR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots obrir això que dius."
+ DONE
+
+OBRIR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols obrir."
+ DONE
+ 
+OBRIR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a obrir-ho això."
+ DONE
+
+
+OBRIR _			
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable	; Es pot obrir
+ OZERO @51 aOpen	; Tancat
+ OZERO @51 aLocked	; Desblocat
+ OSET @51 aOpen
+ WRITELN "Obres {OREF}."
+ DONE
+
+OBRIR _			
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable	; Es pot obrir
+ OZERO @51 aOpen	; Tancat
+ ONOTZERO @51 aLocked	; Blocat
+ WRITELN "Està tancat amb clau."
+ DONE
+
+OBRIR _			
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable	; Es pot obrir
+ ONOTZERO @51 aOpen	; Obert
+ WRITELN "Ja ho està."
+ DONE
+
+OBRIR _			
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable	; Es pot obrir
+ ONOTZERO @51 aOpen	; Obert
+ WRITELN "Ja ho està."
+ DONE
+
+
+
+
+OBRIR _			; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No pots obrir {OREF}."
+ DONE
+
+OBRIR _			; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+TANCAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ WRITELN "No pots tancar-ho això que dius."
+ DONE
+
+TANCAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols tancar."
+ DONE
+ 
+TANCAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a tancar-ho això."
+ DONE
+
+TANCAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ ONOTZERO @51 aOpen
+ OCLEAR @51 aOpen
+ WRITELN "Tanques {OREF}."
+ DONE
+
+TANCAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ ONOTZERO @51 aOpenable
+ OZERO @51 aOpen
+ WRITELN "Ja ho està."
+ DONE
+
+
+TANCAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No pots tancar {OREF}."
+ DONE
+
+TANCAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;----------------------------------------------
+
+
+LLEGIR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots llegir això que dius."
+ DONE
+
+LLEGIR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols llegir."
+ DONE
+ 
+LLEGIR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a llegir-ho això."
+ DONE
+
+LLEGIR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No pots llegir {OREF}."
+ DONE
+
+LLEGIR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;----------------------------------------------
+
+
+XUCLAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots xuclar això que dius."
+ DONE
+
+XUCLAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols xuclar."
+ DONE
+
+XUCLAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Això seria molt poc adient."
+ DONE
+
+XUCLAR _ 
+ NOTEQ 51 255
+ ONOTZERO @51 aEdible
+ PRESENT @51
+ WRITELN "Penses en menjar-te {OREF} però t'aguantes."
+ DONE
+
+
+XUCLAR _
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+XUCLAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No t'imagines xuclant això."
+ DONE
+
+XUCLAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No cols xuclar {OREF}."
+ DONE
+
+XUCLAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."	
+ DONE
+
+;-----------------------------------------------
+
+
+TRENCAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots trencar això que dius."
+ DONE
+
+TRENCAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols trencar."
+ DONE
+ 
+TRENCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "La violència no és bona."
+ DONE
+
+TRENCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+TRENCAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "La violència no és la solució."
+ DONE
+
+TRENCAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Trencar {OREF} no solucionarà res."
+ DONE
+
+TRENCAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí; en qualsevol cas, trencar això no és la solució."
+ DONE
+
+ ;-----------------------------------------------
+
+
+COMPRAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots comprar això que dius."
+ DONE
+
+COMPRAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols comprar."
+ DONE
+ 
+COMPRAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Tot el món té un preu... però no és a la venda."
+ DONE
+
+COMPRAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+	
+COMPRAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi ha res a la venda."
+ DONE
+
+COMPRAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No hi ha res a la venda."
+ DONE
+
+COMPRAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."	
+ DONE
+
+;------------------------------------------------------------
+
+
+DOBLEGAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots doblegar-ho això que dius."
+ DONE
+
+DOBLEGAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols doblegar."
+ DONE
+ 
+DOBLEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Trobes que ja està bé com està..."
+ DONE
+
+DOBLEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+	
+DOBLEGAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "T'estimes més no doblegar-ho això."
+ DONE
+
+DOBLEGAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Doblegar {OREF} no solucionarà res."
+ DONE
+
+DOBLEGAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."	
+ DONE
+
+;------------------------------------------------------------
+
+
+DESDOBLEGAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots desdoblegar això que dius."
+ DONE
+
+DESDOBLEGAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols desdoblegar."
+ DONE
+ 
+DESDOBLEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Trobes que ja està bé com està..."
+ DONE
+
+DESDOBLEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+	
+DESDOBLEGAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "Per quèvols desdoblegar-ho això?"
+ DONE
+
+DESDOBLEGAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Desdoblegar {OREF}?, per a què?"
+ DONE
+
+DESDOBLEGAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."	
+ DONE
+
+;------------------------------------------------------------
+
+SORTIDES _
+ EXITS @38 1000
+ NEWLINE
+ DONE
+
+;------------------------------------------------------------
+
+AJUDA _
+ HELP
+ DONE
+ 
+;------------------------------------------------------------
+
+VERSIO _
+ VERSION
+ NEWLINE
+ DONE 
+
+;------------------------------------------------------------
+
+DONAR _			; Quan el pronom duu un NPC i hi ha «noun2», els intercanviam
+ SAME 46 34		; cert si el «noun1» que tenim prové del pronom
+ WHATOX 13		; ficam l'objecte referenciat al marcador 15
+ ONOTZERO @13 aNPC	; és un NPC?
+ NOTEQ 44 255	 	; S'ha trobat «noun2»
+ COPYFF 34 14	 	; Els hi donam la volta al Noun1 i al «noun2»
+ COPYFF 44 34
+ COPYFF 14 44
+ COPYFF 35 14		; Els hi donam la volta al adjetivo de Noun1 y al adjetivo de Noun2
+ COPYFF 45 35
+ COPYFF 14 45		; forçam al «parser» a que actualitzi els marcadors de l'objecte referenciat
+ WHATO
+
+DONAR _			; No s'ha trobat cap «noun1» reconegut a la frase i el «noun2» passa a ocupar el seu lloc
+ PREP A		 	; Ha de donar aquest missatge perquè el que volíem que fos el «noun1» no és al vocabulari
+ BZERO 12 2
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots donar-ho això."
+ DONE
+
+DONAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols donar."
+ DONE
+ 
+DONAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots donar-ho això que dius."
+ DONE
+
+DONAR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No pots donar-ho això."
+ DONE
+
+DONAR _			; Intentar donar un objecte que duim posat
+ NOTEQ 51 255		
+ WORN @51	
+ ONOTZERO @51 aWear
+ WRITELN "Abans huries de llevar-te {OREF} per poder fer-ho..."
+ DONE
+
+DONAR _			; Donar un objecte que no duim
+ NOTEQ 51 255
+ NOTCARR @51
+ WRITELN "No duus {OREF}."
+ DONE
+
+DONAR _			; Donar un objecte de l'inventari i no especificar a qui
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BZERO 12 1
+ WRITELN "A qui ho vols donar?"
+ DONE
+
+DONAR _			; Dona un objecte de l'inventari i no especificar a qui (perquè troba una paraula que no és al vocabulari)
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots donar-li {OREF} a això."
+ DONE
+
+DONAR _			; Dona un objecte de l'inventari a un «noun2» que no és un objecte.
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ WHATOX2 15
+ EQ 15 255		; El segon nom no és un objecte
+ WRITELN "No pots donar-li {OREF} a això."			 
+ DONE 
+
+DONAR _			; Donar un objecte de l'inventari a un objecte present però que no és un NPC
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ OZERO @13 aNPC		; però no és un personatge no jugador (NPC)
+ WRITELN "Comences a perdre el cap..."			 
+ DONE					 
+
+DONAR _			; Dona un objecte de l'inventari a un NPC però que no és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255 
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ ONOTZERO @13 aNPC	; i és un personatge no jugador (NPC)
+ ABSENT @13		; però no hi és present
+ WRITELN "No li pots donar {OREF} perquè no hi és aquí."
+ DONE
+
+DONAR _			; Donar un objecte present a un NPC que hi és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ ONOTZERO @13 aNPC	; i és un personatge no jugador (NPC)
+ PRESENT @13		; i hi és present
+ WRITELN "Le ofereixes {OREF} però no li fa ni cas."
+ DONE
+
+;------------------------------------------------------------
+
+MOSTRAR _		; Cuando el pronombre lleva un NPC y hay Noun2, los intercambiamos ; COMPROVAR
+ SAME 46 34		; cert si el «noun1» que tenim prové del pronombre
+ WHATOX 13		; ficam l'objecte referenciat al marcador 15
+ ONOTZERO @13 aNPC	; és un NPC?
+ NOTEQ 44 255	 	; S'ha trobat un «noun2»
+ COPYFF 34 14	 	; Els hi donam la volta al «noun1» i al «noun2»
+ COPYFF 44 34
+ COPYFF 14 44
+ COPYFF 35 14	 	; Els hi donam la volta a l'adjetiu de «noun1» i al del «noun2»
+ COPYFF 45 35
+ COPYFF 14 45	 	; forçam al «parser» a que actualitzu els marcadors de l'objecte referenciat
+ WHATO
+
+MOSTRAR _		; No s'ha trobat cap «noun1» reconegut a la frase i el «noun2» passa a ocupar el seu lloc
+ PREP A		 	; Ha de donar aquest missatge perquè el que voliam que fos el «noun1» no és al vocabulari
+ BZERO 12 2
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots mostrar-ho això."
+ DONE
+
+MOSTRAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols mostrar."
+ DONE
+ 
+MOSTRAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots mostrar això que dius."
+ DONE
+
+MOSTRAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No pots mostrar-ho això."
+ DONE
+
+MOSTRAR _		; Intentar mostrar un objecte que duim posat
+ NOTEQ 51 255		
+ WORN @51	
+ ONOTZERO @51 aWear
+ WRITELN "Abans hauríes de llevar-te {OREF} per poder-ho fer això..."
+ DONE
+
+MOSTRAR _		; MOSTRAR un objecte pero que no duim
+ NOTEQ 51 255
+ NOTCARR @51
+ WRITELN "No duus {OREF}."
+ DONE
+
+MOSTRAR _		; MOSTRAR un objecte de l'inventari i no especificar a qui
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BZERO 12 1
+ WRITELN "A qui li vols mostrar això?"
+ DONE
+
+MOSTRAR _		; MOSTRAR un objecte de l'inventari i no especificar a qui (troba una palabra que no és al vocabulari)
+ NOTEQ 51 255		
+ CARRIED @51 
+ EQ 44 255
+ BNOTZERO 12 1
+ WRITELN "No pots mostrar-li {OREF} a això."
+ DONE
+
+MOSTRAR _		; MOSTRAR un objecte de l'inventari a un «noun2» que no és un objecte.
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ WHATOX2 13
+ EQ 13 255		; El segon nom no és un objecte
+ WRITELN "No pots mostrar-li {OREF} a això."			 
+ DONE 
+
+MOSTRAR _		; MOSTRAR un objecte de linventari a un objecte present pero que no és un NPC
+ NOTEQ 51 255
+ CARRIED @51
+ NOTEQ 44 255
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ OZERO @13 aNPC		; però no és un NPC
+ WRITELN "Comences a perdre el cap..."			 
+ DONE					 
+
+MOSTRAR _		; MOSTRAR un objecte de l'inventari a un NPC però que no hi és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255 
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ ONOTZERO @13 aNPC	; i és un personatge no jugador (NPC)
+ ABSENT @13		; però no hi és present
+ WRITELN "No li pots mostrar {OREF} perquè no hi és aquí."
+ DONE
+
+MOSTRAR _		; MOSTAR un objecte present a un NPC que hi és present
+ NOTEQ 51 255
+ CARRIED @51	
+ NOTEQ 44 255
+ WHATOX2 13		; Passam el «noun2» al marcador 15
+ NOTEQ 13 255	 	; El «noun2» és un objecte
+ ONOTZERO @13 aNPC	; i és un personatge no jugador (NPC)
+ PRESENT @13		; i és present
+ WRITELN "L'hi mostres {OREF} però no li fa ni cas."
+ DONE
+
+;------------------------------------------------------------
+
+
+BUFAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots bufar això que dius."
+ DONE
+
+BUFAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què vols bufar."
+ DONE
+
+BUFAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+BUFAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+BUFAR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a bufar-hi a això."
+ DONE
+
+BUFAR _			; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols bufar {OREF}."
+ DONE
+
+BUFAR _			; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No veus això que dius."
+ DONE		 
+
+;------------------------------------------------------------
+
+CRIDAR _	
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC) 
+ PRESENT @51
+ WRITELN "Millor que no, es pot enfadar."
+ DONE
+
+CRIDAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "Crides amb força però no te sent."
+ DONE
+
+CRIDAR _
+ WRITELN "Crides tan fort com pots i... no passa res."
+ DONE
+ 
+;------------------------------------------------------------
+
+DESPERTAR _
+ NOTEQ 34 255	
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que faci falta."
+ DONE
+
+DESPERTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+DESPERTAR _
+ WRITELN "Et pessigues la galta pensant que et despertaràs però... no estàs somiant... o sí?"
+ DONE
+
+;-----------------------------------------------
+
+
+AIXECAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots aixecar això que dius."
+ DONE
+ 
+AIXECAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols aixecar."
+ DONE 
+
+AIXECAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+AIXECAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+AIXECAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus cap sentit a aixecar-ho això."
+ DONE
+
+AIXECAR _		 ; És un objecte present però és massa feixuc (IMPORTANT)
+ NOTEQ 51 255
+ PRESENT @51
+ GT 55 52
+ WRITELN "No pots aixecar {OREF}. És massa feixuc."
+ DONE
+
+AIXECAR _		 ; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No aconseguiràs res aixencant això."
+ DONE
+
+AIXECAR _		 ; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per aixecar {OREF} hauria de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+ARROSSEGAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots arrossegar això que dius."
+ DONE
+ 
+ARROSSEGAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols arrossegar."
+ DONE
+ 
+ARROSSEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC) 
+ PRESENT @51 
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+ARROSSEGAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+ARROSSEGAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus massa sentit a arrossegar-ho això."
+ DONE
+
+ARROSSEGAR _		 ; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que se aconsegueixi res arrossegant {OREF}."
+ DONE
+
+ARROSSEGAR _		 ; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Para arrossegar {OREF} hauria de ser aquí."
+ DONE
+
+;------------------------------------------------------------
+
+
+BUIDAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots buidar-ho això que dius."
+ DONE
+ 
+BUIDAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols buidar."
+ DONE 
+ 
+BUIDAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC) 
+ PRESENT @51
+ WRITELN "No és massa adient."	
+ DONE
+
+BUIDAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+BUIDAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a buidar-ho això."
+ DONE
+
+BUIDAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols buidar {OREF}."
+ DONE
+
+BUIDAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+ 
+;------------------------------------------------------------
+
+ 			; COMPROVAR. TRIAR UN SINÒNIM MILLOR
+TRUCAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots trucar a això que dius."
+ DONE
+ 
+TRUCAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a què o a qui vols trucar."
+ DONE 
+ 
+TRUCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No hi ha resposta..."					
+ DONE
+
+TRUCAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+TRUCAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a trucar això."
+ DONE
+
+TRUCAR _		; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols cridar {OREF}."	
+ DONE
+
+TRUCAR _		; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+ ;------------------------------------------------------------
+ 
+PREGUNTAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots preguntar això que dius."
+ DONE
+ 
+PREGUNTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a qui vols preguntar."
+ DONE
+ 
+PREGUNTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No hi ha cap resposta..."					
+ DONE
+
+PREGUNTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+PREGUNTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a preguntar a això."
+ DONE
+
+PREGUNTAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols preguntar a {OREF}."	
+ DONE
+
+PREGUNTAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;----------------------------------------------- 
+ 
+CONSULTAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots consultar això que dius."
+ DONE
+ 
+CONSULTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols consultar."
+ DONE
+ 
+CONSULTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit a consultar això."
+ DONE
+
+CONSULTAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols consultar {OREF}."	
+ DONE
+
+CONSULTAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus cap {OREF} per aquí."
+ DONE
+
+;-----------------------------------------------
+
+INSULTAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots insultar a això que dius."
+ DONE
+ 
+INSULTAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica a qui vols insultar."
+ DONE 
+ 
+INSULTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No sembl que te faci molt de cas..."
+ DONE
+
+INSULTAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+INSULTAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No conseguiràs res insultant-ne això."
+ DONE
+
+INSULTAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Comences a perdre el cap..."
+ DONE
+
+INSULTAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Ni veus això que dius, ni creus que sigui útil insultar-ho."
+ DONE
+
+;------------------------------------------------------------
+
+
+UNIR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots unir això que dius."
+ DONE
+ 
+UNIR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols unir."
+ DONE 
+	
+UNIR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+ 
+UNIR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+UNIR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus cap mucho sentido a unir eso."
+ DONE
+
+UNIR _		 	; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que s'aconsegueixi res unint {OREF}."
+ DONE
+
+UNIR _		 	; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per unir {OREF} hauria de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+SEPARAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots separar això que dius."
+ DONE
+ 
+SEPARAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica què vols separar."
+ DONE 
+	
+SEPARAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No creus que li agradi gaire."
+ DONE
+
+SEPARAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+ 
+SEPARAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus cap sentit a separar-ho això."
+ DONE
+
+SEPARAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No sembla que s'aconsegueixi res separant {OREF}."
+ DONE
+
+SEPARAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Per separar {OREF}, hauria de ser aquí."
+ DONE
+
+;-----------------------------------------------
+
+
+PARLAR _		; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots parlar amb això que dius."
+ DONE
+ 
+PARLAR _		; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica amb qui vols parlar."
+ DONE 
+ 
+PARLAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "No sembla interesar-se massa pel que dius."
+ DONE
+
+PARLAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No és aquí."
+ DONE
+
+PARLAR _		; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No quieres parlarle a eso."
+ DONE
+
+PARLAR _		; És un objecte present
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "Comences a perdre el cap..."
+ DONE
+
+PARLAR _		; És un objecte ausent
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "Ni veus això que dius, ni creus que sigui útil parlar-li."
+ DONE
+ 
+;------------------------------------------------------------
+
+
+ANAR _			; S'ha trobat un nom desconegut a la frase
+ EQ 34 255
+ BNOTZERO 12 1
+ WRITELN "No pots anar on dius."
+ DONE
+ 
+ANAR _			; No hi ha cap nom a la frase
+ EQ 34 255
+ BZERO 12 1
+ WRITELN "Especifica on vols anar."
+ DONE 
+ 
+ANAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ PRESENT @51
+ WRITELN "Prefereixes no acostar-t'hi més..."
+ DONE
+
+ANAR _
+ NOTEQ 34 255
+ NOTEQ 51 255
+ ONOTZERO @51 aNPC 	; És un personatge no jugador (NPC)
+ ABSENT @51
+ WRITELN "No saps on és."
+ DONE
+
+ANAR _			; S'ha trobat un nom però no és un objecte
+ NOTEQ 34 255
+ EQ 51 255
+ WRITELN "No hi veus sentit cap a això."
+ DONE
+
+ANAR _			; És un objecte presente
+ NOTEQ 51 255
+ PRESENT @51
+ WRITELN "No vols anar a {OREF}."
+ DONE
+
+ANAR _			; És un objecte ausente
+ NOTEQ 51 255
+ ABSENT @51
+ WRITELN "No hi veus això que dius."
+ DONE		
+
+; ########## RUTINA DE «NO POTS ANAR EN AQUESTA DIRECCIÓ» ESTESA ####################
+ 
+_		_	LT 33 14
+			MOVE 38
+			DESC
+
+_		_	LT 33 14
+			PLUS 33 1002
+			WRITE "No pots anar "
+			MES @33
+			WRITE ". "
+			MINUS 33 1002
+			EXITS @38 1000
+			NEWLINE
+			DONE
+ 
+_ _
+ HOOK "RESPONSE_DEFAULT_END"	; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+
+ 
+
+/PRO 1
+
+; ######################################## PROCÉS 1 #####################################
+; #											#
+; #	ngPAWS executa el Procés 1 després de la descripció de localitat.		#
+; #											#
+; #	S'usa principalment per a posar entrades que afegiran informació addicional	#
+; #	a la descripció de la localitat actual. Per exemple, detalls sobre portes	#	
+; #	obertes, PSI presents, etc.							#
+; #											#
+; #######################################################################################
+
+_ _
+ HOOK "PRO1"	; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+
+_ _
+ AT 0
+ BSET 12 5			; Català (Spanish a efecte de sistema)
+_ _	
+ ISLIGHT
+ LISTOBJ			; Llista d'objects
+ LISTNPC @38			; Llista de persones
+
+
+
+
+
+/PRO 2
+
+; ######################################## PROCÉS 2 #####################################
+; #											#
+; #	ngPAWS executa el procés 2 cada torn.						#
+; #											#
+; #	S'usa principalment per a implementar moviments i accions de PSIs, 		#
+; #	esdeveniments no controlats pel jugador, com per exemple ponts que s'enfonsen, 	#	
+; #	portes que s'oren, etc.						 		#
+; #											#
+; #######################################################################################
+_ _
+ HOOK "PRO2"	; «Back call» al sistema de «hooks». No fa res per defecte, alguns complements podrien necessitar-ho però. No ho esborreu.
+ 
+
