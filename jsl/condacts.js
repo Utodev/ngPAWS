@@ -460,7 +460,10 @@ function ACCremove(objno)
 			break;
 
 		case LOCATION_WORN:
-			if (getFlag(FLAG_OBJECTS_CARRIED_COUNT) >= getFlag(FLAG_MAXOBJECTS_CARRIED))
+			if (
+				(getFlag(FLAG_OBJECTS_CARRIED_COUNT) >= getFlag(FLAG_MAXOBJECTS_CARRIED)) ||
+				(!worn_items_have_weight && getLocationObjectsWeight(LOCATION_CARRIED) + getObjectWeight(objno) > getFlag(FLAG_MAXWEIGHT_CARRIED))
+			)
 			{
 				writeSysMessage(SYSMESS_CANTREMOVE_TOOMANYOBJECTS);
 				ACCnewtext();
@@ -553,13 +556,6 @@ function ACCdrop(objno)
 	var locno = getObjectLocation(objno);
 	switch (locno)
 	{
-		case LOCATION_WORN:  
-			writeSysMessage(SYSMESS_YOUAREALREADYWEARINGTHAT);
-			ACCnewtext();
-			ACCdone();
-			return;
-			break;
-
 		case loc_here():  
 			writeSysMessage(SYSMESS_YOUDONTHAVEOBJECT);
 			ACCnewtext();
@@ -568,6 +564,7 @@ function ACCdrop(objno)
 			break;
 
 
+		case LOCATION_WORN:
 		case LOCATION_CARRIED:  
 			setObjectLocation(objno, loc_here());
 			writeSysMessage(SYSMESS_YOUDROPOBJECT);

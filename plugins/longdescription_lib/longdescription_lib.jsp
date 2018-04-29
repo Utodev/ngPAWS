@@ -10,10 +10,12 @@ h_code = function(str)
 {
 	if (str=="RESPONSE_USER")
 	{
+
 		if (getFlag(33)==examine_longdescription) // Examine
 			if (getFlag(51)!=EMPTY_OBJECT)  // Is an object
 				if (objects_longdescription[getFlag(51)]!='') // Has long description
 					if (CNDpresent(getFlag(51))) // Is present
+
 					{
 						writeText(filterText(objects_longdescription[getFlag(51)])); 	
 						var viewContents = false;
