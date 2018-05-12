@@ -78,6 +78,7 @@ normalize = function(player_order)
 	}
 	return output;
 }
+	
 
 //CND HELP A 0 0 0 0
 //Catalan help responses
@@ -90,11 +91,11 @@ function ACChelp()
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com em puc moure pel joc?</b>');
 	writeText(STR_NEWLINE);
-	writeText('Generalment, mitjançant els punts cardinals com NORD (abreujat «N»), SUD (S), EST (E), OEST (O) o amb direccions espacials (AMUNT, AVALL, BAIXAR, PUJAR, ENTRAR, SORTIR, etc.). Algunes aventures permeten també ordres com «ANAR AL POU». Normalment sabreu cap a quina direcció podreu anar per la descripció que rebreu. A alguns jocs podreu escriure «SORTIDES» perquè us mostri exactament de quines disposau.');
+	writeText('Generalment, mitjançant els punts cardinals com NORD (abreujat «N»), SUD (S), EST (E), OEST (O) o amb direccions espacials (AMUNT, AVALL, BAIXAR, PUJAR, ENTRAR, SORTIR, etc.). Algunes aventures permeten també ordres com «ANAR AL POU». Normalment sabreu cap a quina direcció podreu anar per la descripció que rebreu. A alguns jocs podreu escriure «SORTIDES» per a que us mostri exactament de quines disposau.');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com puc saber quins objectes duc?</b>');
 	writeText(STR_NEWLINE);
-	writeText('Teclegeu INVENTARI (abreujat «I»)');
+	writeText('Teclegeu INVENTARI (abreujat «IN»)');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com uso els objectes?</b>');
 	writeText(STR_NEWLINE);
@@ -102,7 +103,7 @@ function ACChelp()
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com puc mirar de prop un objecte o observar-lo més detalladament?</b>');
 	writeText(STR_NEWLINE);
-	writeText('AMB el verb «EXAMINAR»: «EXAMINAR PLAT». Generalment es pot usar l\'abreviatura «EX»: «EX PLAT».');
+	writeText('Amb el verb «EXAMINAR»: «EXAMINAR PLAT». Generalment es pot usar l\'abreviatura «EX»: «EX PLAT».');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com puc tornar a veure la descripció del lloc on sóc?</b>');
 	writeText(STR_NEWLINE);
@@ -110,7 +111,7 @@ function ACChelp()
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com parlo amb els personatges?</b>');
 	writeText(STR_NEWLINE);
-	writeText('Les formes més comunes són [PERSONATGE, FRASE] o [DIR A PERSONATGE «FRASE»]. Per exemple: «LLUÍS, HOLA» o «DIR A LLUÍS "HOLA"». A algunes aventures també es pot utilitzar «PARLAR A LLUÍS». ');
+	writeText('Les formes més comunes són [PERSONATGE, FRASE], [DIR A PERSONATGE "FRASE"] o [PERSONATGE «FRASE»]. Per exemple: «LLUÍS, HOLA» o «DIR A LLUÍS "HOLA"». A algunes aventures també es pot utilitzar «PARLAR AMB LLUÍS». ');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com poso quelcom dins un contenidor? Com ho trec?</b>');
 	writeText(STR_NEWLINE);
@@ -118,11 +119,10 @@ function ACChelp()
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com poso quelcom a sobre una altra cosa? Com ho trec?</b>');
 	writeText(STR_NEWLINE);
-	writeText('«POSAR CLAU DAMUNT TAULA». «AGAFAR CLAU DE TAULA');
+	writeText('«POSAR CLAU DAMUNT TAULA». «AGAFAR CLAU DE TAULA»');
 	writeText(STR_NEWLINE + STR_NEWLINE);
 	writeText('<b>• Com deso i carrego la partida?</b>');
 	writeText(STR_NEWLINE);
 	writeText('Usa les ordres «DESAR» i «CARREGAR».');
 	writeText(STR_NEWLINE + STR_NEWLINE);
-}	
-
+}
