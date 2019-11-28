@@ -91,6 +91,8 @@ PUJAR		10	verb
 PUJA'T		10	verb
 PUJA	 	10	verb
 PUJAR-SE	10	verb
+DALT		10	verb ; Dalt no és un verb però així com surt al text és una ordre habitual
+BAIX		11	verb ; Baix no és un verb però així com surt al text és una ordre habitual
 BAIXAR		11	verb
 BAIXA		11	verb
 BAIXA'T	 	11	verb
@@ -99,6 +101,7 @@ ENTRAR		12	verb
 SORTIR		13	verb
 ENTRA		12	verb
 FICA-T'HI	12	verb	
+FORA		13	verb ; Fora  no és un verb però així com surt al text és una ordre habitual
 SURT	 	13	verb
 
 	; -- Noms --	< 20 indica que es poden fer servir com a verbs
@@ -626,7 +629,7 @@ I		2	conjunction
 DESPRÉS		2	conjunction ; A efectes del sistema. DESPRÉS és un adverbi
 	 
 
-/STX
+/STX 	; ** Missatges del sistema **
 /0
 No pots veure res, és molt fosc.
 
@@ -769,27 +772,19 @@ cap objecte
 
 /54
 No es troba el fitxer.
-
 /55
 El fitxer s'ha fet malbé.
-
 /56
 Error de lectura/escriptura. No s'ha desat el fitxer.
-
 /57
 Directori ple.
-
 /58
 Introdueix el nom amb el que vares desar la partida.
-
 /59
 No s'ha trobat cap partida desada aquest nom. Confirma que el nom és correcte i que vares jugar la partida a aquest mateix navegador.
-
 /60
 Introdueix el nome amb el que desar la partida. Ho hauràs de recordar per poder recuperar-la posteriorment.
-
 /61
-
 
 /62
 Perdó? Prova-ho amb unes altres paraules.
@@ -804,7 +799,7 @@ són
 dins hi ha 
 /67
 damunt hi ha 
-/MTX 	; ** Missatges del sistema **
+/MTX 	; ** Missatges de l'usuari **
 /0
 La balsa és deserta!
 
@@ -816,29 +811,29 @@ No hi ha cap sortida visible.
 /1002
 /1003
 /1004
-{ACTION|nord|nord}
+al {ACTION|vés al nord|nord}
 /1005
-{ACTION|sud|sud}
+al {ACTION|vés al sud|sud}
 /1006
-{ACTION|est|est}
+a l'{ACTION|vés al est|est}
 /1007
-{ACTION|oest|oest}
+a l'{ACTION|vés al oest|oest}
 /1008
-{ACTION|nord-est|nord-est}
+al {ACTION|vés al nord-est|nord-est}
 /1009
-{ACTION|nord-oest|nord-oest}
+al {ACTION|vés al nord-oest|nord-oest}
 /1010
-{ACTION|sud-est|sud-est}
+al {ACTION|vés al sud-est|sud-est}
 /1011
-{ACTION|sud-oest|sud-oest}
+al {ACTION|vés al sud-oest|sud-oest}
 /1012
-{ACTION|dalt|dalt}
+a {ACTION|pujar|dalt}
 /1013
-{ACTION|baix|baix}
+a {ACTION|baixar|baix}
 /1014
-{ACTION|dins|dins}
-/1015 			; No deixar cap línia en blanc després de la darrera direcció
-{ACTION|fora|fora}
+a {ACTION|entra|dins}
+/1015 			; No deixar cap línia en blanc després de la darrera direcció 
+a {ACTION|surt|fora}
 /OTX 			; ** Texte dels objectes **
 /0			; No deixar cap línia en blanc després del darrer nom d'objecte
 una antorxa
