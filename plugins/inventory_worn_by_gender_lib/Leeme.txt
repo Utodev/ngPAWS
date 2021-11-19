@@ -1,0 +1,3 @@
+Este plugin modifica el condacto del inventario para añadir «(puesta)» para aFemale o «(puesto)» para el resto de los objetos con atributo aWear.
+
+Licencia: MIT (https://opensource.org/licenses/MIT)
