@@ -4,7 +4,7 @@
 /* global */
 
 body {
-	font-family: Verdana, arial, helvetica;
+	font-family: Monospace, Verdana, arial, helvetica;
 	-webkit-text-size-adjust: none;
 	background-color: black;
 	color: white;
@@ -38,6 +38,7 @@ a:hover {
 	top :0;
 	right:0;
 	bottom:0;
+	background-color:rgb(0, 0, 36);
 }
 
 
@@ -45,12 +46,11 @@ a:hover {
 	position: absolute;
 	height: 50%;
 	top: 0;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
+	margin-left:25%;
+	width: 50%;
 	padding:10px;
 	box-sizing: border-box;
-
+	background-color: black;
 }
 
 .text {
@@ -58,17 +58,20 @@ a:hover {
 	top: 52%;
 	bottom:7%;
 	overflow: hidden;
-	width: 100%;
+	width: 50%;
+	margin-left:25%;
 	box-sizing: border-box;
-	margin: 10px 20px 10px 20px;
+	padding: 10px 20px 10px 20px;
+	background-color: black;
 }
 
 .input {
 	position: absolute;
+	margin-left:25%;
 	height: 5%;
 	bottom:0;
 	box-sizing: border-box;
-	width: 100%;
+	width: 50%;
 	padding: 0 10px 0 10px;
 	background-color: black;
 }
@@ -78,7 +81,8 @@ a:hover {
 	margin: 5px 0 5px 0;
 	outline:  none;
 	width: 100%;
-	font-size: 105%;	
+	font-family: Monospace, Verdana, arial, helvetica;
+	font-size: 100%;	
 	background-color: black;
 	color: white;
 }
@@ -203,7 +207,7 @@ input:-moz-placeholder { color:#777; }
 }
 
 .textpic {
-	float:left
+	float:left;
 	margin: 25px;
 }
 
@@ -218,6 +222,23 @@ input:-moz-placeholder { color:#777; }
 	display: none;
 }
 
+
+@media only screen and (orientation: portrait)
+{
+	.input
+	{
+		width: 96%;
+	}
+	.text {
+		width: 96%;
+
+	}
+	.graphics
+	{
+		width: 96%;
+
+	}
+}
 
 
 @media (max-width: 1024px) {
