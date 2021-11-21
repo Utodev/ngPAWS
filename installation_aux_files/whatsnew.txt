@@ -1,10 +1,11 @@
-﻿
+﻿ngPAWS 2.0  - November 2021
+===========================
+- The GUI has been redesigned 
+- The default CSS has been modified for better adjusting to current displays
 - Now the long description plugin generates tooltips
 - Several changes to improve interface handling (scroll, uninteresting keys, easier restart of game, etc.)
 - New {EXITS} sequence tag
 - Bubble on {ACTION} sequence tag is now more user friendly
-
-
 
 
 Beta 10 - March 2017
