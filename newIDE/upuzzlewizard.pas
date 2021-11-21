@@ -20,12 +20,6 @@ type
     ButtonPrev: TButton;
     CheckBoxIncludeWordsOnFailure: TCheckBox;
     CheckBoxLinkedToLocation: TCheckBox;
-    CheckBoxRequiresAdject2: TCheckBox;
-    CheckBoxRequiresNoun2: TCheckBox;
-    CheckBoxRequiresNoun: TCheckBox;
-    CheckBoxRequiresPreposition: TCheckBox;
-    CheckBoxRequiresAdject1: TCheckBox;
-    CheckBoxRequiresAdverb: TCheckBox;
     ComboBoxConditionSelect: TComboBox;
     ComboBoxActionSelect: TComboBox;
     EditActionP1: TEdit;
@@ -46,10 +40,15 @@ type
     GroupBox1: TGroupBox;
     GroupBoxLoc: TGroupBox;
     GroupBoxVoc: TGroupBox;
+    LabelAdject2: TStaticText;
+    LabelNoun2: TStaticText;
+    LabelPreposition: TStaticText;
     LabelInstructions4: TStaticText;
     LabelInstrructions3: TStaticText;
     LabelInstructions2: TStaticText;
     LabelInstructions1: TStaticText;
+    LabelAdjective: TStaticText;
+    LabelAdverb: TStaticText;
     LabelTOS: TStaticText;
     LabelVerb: TStaticText;
     LabelLocationTOF: TStaticText;
@@ -58,6 +57,7 @@ type
     LabelCondTOF: TStaticText;
     LabelCondP1: TStaticText;
     LabelCondP2: TStaticText;
+    LabelNoun: TStaticText;
     ListBoxConditions: TListBox;
     ListBoxActions: TListBox;
     PMDeleteLine: TMenuItem;
@@ -229,32 +229,26 @@ end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresAdject1Change(Sender: TObject);
 begin
-  EditAdject1.Enabled := CheckBoxRequiresAdject1.Checked;
 end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresAdject2Change(Sender: TObject);
 begin
-  EditAdject2.Enabled:=CheckBoxRequiresAdject2.Checked;
 end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresAdverbChange(Sender: TObject);
 begin
-  EditAdverb.Enabled:=CheckBoxRequiresAdverb.Checked;
 end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresNoun2Change(Sender: TObject);
 begin
-  EditNoun2.Enabled:=CheckBoxRequiresNoun2.Checked;
 end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresNounChange(Sender: TObject);
 begin
-  EditNoun.Enabled:= CheckBoxRequiresNoun.Checked;
 end;
 
 procedure TfPuzzleWizard.CheckBoxRequiresPrepositionChange(Sender: TObject);
 begin
-  EditPrep.Enabled:= CheckBoxRequiresPreposition.Checked;
 end;
 
 procedure TfPuzzleWizard.ComboBoxActionSelectChange(Sender: TObject);
@@ -449,12 +443,6 @@ begin
   ListBoxActions.Clear();
   ListBoxConditions.Clear();
   CheckBoxLinkedToLocation.Checked:= false;
-  CheckBoxRequiresNoun.Checked:= false;
-  CheckBoxRequiresNoun2.Checked:= false;
-  CheckBoxRequiresAdject1.Checked:= false;
-  CheckBoxRequiresAdject2.Checked:= false;
-  CheckBoxRequiresAdverb.Checked:= false;
-  CheckBoxRequiresPreposition.Checked:= false;
   CheckBoxIncludeWordsOnFailure.Checked:= false;
   ComboBoxActionSelect.ItemIndex:=0;
   ComboBoxConditionSelect.ItemIndex:=0;
@@ -474,16 +462,16 @@ var Code : TStringList;
 begin
   // Get the entry verb+noun
   verb := EditVerb.Text;
-  if CheckBoxRequiresNoun.Checked then noun := EditNoun.Text else noun := '_';
+  if EditNoun.Text<>'' then noun := EditNoun.Text else noun := '_';
   entry := verb + ' ' + noun;
 
   // Get any additional word requierements
   word_extra_conditions:='';
-  if CheckBoxRequiresAdverb.Checked then word_extra_conditions:= word_extra_conditions + ' ADVERB ' + EditAdverb.Text + LF;
-  if CheckBoxRequiresPreposition.Checked then word_extra_conditions:= word_extra_conditions + ' PREP ' + EditPrep.Text + LF;
-  if CheckBoxRequiresAdject1.Checked then word_extra_conditions:= word_extra_conditions + ' ADJECT1 ' + EditAdject1.Text + LF;
-  if CheckBoxRequiresNoun2.Checked then word_extra_conditions:= word_extra_conditions + ' NOUN2 ' + EditNoun2.Text + LF;
-  if CheckBoxRequiresAdject2.Checked then word_extra_conditions:= word_extra_conditions + ' ADJECT2 ' + EditAdject2.Text + LF;
+  if EditAdverb.Text<>'' then word_extra_conditions:= word_extra_conditions + ' ADVERB ' + EditAdverb.Text + LF;
+  if EditPrep.Text<>'' then word_extra_conditions:= word_extra_conditions + ' PREP ' + EditPrep.Text + LF;
+  if EditAdject1.Text<>'' then word_extra_conditions:= word_extra_conditions + ' ADJECT1 ' + EditAdject1.Text + LF;
+  if EditNoun2.Text<>'' then word_extra_conditions:= word_extra_conditions + ' NOUN2 ' + EditNoun2.Text + LF;
+  if EditAdject2.Text<>'' then word_extra_conditions:= word_extra_conditions + ' ADJECT2 ' + EditAdject2.Text + LF;
   if (word_extra_conditions<>'') and (RightStr(word_extra_conditions, 1)=#10) then word_extra_conditions:= Copy(word_extra_conditions, 1, length(word_extra_conditions) -2);
 
   // Get location condition
@@ -582,12 +570,6 @@ begin
   XML :=  XML + '<ADJ2><![CDATA['+EditAdject2.Text+']]></ADJ2>';
   XML :=  XML + '<ADV><![CDATA['+EditAdverb.Text+']]></ADV>';
   XML :=  XML + '<P><![CDATA['+EditPrep.Text+']]></P>';
-  XML := XML + '<CN>'+ IntToStr(integer(CheckBoxRequiresNoun.Checked))+'</CN>';
-  XML := XML + '<CN2>'+ IntToStr(integer(CheckBoxRequiresNoun2.Checked))+'</CN2>';
-  XML := XML + '<CADJ>'+ IntToStr(integer(CheckBoxRequiresAdject1.Checked))+'</CADJ>';
-  XML := XML + '<CADJ2>'+ IntToStr(integer(CheckBoxRequiresAdject2.Checked))+'</CADJ2>';
-  XML := XML + '<CP>'+ IntToStr(integer(CheckBoxRequiresPreposition.Checked))+'</CP>';
-  XML := XML + '<CADV>'+ IntToStr(integer(CheckBoxRequiresAdverb.Checked))+'</CADV>';
   XML := XML + '<CL>'+ IntToStr(integer(CheckBoxLinkedToLocation.Checked))+'</CL>';
   XML := XML + '<CIW>'+ IntToStr(integer(CheckBoxIncludeWordsOnFailure.Checked))+'</CIW>';
   XML :=  XML + '<L><![CDATA['+EditLocation.Text+']]></L>';
@@ -667,41 +649,8 @@ begin
   if (Node = nil) then begin Result:= false; Exit(); end;
   CheckBoxIncludeWordsOnFailure.Checked:= boolean(StrToInt(Node.TextContent));
 
-  Node :=  Doc.DocumentElement.FindNode('CN');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresNoun.Checked:= boolean(StrToInt(Node.TextContent));
-  EditNoun.Enabled:=CheckBoxRequiresNoun.Checked;
 
-  Node :=  Doc.DocumentElement.FindNode('CN2');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresNoun2.Checked:= boolean(StrToInt(Node.TextContent));
-  EditNoun2.Enabled:=CheckBoxRequiresNoun2.Checked;
 
-  Node :=  Doc.DocumentElement.FindNode('CADJ');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresAdject1.Checked:= boolean(StrToInt(Node.TextContent));
-  EditAdject1.Enabled:=CheckBoxRequiresAdject1.Checked;
-
-  Node :=  Doc.DocumentElement.FindNode('CADJ2');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresAdject2.Checked:= boolean(StrToInt(Node.TextContent));
-  EditAdject2.Enabled:=CheckBoxRequiresAdject2.Checked;
-
-  Node :=  Doc.DocumentElement.FindNode('CP');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresPreposition.Checked:= boolean(StrToInt(Node.TextContent));
-  EditPrep.Enabled:=CheckBoxRequiresPreposition.Checked;
-
-  Node :=  Doc.DocumentElement.FindNode('CADV');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxRequiresAdverb.Checked:= boolean(StrToInt(Node.TextContent));
-  EditAdverb.Enabled:=CheckBoxRequiresAdverb.Checked;
-
-  Node :=  Doc.DocumentElement.FindNode('CL');
-  if (Node = nil) then begin Result:= false; Exit(); end;
-  CheckBoxLinkedToLocation.Checked:= boolean(StrToInt(Node.TextContent));
-  EditLocation.Enabled:=CheckBoxRequiresNoun.Checked;
-  EditLocationTOF.Enabled:=CheckBoxLinkedToLocation.Checked;
 
   Result := true;
 end;
@@ -712,13 +661,6 @@ var ErrorStr : String;
 begin
   ErrorStr := '';
   if (EditVerb.Text = '') then ErrorStr :=  ErrorStr + S_VERB_MISSING + #13;
-  if (CheckBoxRequiresNoun.Checked) and (EditNoun.Text = '') then ErrorStr :=  ErrorStr + S_NOUN_MISSING + #13;
-  if (CheckBoxRequiresPreposition.Checked) and (EditPrep.Text = '') then ErrorStr :=  ErrorStr + S_PREP_MISSING + #13;
-  if (CheckBoxRequiresAdverb.Checked) and (EditAdverb.Text = '') then ErrorStr :=  ErrorStr + S_ADVERB_MISSING + #13;
-  if (CheckBoxRequiresNoun2.Checked) and (EditNoun2.Text = '') then ErrorStr :=  ErrorStr + S_NOUN2_MISSING + #13;
-  if (CheckBoxRequiresAdject1.Checked) and (EditAdject1.Text = '') then ErrorStr :=  ErrorStr + S_ADJECT1_MISSING + #13;
-  if (CheckBoxRequiresAdject2.Checked) and (EditAdject2.Text = '') then ErrorStr :=  ErrorStr + S_ADJECT2_MISSING + #13;
-  if (CheckBoxLinkedToLocation.Checked) and (EditLocation.Text = '') then ErrorStr :=  ErrorStr + S_LOCATION_MISSING + #13;
   if (CheckBoxLinkedToLocation.Checked) and (EditLocationTOF.Text = '') then ErrorStr :=  ErrorStr + S_LOCATION_TOF_MISSING + #13;
   if (EditTOS.Text = '') then ErrorStr :=  ErrorStr + S_TOS_MISSING + #13;
   if (ErrorStr <> '') then

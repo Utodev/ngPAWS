@@ -15,27 +15,31 @@ type
   { TfMain }
 
   TfMain = class(TForm)
+    BHelp: TSpeedButton;
+    BNew: TSpeedButton;
+    BOpen: TSpeedButton;
     BOptions: TSpeedButton;
     BRun: TSpeedButton;
-    BCopy: TSpeedButton;
-    BReplace: TSpeedButton;
-    BPaste: TSpeedButton;
-    BCut: TSpeedButton;
-    BFind: TSpeedButton;
-    BCompile: TSpeedButton;
-    BHelp: TSpeedButton;
-    BUndo: TSpeedButton;
     BSave: TSpeedButton;
-    BRedo: TSpeedButton;
     CompileOutputListBox: TListBox;
+    ImageListB: TImageList;
     MainMenu: TMainMenu;
     MEdit: TMenuItem;
     MCompile: TMenuItem;
     MCompileRun: TMenuItem;
     MCloseCompilerOutput: TMenuItem;
     MCopyAll: TMenuItem;
+    mAbout: TMenuItem;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    PMFindNext: TMenuItem;
+    PMFind: TMenuItem;
+    PMReplace: TMenuItem;
+    MNewProcess: TMenuItem;
+    PanelRight: TPanel;
     PMPuzzleWizard: TMenuItem;
-    MAbout: TMenuItem;
     MData: TMenuItem;
     MConnections: TMenuItem;
     MDefinitions: TMenuItem;
@@ -68,7 +72,6 @@ type
     MPaste: TMenuItem;
     MQuit: TMenuItem;
     MRecentFiles: TMenuItem;
-    MNewProcess: TMenuItem;
     MOpenFile: TMenuItem;
     MNew: TMenuItem;
     MHelpContents: TMenuItem;
@@ -79,17 +82,15 @@ type
     MFile: TMenuItem;
     OpenDialog: TOpenDialog;
     PageControl: TPageControl;
-    BNew: TSpeedButton;
     MainPopupMenu: TPopupMenu;
     PopupMenuCompilerOutput: TPopupMenu;
     SynCompletion: TSynCompletion;
     Timer: TTimer;
-    Toolbar: TPanel;
     PanelBackground: TPanel;
     DataHighlighter: TSynAnySyn;
     CodeHighlighter: TSynAnySyn;
     SaveDialog: TSaveDialog;
-    BOpen: TSpeedButton;
+    Toolbar: TPanel;
     VocHighlighter: TSynAnySyn;
     procedure BCompileClick(Sender: TObject);
     procedure BCopyClick(Sender: TObject);
@@ -148,10 +149,13 @@ type
     procedure PMCondactHelpClick(Sender: TObject);
     procedure PMCopyClick(Sender: TObject);
     procedure PMCutClick(Sender: TObject);
+    procedure PMFindNextClick(Sender: TObject);
     procedure PMInterruptToggleClick(Sender: TObject);
     procedure PMLargerFontClick(Sender: TObject);
     procedure PMPasteClick(Sender: TObject);
     procedure PMPuzzleWizardClick(Sender: TObject);
+    procedure PMFindClick(Sender: TObject);
+    procedure PMReplaceClick(Sender: TObject);
     procedure PMSmallerFontClick(Sender: TObject);
     function ShowNotSaveWarning():boolean;
     procedure OpenBrowser(URL: String);
@@ -178,6 +182,7 @@ type
     function Compile():Boolean;
     procedure DeleteTempFiles(FileName : String);
     function CheckError(ErrorLineCandidate: String;IsPreprocessor:Boolean;DebugFileName:String) : Boolean;
+    function ExtractFileNameOnly(Path:String) :string;
     procedure GotoLine(ErrorLineCandidate:String; IsPreprocessor: Boolean;DebugFileName:String);
     procedure ShowSearchReplaceDialog(IsReplaceDialog: boolean);
 
@@ -215,6 +220,11 @@ begin
   else Result := true;
 end;
 
+function TfMain.ExtractFileNameOnly(Path:String) :string;
+begin
+  Result := ExtractFileName(Path);
+  if (Pos('.',Result)<>-1) then Result := Copy(Result, 1, Pos('.',Result) -1);
+end;
 
 procedure TfMain.BuildRecentFilesMenu();
 var i:integer;
@@ -260,6 +270,7 @@ begin
   Toolbar.Visible:=Config.ShowToolBar;
   if Config.Lang<>'' then SetDefaultLang(Config.Lang);
   CheckPaths();
+  PanelRight.Caption := 'ngPAWS 2.0 (C) Uto 2021';
 end;
 
 procedure TfMain.MAboutClick(Sender: TObject);
@@ -616,22 +627,14 @@ begin
    MRecentFiles.Enabled:= not mode;
 
    BSave.Visible := mode;
-   BCopy.Visible := mode;
-   BCut.Visible := mode;
-   BPaste.Visible := mode;
-   BUndo.Visible := mode;
-   BRedo.Visible := mode;
-   BCompile.Visible := mode;
    BRun.Visible := mode;
-   BFind.Visible := mode;
-   BReplace.Visible := mode;
    MClose.Enabled:= mode;
    MProcesses.Enabled := mode;
    MData.Enabled := mode;
    MSave.Enabled := mode;
    MClose.Enabled := mode;
    MEdit.Enabled := mode;
-   MProject.Enabled := mode;
+   MNewProcess.Enabled := mode;
 end;
 
 procedure TfMain.OpenFile(Filename: String);
@@ -677,6 +680,11 @@ end;
 procedure TfMain.PMCutClick(Sender: TObject);
 begin
   MCut.Click();
+end;
+
+procedure TfMain.PMFindNextClick(Sender: TObject);
+begin
+  MFindNext.Click();
 end;
 
 procedure TfMain.PMInterruptToggleClick(Sender: TObject);
@@ -773,6 +781,16 @@ ShowMessage(S_WRONG_PUZZLEWIZARD_POSITION);
 
 end;
 
+procedure TfMain.PMFindClick(Sender: TObject);
+begin
+  MFind.click();
+end;
+
+procedure TfMain.PMReplaceClick(Sender: TObject);
+begin
+  MReplace.Click();
+end;
+
 procedure TfMain.PMSmallerFontClick(Sender: TObject);
 begin
   if Config.EditorFontSize > 7 then
@@ -781,8 +799,10 @@ begin
     Config.SaveConfig();
     SetEditorsFont();
   end;
-
 end;
+
+
+
 
 
 procedure TfMain.MOptionsClick(Sender: TObject);
@@ -888,6 +908,40 @@ var found : boolean;
     SynEdit : TSynEdit;
     TabSheet : TTabSheet;
 
+function getIconindexBySection(Section:String) : Byte;
+begin
+ if Section='DEF' then Result := 0
+ else if Section='VOC' then Result := 1
+ else if Section='CON' then Result := 2
+ else if Section='STX' then Result := 3
+ else if Section='MTX' then Result := 4
+ else if Section='OBJ' then Result := 5
+ else if Section='RESP' then Result := 6
+ else if Section='LTX' then Result := 7
+  else if Copy(Section,1,3)='PRO' then Result := 8
+   else if Section='OTX' then Result := 9
+
+else  Result := -1;
+
+end;
+
+function getHintBySection(Section:String) : String;
+begin
+ if Section='DEF' then Result := 'Definitions and variables'
+ else if Section='VOC' then Result := 'Vocabulary words'
+ else if Section='CON' then Result := 'Connections between locations'
+ else if Section='STX' then Result := 'System Messages'
+ else if Section='MTX' then Result := 'User Messages'
+ else if Section='OBJ' then Result := 'Object definition'
+ else if Section='RESP' then Result := 'Responses, game logic'
+ else if Section='LTX' then Result := 'Location descriptions'
+  else if Copy(Section,1,3)='PRO' then Result := 'Events and other game logic'
+   else if Section='OTX' then Result := 'Object text'
+
+else  Result := '';
+
+end;
+
 begin
   PageControl.DoubleBuffered:=true;
   if not Assigned(TXP) then Exit();
@@ -916,20 +970,24 @@ begin
  TabSheet.DoubleBuffered:=true;
  TabSheet.PageControl := PageControl;
  TabSheet.Color := Config.EditorBackgroundColor;
- TabSheet.Font.Color := clWhite;
- TabSheet.ShowHint:=false;
+ TabSheet.Font.Color := clBlack;
  TabSheet.Caption:=Section;
  TabSheet.BorderWidth:=0;
+ TabSheet.Hint:= getHintBySection(Section);
+ if TabSheet.Hint<>'' then TabSheet.ShowHint:= true;
+ TabSheet.ImageIndex :=getIconindexBySection(Section);
  SynEdit := TSynEdit.Create(TabSheet);
+
  SynEdit.Align:=alClient;
  SynEdit.DoubleBuffered:=true;
  SynEdit.BorderStyle:= bsNone;
+ SynEdit.BorderSpacing.Top :=10;
  SynEdit.Parent := TabSheet;
  SynEdit.OnKeyPress := @SynEditKeyPress;
  SynEdit.OnKeyDown := @HelpResponse;
  SynEdit.Color:=Config.EditorBackgroundColor;
  SynEdit.Font.Name := Config.EditorFontName;
- SynEdit.Font.Color := clWhite;
+ SynEdit.Font.Color := clBlack;
  SynEdit.ScrollBars := ssVertical;
  SynEdit.Font.Size := Config.EditorFontSize;
  SynEdit.PopupMenu := MainPopupMenu;

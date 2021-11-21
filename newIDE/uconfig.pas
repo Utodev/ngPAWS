@@ -107,16 +107,16 @@ begin
   FDeleteTempFiles := IniFile.ReadBool('Options','DeleteTempFiles',true);
   FSaveBeforeRun := IniFile.ReadBool('Options','SaveBeforeRun',true);
   FShowToolBar :=  IniFile.ReadBool('Options','ShowToolBar',true);
-  FOpenAllTabs :=  IniFile.ReadBool('Options','OpenAllTabs',false);
+  FOpenAllTabs :=  true;
 
   {$IFDEF WINDOWS}
-  FEditorFontName := IniFile.ReadString('Options','EditorFontName', 'Consolas');
+  FEditorFontName := IniFile.ReadString('Options','EditorFontName', 'Courier New');
   {$ELSE}
   FEditorFontName := IniFile.ReadString('Options','EditorFontName', 'Courier New');
   {$ENDIF}
   FEditorFontSize :=  IniFile.ReadInteger('Options','EditorFontSize',13);
-  FEditorBackgroundColor:= IniFile.ReadInteger('Options','EditorBackgroundColor',$222827);
-  FEditorSelectLineColor:= IniFile.ReadInteger('Options','EditorSelectedLineColor',$333333);
+  FEditorBackgroundColor:= IniFile.ReadInteger('Options','EditorBackgroundColor',$EEEEEE);
+  FEditorSelectLineColor:= IniFile.ReadInteger('Options','EditorSelectedLineColor',$e0c000);
 
 
   FLang :=  IniFile.ReadString('Lang','Lang','');
@@ -153,7 +153,6 @@ begin
   IniFile.WriteBool('Options','DeleteTempFiles', FDeleteTempFiles);
   IniFile.WriteBool('Options','SaveBeforeRun', FSaveBeforeRun);
   IniFile.WriteBool('Options','ShowToolBar', FShowToolBar);
-  IniFile.WriteBool('Options','OpenAllTabs', FOpenAllTabs);
 
   IniFile.WriteInteger('Options','EditorFontSize',FEditorFontSize);
 

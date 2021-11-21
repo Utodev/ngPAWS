@@ -1,0 +1,11 @@
+{"version":1,"strings":[
+{"hash":94079128,"name":"tfsearchreplace.caption","sourcebytes":[83,101,97,114,99,104],"value":"Search"},
+{"hash":147269573,"name":"tfsearchreplace.checkreplace.caption","sourcebytes":[82,101,112,108,97,99,101],"value":"Replace"},
+{"hash":94079128,"name":"tfsearchreplace.labelsearch.caption","sourcebytes":[83,101,97,114,99,104],"value":"Search"},
+{"hash":219680245,"name":"tfsearchreplace.checkcasesensitive.caption","sourcebytes":[67,97,115,101,32,83,101,110,115,105,116,105,118,101],"value":"Case Sensitive"},
+{"hash":153575129,"name":"tfsearchreplace.checkwholewordsonly.caption","sourcebytes":[87,104,111,108,101,32,87,111,114,100,115,32,111,110,108,121],"value":"Whole Words only"},
+{"hash":230976162,"name":"tfsearchreplace.checkonlyfromcursor.caption","sourcebytes":[79,110,108,121,32,102,114,111,109,32,99,117,114,115,111,114],"value":"Only from cursor"},
+{"hash":67929678,"name":"tfsearchreplace.checkonlyinselection.caption","sourcebytes":[79,110,108,121,32,105,110,32,115,101,108,101,99,116,105,111,110],"value":"Only in selection"},
+{"hash":1371,"name":"tfsearchreplace.bok.caption","sourcebytes":[79,107],"value":"Ok"},
+{"hash":77089212,"name":"tfsearchreplace.bcancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"}
+]}

@@ -16,6 +16,7 @@ type
     Image: TImage;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     LabelngPAWSSite: TLabel;
     LabelDetails: TLabel;
     LabelnGithubSite: TLabel;

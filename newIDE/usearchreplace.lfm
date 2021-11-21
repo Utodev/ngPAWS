@@ -1,103 +1,174 @@
 object fSearchReplace: TfSearchReplace
   Left = 736
-  Height = 342
+  Height = 428
   Top = 190
-  Width = 294
+  Width = 368
   BorderStyle = bsDialog
   Caption = 'Search'
-  ClientHeight = 342
-  ClientWidth = 294
+  ClientHeight = 428
+  ClientWidth = 368
+  DesignTimePPI = 120
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnShow = FormShow
-  LCLVersion = '1.2.6.0'
+  LCLVersion = '2.0.12.0'
   object EditSearch: TEdit
-    Left = 32
-    Height = 25
-    Top = 32
-    Width = 240
+    Left = 40
+    Height = 31
+    Top = 40
+    Width = 300
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnKeyPress = FormKeyPress
+    ParentFont = False
     TabOrder = 0
   end
   object checkReplace: TCheckBox
-    Left = 32
-    Height = 21
-    Top = 64
-    Width = 68
+    Left = 40
+    Height = 27
+    Top = 80
+    Width = 83
     Caption = 'Replace'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnChange = checkReplaceChange
     OnKeyPress = FormKeyPress
+    ParentFont = False
     TabOrder = 1
   end
   object LabelSearch: TLabel
-    Left = 32
-    Height = 17
-    Top = 16
-    Width = 39
+    Left = 40
+    Height = 23
+    Top = 20
+    Width = 51
     Caption = 'Search'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object EditReplace: TEdit
-    Left = 32
-    Height = 25
-    Top = 96
-    Width = 240
+    Left = 40
+    Height = 31
+    Top = 120
+    Width = 300
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnKeyPress = FormKeyPress
+    ParentFont = False
     TabOrder = 2
   end
   object checkCaseSensitive: TCheckBox
-    Left = 31
-    Height = 21
-    Top = 151
-    Width = 104
+    Left = 39
+    Height = 27
+    Top = 189
+    Width = 131
     Caption = 'Case Sensitive'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnKeyPress = FormKeyPress
+    ParentFont = False
     TabOrder = 3
   end
   object checkWholeWordsOnly: TCheckBox
-    Left = 32
-    Height = 21
-    Top = 176
-    Width = 130
+    Left = 40
+    Height = 27
+    Top = 220
+    Width = 164
     Caption = 'Whole Words only'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 4
   end
   object checkOnlyFromCursor: TCheckBox
-    Left = 31
-    Height = 21
-    Top = 200
-    Width = 121
+    Left = 39
+    Height = 27
+    Top = 250
+    Width = 152
     Caption = 'Only from cursor'
     Checked = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnKeyPress = FormKeyPress
+    ParentFont = False
     State = cbChecked
     TabOrder = 5
   end
   object checkOnlyInSelection: TCheckBox
-    Left = 32
-    Height = 21
-    Top = 224
-    Width = 117
+    Left = 40
+    Height = 27
+    Top = 280
+    Width = 150
     Caption = 'Only in selection'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnKeyPress = FormKeyPress
+    ParentFont = False
     TabOrder = 6
   end
   object bOk: TButton
-    Left = 104
-    Height = 25
-    Top = 288
-    Width = 75
+    Left = 128
+    Height = 55
+    Top = 336
+    Width = 95
     Caption = 'Ok'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ModalResult = 1
+    ParentFont = False
     TabOrder = 7
   end
   object bCancel: TButton
-    Left = 197
-    Height = 25
-    Top = 288
-    Width = 75
+    Left = 245
+    Height = 55
+    Top = 336
+    Width = 95
     Caption = 'Cancel'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ModalResult = 2
+    ParentFont = False
     TabOrder = 8
   end
 end

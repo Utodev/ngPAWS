@@ -1,226 +1,394 @@
 object fPuzzleWizard: TfPuzzleWizard
-  Left = 502
-  Height = 485
-  Top = 168
-  Width = 640
+  Left = 432
+  Height = 630
+  Top = 83
+  Width = 825
   BorderStyle = bsDialog
   Caption = 'Puzzle Wizard'
-  ClientHeight = 485
-  ClientWidth = 640
+  ClientHeight = 630
+  ClientWidth = 825
+  DesignTimePPI = 120
   OnShow = FormShow
-  LCLVersion = '1.4.2.0'
+  LCLVersion = '2.0.12.0'
   object PageControlWizard: TPageControl
     Left = 0
-    Height = 430
+    Height = 538
     Top = 0
-    Width = 640
-    ActivePage = TabSheetVocLoc
+    Width = 825
+    ActivePage = TabSheetCodeGen
     Align = alTop
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     ShowTabs = False
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 0
     object TabSheetVocLoc: TTabSheet
       Caption = 'Vocabulary & Location'
-      ClientHeight = 422
-      ClientWidth = 632
+      ClientHeight = 530
+      ClientWidth = 817
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
       object GroupBoxVoc: TGroupBox
-        Left = 8
-        Height = 352
+        Left = 16
+        Height = 440
         Hint = 'Fill in this box to determine which words will the player have to type for this puzzle to get triggered'
-        Top = 64
-        Width = 385
+        Top = 80
+        Width = 481
         Caption = 'Vocabulary'
-        ClientHeight = 332
-        ClientWidth = 381
+        ClientHeight = 412
+        ClientWidth = 477
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         TabOrder = 0
         object EditPrep: TEdit
-          Left = 217
-          Height = 23
-          Top = 104
-          Width = 143
-          Enabled = False
-          TabOrder = 6
-        end
-        object CheckBoxRequiresPreposition: TCheckBox
-          Left = 218
-          Height = 21
-          Top = 80
-          Width = 130
-          Caption = 'Requires Preposition'
-          OnChange = CheckBoxRequiresPrepositionChange
-          TabOrder = 5
-        end
-        object CheckBoxRequiresNoun: TCheckBox
-          Left = 217
-          Height = 21
-          Top = 8
-          Width = 100
-          Caption = 'Requires Noun'
-          OnChange = CheckBoxRequiresNounChange
-          TabOrder = 1
+          Left = 271
+          Height = 31
+          Top = 130
+          Width = 179
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 3
         end
         object LabelVerb: TStaticText
-          Left = 24
-          Height = 15
-          Top = 8
-          Width = 120
+          Left = 34
+          Height = 26
+          Top = 19
+          Width = 149
           Caption = 'Verb'
           Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 8
+        end
+        object EditAdject1: TEdit
+          Left = 30
+          Height = 31
+          Top = 130
+          Width = 170
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 2
+        end
+        object EditNoun: TEdit
+          Left = 271
+          Height = 31
+          Top = 40
+          Width = 180
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 1
+        end
+        object EditAdverb: TEdit
+          Left = 30
+          Height = 31
+          Top = 220
+          Width = 170
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 4
+        end
+        object EditNoun2: TEdit
+          Left = 271
+          Height = 31
+          Top = 220
+          Width = 180
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 5
+        end
+        object EditAdject2: TEdit
+          Left = 120
+          Height = 31
+          Top = 310
+          Width = 212
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          TabOrder = 6
+        end
+        object EditVerb: TEdit
+          Left = 30
+          Height = 31
+          Top = 40
+          Width = 170
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+        end
+        object CheckBoxIncludeWordsOnFailure: TCheckBox
+          Left = 88
+          Height = 27
+          Hint = 'Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name'
+          Top = 368
+          Width = 328
+          Caption = 'Include aditional words in failure entries'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 7
+        end
+        object LabelNoun: TStaticText
+          Left = 275
+          Height = 28
+          Top = 17
+          Width = 150
+          Caption = 'Noun (optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 9
+        end
+        object LabelAdjective: TStaticText
+          Left = 34
+          Height = 28
+          Top = 100
+          Width = 170
+          Caption = 'Adjective (optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 10
+        end
+        object LabelPreposition: TStaticText
+          Left = 275
+          Height = 28
+          Top = 102
+          Width = 170
+          Caption = 'Preposition (optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 11
+        end
+        object LabelAdverb: TStaticText
+          Left = 34
+          Height = 28
+          Top = 193
+          Width = 170
+          Caption = 'Adverb (optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 12
+        end
+        object LabelNoun2: TStaticText
+          Left = 276
+          Height = 28
+          Top = 193
+          Width = 176
+          Caption = 'Second noun(optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
+          ParentColor = False
+          TabOrder = 13
+        end
+        object LabelAdject2: TStaticText
+          Left = 124
+          Height = 28
+          Top = 280
+          Width = 234
+          Caption = 'Second Adjective (optional)'
+          Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           ParentColor = False
           TabOrder = 14
         end
-        object EditAdject1: TEdit
-          Left = 24
-          Height = 23
-          Top = 104
-          Width = 136
-          Enabled = False
-          TabOrder = 4
-        end
-        object EditNoun: TEdit
-          Left = 217
-          Height = 23
-          Top = 32
-          Width = 144
-          Enabled = False
-          TabOrder = 2
-        end
-        object CheckBoxRequiresAdject1: TCheckBox
-          Left = 24
-          Height = 21
-          Top = 80
-          Width = 119
-          Caption = 'Requires Adjective'
-          OnChange = CheckBoxRequiresAdject1Change
-          TabOrder = 3
-        end
-        object CheckBoxRequiresAdverb: TCheckBox
-          Left = 24
-          Height = 21
-          Top = 152
-          Width = 108
-          Caption = 'Requires Adverb'
-          OnChange = CheckBoxRequiresAdverbChange
-          TabOrder = 7
-        end
-        object EditAdverb: TEdit
-          Left = 24
-          Height = 23
-          Top = 176
-          Width = 136
-          Enabled = False
-          TabOrder = 8
-        end
-        object CheckBoxRequiresAdject2: TCheckBox
-          Left = 24
-          Height = 21
-          Top = 224
-          Width = 128
-          Caption = 'Requires Adjective 2'
-          OnChange = CheckBoxRequiresAdject2Change
-          TabOrder = 11
-        end
-        object EditNoun2: TEdit
-          Left = 216
-          Height = 23
-          Top = 176
-          Width = 144
-          Enabled = False
-          TabOrder = 10
-        end
-        object EditAdject2: TEdit
-          Left = 24
-          Height = 23
-          Top = 248
-          Width = 136
-          Enabled = False
-          TabOrder = 12
-        end
-        object EditVerb: TEdit
-          Left = 24
-          Height = 23
-          Top = 32
-          Width = 136
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 0
-        end
-        object CheckBoxRequiresNoun2: TCheckBox
-          Left = 217
-          Height = 21
-          Top = 152
-          Width = 109
-          Caption = 'Requires Noun 2'
-          OnChange = CheckBoxRequiresNoun2Change
-          TabOrder = 9
-        end
-        object CheckBoxIncludeWordsOnFailure: TCheckBox
-          Left = 24
-          Height = 21
-          Hint = 'Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name'
-          Top = 304
-          Width = 232
-          Caption = 'Include aditional words in failure entries'
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 13
-        end
       end
       object GroupBoxLoc: TGroupBox
-        Left = 408
-        Height = 352
+        Left = 510
+        Height = 440
         Hint = 'Fill in this box if this puzzle can only be solved in a given location'
-        Top = 64
-        Width = 209
+        Top = 80
+        Width = 290
         Caption = 'Location'
-        ClientHeight = 332
-        ClientWidth = 205
+        ClientHeight = 412
+        ClientWidth = 286
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         TabOrder = 1
         object CheckBoxLinkedToLocation: TCheckBox
-          Left = 16
-          Height = 21
-          Top = 8
-          Width = 161
+          Left = 20
+          Height = 27
+          Top = 10
+          Width = 226
           Caption = 'Puzzle is linked to location'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
           OnChange = CheckBoxLinkedToLocationChange
+          ParentFont = False
           TabOrder = 0
         end
         object EditLocation: TEdit
-          Left = 16
-          Height = 23
-          Top = 32
-          Width = 176
+          Left = 20
+          Height = 31
+          Hint = 'Enter a location number or identifier where the puzzle happens'
+          Top = 40
+          Width = 248
           Enabled = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 1
         end
         object LabelLocationTOF: TStaticText
-          Left = 16
-          Height = 15
+          Left = 20
+          Height = 26
           Hint = 'Response to player if he/she tries to perform this action in other location'
-          Top = 80
-          Width = 162
-          Caption = 'Text on failure'
+          Top = 102
+          Width = 250
+          Caption = 'Response if not at right location'
           Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           ParentColor = False
           TabOrder = 3
         end
         object EditLocationTOF: TEdit
-          Left = 16
-          Height = 23
-          Top = 104
-          Width = 176
+          Left = 20
+          Height = 31
+          Top = 128
+          Width = 248
           Enabled = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           TabOrder = 2
         end
       end
       object LabelInstructions1: TStaticText
-        Left = 8
-        Height = 40
-        Top = 16
-        Width = 607
+        Left = 10
+        Height = 50
+        Top = 20
+        Width = 759
         Caption = 'Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location'
         Color = clDefault
-        Font.Color = clHighlight
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ParentFont = False
         ParentColor = False
         TabOrder = 2
@@ -228,121 +396,196 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetConditions: TTabSheet
       Caption = 'Conditions'
-      ClientHeight = 422
-      ClientWidth = 632
+      ClientHeight = 530
+      ClientWidth = 817
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
       OnShow = TabSheetConditionsShow
+      ParentFont = False
       object ListBoxConditions: TListBox
-        Left = 392
-        Height = 320
-        Top = 64
-        Width = 224
+        Left = 490
+        Height = 400
+        Top = 80
+        Width = 280
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ItemHeight = 0
+        ParentFont = False
         PopupMenu = PopupMenuLists
         ScrollWidth = 220
         TabOrder = 0
       end
       object ComboBoxConditionSelect: TComboBox
-        Left = 19
-        Height = 23
-        Top = 64
-        Width = 256
-        ItemHeight = 15
+        Left = 28
+        Height = 31
+        Top = 80
+        Width = 320
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ItemHeight = 23
         ItemIndex = 0
         Items.Strings = (
           'Choose a condition...'
         )
         OnChange = ComboBoxConditionSelectChange
+        ParentFont = False
         Style = csDropDownList
         TabOrder = 1
         Text = 'Choose a condition...'
       end
       object ButtonAddCondition: TButton
-        Left = 291
-        Height = 25
+        Left = 364
+        Height = 31
         Hint = 'Add Condition'
-        Top = 64
-        Width = 75
+        Top = 80
+        Width = 94
         Caption = 'Add'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnClick = ButtonAddConditionClick
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 2
       end
       object LabelCondTOF: TStaticText
-        Left = 27
-        Height = 15
-        Top = 104
-        Width = 259
-        Caption = 'Text on failure'
+        Left = 28
+        Height = 19
+        Top = 285
+        Width = 324
+        Caption = 'Message if condition fails'
         Color = clDefault
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         ParentColor = False
         TabOrder = 6
         Visible = False
       end
       object EditConditionTOF: TEdit
-        Left = 19
-        Height = 23
+        Left = 28
+        Height = 31
         Hint = 'Please specify response for player if this condition is not successful'
-        Top = 120
-        Width = 336
+        Top = 308
+        Width = 420
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnKeyPress = EditConditionKeyPress
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 3
         Visible = False
       end
       object LabelCondP1: TStaticText
-        Left = 27
-        Height = 15
-        Top = 160
-        Width = 253
+        Left = 28
+        Height = 19
+        Top = 133
+        Width = 316
         Caption = 'LabelCondP1'
         Color = clDefault
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         ParentColor = False
         TabOrder = 7
         Visible = False
       end
       object EditConditionP1: TEdit
-        Left = 19
-        Height = 23
-        Top = 176
-        Width = 336
+        Left = 28
+        Height = 31
+        Top = 156
+        Width = 420
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnKeyPress = EditConditionKeyPress
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 4
         Visible = False
       end
       object LabelCondP2: TStaticText
-        Left = 27
-        Height = 15
-        Top = 224
-        Width = 254
+        Left = 28
+        Height = 19
+        Top = 213
+        Width = 318
         Caption = 'LabelCondP2'
         Color = clDefault
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         ParentColor = False
         TabOrder = 8
         Visible = False
       end
       object EditConditionP2: TEdit
-        Left = 19
-        Height = 23
-        Top = 240
-        Width = 336
+        Left = 28
+        Height = 31
+        Top = 236
+        Width = 420
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnKeyPress = EditConditionKeyPress
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 5
         Visible = False
       end
       object LabelInstructions2: TStaticText
-        Left = 19
-        Height = 40
-        Top = 16
-        Width = 600
+        Left = 24
+        Height = 50
+        Top = 20
+        Width = 750
         Caption = 'If any additional conditions should be met for player success, add them here.'
         Color = clDefault
-        Font.Color = clHighlight
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ParentFont = False
         ParentColor = False
         TabOrder = 9
@@ -350,52 +593,87 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetActions: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 422
-      ClientWidth = 632
+      ClientHeight = 530
+      ClientWidth = 817
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
       object ComboBoxActionSelect: TComboBox
-        Left = 16
-        Height = 23
-        Top = 64
-        Width = 240
-        ItemHeight = 15
+        Left = 20
+        Height = 31
+        Top = 80
+        Width = 324
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ItemHeight = 23
         ItemIndex = 0
         Items.Strings = (
           'Choose an action...'
         )
         OnChange = ComboBoxActionSelectChange
+        ParentFont = False
         Style = csDropDownList
         TabOrder = 0
         Text = 'Choose an action...'
       end
       object ButtonAddAction: TButton
-        Left = 282
-        Height = 25
+        Left = 352
+        Height = 31
         Hint = 'Add Action'
-        Top = 64
-        Width = 75
+        Top = 80
+        Width = 94
         Caption = 'Add'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnClick = ButtonAddActionClick
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 1
       end
       object LabelActionP1: TStaticText
         Left = 20
-        Height = 15
-        Top = 96
-        Width = 268
+        Height = 19
+        Top = 120
+        Width = 335
         Caption = 'LabelActionP1'
         Color = clDefault
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         ParentColor = False
         TabOrder = 6
         Visible = False
       end
       object EditActionP1: TEdit
-        Left = 16
-        Height = 23
-        Top = 112
-        Width = 338
+        Left = 20
+        Height = 31
+        Top = 140
+        Width = 422
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnKeyPress = EditActionKeyPress
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 2
@@ -403,74 +681,121 @@ object fPuzzleWizard: TfPuzzleWizard
       end
       object LabelActionP2: TStaticText
         Left = 20
-        Height = 15
-        Top = 160
-        Width = 268
+        Height = 19
+        Top = 200
+        Width = 335
         Caption = 'LabelActionP2'
         Color = clDefault
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         ParentColor = False
         TabOrder = 7
         Visible = False
       end
       object EditActionP2: TEdit
-        Left = 16
-        Height = 23
-        Top = 176
-        Width = 338
+        Left = 20
+        Height = 31
+        Top = 220
+        Width = 422
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         OnKeyPress = EditActionKeyPress
+        ParentFont = False
         ParentShowHint = False
         ShowHint = True
         TabOrder = 3
         Visible = False
       end
       object ListBoxActions: TListBox
-        Left = 384
-        Height = 224
-        Top = 64
-        Width = 232
+        Left = 480
+        Height = 280
+        Top = 80
+        Width = 290
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ItemHeight = 0
+        ParentFont = False
         PopupMenu = PopupMenuLists
         ScrollWidth = 228
         TabOrder = 4
       end
       object GroupBox1: TGroupBox
-        Left = 16
-        Height = 105
-        Top = 304
-        Width = 598
+        Left = 20
+        Height = 131
+        Top = 380
+        Width = 748
         Caption = 'On success'
-        ClientHeight = 85
-        ClientWidth = 594
+        ClientHeight = 103
+        ClientWidth = 744
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
         TabOrder = 5
         object LabelTOS: TStaticText
-          Left = 8
-          Height = 15
-          Top = 16
-          Width = 264
-          Caption = 'Text on success'
+          Left = 10
+          Height = 19
+          Top = 20
+          Width = 330
+          Caption = 'Response on puzzle success'
           Color = clDefault
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           ParentColor = False
           TabOrder = 1
         end
         object EditTOS: TEdit
-          Left = 8
-          Height = 23
+          Left = 10
+          Height = 31
           Hint = 'Enter text in case of success'
-          Top = 48
-          Width = 569
+          Top = 60
+          Width = 711
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clBlack
+          Font.Height = -17
+          Font.Name = 'Segoe UI'
+          Font.Pitch = fpVariable
+          Font.Quality = fqDraft
+          ParentFont = False
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
         end
       end
       object LabelInstrructions3: TStaticText
-        Left = 16
-        Height = 40
-        Top = 16
-        Width = 588
+        Left = 20
+        Height = 50
+        Top = 20
+        Width = 735
         Caption = 'In case of success, please specify text output, and add any other actions that should be performed .'
         Color = clDefault
-        Font.Color = clHighlight
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ParentFont = False
         ParentColor = False
         TabOrder = 8
@@ -478,23 +803,32 @@ object fPuzzleWizard: TfPuzzleWizard
     end
     object TabSheetCodeGen: TTabSheet
       Caption = 'Success and options'
-      ClientHeight = 422
-      ClientWidth = 632
+      ClientHeight = 530
+      ClientWidth = 817
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentFont = False
       inline SynEditCodeGen: TSynEdit
-        Left = 16
-        Height = 360
-        Top = 64
-        Width = 600
-        Color = 2238248
-        Font.Height = -13
+        Left = 20
+        Height = 450
+        Top = 80
+        Width = 750
+        Color = 15658734
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -17
         Font.Name = 'Courier New'
         Font.Pitch = fpFixed
-        Font.Quality = fqNonAntialiased
+        Font.Quality = fqDraft
         ParentColor = False
         ParentFont = False
         TabOrder = 0
         Gutter.Visible = False
-        Gutter.Width = 57
+        Gutter.Width = 72
         Gutter.MouseActions = <>
         RightGutter.Width = 0
         RightGutter.MouseActions = <>
@@ -946,11 +1280,11 @@ object fPuzzleWizard: TfPuzzleWizard
         OnChange = SynEditCodeGenChange
         inline SynLeftGutterPartList1: TSynGutterPartList
           object SynGutterMarks1: TSynGutterMarks
-            Width = 24
+            Width = 30
             MouseActions = <>
           end
           object SynGutterLineNumber1: TSynGutterLineNumber
-            Width = 17
+            Width = 21
             MouseActions = <>
             MarkupInfo.Background = clBtnFace
             MarkupInfo.Foreground = clNone
@@ -960,18 +1294,19 @@ object fPuzzleWizard: TfPuzzleWizard
             LeadingZeros = False
           end
           object SynGutterChanges1: TSynGutterChanges
-            Width = 4
+            Width = 5
             MouseActions = <>
             ModifiedColor = 59900
             SavedColor = clGreen
           end
           object SynGutterSeparator1: TSynGutterSeparator
-            Width = 2
+            Width = 3
             MouseActions = <>
             MarkupInfo.Background = clWhite
             MarkupInfo.Foreground = clGray
           end
           object SynGutterCodeFolding1: TSynGutterCodeFolding
+            Width = 13
             MouseActions = <>
             MarkupInfo.Background = clNone
             MarkupInfo.Foreground = clGray
@@ -981,13 +1316,18 @@ object fPuzzleWizard: TfPuzzleWizard
         end
       end
       object LabelInstructions4: TStaticText
-        Left = 16
-        Height = 40
-        Top = 16
-        Width = 600
+        Left = 20
+        Height = 50
+        Top = 20
+        Width = 750
         Caption = 'Puzzle code has been generated, please click "Finish" to add it to your game code.'
         Color = clDefault
-        Font.Color = clHighlight
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = 14120960
+        Font.Height = -17
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ParentFont = False
         ParentColor = False
         TabOrder = 1
@@ -999,34 +1339,48 @@ object fPuzzleWizard: TfPuzzleWizard
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 518
-    Height = 25
-    Top = 440
-    Width = 102
+    Left = 672
+    Height = 51
+    Top = 554
+    Width = 128
     Anchors = [akRight, akBottom]
-    BorderSpacing.Right = 20
-    BorderSpacing.Bottom = 20
+    BorderSpacing.Right = 25
+    BorderSpacing.Bottom = 25
     Caption = '&Next >'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = ButtonNextClick
+    ParentFont = False
     TabOrder = 2
   end
   object ButtonPrev: TButton
     AnchorSideRight.Control = ButtonNext
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 383
-    Height = 25
-    Top = 440
-    Width = 105
+    Left = 503
+    Height = 51
+    Top = 554
+    Width = 131
     Anchors = [akRight, akBottom]
-    BorderSpacing.Right = 30
-    BorderSpacing.Bottom = 20
+    BorderSpacing.Right = 38
+    BorderSpacing.Bottom = 25
     Caption = '< &Previous'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -17
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = ButtonPrevClick
+    ParentFont = False
     TabOrder = 1
   end
   object PopupMenuLists: TPopupMenu
-    top = 456
+    Top = 570
     object PMDeleteLine: TMenuItem
       Caption = 'Delete'
       OnClick = PMDeleteLineClick

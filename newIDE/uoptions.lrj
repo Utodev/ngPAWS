@@ -1,0 +1,20 @@
+{"version":1,"strings":[
+{"hash":108725763,"name":"tfoptions.caption","sourcebytes":[79,112,116,105,111,110,115],"value":"Options"},
+{"hash":11099,"name":"tfoptions.bok.caption","sourcebytes":[38,79,107],"value":"&Ok"},
+{"hash":177752476,"name":"tfoptions.bcancel.caption","sourcebytes":[38,67,97,110,99,101,108],"value":"&Cancel"},
+{"hash":225551699,"name":"tfoptions.groupboxeditor.caption","sourcebytes":[69,100,105,116,111,114,32,79,112,116,105,111,110,115],"value":"Editor Options"},
+{"hash":210435188,"name":"tfoptions.checkopenalltabs.caption","sourcebytes":[79,112,101,110,32,97,108,108,32,115,101,99,116,105,111,110,115,32,111,110,32,108,111,97,100],"value":"Open all sections on load"},
+{"hash":139375349,"name":"tfoptions.labellang.caption","sourcebytes":[76,97,110,103,117,97,103,101],"value":"Language"},
+{"hash":135140085,"name":"tfoptions.checksavebeforerun.caption","sourcebytes":[83,97,118,101,32,98,101,102,111,114,101,32,114,117,110,32,111,114,32,99,111,109,112,105,108,101],"value":"Save before run or compile"},
+{"hash":229175426,"name":"tfoptions.checkshowtoolbar.caption","sourcebytes":[83,104,111,119,32,116,111,111,108,32,98,97,114],"value":"Show tool bar"},
+{"hash":106200748,"name":"tfoptions.labelhelpurl.caption","sourcebytes":[72,101,108,112,32,66,97,115,101,32,85,82,76],"value":"Help Base URL"},
+{"hash":24946755,"name":"tfoptions.groupboxcompileroptions.caption","sourcebytes":[67,111,109,112,105,108,101,114,32,79,112,116,105,111,110,115],"value":"Compiler Options"},
+{"hash":139569219,"name":"tfoptions.checkdeletetempfiles.caption","sourcebytes":[68,101,108,101,116,101,32,116,101,109,112,32,102,105,108,101,115],"value":"Delete temp files"},
+{"hash":158827235,"name":"tfoptions.labelpreprocessorparameters.caption","sourcebytes":[80,114,101,112,114,111,99,101,115,115,111,114,32,80,97,114,97,109,101,116,101,114,115],"value":"Preprocessor Parameters"},
+{"hash":12558,"name":"tfoptions.bbrowsestartdatabase.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":12558,"name":"tfoptions.bbrowsecompiler.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":105317986,"name":"tfoptions.labelcompiler.caption","sourcebytes":[67,111,109,112,105,108,101,114],"value":"Compiler"},
+{"hash":36629397,"name":"tfoptions.labelstartdatabase.caption","sourcebytes":[83,116,97,114,116,32,100,97,116,97,98,97,115,101],"value":"Start database"},
+{"hash":12558,"name":"tfoptions.bbrowsepreprocessor.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":14970866,"name":"tfoptions.labelpreprocessor.caption","sourcebytes":[80,114,101,112,114,111,99,101,115,115,111,114],"value":"Preprocessor"}
+]}
