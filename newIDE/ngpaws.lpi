@@ -13,7 +13,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="languages"/>
+      <OutDir Value="..\installation_aux_files\languages"/>
     </i18n>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>

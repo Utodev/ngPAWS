@@ -2,17 +2,25 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tfabout.caption
-msgid "ngPAWS Editor"
+#, fuzzy
+#| msgid "ngPAWS Editor"
+msgid "ngPAWS 2.0"
 msgstr "ngPAWS Editor"
 
 #: tfabout.label1.caption
+#, fuzzy
+#| msgid "ngPAWS Editor (C) 2015 Uto"
 msgctxt "TFABOUT.LABEL1.CAPTION"
-msgid "ngPAWS Editor (C) 2015 Uto"
+msgid "ngPAWS (C) 2021 Uto"
 msgstr "ngPAWS Editor (C) 2015 Uto"
 
 #: tfabout.label2.caption
 msgid "at GitHub (GPL)"
 msgstr "en GitHub (GPL)"
+
+#: tfabout.label3.caption
+msgid "Nice icons by Kiranshastry"
+msgstr ""
 
 #: tfabout.labeldetails.caption
 msgid "Lazarus source code avaliable"
@@ -23,27 +31,10 @@ msgid "https://github.com/Utodev/ngPAWS"
 msgstr "https://github.com/Utodev/ngPAWS"
 
 #: tfabout.labelngpawssite.caption
-msgid "http://www.ngpaws.com"
+#, fuzzy
+#| msgid "http://www.ngpaws.com"
+msgid "http://www.ngpaws.com/ngpaws"
 msgstr "http://www.ngpaws.com"
-
-#: tfmain.bcompile.hint
-msgid "Compile"
-msgstr "Compilar"
-
-#: tfmain.bcopy.hint
-msgctxt "TFMAIN.BCOPY.HINT"
-msgid "Copy"
-msgstr "Copiar"
-
-#: tfmain.bcut.hint
-msgctxt "TFMAIN.BCUT.HINT"
-msgid "Cut"
-msgstr "Cortar"
-
-#: tfmain.bfind.hint
-msgctxt "TFMAIN.BFIND.HINT"
-msgid "Find"
-msgstr "Buscar"
 
 #: tfmain.bhelp.hint
 msgid "Help"
@@ -62,33 +53,17 @@ msgctxt "TFMAIN.BOPTIONS.HINT"
 msgid "Options"
 msgstr "Opciones"
 
-#: tfmain.bpaste.hint
-msgctxt "TFMAIN.BPASTE.HINT"
-msgid "Paste"
-msgstr "Pegar"
-
-#: tfmain.bredo.hint
-msgctxt "TFMAIN.BREDO.HINT"
-msgid "Redo"
-msgstr "Rehacer"
-
-#: tfmain.breplace.hint
-msgctxt "TFMAIN.BREPLACE.HINT"
-msgid "Replace"
-msgstr "Reemplazar"
-
 #: tfmain.brun.hint
-msgid "Run"
+#, fuzzy
+#| msgid "Run"
+msgid "Run (F5)"
 msgstr "Ejecutar"
 
 #: tfmain.bsave.hint
-msgid "Save"
+#, fuzzy
+#| msgid "Save"
+msgid "Save (Ctrl+S)"
 msgstr "Guadar"
-
-#: tfmain.bundo.hint
-msgctxt "TFMAIN.BUNDO.HINT"
-msgid "Undo"
-msgstr "Deshacer"
 
 #: tfmain.caption
 msgid "ngPAWS"
@@ -180,7 +155,9 @@ msgid "&New"
 msgstr "&Nuevo"
 
 #: tfmain.mnewprocess.caption
-msgid "&New Process"
+#, fuzzy
+#| msgid "&New Process"
+msgid "New Process"
 msgstr "&Nuevo proceso"
 
 #: tfmain.mobjectdata.caption
@@ -261,6 +238,10 @@ msgctxt "tfmain.panelbackground.caption"
 msgid "ngPAWS Editor (C) 2015 Uto"
 msgstr "ngPAWS Editor (C) 2015 Uto"
 
+#: tfmain.panelright.caption
+msgid "ngPAWS (C) Uto 2021"
+msgstr ""
+
 #: tfmain.pmcondacthelp.caption
 msgid "Condact Help"
 msgstr "Ayuda de condacto"
@@ -274,6 +255,16 @@ msgstr "Copiar"
 msgctxt "tfmain.pmcut.caption"
 msgid "Cut"
 msgstr "Cortar"
+
+#: tfmain.pmfind.caption
+#, fuzzy
+msgctxt "tfmain.pmfind.caption"
+msgid "Find"
+msgstr "Buscar"
+
+#: tfmain.pmfindnext.caption
+msgid "Find next"
+msgstr ""
 
 #: tfmain.pminterrupttoggle.caption
 msgid "Toggle interrupt process mark"
@@ -293,15 +284,11 @@ msgctxt "tfmain.pmpuzzlewizard.caption"
 msgid "Puzzle Wizard"
 msgstr "Asistente de puzles"
 
-#: tfmain.pmseparartor2.caption
-msgctxt "TFMAIN.PMSEPARARTOR2.CAPTION"
-msgid "-"
-msgstr ""
-
-#: tfmain.pmseparator1.caption
-msgctxt "tfmain.pmseparator1.caption"
-msgid "-"
-msgstr ""
+#: tfmain.pmreplace.caption
+#, fuzzy
+msgctxt "tfmain.pmreplace.caption"
+msgid "Replace"
+msgstr "Reemplazar"
 
 #: tfmain.pmsmallerfont.caption
 msgid "Smaller font"
@@ -428,30 +415,6 @@ msgstr "Elija si quiere que las entradas creadas para cuando falla alguna condic
 msgid "Puzzle is linked to location"
 msgstr "Puzzle ligado a localidad"
 
-#: tfpuzzlewizard.checkboxrequiresadject1.caption
-msgid "Requires Adjective"
-msgstr "Requiere Adjetivo"
-
-#: tfpuzzlewizard.checkboxrequiresadject2.caption
-msgid "Requires Adjective 2"
-msgstr "Requiere Adjetivo 2"
-
-#: tfpuzzlewizard.checkboxrequiresadverb.caption
-msgid "Requires Adverb"
-msgstr "Requiere Adverbio"
-
-#: tfpuzzlewizard.checkboxrequiresnoun.caption
-msgid "Requires Noun"
-msgstr "Requiere Nombre"
-
-#: tfpuzzlewizard.checkboxrequiresnoun2.caption
-msgid "Requires Noun 2"
-msgstr "Requiere Nombre 2"
-
-#: tfpuzzlewizard.checkboxrequirespreposition.caption
-msgid "Requires Preposition"
-msgstr "Requiere Preposición"
-
 #: tfpuzzlewizard.comboboxactionselect.text
 msgid "Choose an action..."
 msgstr "Elige una acción..."
@@ -464,9 +427,13 @@ msgstr "Elige una condición"
 msgid "Please specify response for player if this condition is not successful"
 msgstr "Especifique la respuesta para el jugador si la condición no se cumple"
 
+#: tfpuzzlewizard.editlocation.hint
+msgid "Enter a location number or identifier where the puzzle happens"
+msgstr ""
+
 #: tfpuzzlewizard.edittos.hint
 msgid "Enter text in case of success"
-msgstr "Escriba el texto en caso de éxito"
+msgstr "Escriba respuesta en caso de éxito "
 
 #: tfpuzzlewizard.groupbox1.caption
 msgid "On success"
@@ -479,7 +446,7 @@ msgstr "Localidad"
 
 #: tfpuzzlewizard.groupboxloc.hint
 msgid "Fill in this box if this puzzle can only be solved in a given location"
-msgstr "Rellene esta caja si el puzle solo puede ser resuelto en una localidad concreta"
+msgstr "Indique la localidad donde se puede resolver el puzle"
 
 #: tfpuzzlewizard.groupboxvoc.caption
 msgctxt "TFPUZZLEWIZARD.GROUPBOXVOC.CAPTION"
@@ -498,6 +465,18 @@ msgstr ""
 msgid "LabelActionP2"
 msgstr ""
 
+#: tfpuzzlewizard.labeladject2.caption
+msgid "Second Adjective (optional)"
+msgstr "Segundo Adjetivo (opcional)"
+
+#: tfpuzzlewizard.labeladjective.caption
+msgid "Adjective (optional)"
+msgstr "Adjetivo (opcional)"
+
+#: tfpuzzlewizard.labeladverb.caption
+msgid "Adverb (optional)"
+msgstr "Adverbio (opcional)"
+
 #: tfpuzzlewizard.labelcondp1.caption
 msgid "LabelCondP1"
 msgstr ""
@@ -507,9 +486,11 @@ msgid "LabelCondP2"
 msgstr ""
 
 #: tfpuzzlewizard.labelcondtof.caption
+#, fuzzy
+#| msgid "Text on failure"
 msgctxt "TFPUZZLEWIZARD.LABELCONDTOF.CAPTION"
-msgid "Text on failure"
-msgstr "Texto en caso de fallo"
+msgid "Message if condition fails"
+msgstr "Texto si condición no se cumple"
 
 #: tfpuzzlewizard.labelinstrructions3.caption
 #, fuzzy
@@ -530,19 +511,35 @@ msgid "Puzzle code has been generated, please click \"Finish\" to add it to your
 msgstr "El código del puzle ha sido generado, por favor haga click en \"Finalizar\" para incluirlo."
 
 #: tfpuzzlewizard.labellocationtof.caption
+#, fuzzy
+#| msgid "Text on failure"
 msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.CAPTION"
-msgid "Text on failure"
-msgstr "Texto en caso de fallo"
+msgid "Response if not at right location"
+msgstr "Texto si no está en esa localidad"
 
 #: tfpuzzlewizard.labellocationtof.hint
 msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.HINT"
 msgid "Response to player if he/she tries to perform this action in other location"
 msgstr "Respuesta al jugador si intenta realizar la acción en otra localidad"
 
+#: tfpuzzlewizard.labelnoun.caption
+msgid "Noun (optional)"
+msgstr "Nombre (opcional)"
+
+#: tfpuzzlewizard.labelnoun2.caption
+msgid "Second noun(optional)"
+msgstr "Segundo nombre (opcional)"
+
+#: tfpuzzlewizard.labelpreposition.caption
+msgid "Preposition (optional)"
+msgstr "Preposición  (opcional)"
+
 #: tfpuzzlewizard.labeltos.caption
+#, fuzzy
+#| msgid "Text on success"
 msgctxt "TFPUZZLEWIZARD.LABELTOS.CAPTION"
-msgid "Text on success"
-msgstr "Texto en caso de éxito"
+msgid "Response on puzzle success"
+msgstr "Texto si el puzle tiene éxito"
 
 #: tfpuzzlewizard.labelverb.caption
 msgctxt "TFPUZZLEWIZARD.LABELVERB.CAPTION"

@@ -8,6 +8,7 @@ object fPuzzleWizard: TfPuzzleWizard
   ClientHeight = 630
   ClientWidth = 825
   DesignTimePPI = 120
+  OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.0.12.0'
   object PageControlWizard: TPageControl
@@ -15,7 +16,7 @@ object fPuzzleWizard: TfPuzzleWizard
     Height = 538
     Top = 0
     Width = 825
-    ActivePage = TabSheetCodeGen
+    ActivePage = TabSheetVocLoc
     Align = alTop
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
@@ -25,7 +26,7 @@ object fPuzzleWizard: TfPuzzleWizard
     Font.Quality = fqDraft
     ParentFont = False
     ShowTabs = False
-    TabIndex = 3
+    TabIndex = 0
     TabOrder = 0
     object TabSheetVocLoc: TTabSheet
       Caption = 'Vocabulary & Location'

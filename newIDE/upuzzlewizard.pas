@@ -85,6 +85,7 @@ type
     procedure ComboBoxConditionSelectChange(Sender: TObject);
     procedure EditActionKeyPress(Sender: TObject; var Key: char);
     procedure EditConditionKeyPress(Sender: TObject; var Key: char);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure PMDeleteLineClick(Sender: TObject);
     procedure PMMoveDownClick(Sender: TObject);
@@ -374,6 +375,11 @@ procedure TfPuzzleWizard.EditConditionKeyPress(Sender: TObject; var Key: char
   );
 begin
   if  Key = #13 then ButtonAddCondition.Click();
+end;
+
+procedure TfPuzzleWizard.FormCreate(Sender: TObject);
+begin
+
 end;
 
 procedure TfPuzzleWizard.FormShow(Sender: TObject);
