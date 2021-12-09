@@ -586,7 +586,7 @@ DROP ALL
 DROP ALL
  DOALL CARRIED
 
-EXTRACT ALL   ; Object contaniner absent
+EXTRACT ALL   ; Object container absent
  NOTEQ 13 255   
  ONOTZERO @13 aContainer 
  ABSENT @13 
