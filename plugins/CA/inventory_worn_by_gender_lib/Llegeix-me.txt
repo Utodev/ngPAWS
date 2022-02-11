@@ -1,0 +1,3 @@
+Aquesta complement sobreescriu el condacte que mostra l'inventari afegint si un objecte se du «(posada)» per aFemale o «(posat)» per la resta d'objectes amb atribut aWear.
+
+Licencia: MIT (https://opensource.org/licenses/MIT)
