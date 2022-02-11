@@ -280,8 +280,9 @@ function ACCramload()
 		}
 		else
 		{
-			writeText (STR_RAMLOAD_ERROR); 
-			done_flag = true; 
+			writeText (STR_RAMLOAD_ERROR);
+			ACCnewline();
+			done_flag = true;
 			return;
 		}
 	}
@@ -312,6 +313,7 @@ function ACCload()
 	else
 	{
 		writeSysMessage(SYSMESS_FILENOTFOUND);
+		ACCnewline();
 		done_flag = true; return;
 	}
 	ACCdesc();
