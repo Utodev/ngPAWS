@@ -1,44 +1,38 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>An ngPAWS game o'hacker</title>
-<meta charset="UTF-8">
-<meta description="text adventure game">
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="buzz.js"></script>
-<script type='text/javascript' src='code.js'></script>
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>An ngPAWS game o'hacker</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="text adventure game">
+      <script type="text/javascript" src="jquery.js"></script>
+      <script type="text/javascript" src="buzz.js"></script>
+      <script type='text/javascript' src='code.js'></script>
+      <link href="css.css" rel="stylesheet" type="text/css" />
+   </head>
+   <body>
+      <div class='wrapper'>
+         <div class='graphics'>
+         </div>
 
-<link href="css.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
+         <div aria-live="polite" class='text'>
+         </div>
 
-<div class='wrapper'>
+         <div class='input'>
+            <input aria-live="polite" type='text' class='prompt' />
+         </div>
+      </div>
 
+      <div class='block_layer'>
+         <div class='block_graphics'>
+         </div>
+         <div class='block_text'>
+         </div>
+      </div>
 
-	<div class='graphics'>
-	</div>
+      <div class='transcript_layer'>
+         <span id='transcript_area'></span>
+      </div>
 
-	<div aria-live="polite" class='text'>
-	</div>
-
-	<div class='input'>
-		<input aria-live="polite" type='text' class='prompt' />
-	</div>
-	
-</div>
-
-<div class='block_layer'>
-
-	<div class='block_graphics'>
-	</div>
-
-	<div class='block_text'>
-	</div>
-</div>
-
-<div class='transcript_layer' />
-	<span id='transcript_area'></span>
-</div>
-
-<div class='anykey_layer' /></div>
-</body>
+      <div class='anykey_layer'></div>
+   </body>
 </html>
