@@ -103,7 +103,7 @@ resourcestring
   S_PLEASE_FILL_IN_FIELDS = 'Please fill in fields';
 
   S_DIRECTION = 'Direction';
-  S_DIRECTION_HINT = 'Please enter a valir direction verb';
+  S_DIRECTION_HINT = 'Please enter a valid direction verb';
 
   S_VERB_MISSING = 'Please specify a verb for player order';
   S_NOUN_MISSING ='Please specify a noun for player order';
