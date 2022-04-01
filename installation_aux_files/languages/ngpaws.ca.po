@@ -1,0 +1,951 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
+"Language-Team: CiberSheep\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca_ES\n"
+"X-Generator: Poedit 2.3\n"
+
+#: tfabout.caption
+msgid "ngPAWS 2.0"
+msgstr "ngPAWS 2.0"
+
+#: tfabout.label1.caption
+msgctxt "TFABOUT.LABEL1.CAPTION"
+msgid "ngPAWS (C) 2021 Uto"
+msgstr "ngPAWS (C) 2021 Uto"
+
+#: tfabout.label2.caption
+msgid "at GitHub (GPL)"
+msgstr "a GitHub (GPL)"
+
+#: tfabout.label3.caption
+msgid "Nice icons by Kiranshastry"
+msgstr "Bones icones per Kiranshastry"
+
+#: tfabout.labeldetails.caption
+msgid "Lazarus source code avaliable"
+msgstr "Codi font de Lazarus disponible"
+
+#: tfabout.labelngithubsite.caption
+msgid "https://github.com/Utodev/ngPAWS"
+msgstr "https://github.com/Utodev/ngPAWS"
+
+#: tfabout.labelngpawssite.caption
+msgid "http://www.ngpaws.com/ngpaws"
+msgstr "http://www.ngpaws.com/ngpaws"
+
+#: tfmain.bhelp.hint
+msgid "Help"
+msgstr "Ajuda"
+
+#: tfmain.bnew.hint
+msgid "New"
+msgstr "Nou"
+
+#: tfmain.bopen.hint
+msgid "Open"
+msgstr "Obre"
+
+#: tfmain.boptions.hint
+msgctxt "TFMAIN.BOPTIONS.HINT"
+msgid "Options"
+msgstr "Opcions"
+
+#: tfmain.brun.hint
+msgid "Run (F5)"
+msgstr "Inicia (F5)"
+
+#: tfmain.bsave.hint
+msgid "Save (Ctrl+S)"
+msgstr "Desa (Ctrl+S)"
+
+#: tfmain.caption
+msgid "ngPAWS"
+msgstr "ngPAWS"
+
+#: tfmain.compileoutputlistbox.hint
+msgid "Compiler output"
+msgstr "Sortida del compilador"
+
+#: tfmain.mabout.caption
+msgid "About ngPAWS"
+msgstr "Quant a ngPAWS"
+
+#: tfmain.mclose.caption
+msgid "&Close"
+msgstr "Tan&ca"
+
+#: tfmain.mclosecompileroutput.caption
+msgid "Close this frame"
+msgstr "Tanca aquest marc"
+
+#: tfmain.mcompile.caption
+msgid "&Compile"
+msgstr "&Compila"
+
+#: tfmain.mcompilerun.caption
+msgid "Compile && &Run"
+msgstr "Compila i &inicia"
+
+#: tfmain.mconnections.caption
+msgid "&Connections"
+msgstr "&Connexions"
+
+#: tfmain.mcopy.caption
+msgid "&Copy"
+msgstr "&Copia"
+
+#: tfmain.mcopyall.caption
+msgid "Copy All To Clipboard"
+msgstr "Copia-ho tot del portaretalls"
+
+#: tfmain.mcut.caption
+msgid "C&ut"
+msgstr "Re&talla"
+
+#: tfmain.mdata.caption
+msgid "Data"
+msgstr "Dades"
+
+#: tfmain.mdefinitions.caption
+msgid "&Definitions"
+msgstr "&Definicions"
+
+#: tfmain.medit.caption
+msgid "&Edit"
+msgstr "&Edita"
+
+#: tfmain.mfile.caption
+msgid "&File"
+msgstr "&Fitxer"
+
+#: tfmain.mfind.caption
+msgctxt "tfmain.mfind.caption"
+msgid "Find"
+msgstr "Cerca"
+
+#: tfmain.mfindnext.caption
+msgid "&Find next"
+msgstr "&Cerca el següent"
+
+#: tfmain.mhelp.caption
+msgid "&Help"
+msgstr "&Ajuda"
+
+#: tfmain.mhelpcontents.caption
+msgid "Help contents"
+msgstr "Contingut de l'ajuda"
+
+#: tfmain.mlocations.caption
+msgid "&Locations"
+msgstr "&Localitzacions"
+
+#: tfmain.mmessages.caption
+msgid "&Messages"
+msgstr "&Missatges"
+
+#: tfmain.mnew.caption
+msgid "&New"
+msgstr "&Nou"
+
+#: tfmain.mnewprocess.caption
+msgid "New Process"
+msgstr "Nou Procés"
+
+#: tfmain.mobjectdata.caption
+msgid "Ob&ject Data"
+msgstr "Dades de l'ob&jecte"
+
+#: tfmain.mobjecttexts.caption
+msgid "&Object Texts"
+msgstr "Text de l'&objecte"
+
+#: tfmain.mopenallsections.caption
+msgctxt "TFMAIN.MOPENALLSECTIONS.CAPTION"
+msgid "Open &all sections"
+msgstr "Obre &totes les seccions"
+
+#: tfmain.mopenfile.caption
+msgctxt "TFMAIN.MOPENFILE.CAPTION"
+msgid "&Open"
+msgstr "&Obre"
+
+#: tfmain.moptions.caption
+msgid "&Options"
+msgstr "&Paràmetres"
+
+#: tfmain.mpaste.caption
+msgid "Pas&te"
+msgstr "Engan&xa"
+
+#: tfmain.mprocesses.caption
+msgid "&Processes"
+msgstr "&Processos"
+
+#: tfmain.mproject.caption
+msgid "&Project"
+msgstr "&Projecte"
+
+#: tfmain.mquit.caption
+msgid "Quit"
+msgstr "Surt"
+
+#: tfmain.mrecentfiles.caption
+msgid "Recent F&iles"
+msgstr "F&itxes recents"
+
+#: tfmain.mredo.caption
+msgctxt "tfmain.mredo.caption"
+msgid "Redo"
+msgstr "Refés"
+
+#: tfmain.mreplace.caption
+msgctxt "tfmain.mreplace.caption"
+msgid "Replace"
+msgstr "Reemplaça"
+
+#: tfmain.msave.caption
+msgid "&Save"
+msgstr "De&sa"
+
+#: tfmain.msystemmessages.caption
+msgid "&System messages"
+msgstr "&Missatges del sistema"
+
+#: tfmain.mtools.caption
+msgid "&Tools"
+msgstr "&Eines"
+
+#: tfmain.mundo.caption
+msgctxt "tfmain.mundo.caption"
+msgid "Undo"
+msgstr "Defés"
+
+#: tfmain.mvocabulary.caption
+msgid "&Vocabulary"
+msgstr "&Vocabulari"
+
+#: tfmain.panelbackground.caption
+msgctxt "tfmain.panelbackground.caption"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: tfmain.panelright.caption
+msgid "ngPAWS (C) Uto 2021"
+msgstr "ngPAWS (C) Uto 2021"
+
+#: tfmain.pmcondacthelp.caption
+msgid "Condact Help"
+msgstr "Ajuda dels Condactes"
+
+#: tfmain.pmcopy.caption
+msgctxt "tfmain.pmcopy.caption"
+msgid "Copy"
+msgstr "Copia"
+
+#: tfmain.pmcut.caption
+msgctxt "tfmain.pmcut.caption"
+msgid "Cut"
+msgstr "Retalla"
+
+#: tfmain.pmfind.caption
+msgctxt "tfmain.pmfind.caption"
+msgid "Find"
+msgstr "Cerca"
+
+#: tfmain.pmfindnext.caption
+msgid "Find next"
+msgstr "Cerca el següent"
+
+#: tfmain.pminterrupttoggle.caption
+msgid "Toggle interrupt process mark"
+msgstr "Commuta la marca del procés d'interrupció"
+
+#: tfmain.pmlargerfont.caption
+msgid "Larger font"
+msgstr "Font més grossa"
+
+#: tfmain.pmpaste.caption
+msgctxt "tfmain.pmpaste.caption"
+msgid "Paste"
+msgstr "Enganxa"
+
+#: tfmain.pmpuzzlewizard.caption
+msgctxt "tfmain.pmpuzzlewizard.caption"
+msgid "Puzzle Wizard"
+msgstr "Assistent de trencaclosques"
+
+#: tfmain.pmreplace.caption
+msgctxt "tfmain.pmreplace.caption"
+msgid "Replace"
+msgstr "Reemplaça"
+
+#: tfmain.pmsmallerfont.caption
+msgid "Smaller font"
+msgstr "Font més petita"
+
+#: tfoptions.bbrowsecompiler.caption
+msgctxt "TFOPTIONS.BBROWSECOMPILER.CAPTION"
+msgid "..."
+msgstr "…"
+
+#: tfoptions.bbrowsepreprocessor.caption
+msgctxt "tfoptions.bbrowsepreprocessor.caption"
+msgid "..."
+msgstr "…"
+
+#: tfoptions.bbrowsestartdatabase.caption
+msgctxt "TFOPTIONS.BBROWSESTARTDATABASE.CAPTION"
+msgid "..."
+msgstr "…"
+
+#: tfoptions.bcancel.caption
+msgid "&Cancel"
+msgstr "&Cancel·la"
+
+#: tfoptions.bok.caption
+msgid "&Ok"
+msgstr "&D'acord"
+
+#: tfoptions.caption
+msgctxt "tfoptions.caption"
+msgid "Options"
+msgstr "Opcions"
+
+#: tfoptions.checkdeletetempfiles.caption
+msgid "Delete temp files"
+msgstr "Elimina els fitxers temporals"
+
+#: tfoptions.checkopenalltabs.caption
+msgid "Open all sections on load"
+msgstr "Obre totes les seccions al carregar"
+
+#: tfoptions.checksavebeforerun.caption
+msgid "Save before run or compile"
+msgstr "Desa abans d'iniciar o compilar"
+
+#: tfoptions.checkshowtoolbar.caption
+msgid "Show tool bar"
+msgstr "Mostra la barra d'eines"
+
+#: tfoptions.groupboxcompileroptions.caption
+msgid "Compiler Options"
+msgstr "Opcions del compilador"
+
+#: tfoptions.groupboxeditor.caption
+msgid "Editor Options"
+msgstr "Opcions de l'editor"
+
+#: tfoptions.labelcompiler.caption
+msgctxt "TFOPTIONS.LABELCOMPILER.CAPTION"
+msgid "Compiler"
+msgstr "Compilador"
+
+#: tfoptions.labelhelpurl.caption
+msgid "Help Base URL"
+msgstr "URL base de l'ajuda"
+
+#: tfoptions.labellang.caption
+msgid "Language"
+msgstr "Idioma"
+
+#: tfoptions.labelpreprocessor.caption
+msgid "Preprocessor"
+msgstr "Preprocessador"
+
+#: tfoptions.labelpreprocessorparameters.caption
+msgid "Preprocessor Parameters"
+msgstr "Paràmetres del preprocessador"
+
+#: tfoptions.labelstartdatabase.caption
+msgid "Start database"
+msgstr "Base de dades inicial"
+
+#: tfpuzzlewizard.buttonaddaction.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONADDACTION.CAPTION"
+msgid "Add"
+msgstr "Afegeix"
+
+#: tfpuzzlewizard.buttonaddaction.hint
+msgid "Add Action"
+msgstr "Afegeix una acció"
+
+#: tfpuzzlewizard.buttonaddcondition.caption
+msgctxt "tfpuzzlewizard.buttonaddcondition.caption"
+msgid "Add"
+msgstr "Afegeix"
+
+#: tfpuzzlewizard.buttonaddcondition.hint
+msgid "Add Condition"
+msgstr "Afegeix una condició"
+
+#: tfpuzzlewizard.buttonnext.caption
+msgctxt "TFPUZZLEWIZARD.BUTTONNEXT.CAPTION"
+msgid "&Next >"
+msgstr "&Següent >"
+
+#: tfpuzzlewizard.buttonprev.caption
+msgid "< &Previous"
+msgstr "< &Anterior"
+
+#: tfpuzzlewizard.caption
+msgctxt "tfpuzzlewizard.caption"
+msgid "Puzzle Wizard"
+msgstr "Assistent de trencaclosques"
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.caption
+msgid "Include aditional words in failure entries"
+msgstr "Inclou paraules addicionals en entrades fallides"
+
+#: tfpuzzlewizard.checkboxincludewordsonfailure.hint
+msgid "Select if entries created to show failure text due to conditions failing to match will include also extra required words or just verb or verb+name"
+msgstr "Seleccioneu si les entrades creades per mostrar el text d'error a causa de les condicions que no coincideixen inclouran també paraules addicionals obligatòries o només verb o verb+nom"
+
+#: tfpuzzlewizard.checkboxlinkedtolocation.caption
+msgid "Puzzle is linked to location"
+msgstr "El trencaclosque està unit a una localització"
+
+#: tfpuzzlewizard.comboboxactionselect.text
+msgid "Choose an action..."
+msgstr "Trieu una acció…"
+
+#: tfpuzzlewizard.comboboxconditionselect.text
+msgid "Choose a condition..."
+msgstr "Trieu una condició…"
+
+#: tfpuzzlewizard.editconditiontof.hint
+msgid "Please specify response for player if this condition is not successful"
+msgstr "Especificau una resposta al o la jugadora si no es satisfà aquesta condició"
+
+#: tfpuzzlewizard.editlocation.hint
+msgid "Enter a location number or identifier where the puzzle happens"
+msgstr "Escriviu un número o identificador de localització on hagi de passar el trencaclosques"
+
+#: tfpuzzlewizard.edittos.hint
+msgid "Enter text in case of success"
+msgstr "Escriviu el text en cas d'èxit"
+
+#: tfpuzzlewizard.groupbox1.caption
+msgid "On success"
+msgstr "En encertar"
+
+#: tfpuzzlewizard.groupboxloc.caption
+msgctxt "tfpuzzlewizard.groupboxloc.caption"
+msgid "Location"
+msgstr "Localització"
+
+#: tfpuzzlewizard.groupboxloc.hint
+msgid "Fill in this box if this puzzle can only be solved in a given location"
+msgstr "Seleccioneu si el trencaclosques només es pot resoldre a certa localització"
+
+#: tfpuzzlewizard.groupboxvoc.caption
+msgctxt "TFPUZZLEWIZARD.GROUPBOXVOC.CAPTION"
+msgid "Vocabulary"
+msgstr "Vocabulari"
+
+#: tfpuzzlewizard.groupboxvoc.hint
+msgid "Fill in this box to determine which words will the player have to type for this puzzle to get triggered"
+msgstr "Seleccioneu per determinar amb quines paraules s'han d'escriure per accionar el trencaclosques"
+
+#: tfpuzzlewizard.labelactionp1.caption
+msgid "LabelActionP1"
+msgstr "LabelActionP1"
+
+#: tfpuzzlewizard.labelactionp2.caption
+msgid "LabelActionP2"
+msgstr "LabelActionP2"
+
+#: tfpuzzlewizard.labeladject2.caption
+msgid "Second Adjective (optional)"
+msgstr "Segon adjectiu (opcional)"
+
+#: tfpuzzlewizard.labeladjective.caption
+msgid "Adjective (optional)"
+msgstr "Adjectiu (optional)"
+
+#: tfpuzzlewizard.labeladverb.caption
+msgid "Adverb (optional)"
+msgstr "Adverbi (opcional)"
+
+#: tfpuzzlewizard.labelcondp1.caption
+msgid "LabelCondP1"
+msgstr "LabelCondP1"
+
+#: tfpuzzlewizard.labelcondp2.caption
+msgid "LabelCondP2"
+msgstr "LabelCondP2"
+
+#: tfpuzzlewizard.labelcondtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELCONDTOF.CAPTION"
+msgid "Message if condition fails"
+msgstr "Missatge si la condició falla"
+
+#: tfpuzzlewizard.labelinstrructions3.caption
+msgid "In case of success, please specify text output, and add any other actions that should be performed ."
+msgstr "En cas d'èxit, especifiqueu un text de sortida i afegiu una altra acció que s'hagi de fer."
+
+#: tfpuzzlewizard.labelinstructions1.caption
+msgid "Specify what player should type to succeed on puzzle. Also, if he/she needs to be in an specific location"
+msgstr "Especifiqueu què s'ha d'escriure per solucionar el trencaclosques. També, si hi ha de ser a una localització específica"
+
+#: tfpuzzlewizard.labelinstructions2.caption
+msgid "If any additional conditions should be met for player success, add them here."
+msgstr "Si s'ha de reunir una condició addicional per resoldre, afegiu-la aquí"
+
+#: tfpuzzlewizard.labelinstructions4.caption
+msgid "Puzzle code has been generated, please click \"Finish\" to add it to your game code."
+msgstr "El codi del trencaclosques s'ha general, cliqueu «Acabar» per afegir-ho al codi del joc."
+
+#: tfpuzzlewizard.labellocationtof.caption
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.CAPTION"
+msgid "Response if not at right location"
+msgstr "Contestació si no s'hi és a la localització correcta"
+
+#: tfpuzzlewizard.labellocationtof.hint
+msgctxt "TFPUZZLEWIZARD.LABELLOCATIONTOF.HINT"
+msgid "Response to player if he/she tries to perform this action in other location"
+msgstr "Contestació si el o la jugadora prova de fer aquesta acció a una altra localització"
+
+#: tfpuzzlewizard.labelnoun.caption
+msgid "Noun (optional)"
+msgstr "Nom (opcional)"
+
+#: tfpuzzlewizard.labelnoun2.caption
+msgid "Second noun(optional)"
+msgstr "Segon nom (opcional)"
+
+#: tfpuzzlewizard.labelpreposition.caption
+msgid "Preposition (optional)"
+msgstr "Preposició (opcional)"
+
+#: tfpuzzlewizard.labeltos.caption
+msgctxt "TFPUZZLEWIZARD.LABELTOS.CAPTION"
+msgid "Response on puzzle success"
+msgstr "Resposta en resoldre el trencaclosques"
+
+#: tfpuzzlewizard.labelverb.caption
+msgctxt "TFPUZZLEWIZARD.LABELVERB.CAPTION"
+msgid "Verb"
+msgstr "Verb"
+
+#: tfpuzzlewizard.pmdeleteline.caption
+msgid "Delete"
+msgstr "Elimina"
+
+#: tfpuzzlewizard.pmmovedown.caption
+msgid "Move down"
+msgstr "Mou abaix"
+
+#: tfpuzzlewizard.pmmoveup.caption
+msgid "Move up"
+msgstr "Mou adalt"
+
+#: tfpuzzlewizard.tabsheetactions.caption
+msgid "Actions"
+msgstr "Accions"
+
+#: tfpuzzlewizard.tabsheetcodegen.caption
+msgid "Success and options"
+msgstr "Èxit i opcions"
+
+#: tfpuzzlewizard.tabsheetconditions.caption
+msgid "Conditions"
+msgstr "Condicions"
+
+#: tfpuzzlewizard.tabsheetvocloc.caption
+msgid "Vocabulary & Location"
+msgstr "Vocabulari i localitzacions"
+
+#: tfsearchreplace.bcancel.caption
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: tfsearchreplace.bok.caption
+msgid "Ok"
+msgstr "D'acord"
+
+#: tfsearchreplace.caption
+msgctxt "tfsearchreplace.caption"
+msgid "Search"
+msgstr "Cerca"
+
+#: tfsearchreplace.checkcasesensitive.caption
+msgid "Case Sensitive"
+msgstr "Coincidència maj./minúscules"
+
+#: tfsearchreplace.checkonlyfromcursor.caption
+msgid "Only from cursor"
+msgstr "Només des del cursor"
+
+#: tfsearchreplace.checkonlyinselection.caption
+msgid "Only in selection"
+msgstr "Només en la selecció"
+
+#: tfsearchreplace.checkreplace.caption
+msgctxt "TFSEARCHREPLACE.CHECKREPLACE.CAPTION"
+msgid "Replace"
+msgstr "Reemplazar"
+
+#: tfsearchreplace.checkwholewordsonly.caption
+msgid "Whole Words only"
+msgstr "Només paraules senceres"
+
+#: tfsearchreplace.labelsearch.caption
+msgctxt "TFSEARCHREPLACE.LABELSEARCH.CAPTION"
+msgid "Search"
+msgstr "Cerca"
+
+#: uglobals.s_actions
+msgid ""
+"Choose an action...\n"
+"Object <....> appears\n"
+"Object <....> disappears\n"
+"Object <....> appears at location <....>\n"
+"Flag <....> is increased by <....>\n"
+"Flag <....> is decreased by <....>\n"
+"Flag <....> value is set to <....>\n"
+"Destroy connection in direction <....>\n"
+"Set connection in direction <....> to location <....>\n"
+msgstr ""
+"Trieu una acció…\n"
+"Objecte <…> apareix\n"
+"Objecte <…> desapareix\n"
+"Objecte <…> apareix a la localització <…>\n"
+"Flag <…> s'incrementa en <…>\n"
+"Flag <…> es disminueix en <…>\n"
+"Flag <…> el valor torna <…>\n"
+"Destrueix la connexió en la direcció <…>\n"
+"Defineix la connexió en la direcció <…> a la localització <…>\n"
+
+#: uglobals.s_adject1_missing
+msgid "Please specify an adjetive for player order"
+msgstr "Especifiqueu un adjectiu per l'ordre del o la jugadora"
+
+#: uglobals.s_adject2_missing
+msgid "Please specify an adjetive for second noun player order"
+msgstr "Especifiqueu un adjectiu per la segona ordre del o la jugadora"
+
+#: uglobals.s_adverb_missing
+msgid "Please specify an adverb for player order"
+msgstr "especifiqueu un adverbi per l'ordre del o la jugadora"
+
+#: uglobals.s_browser_not_found
+msgid "Browser not found. Please check Tools/Options and set proper path for your favorite browser."
+msgstr "No s'ha trobat cap navegador. Aneu a Eines/Paràmetres i configureu la ruta al vostre preferit."
+
+#: uglobals.s_compiler_not_found
+msgid "Compiler not found, please check options to set valid path"
+msgstr "No s'ha trobat el compilador, comproveu als paràmetre que la ruta és vàlida"
+
+#: uglobals.s_compile_ok
+msgid "OK. Ready to run."
+msgstr "D'acord. Llest per iniciar."
+
+#: uglobals.s_conditions
+msgid ""
+"Choose a condition...\n"
+"Player carries object <....>\n"
+"Player wears object <....>\n"
+"Player does not carry object <....>\n"
+"Object <....> is present\n"
+"Object <....> is absent\n"
+"Object <....> is at location <....>\n"
+"Object <....> is not at location <....>\n"
+"Flag <....> value is <....>\n"
+"Flag <....> value is not <....>\n"
+"Flag <....> value is greater than <....>\n"
+"Flag <....> value is less than <....>\n"
+msgstr ""
+"Trieu una condició…\n"
+"El o la jugadora duu l'Objecte <…>\n"
+"El o la jugadora duu posat l'Objecte <…>\n"
+"El o la jugadora no duu l'Objecte <…>\n"
+"L'Objecte <…> és present\n"
+"l'Objecte <…> és absent\n"
+"L'Objecte <…> és a la localització <…>\n"
+"L'Objecte <…> no és a la localització <…>\n"
+"El valor del Flag <…> és <…>\n"
+"El valor del Flag <…> no és <…>\n"
+"El valor del Flag <…> és major que <…>\n"
+"El valor del Flag <…> és menor que <…>\n"
+
+#: uglobals.s_copyright
+msgctxt "uglobals.s_copyright"
+msgid "ngPAWS Editor (C) 2015 Uto"
+msgstr "ngPAWS Editor (C) 2015 Uto"
+
+#: uglobals.s_default_filename
+msgid "NewAdventure.txp"
+msgstr "NovaAventura.txp"
+
+#: uglobals.s_direction
+msgid "Direction"
+msgstr "Direcció"
+
+#: uglobals.s_direction_hint
+msgid "Please enter a valir direction verb"
+msgstr "Escriviu una adreça vàlida"
+
+#: uglobals.s_file_loaded_warning
+msgid ">> File has been loaded. To open sections use the \"Project\" menu <<"
+msgstr ">> S'ha carregat el fitxer. Per obrir les seccions utilitzeu el menú «Projecte» <<"
+
+#: uglobals.s_file_not_found
+msgid "File not found"
+msgstr "No s'ha trobat el fitxer"
+
+#: uglobals.s_finish_message
+msgid "&Finish"
+msgstr "&Acaba"
+
+#: uglobals.s_flag
+msgid "Flag"
+msgstr "Flag"
+
+#: uglobals.s_flag_hint
+msgid "Please enter number or txtpaws label of a flag"
+msgstr "Escriviu un número o una etiqueta del txtpaws d'un Flag"
+
+#: uglobals.s_index_not_found
+msgid "index.html file not found."
+msgstr "No es troba el fitxer «index.html»."
+
+#: uglobals.s_invalid_format
+msgid "Not a valid TXP/SCE file"
+msgstr "Fitxer TXP/SCE invàlid"
+
+#: uglobals.s_invalid_process_number
+msgid "Invalid Process Number"
+msgstr "Número de Procés invàlid"
+
+#: uglobals.s_invalid_section
+msgid "Invalid section"
+msgstr "Secció invàlida"
+
+#: uglobals.s_languages
+msgid ""
+"OS Default\n"
+"English\n"
+"Spanish\n"
+msgstr ""
+"Del sistem\n"
+"Anglès\n"
+"Espanyol\n"
+
+#: uglobals.s_location
+msgctxt "uglobals.s_location"
+msgid "Location"
+msgstr "Localitzacions"
+
+#: uglobals.s_locations_hint
+msgid "Please enter number or txtpaws label of a location"
+msgstr "Escriviu un número o una etiqueta del txtpaws d'una localització"
+
+#: uglobals.s_location_missing
+msgid "Please specify a location if puzzle is linked to location"
+msgstr "Especifiqueu una localitzación si el trencaclosques està connectat a una localització"
+
+#: uglobals.s_location_tof_missing
+msgid "Please specify a text on failute is player is not at specified location"
+msgstr "Especifiqueu un text per error si el o la jugadora no és a la localització definida"
+
+#: uglobals.s_menuitem_process
+msgid "Process &"
+msgstr "Procés &"
+
+#: uglobals.s_menuitem_response
+msgid "&Response"
+msgstr "&Resposta"
+
+#: uglobals.s_newgame_files_not_found
+msgid "One or more files required to create a new game are missing, please check your installation."
+msgstr "Falta un o més fitxers necessaris per a crear un joc nou, comproveu la vostra instal·lació."
+
+#: uglobals.s_next_message
+msgctxt "uglobals.s_next_message"
+msgid "&Next >"
+msgstr "&Següent >"
+
+#: uglobals.s_noun2_missing
+msgid "Please specify a second noun for player order"
+msgstr "Especifiqueu un segon nom per l'ordre del o la jugadora"
+
+#: uglobals.s_noun_missing
+msgid "Please specify a noun for player order"
+msgstr "Especifiqueu un nom per l'ordre del o la jugadora"
+
+#: uglobals.s_no_end_of_puzzle
+msgid "Mark of end of puzzle not found."
+msgstr "No s'ha trobat la marca de final de trencaclosques."
+
+#: uglobals.s_no_section_open
+msgid "Please open some section from the \"Project\" menu in order to use this feature."
+msgstr "Obriu alguna secció del menú «Projecte» per usar aquesta funció."
+
+#: uglobals.s_object
+msgid "Object"
+msgstr "Objecte"
+
+#: uglobals.s_object_hint
+msgid "Please enter number or txtpaws label of an object"
+msgstr "Escriviu un número o una etiqueta d'un objecte"
+
+#: uglobals.s_please_fill_in_fields
+msgid "Please fill in fields"
+msgstr "Ompliu els camps"
+
+#: uglobals.s_please_select_condition
+msgid "Please select a condition"
+msgstr "Seleccioneu una condició"
+
+#: uglobals.s_preprocessor_not_found
+msgid "Preprocessor not found, please check options to set valid path"
+msgstr "No s'ha trobat el prepocessador, comproveu als paràmetres que la ruta és vàlida"
+
+#: uglobals.s_prep_missing
+msgid "Please specify a preposition for player order"
+msgstr "Especifiqueu una preposició per a l'ordre del o la jugadora"
+
+#: uglobals.s_puzzle_bottom
+msgid "; Please don't remove the 'end of puzzle' mark below. Removing it may lead to code corruption"
+msgstr "; No elimineu la marca de «final del trencaclosques» a continuació. Eliminar-la pot provocar la corrupció del codi"
+
+#: uglobals.s_puzzle_bottom_mark
+msgid "; <ENDPUZZLE>"
+msgstr "; <ENDPUZZLE>"
+
+#: uglobals.s_puzzle_hr
+msgid ";****************************************************************************************************************************"
+msgstr ";****************************************************************************************************************************"
+
+#: uglobals.s_puzzle_title
+msgid "; Automatically generated puzzle, please right click the token below and select \"Puzzle Wizard\" to edit it"
+msgstr "; Trencaclosques generat automàticament, cliqueu amb el botó dret l'element següent i seleccioneu «Assistent de trencaclosques» per editar-lo"
+
+#: uglobals.s_puzzle_title2
+msgid "; Don't delete the token"
+msgstr " ; No elimineu l'element"
+
+#: uglobals.s_puzzle_token
+msgid "; TOKEN: [XXXX] TOKEN"
+msgstr "; TOKEN: [XXXX] TOKEN"
+
+#: uglobals.s_quit_not_saved
+msgid ""
+"Some changes may have not been saved.\n"
+"Are you sure?\n"
+msgstr ""
+"No s'han desat alguns canvis\n"
+"Voleu continuar?\n"
+
+#: uglobals.s_replace_interrupt_process
+msgid ""
+"There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
+"Are you sure?\n"
+msgstr ""
+"Ja hi ha un altre procés marcat com a procés d'interrupció. Si marqueu aquest, es desactivarà l'altre.\n"
+"Voleu continuar?\n"
+
+#: uglobals.s_search_replace_not_found
+msgid " not found."
+msgstr "no s'ha trobat"
+
+#: uglobals.s_section_conn
+msgid "Connections"
+msgstr "Connexions"
+
+#: uglobals.s_section_control
+msgid "Control"
+msgstr "Control"
+
+#: uglobals.s_section_definitions
+msgid "Definitions"
+msgstr "Definicions"
+
+#: uglobals.s_section_interrupt
+msgid "[INT]"
+msgstr "[INT]"
+
+#: uglobals.s_section_locmess
+msgid "Locations"
+msgstr "Localitzacions"
+
+#: uglobals.s_section_mess
+msgid "User Messages"
+msgstr "Missatges d'usuari"
+
+#: uglobals.s_section_objdata
+msgid "Object Data"
+msgstr "Dades d'Objecte"
+
+#: uglobals.s_section_objmess
+msgid "Objects"
+msgstr "Objectes"
+
+#: uglobals.s_section_process
+msgid "Process"
+msgstr "Processos"
+
+#: uglobals.s_section_response
+msgid "Response"
+msgstr "Respostes"
+
+#: uglobals.s_section_sysmess
+msgid "System Messages"
+msgstr "Missatges del sistema"
+
+#: uglobals.s_section_vocabulary
+msgctxt "uglobals.s_section_vocabulary"
+msgid "Vocabulary"
+msgstr "Vocabulari"
+
+#: uglobals.s_starting_compiler
+msgid "Running compiler..."
+msgstr "Compilador en marxa…"
+
+#: uglobals.s_starting_preprocessor
+msgid "Running preprocessor..."
+msgstr "Preprocessador en marxa…"
+
+#: uglobals.s_start_database_not_found
+msgid "Start database not found, please check options to set valid path"
+msgstr "No s'ha trobat la base de dades d'inici, comproveu als paràmetres si la ruta és vàlida"
+
+#: uglobals.s_too_many_process
+msgid "Too many processes"
+msgstr "Massa processos"
+
+#: uglobals.s_tos_missing
+msgid "Please specify a text on success"
+msgstr "Especifiqueu un text d'èxit"
+
+#: uglobals.s_unexpected_condition
+msgid "Unexpected condition"
+msgstr "Condició inesperada"
+
+#: uglobals.s_value
+msgid "Value"
+msgstr "Valor"
+
+#: uglobals.s_value_hint
+msgid "Please enter a integer positive value or zero"
+msgstr "Escriviu un valor enter positiu o zero"
+
+#: uglobals.s_verb_missing
+msgid "Please specify a verb for player order"
+msgstr "Especifiqueu un verb per l'ordre del o la jugadora"
+
+#: uglobals.s_wrong_puzzlewizard_position
+msgid "Please select an empty zone in the response table or the token of a previous puzzle. If you selected a token and you see this message, probably the token was modified."
+msgstr "Seleccioneu una zona buida a la taula de respostes o el token d'un trencaclosques anterior. Si n'heu seleccionat un i veieu aquest missatge, probablement el token s'ha modificat."
+
+#: uglobals.s_wrong_settings
+msgid "Compiler, Preprocessor and/or start database not found. Please check paths in the \"Compiler\" tab in Tools/Options menu."
+msgstr "No s'ha trobat el compilador, el preprocessador, i/o la base de dades inicial. Comproveu al menú Eines/paràmetres a la pestanya «compilador»"
