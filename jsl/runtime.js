@@ -1780,7 +1780,7 @@ function start()
      });
 
      //Make tap act as click
-    document.addEventListener('touchstart', function(e) {$(document).click(); }, false);   
+    //document.addEventListener('touchstart', function(e) {$(document).click(); }, false);   
      
      
 	$(document).keydown(function(e) {
