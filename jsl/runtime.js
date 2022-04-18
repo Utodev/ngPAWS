@@ -1597,6 +1597,7 @@ function closeBlock()
 	if (!inBlock) return;
 	inBlock = false;
 	hideBlock();
+	if (unblock_process === null) return;
     var proToCall = unblock_process;
 	unblock_process = null;
 	callProcess(proToCall);
