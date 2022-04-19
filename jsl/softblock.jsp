@@ -9,6 +9,6 @@ function ACCsoftblock(procno)
    $('.block_text').html('');
    $('.block_graphics').html('');
    $('.block_layer').css('background','transparent');
-   if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
+   if (procno == 0 ) unblock_process = null; else unblock_process = procno;
    $('.block_layer').css('display','block');
 }

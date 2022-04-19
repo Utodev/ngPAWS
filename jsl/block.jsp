@@ -14,7 +14,7 @@ function ACCblock(writeno, picno, procno)
 		var imgsrc = '<img class="block_picture" src="' + filename + '" />';
 		$('.block_graphics').html(imgsrc);
 	}
-    if (procno == 0 ) unblock_process ==null; else unblock_process = procno;
+    if (procno == 0 ) unblock_process = null; else unblock_process = procno;
     $('.block_layer').show();
 
 }
