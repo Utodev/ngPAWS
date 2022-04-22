@@ -1,4 +1,4 @@
-This plugin adds a new condacto that shows a list of the saved games in the browser session.
+This plugin adds a new condacto that shows a list of the saved games in the browser session and add import/export capabilities.
 
 Example:
 

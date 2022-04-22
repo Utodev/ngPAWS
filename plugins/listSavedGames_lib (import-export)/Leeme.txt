@@ -1,0 +1,19 @@
+Este plugin añade un nuevo condacto que muestra una lista de las partidas guardadas en la sesión del navegador con opción de exportar e importar los juegos guardados (json).
+
+Ejemplo:
+
+ PARTIDAS _
+  LISTSAVEDGAMES
+  DONE
+
+Uso:
+- Copiar listsavedgames.jsp a la carpeta /jsl del juego
+- Añadir al archivo .txp del juego una respuesta con el condacto LISTSAVEDGAMES
+- Compilar
+
+Licencia: MIT (https://opensource.org/licenses/MIT)
+
+Código a partir de:
+- https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText
+- https://gist.github.com/yiwenl/8f2b735a2263bc93ee33
+

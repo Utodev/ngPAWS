@@ -6,4 +6,9 @@ Ejemplo:
   LISTSAVEDGAMES
   DONE
 
+Uso:
+- Copiar listsavedgames.jsp a la carpeta /jsl del juego
+- Añadir al archivo .txp del juego una respuesta con el condacto LISTSAVEDGAMES
+- Compilar
+
 Licencia: MIT (https://opensource.org/licenses/MIT)
