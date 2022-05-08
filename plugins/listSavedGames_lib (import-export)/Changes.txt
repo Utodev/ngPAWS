@@ -1,0 +1,5 @@
+List of changes
+v1.0
+- List saved games in one line
+- Saved games as links
+- Added import and export option

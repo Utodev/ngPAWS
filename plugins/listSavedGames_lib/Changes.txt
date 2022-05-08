@@ -1,0 +1,7 @@
+List of changes
+v1.0 (not specified)
+- List saved games
+
+v1.1
+- List saved games in a same line
+- Treat results as links to load the saved game tapping on each one
