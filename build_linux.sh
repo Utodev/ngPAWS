@@ -57,7 +57,7 @@ else
    mkdir dist
 
    mv build/newIDE/ngpaws dist/ngpaws
-   mv build/compiler/ngpc dist/ngpc
+   mv build/compiler/VisualStudio/.vs/ngpc dist/ngpc
    cp txtpaws/src/txtpaws dist/txtpaws
    cp -R jsl example-code extra_langs installation_aux_files/* plugins dist/
    
