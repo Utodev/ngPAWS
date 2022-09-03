@@ -57,7 +57,7 @@ else
    mkdir dist
 
    mv build/newIDE/ngpaws dist/ngpaws
-   mv build/compiler/VisualStudio/.vs/ngpc dist/ngpc
+   mv $(find -iname ngpc -type d -printf "%T@ %p\n" | sort -nr | head -1 | cut -d' ' -f 2) dist/ngpc
    cp txtpaws/src/txtpaws dist/txtpaws
    cp -R jsl example-code extra_langs installation_aux_files/* plugins dist/
    
