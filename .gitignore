@@ -2,6 +2,10 @@
 ## Eclipse
 #################
 
+Release-linux-es/
+Release-linux-en/
+build/
+txtpaws/
 Release/
 backup/
 lib/

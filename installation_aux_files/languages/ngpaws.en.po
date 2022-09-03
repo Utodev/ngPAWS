@@ -623,6 +623,17 @@ msgid "Search"
 msgstr "Search"
 
 #: uglobals.s_actions
+#, fuzzy
+#| msgid ""
+#| "Choose an action...\n"
+#| "Object <....> appears\n"
+#| "Object <....> disappears\n"
+#| "Object <....> appears at location <....>\n"
+#| "Flag <....> is increased by <....>\n"
+#| "Flag <....> is decreased by <....>\n"
+#| "Flag <....> value is set to <....>\n"
+#| "Destroy connection in direction <....>\n"
+#| "Set connection in direction <....> to location <....>\n"
 msgid ""
 "Choose an action...\n"
 "Object <....> appears\n"
@@ -632,7 +643,7 @@ msgid ""
 "Flag <....> is decreased by <....>\n"
 "Flag <....> value is set to <....>\n"
 "Destroy connection in direction <....>\n"
-"Set connection in direction <....> to location <....>\n"
+"Set connection in direction <....> to location <....>"
 msgstr ""
 "Choose an action...\n"
 "Object <....> appears\n"
@@ -710,7 +721,9 @@ msgid "Direction"
 msgstr "Direction"
 
 #: uglobals.s_direction_hint
-msgid "Please enter a valir direction verb"
+#, fuzzy
+#| msgid "Please enter a valir direction verb"
+msgid "Please enter a valid direction verb"
 msgstr "Please enter a valir direction verb"
 
 #: uglobals.s_file_loaded_warning
@@ -750,10 +763,15 @@ msgid "Invalid section"
 msgstr "Invalid section"
 
 #: uglobals.s_languages
+#, fuzzy
+#| msgid ""
+#| "OS Default\n"
+#| "English\n"
+#| "Spanish\n"
 msgid ""
 "OS Default\n"
 "English\n"
-"Spanish\n"
+"Spanish"
 msgstr ""
 "OS Default\n"
 "English\n"
@@ -858,17 +876,25 @@ msgid "; TOKEN: [XXXX] TOKEN"
 msgstr "; TOKEN: [XXXX] TOKEN"
 
 #: uglobals.s_quit_not_saved
+#, fuzzy
+#| msgid ""
+#| "Some changes may have not been saved.\n"
+#| "Are you sure?\n"
 msgid ""
 "Some changes may have not been saved.\n"
-"Are you sure?\n"
+"Are you sure?"
 msgstr ""
 "Some changes may have not been saved.\n"
 "Are you sure?\n"
 
 #: uglobals.s_replace_interrupt_process
+#, fuzzy
+#| msgid ""
+#| "There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
+#| "Are you sure?\n"
 msgid ""
 "There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
-"Are you sure?\n"
+"Are you sure?"
 msgstr ""
 "There is already another process marked as interrupt process. Marking this one will deactivate the other.\n"
 "Are you sure?\n"
