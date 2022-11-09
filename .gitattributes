@@ -21,4 +21,4 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-jsl/*.jsp linguist-language=Javascript
+*.jsp linguist-language=javascript
