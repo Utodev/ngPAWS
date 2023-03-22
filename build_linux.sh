@@ -75,7 +75,7 @@ else
    mkdir Release-linux
 
    mv build/newIDE/ngpaws Release-linux/ngpaws
-   mv build/compiler/ngpc Release-linux/ngpc
+   mv $(find -iname ngpc -type d -printf "%T@ %p\n" | sort -nr | head -1 | cut -d' ' -f 2) Release-linux/ngpc
    cp txtpaws/src/txtpaws Release-linux/txtpaws
    cp -R jsl example-code extra_langs installation_aux_files/* plugins Release-linux/
    
