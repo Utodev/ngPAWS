@@ -23,7 +23,7 @@
 
 FILE *fichJS, *fichLib,   *fichBlc, *fichSpellCheck;
 
-char libFile[2024];
+extern char libFile[2024];
 
 
 TipoCondacto elCondacto;
@@ -447,7 +447,7 @@ void VolcarProcesos ()
 			default:
 				printf ("ERROR: condact type unknown.\n");
 			}
-			/* y ahora, las operaciones de limpieza del condacto según el tipo del mismo */
+			/* y ahora, las operaciones de limpieza del condacto segÃºn el tipo del mismo */
 
 			if (!strcmp (elCondacto.nombre, "RESTART"))
 			{
